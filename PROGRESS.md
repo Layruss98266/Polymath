@@ -46,11 +46,11 @@ Per §4 v5 quality bar. Mark each ✓ when QA checklist (Appendix C) passes.
 - [ ] Law & Legal Basics
 - [ ] Mental Models & Famous Laws
 
-## Phase 1d — Review · Dashboard · Skill Map · My List
-- [ ] Review screen: due-card session, confidence calibration, misconception feedback, weakest-concepts queue, "why this works"
-- [ ] Dashboard: mastery radar, total XP, streak, cards reviewed, capability log, calibration score, achievements/trophies
-- [ ] Skill Map: category nodes, mastered domains glow, optional Connections graph (Phase 3)
-- [ ] My List: bookmarks, notes, saved reflections, curated Paths (≥3) + capstones
+## Phase 1d — Review · Dashboard · Skill Map · My List ✅
+- [x] Review screen: due-card session w/ FSRS grading, "why this works" rationale, empty state when nothing due, completion screen
+- [x] Dashboard: total XP, level, global rank, streak, due-count, mastery radar across all domains, per-domain rank list, achievements, calibration meter
+- [x] Skill Map: category-grouped nodes, started domains glow with their hue
+- [x] My List: 4 curated Paths (Become hard to manipulate · Money from zero · Build and sell a product · Think clearly) w/ live-domain counters + capstones; bookmarks; saved reflections
 
 ## Phase 2 — Polish + deploy
 - [ ] Accessibility pass (keyboard nav, ARIA, AA contrast, `prefers-reduced-motion`)
