@@ -9,15 +9,15 @@ Spec: `POLYMATH_claude_code_prompt2.md` v5. Stack: Next.js 15 (App Router) + TS 
 - [x] PROGRESS.md, agents.md, README.md
 - [x] `git init` + remote add + first commit + push
 
-## Phase 1a — Engine core
-- [ ] Zod domain schema (validates §4 shape)
-- [ ] Dexie store + versioned migrations (IndexedDB primary, localStorage fallback)
-- [ ] XP / level / global rank / per-domain rank engine
-- [ ] Streak engine + grace-day
-- [ ] FSRS scheduler wrapping `ts-fsrs`
-- [ ] Mastery % calculator (single source of truth)
-- [ ] Export/import base64 save code
-- [ ] State store (signal-pattern) + hooks
+## Phase 1a — Engine core ✅
+- [x] Zod domain schema (validates §4 shape)
+- [x] Dexie store + versioned migrations (IndexedDB primary, localStorage fallback)
+- [x] XP / level / global rank / per-domain rank engine
+- [x] Streak engine + grace-day
+- [x] FSRS scheduler wrapping `ts-fsrs`
+- [x] Mastery % calculator (single source of truth)
+- [x] Export/import base64 save code
+- [x] State store (signal-pattern) + hooks
 
 ## Phase 1b — Layout, Home, Domain detail, Diagrams
 - [ ] Root layout + top bar (XP / level / streak / Review badge / theme toggle / save-load)
