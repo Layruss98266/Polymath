@@ -28,23 +28,23 @@ Spec: `POLYMATH_claude_code_prompt2.md` v5. Stack: Next.js 15 (App Router) + TS 
 - [x] 3 reference domains authored to v5 quality bar: Marketing · AI & ML · Personal Finance — all schema-validated, all pre-render statically
 - [x] Placeholder pages for /review, /dashboard, /skill-map, /my-list so all top-bar links resolve
 
-## Phase 1c — Core 15 domains authored
-Per §4 v5 quality bar. Mark each ✓ when QA checklist (Appendix C) passes.
-- [ ] Human Psychology
-- [ ] Learning How to Learn
-- [ ] Health, Longevity & How the Body Works
-- [ ] Nutrition & Food Science
-- [ ] Communication & Storytelling
-- [ ] Negotiation & Persuasion
-- [ ] Personal Finance
-- [ ] Investing & Markets
-- [ ] Entrepreneurship & Startups
-- [ ] Marketing
-- [ ] Tech & Programming
-- [ ] AI & Machine Learning
-- [ ] Famous Scientific Laws
-- [ ] Law & Legal Basics
-- [ ] Mental Models & Famous Laws
+## Phase 1c — Core 15 domains authored ✅
+All 15 schema-validated, all SSG'd at build, all named-authority mentors verified accurate, all contested-claim caveats present.
+- [x] Human Psychology — Kahneman / Cialdini / Dweck / Asch / Sapolsky · replication-crisis steelman, Mehrabian caveat
+- [x] Learning How to Learn — Ebbinghaus / Bjork / Roediger&McDaniel / Oakley / Ericsson · 10,000-hour misreading caveat
+- [x] Health, Longevity & How the Body Works — Attia / Willett / Sapolsky / Walker / Gawande · Walker / Blue-Zones caveats, India safety note
+- [x] Nutrition & Food Science — Willett / Nestle / Pollan / Spector / Monteiro · diet-book overreach caveat, India safety note
+- [x] Communication & Storytelling — Aristotle / Heath bros / Duarte / Campbell / Zinsser · Mehrabian + brevity-cult caveats
+- [x] Negotiation & Persuasion — Fisher&Ury / Voss / Diamond / Cialdini · Voss-theatre + first-offer myth caveats
+- [x] Personal Finance — Housel / Collins / Sethi / Robin / Bogle · Ramsey snowball steelman, India-localised, safety note
+- [x] Investing & Markets — Bogle / Buffett / Graham / Markowitz / Marks · index-concentration + survivorship caveats, safety note
+- [x] Entrepreneurship & Startups — Graham / Blank / Ries / Thiel / Fitzpatrick · YC-survivorship steelman
+- [x] Marketing — Kotler / Ries&Trout / Godin / Sharp / Christensen · Byron-Sharp counter-positioning steelman
+- [x] Tech & Programming — Turing / Dijkstra / Knuth / Kernighan / Fowler · "everyone should code" + post-AI critique
+- [x] AI & Machine Learning — Hinton / Karpathy / Ng / Vaswani / Pearl · Pearl/Marcus causality steelman, safety note
+- [x] Famous Scientific Laws — Newton / Maxwell / Darwin / Einstein / Clausius&Boltzmann · pop-physics-as-metaphor caveat
+- [x] Law & Legal Basics — Holmes / Hart / Dworkin / Ambedkar / Sunstein · India-localised, enforcement-asymmetry caveat, safety note
+- [x] Mental Models & Famous Laws — Munger / Parrish / Meadows / Taleb / Tetlock · collectibles-vs-tools caveat
 
 ## Phase 1d — Review · Dashboard · Skill Map · My List ✅
 - [x] Review screen: due-card session w/ FSRS grading, "why this works" rationale, empty state when nothing due, completion screen
