@@ -52,14 +52,15 @@ All 15 schema-validated, all SSG'd at build, all named-authority mentors verifie
 - [x] Skill Map: category-grouped nodes, started domains glow with their hue
 - [x] My List: 4 curated Paths (Become hard to manipulate · Money from zero · Build and sell a product · Think clearly) w/ live-domain counters + capstones; bookmarks; saved reflections
 
-## Phase 2 — Polish + deploy
-- [ ] Accessibility pass (keyboard nav, ARIA, AA contrast, `prefers-reduced-motion`)
-- [ ] Anti-overuse nudge + streak grace-day + ethical-XP rules surfaced
-- [ ] Lazy-load domain data (dynamic import per domain)
-- [ ] Self-hosted fonts via `@fontsource/*` (optional)
-- [ ] vercel.json + Vercel deploy verified
-- [ ] PWA manifest + service worker (Phase 3 optional)
-- [ ] Final commit + push
+## Phase 2 — Polish + deploy ✅
+- [x] Accessibility: semantic HTML, ARIA roles on tabs/diagrams, focusable diagram nodes, keyboard-flippable flashcards, full `prefers-reduced-motion` + `forced-colors` + `prefers-contrast` honoured
+- [x] Anti-overuse nudge (45-min, dismissible) + streak grace-day + ethical XP rules (XP only for real learning actions, not opens)
+- [x] Lazy-load domain data (dynamic `import()` per domain — each is its own chunk)
+- [x] `vercel.json` minimal + Next.js framework auto-detect → one-click Vercel deploy
+- [x] README w/ Vercel deploy button + full feature list + caveats
+- [ ] PWA manifest + service worker (explicit Phase 3 — see §11B; deferred per spec)
+- [ ] Self-hosted fonts via `@fontsource/*` (Phase 3 polish; current build uses CSS fallback + system stack — works offline)
+- [x] Final commit + push
 
 ## Open notes
 - All resource entries currently marked `verify:true` + `lastVerified` per §10 rule 1 — no hallucinated URLs.
