@@ -1,17 +1,28 @@
+import { DailyQuest } from "@/components/DailyQuest";
+import { SessionPicker } from "@/components/SessionPicker";
+import { DomainGrid } from "@/components/DomainGrid";
+import { LevelRing } from "@/components/LevelRing";
+
 export default function HomePage() {
   return (
-    <section className="space-y-6">
-      <header className="space-y-2">
-        <p className="dim text-xs uppercase tracking-widest">Phase 0 · scaffold</p>
-        <h1 className="font-display text-4xl md:text-5xl">POLYMATH</h1>
-        <p className="dim max-w-2xl">
-          Learn anything — daily. Engine, domains and screens are coming online phase by phase. See{" "}
-          <code>PROGRESS.md</code> for the live build status.
-        </p>
-      </header>
-      <div className="panel p-6">
-        <p>Scaffolding complete. Next: engine core (schema, FSRS, XP, persistence).</p>
-      </div>
-    </section>
+    <div className="space-y-6">
+      <section className="grid grid-cols-1 md:grid-cols-[1fr_320px] gap-4">
+        <div className="panel p-6 space-y-3">
+          <p className="dim text-xs uppercase tracking-widest">A daily learning loop</p>
+          <h1 className="font-display text-4xl md:text-5xl leading-tight">
+            Learn anything.<br />Two minutes a day.
+          </h1>
+          <p className="dim max-w-xl">
+            Real frameworks from the field's best minds, real ranked resources, real-world missions, spaced repetition, and an honest game loop.
+            <strong className="ink"> No dark patterns.</strong> XP only for genuine learning actions.
+          </p>
+        </div>
+        <LevelRing />
+      </section>
+
+      <DailyQuest />
+      <SessionPicker />
+      <DomainGrid />
+    </div>
   );
 }

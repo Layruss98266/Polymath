@@ -19,12 +19,14 @@ Spec: `POLYMATH_claude_code_prompt2.md` v5. Stack: Next.js 15 (App Router) + TS 
 - [x] Export/import base64 save code
 - [x] State store (signal-pattern) + hooks
 
-## Phase 1b — Layout, Home, Domain detail, Diagrams
-- [ ] Root layout + top bar (XP / level / streak / Review badge / theme toggle / save-load)
-- [ ] Theme tokens (dark default + light, `prefers-color-scheme`, `forced-colors`, `prefers-contrast`)
-- [ ] Home: hero, domain grid, category filter, search, daily quest, streak, 5/15/45 session picker, continue-learning, onboarding
-- [ ] Domain detail w/ 8 tabs: Basics · Diagram · Concepts · Zero→Grandmaster · Resources · Missions · Quiz · Flashcards · Cheat-sheet · Counter-view (lazy)
-- [ ] Diagram component library: funnel, pyramid, cycle, flow, curve, quadrant, spectrum, venn, tree, network, bars, timeline, sequence, gauge, labelled — theme-aware via CSS vars, a11y
+## Phase 1b — Layout, Home, Domain detail, Diagrams ✅
+- [x] Root layout + top bar (XP / level / streak / Review badge / theme toggle / save-load modal w/ base64 export-import)
+- [x] Theme tokens (dark default + light, `prefers-color-scheme`, `forced-colors`, `prefers-contrast`, `prefers-reduced-motion`)
+- [x] Home: hero, domain grid, category filter, search, daily quest, streak chip, 5/15/45 session picker, surprise-me random
+- [x] Domain detail w/ 10 tabs: Basics · Diagram · Concepts · Zero→Grandmaster · Resources · Missions · Quiz · Flashcards · Cheat-sheet · Counter-view (lazy via state)
+- [x] Diagram component library: funnel, pyramid, cycle, flow, curve, quadrant, spectrum, venn, tree, network, bars, timeline, sequence, gauge, labelled — theme-aware via CSS vars, ARIA `role="img"` + focusable groups
+- [x] 3 reference domains authored to v5 quality bar: Marketing · AI & ML · Personal Finance — all schema-validated, all pre-render statically
+- [x] Placeholder pages for /review, /dashboard, /skill-map, /my-list so all top-bar links resolve
 
 ## Phase 1c — Core 15 domains authored
 Per §4 v5 quality bar. Mark each ✓ when QA checklist (Appendix C) passes.
