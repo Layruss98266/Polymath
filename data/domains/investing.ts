@@ -89,15 +89,28 @@ const d: Domain = {
 
   resources: {
     free: [
-      { name: "Zerodha Varsity — Markets & Investing modules", what: "Free, India-specific, genuinely good.", url: "", verify: true, lastVerified: "2026-06" },
-      { name: "Common Sense on Mutual Funds — John Bogle (library)", what: "The case for low-cost index investing from the source.", url: "", verify: true, lastVerified: "2026-06" },
-      { name: "Berkshire Hathaway annual letters", what: "Decades of clear thinking from Buffett. Free.", url: "", verify: true, lastVerified: "2026-06" },
-      { name: "Howard Marks — memos (Oaktree)", what: "Cycles + risk thinking. Free, decades of memos.", url: "", verify: true, lastVerified: "2026-06" }
+      { name: "Zerodha Varsity — Markets & Investing",          what: "Free, India-specific, genuinely good.",                              url: "https://zerodha.com/varsity/",                                                        verify: false, lastVerified: "2026-06" },
+      { name: "Berkshire Hathaway — annual letters",            what: "Decades of clear thinking from Buffett. Free.",                       url: "https://www.berkshirehathaway.com/letters/letters.html",                              verify: false, lastVerified: "2026-06" },
+      { name: "Howard Marks — Oaktree memos",                   what: "Cycles + risk thinking. Free, decades of memos.",                     url: "https://www.oaktreecapital.com/insights/memos",                                       verify: false, lastVerified: "2026-06" },
+      { name: "Bogleheads Wiki",                                what: "Community wiki around John Bogle's philosophy. Deep + practical.",      url: "https://www.bogleheads.org/wiki/Main_Page",                                            verify: false, lastVerified: "2026-06" },
+      { name: "Investopedia — Investing 101",                   what: "Reference-grade glossary + tutorials.",                                url: "https://www.investopedia.com/investing-4427685",                                       verify: false, lastVerified: "2026-06" },
+      { name: "Aswath Damodaran — NYU course (free lectures)",  what: "Valuation from the master. Free YouTube + materials.",                 url: "https://pages.stern.nyu.edu/~adamodar/",                                                verify: false, lastVerified: "2026-06" },
+      { name: "Patrick O'Shaughnessy — Invest Like the Best",   what: "Long-form interviews with great investors.",                          url: "https://joincolossus.com/",                                                            verify: false, lastVerified: "2026-06" },
+      { name: "SEBI — Investor Awareness",                       what: "Indian regulator's own investor education.",                          url: "https://investor.sebi.gov.in/",                                                        verify: false, lastVerified: "2026-06" },
+      { name: "Morningstar — Investing Classroom",              what: "Free structured classes; fund + portfolio fundamentals.",              url: "https://www.morningstar.com/start-investing",                                          verify: true, lastVerified: "2026-06" },
+      { name: "Value Research — articles + tools",              what: "India: mutual fund + tax research.",                                  url: "https://www.valueresearchonline.com/",                                                  verify: false, lastVerified: "2026-06" }
     ],
     paid: [
-      { name: "The Intelligent Investor — Benjamin Graham", what: "Value investing classic. Margin of safety, Mr Market.", url: "", price: "verify", verify: true, lastVerified: "2026-06" },
-      { name: "A Random Walk Down Wall Street — Burton Malkiel", what: "The academic case for index investing.", url: "", price: "verify", verify: true, lastVerified: "2026-06" },
-      { name: "The Most Important Thing — Howard Marks", what: "Cycles, risk, second-level thinking.", url: "", price: "verify", verify: true, lastVerified: "2026-06" }
+      { name: "The Intelligent Investor — Benjamin Graham",      what: "Value investing classic. Margin of safety, Mr Market.",                url: "https://en.wikipedia.org/wiki/The_Intelligent_Investor",                                price: "verify", verify: true, lastVerified: "2026-06" },
+      { name: "A Random Walk Down Wall Street — Malkiel",        what: "The academic case for index investing.",                              url: "https://en.wikipedia.org/wiki/A_Random_Walk_Down_Wall_Street",                          price: "verify", verify: true, lastVerified: "2026-06" },
+      { name: "The Most Important Thing — Howard Marks",         what: "Cycles, risk, second-level thinking.",                                url: "https://www.oaktreecapital.com/",                                                       price: "verify", verify: true, lastVerified: "2026-06" },
+      { name: "Common Sense on Mutual Funds — John Bogle",       what: "The case for low-cost index investing from the source.",              url: "https://en.wikipedia.org/wiki/Common_Sense_on_Mutual_Funds",                            price: "verify", verify: true, lastVerified: "2026-06" },
+      { name: "One Up On Wall Street — Peter Lynch",             what: "Bottom-up stock picking, accessibly written.",                        url: "",                                                                                     price: "verify", verify: true, lastVerified: "2026-06" },
+      { name: "The Little Book of Common Sense Investing — Bogle", what: "Compact version of Bogle's index-investing case.",                  url: "",                                                                                     price: "verify", verify: true, lastVerified: "2026-06" },
+      { name: "Mastering the Market Cycle — Howard Marks",       what: "Where you are in the cycle is most of the game.",                     url: "https://www.oaktreecapital.com/",                                                       price: "verify", verify: true, lastVerified: "2026-06" },
+      { name: "Coffee Can Investing — Saurabh Mukherjea",        what: "India-specific buy-and-hold-quality framework.",                      url: "",                                                                                     price: "verify", verify: true, lastVerified: "2026-06" },
+      { name: "Margin of Safety — Seth Klarman (out of print)",  what: "Hard-to-find classic; library access if you can.",                    url: "",                                                                                     price: "verify", verify: true, lastVerified: "2026-06" },
+      { name: "Damodaran on Valuation — Aswath Damodaran",       what: "Standard valuation reference.",                                       url: "https://pages.stern.nyu.edu/~adamodar/",                                                price: "verify", verify: true, lastVerified: "2026-06" }
     ]
   },
 

@@ -49,3 +49,20 @@ body { font-family: var(--font-ui); }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; }
 }
+
+/* Hide scrollbars for horizontal-scroll containers (top bar, tab strip) */
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
+/* Mobile-tuned base */
+@media (max-width: 640px) {
+  .panel { border-radius: 1rem; }
+  h1.font-display { line-height: 1.1; }
+}
+
+/* Print: cheat-sheet looks like a printable handout */
+@media print {
+  header, footer, .no-print { display: none !important; }
+  body { background: white !important; color: black !important; }
+  .panel { border: 1px solid #ccc !important; background: white !important; box-shadow: none !important; }
+}

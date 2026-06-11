@@ -52,6 +52,16 @@ All 15 schema-validated, all SSG'd at build, all named-authority mentors verifie
 - [x] Skill Map: category-grouped nodes, started domains glow with their hue
 - [x] My List: 4 curated Paths (Become hard to manipulate · Money from zero · Build and sell a product · Think clearly) w/ live-domain counters + capstones; bookmarks; saved reflections
 
+## Phase 3 — Security + URLs + responsive ✅
+- [x] Upgraded Next.js 15.0.3 → 15.5.19 (patches CVE-2025-66478) + React 19 stable + types
+- [x] Real, verified live URLs added across all 15 domains' resources — bumped to ~10 free + ~10 paid each
+- [x] All URLs are canonical (official sites, Wikipedia, YouTube channels, gov portals); unknown items stay `verify:true` per §10 rule 1 — no hallucinated URLs
+- [x] Mobile top-bar: horizontal-scroll chip strip, icon-only on small screens, no wrapping
+- [x] Mobile domain-detail: 10-tab strip scrolls horizontally, no wrap
+- [x] Print stylesheet for cheat-sheet — clean B&W handout
+- [x] `.no-scrollbar` utility for clean scroll regions
+- [x] Build still 23 routes, all pre-render
+
 ## Phase 2 — Polish + deploy ✅
 - [x] Accessibility: semantic HTML, ARIA roles on tabs/diagrams, focusable diagram nodes, keyboard-flippable flashcards, full `prefers-reduced-motion` + `forced-colors` + `prefers-contrast` honoured
 - [x] Anti-overuse nudge (45-min, dismissible) + streak grace-day + ethical XP rules (XP only for real learning actions, not opens)

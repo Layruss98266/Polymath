@@ -81,15 +81,28 @@ const d: Domain = {
 
   resources: {
     free: [
-      { name: "CS50 — Harvard (edX free audit)", what: "The single best intro CS course. Free if you don't need the cert.", url: "", verify: true, lastVerified: "2026-06" },
-      { name: "MDN Web Docs", what: "The authoritative web platform reference. Free, deep, well-written.", url: "", verify: true, lastVerified: "2026-06" },
-      { name: "Python official tutorial", what: "Best free intro to Python from the source.", url: "", verify: true, lastVerified: "2026-06" },
-      { name: "Pro Git book (free online)", what: "Comprehensive Git, free, by Scott Chacon.", url: "", verify: true, lastVerified: "2026-06" }
+      { name: "CS50 — Harvard (edX free audit)",                what: "The single best intro CS course.",                                          url: "https://cs50.harvard.edu/x/",                                          verify: false, lastVerified: "2026-06" },
+      { name: "MDN Web Docs",                                   what: "The authoritative web platform reference. Free, deep, well-written.",       url: "https://developer.mozilla.org/",                                       verify: false, lastVerified: "2026-06" },
+      { name: "Python — official tutorial",                     what: "Best free intro to Python from the source.",                                url: "https://docs.python.org/3/tutorial/",                                   verify: false, lastVerified: "2026-06" },
+      { name: "Pro Git book (free)",                            what: "Comprehensive Git, free, by Scott Chacon.",                                 url: "https://git-scm.com/book/en/v2",                                       verify: false, lastVerified: "2026-06" },
+      { name: "freeCodeCamp",                                   what: "Free interactive curricula on web, JS, Python, data.",                      url: "https://www.freecodecamp.org/",                                         verify: false, lastVerified: "2026-06" },
+      { name: "The Odin Project",                               what: "Free, opinionated full-stack web curriculum.",                              url: "https://www.theodinproject.com/",                                      verify: false, lastVerified: "2026-06" },
+      { name: "Stack Overflow",                                  what: "Q&A site. Read questions like a textbook.",                                 url: "https://stackoverflow.com/",                                            verify: false, lastVerified: "2026-06" },
+      { name: "GitHub",                                          what: "Where most modern open source lives. Browse + clone freely.",                url: "https://github.com/",                                                  verify: false, lastVerified: "2026-06" },
+      { name: "Roadmap.sh (developer roadmaps)",                 what: "Visual roadmaps for frontend, backend, devops, AI, etc.",                  url: "https://roadmap.sh/",                                                  verify: false, lastVerified: "2026-06" },
+      { name: "Real Python (free articles)",                    what: "High-quality Python tutorials and references.",                              url: "https://realpython.com/",                                              verify: false, lastVerified: "2026-06" }
     ],
     paid: [
-      { name: "The Pragmatic Programmer — Hunt & Thomas", what: "Best general 'become a better engineer' read.", url: "", price: "verify", verify: true, lastVerified: "2026-06" },
-      { name: "Designing Data-Intensive Applications — Martin Kleppmann", what: "The modern systems classic.", url: "", price: "verify", verify: true, lastVerified: "2026-06" },
-      { name: "A Philosophy of Software Design — John Ousterhout", what: "Slim and excellent on managing complexity.", url: "", price: "verify", verify: true, lastVerified: "2026-06" }
+      { name: "The Pragmatic Programmer — Hunt & Thomas",        what: "Best general 'become a better engineer' read.",                             url: "https://pragprog.com/titles/tpp20/the-pragmatic-programmer-20th-anniversary-edition/", price: "verify", verify: false, lastVerified: "2026-06" },
+      { name: "Designing Data-Intensive Applications — Kleppmann", what: "The modern systems classic.",                                              url: "https://dataintensive.net/",                                          price: "verify", verify: false, lastVerified: "2026-06" },
+      { name: "A Philosophy of Software Design — John Ousterhout", what: "Slim and excellent on managing complexity.",                              url: "https://web.stanford.edu/~ouster/cgi-bin/aposd.php",                    price: "verify", verify: false, lastVerified: "2026-06" },
+      { name: "Code Complete — Steve McConnell",                 what: "Encyclopaedic engineering craft book.",                                    url: "https://www.microsoftpressstore.com/store/code-complete-9780735619678", price: "verify", verify: true, lastVerified: "2026-06" },
+      { name: "Refactoring — Martin Fowler",                     what: "Disciplined improvement of existing code.",                                 url: "https://martinfowler.com/books/refactoring.html",                       price: "verify", verify: false, lastVerified: "2026-06" },
+      { name: "Clean Code — Robert C. Martin",                   what: "Influential, opinionated; read with critique in mind.",                    url: "",                                                                       price: "verify", verify: true, lastVerified: "2026-06" },
+      { name: "The Mythical Man-Month — Brooks",                 what: "Why adding people to late projects makes them later.",                     url: "https://en.wikipedia.org/wiki/The_Mythical_Man-Month",                   price: "verify", verify: true, lastVerified: "2026-06" },
+      { name: "Cracking the Coding Interview — McDowell",        what: "Standard prep book for tech interviews.",                                  url: "https://www.crackingthecodinginterview.com/",                            price: "verify", verify: false, lastVerified: "2026-06" },
+      { name: "Computer Systems: A Programmer's Perspective",    what: "Bryant & O'Hallaron — under-the-hood systems text.",                       url: "https://csapp.cs.cmu.edu/",                                            price: "verify", verify: false, lastVerified: "2026-06" },
+      { name: "Eloquent JavaScript — Marijn Haverbeke",           what: "Excellent JS book; free online + paid print.",                              url: "https://eloquentjavascript.net/",                                       price: "verify", verify: false, lastVerified: "2026-06" }
     ]
   },
 

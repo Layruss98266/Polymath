@@ -61,14 +61,14 @@ export function DomainView({ domain }: { domain: Domain }) {
         </div>
       )}
 
-      <nav className="flex flex-wrap gap-2" role="tablist">
+      <nav className="flex gap-2 overflow-x-auto no-scrollbar -mx-3 px-3 sm:mx-0 sm:px-0 sm:flex-wrap" role="tablist">
         {TABS.map((t) => (
           <button
             key={t}
             role="tab"
             aria-selected={tab === t}
             onClick={() => setTab(t)}
-            className={`chip ${tab === t ? "ring-1 hue" : ""}`}
+            className={`chip shrink-0 ${tab === t ? "ring-1 hue" : ""}`}
             style={tab === t ? { borderColor: "var(--hue)" } : {}}
           >
             {t}

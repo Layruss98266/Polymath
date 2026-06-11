@@ -16,7 +16,7 @@ export function ResourcesTab({ d }: { d: Domain }) {
         {list.map((r, i) => <ResourceRow key={i} idx={i} r={r} />)}
       </ol>
 
-      <p className="dim text-xs">Resources ranked best-first for someone starting from scratch. Some titles are flagged "check link" — editions, hosts, and prices change.</p>
+      <p className="dim text-xs">Resources ranked best-first for someone starting from scratch. Links are real but editions/hosts/prices change — items flagged "check link" need extra verification.</p>
     </div>
   );
 }

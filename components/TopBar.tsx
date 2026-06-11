@@ -25,22 +25,25 @@ export function TopBar() {
 
   return (
     <header className="sticky top-0 z-30 backdrop-blur-md bg-[color:var(--bg)]/80 border-b border-[color:var(--line)]">
-      <div className="mx-auto max-w-6xl px-4 py-3 flex flex-wrap items-center gap-3">
-        <Link href="/" className="font-display text-lg tracking-wide">POLYMATH</Link>
+      <div className="mx-auto max-w-6xl px-3 sm:px-4 py-2 sm:py-3 flex items-center gap-2 sm:gap-3">
+        <Link href="/" className="font-display text-base sm:text-lg tracking-wide shrink-0">POLYMATH</Link>
 
-        <div className="ml-auto flex flex-wrap items-center gap-2 text-sm">
-          <span className="chip" title="Total XP"><Zap size={14} className="hue" /> {s.xp} XP</span>
-          <span className="chip" title="Level + global rank"><Trophy size={14} className="hue" /> L{lp.current} · {rank.name}</span>
-          <span className="chip" title="Streak"><Flame size={14} className="hue" /> {s.currentStreak}🔥</span>
-          <Link href="/review" className="chip" title="Spaced-repetition review">
-            <Brain size={14} className="hue" /> Review {due > 0 && <span className="ml-1 inline-flex items-center justify-center min-w-[18px] h-[18px] text-[10px] font-bold rounded-full px-1" style={{ background: "var(--hue)", color: "#fff" }}>{due}</span>}
+        <div className="ml-auto flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm overflow-x-auto no-scrollbar">
+          <span className="chip shrink-0" title="Total XP"><Zap size={14} className="hue" /> {s.xp} XP</span>
+          <span className="chip shrink-0 hidden sm:inline-flex" title="Level + global rank"><Trophy size={14} className="hue" /> L{lp.current} · <span className="hidden md:inline">{rank.name}</span><span className="md:hidden">{rank.name.split(" ")[0]}</span></span>
+          <span className="chip shrink-0 sm:hidden" title="Level"><Trophy size={14} className="hue" /> L{lp.current}</span>
+          <span className="chip shrink-0" title="Streak"><Flame size={14} className="hue" /> {s.currentStreak}🔥</span>
+          <Link href="/review" className="chip shrink-0" title="Spaced-repetition review">
+            <Brain size={14} className="hue" /> <span className="hidden sm:inline">Review</span> {due > 0 && <span className="ml-0.5 inline-flex items-center justify-center min-w-[18px] h-[18px] text-[10px] font-bold rounded-full px-1" style={{ background: "var(--hue)", color: "#fff" }}>{due}</span>}
           </Link>
-          <Link href="/skill-map" className="chip"><Map size={14} className="hue" /> Skill map</Link>
-          <Link href="/my-list" className="chip"><Bookmark size={14} className="hue" /> My list</Link>
-          <button className="btn" aria-label="Toggle theme" onClick={() => a.setTheme(s.theme === "dark" ? "light" : "dark")}>
+          <Link href="/skill-map" className="chip shrink-0 hidden md:inline-flex"><Map size={14} className="hue" /> Skill map</Link>
+          <Link href="/my-list" className="chip shrink-0 hidden md:inline-flex"><Bookmark size={14} className="hue" /> My list</Link>
+          <Link href="/skill-map" className="chip shrink-0 md:hidden" aria-label="Skill map"><Map size={14} className="hue" /></Link>
+          <Link href="/my-list" className="chip shrink-0 md:hidden" aria-label="My list"><Bookmark size={14} className="hue" /></Link>
+          <button className="btn shrink-0 !p-2" aria-label="Toggle theme" onClick={() => a.setTheme(s.theme === "dark" ? "light" : "dark")}>
             {s.theme === "dark" ? <Sun size={14} /> : <MoonStar size={14} />}
           </button>
-          <button className="btn" onClick={() => setShowSave(true)}>Save / Load</button>
+          <button className="btn shrink-0 hidden sm:inline-flex" onClick={() => setShowSave(true)}>Save / Load</button>
         </div>
       </div>
       {/* Level progress bar */}

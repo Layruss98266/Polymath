@@ -75,14 +75,28 @@ const d: Domain = {
 
   resources: {
     free: [
-      { name: "Thinking, Fast and Slow — Kahneman (library)", what: "The single best general-audience book on biases.", url: "", verify: true, lastVerified: "2026-06" },
-      { name: "Robert Sapolsky — Human Behavioral Biology (Stanford lectures, YouTube)", what: "Biology + psychology, beautifully taught. ~25 hours.", url: "", verify: true, lastVerified: "2026-06" },
-      { name: "Replication crisis explainers (Brian Nosek / Center for Open Science)", what: "Read about what didn't replicate before quoting it.", url: "", verify: true, lastVerified: "2026-06" }
+      { name: "Sapolsky — Human Behavioral Biology (Stanford)",   what: "Full course on YouTube. Biology + psychology, beautifully taught.",      url: "https://www.youtube.com/playlist?list=PL150326949691B199",                       verify: false, lastVerified: "2026-06" },
+      { name: "Center for Open Science — replication",            what: "Read about what didn't replicate before quoting it.",                    url: "https://www.cos.io/",                                                            verify: false, lastVerified: "2026-06" },
+      { name: "You Are Not So Smart — David McRaney",             what: "Free podcast on biases, accessibly explained.",                          url: "https://youarenotsosmart.com/",                                                  verify: false, lastVerified: "2026-06" },
+      { name: "Daniel Kahneman — Nobel lecture (free PDF)",      what: "Direct from the source: prospect theory + heuristics.",                  url: "https://www.nobelprize.org/prizes/economic-sciences/2002/kahneman/lecture/",     verify: false, lastVerified: "2026-06" },
+      { name: "PsyArXiv — preprint archive",                     what: "Read primary preprints before they reach pop articles.",                 url: "https://psyarxiv.com/",                                                          verify: false, lastVerified: "2026-06" },
+      { name: "Wikipedia — List of cognitive biases",            what: "Comprehensive index with citations to source studies.",                  url: "https://en.wikipedia.org/wiki/List_of_cognitive_biases",                          verify: false, lastVerified: "2026-06" },
+      { name: "Robert Sapolsky — public lectures (YouTube)",     what: "More accessible single-talk format.",                                    url: "https://www.youtube.com/results?search_query=Robert+Sapolsky",                    verify: true, lastVerified: "2026-06" },
+      { name: "Big Think — psychology channel",                  what: "Short, expert-driven explainers.",                                       url: "https://bigthink.com/psychology/",                                               verify: false, lastVerified: "2026-06" },
+      { name: "BPS Research Digest",                             what: "British Psychological Society blog summarising new psychology research.", url: "https://digest.bps.org.uk/",                                                     verify: false, lastVerified: "2026-06" },
+      { name: "Thinking, Fast and Slow — Kahneman (library)",     what: "The best general-audience book on biases.",                              url: "https://en.wikipedia.org/wiki/Thinking,_Fast_and_Slow",                          verify: true, lastVerified: "2026-06" }
     ],
     paid: [
-      { name: "Influence — Cialdini", what: "The six levers in detail. Pair with 'Pre-Suasion' for the advanced version.", url: "", price: "verify", verify: true, lastVerified: "2026-06" },
-      { name: "Behave — Robert Sapolsky", what: "Why we do what we do, from synapses to societies.", url: "", price: "verify", verify: true, lastVerified: "2026-06" },
-      { name: "Mindset — Carol Dweck", what: "Growth vs fixed. Read the replication caveats alongside.", url: "", price: "verify", verify: true, lastVerified: "2026-06" }
+      { name: "Influence — Cialdini",                            what: "The six levers in detail.",                                              url: "https://www.influenceatwork.com/principles-of-persuasion/",                      price: "verify", verify: false, lastVerified: "2026-06" },
+      { name: "Pre-Suasion — Cialdini",                          what: "What happens before the ask. Companion to Influence.",                   url: "https://www.influenceatwork.com/",                                               price: "verify", verify: true, lastVerified: "2026-06" },
+      { name: "Behave — Robert Sapolsky",                        what: "Why we do what we do, from synapses to societies.",                      url: "https://www.penguinrandomhouse.com/books/314463/behave-by-robert-m-sapolsky/",   price: "verify", verify: true, lastVerified: "2026-06" },
+      { name: "Mindset — Carol Dweck",                           what: "Growth vs fixed. Read the replication caveats alongside.",                url: "https://en.wikipedia.org/wiki/Mindset_(book)",                                   price: "verify", verify: true, lastVerified: "2026-06" },
+      { name: "The Righteous Mind — Jonathan Haidt",             what: "Moral psychology of why decent people disagree.",                        url: "https://righteousmind.com/",                                                     price: "verify", verify: false, lastVerified: "2026-06" },
+      { name: "Predictably Irrational — Dan Ariely",             what: "Behavioural-economics intro w/ caveats post-replication.",                 url: "https://danariely.com/books/predictably-irrational/",                            price: "verify", verify: true, lastVerified: "2026-06" },
+      { name: "Stumbling on Happiness — Daniel Gilbert",         what: "Why we mispredict what'll make us happy.",                                url: "",                                                                                price: "verify", verify: true, lastVerified: "2026-06" },
+      { name: "The Happiness Hypothesis — Jonathan Haidt",       what: "Ancient wisdom vs modern psychology.",                                   url: "https://righteousmind.com/",                                                     price: "verify", verify: true, lastVerified: "2026-06" },
+      { name: "Thinking in Bets — Annie Duke",                   what: "Decision-making under uncertainty, poker-trained.",                      url: "",                                                                                price: "verify", verify: true, lastVerified: "2026-06" },
+      { name: "Noise — Kahneman, Sibony, Sunstein",              what: "Why expert judgment varies wildly, and what to do about it.",            url: "",                                                                                price: "verify", verify: true, lastVerified: "2026-06" }
     ]
   },
 

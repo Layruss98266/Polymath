@@ -78,14 +78,28 @@ const d: Domain = {
 
   resources: {
     free: [
-      { name: "Harvard Nutrition Source", what: "Genuinely good free nutrition info from the Walter Willett team.", url: "", verify: true, lastVerified: "2026-06" },
-      { name: "ZOE podcast (Tim Spector)", what: "Free episodes, evidence-based, microbiome-aware.", url: "", verify: true, lastVerified: "2026-06" },
-      { name: "WHO healthy diet factsheets", what: "Conservative, official, useful baseline.", url: "", verify: true, lastVerified: "2026-06" }
+      { name: "Harvard Nutrition Source",                       what: "Genuinely good free nutrition info from the Walter Willett team.",         url: "https://nutritionsource.hsph.harvard.edu/",                                          verify: false, lastVerified: "2026-06" },
+      { name: "ZOE podcast (Tim Spector)",                       what: "Free episodes, evidence-based, microbiome-aware.",                          url: "https://zoe.com/podcast",                                                            verify: false, lastVerified: "2026-06" },
+      { name: "WHO — healthy diet factsheets",                  what: "Conservative, official, useful baseline.",                                  url: "https://www.who.int/news-room/fact-sheets/detail/healthy-diet",                       verify: false, lastVerified: "2026-06" },
+      { name: "British Nutrition Foundation",                    what: "Free, accessible nutrition science explainers.",                            url: "https://www.nutrition.org.uk/",                                                      verify: false, lastVerified: "2026-06" },
+      { name: "Marion Nestle — Food Politics blog",             what: "Honest food-industry critique, from the author.",                            url: "https://www.foodpolitics.com/",                                                      verify: false, lastVerified: "2026-06" },
+      { name: "Examine.com — nutrition pages",                  what: "Evidence-graded summaries of foods + supplements.",                          url: "https://examine.com/",                                                                verify: false, lastVerified: "2026-06" },
+      { name: "USDA FoodData Central",                          what: "Free database of food composition (US).",                                    url: "https://fdc.nal.usda.gov/",                                                          verify: false, lastVerified: "2026-06" },
+      { name: "Michael Pollan — articles archive",              what: "Free essays from the popular food-writing classic.",                        url: "https://michaelpollan.com/articles/",                                                 verify: false, lastVerified: "2026-06" },
+      { name: "EAT-Lancet Commission summary (open)",            what: "Influential planetary-health diet framework.",                              url: "https://eatforum.org/eat-lancet-commission/",                                         verify: false, lastVerified: "2026-06" },
+      { name: "Open Food Facts",                                what: "Free, crowdsourced food-label database. Scan-and-check.",                    url: "https://world.openfoodfacts.org/",                                                   verify: false, lastVerified: "2026-06" }
     ],
     paid: [
-      { name: "In Defense of Food — Michael Pollan", what: "\"Eat food, not too much, mostly plants.\" Best general read.", url: "", price: "verify", verify: true, lastVerified: "2026-06" },
-      { name: "The Diet Myth — Tim Spector", what: "Microbiome + plant diversity case.", url: "", price: "verify", verify: true, lastVerified: "2026-06" },
-      { name: "Food Politics — Marion Nestle", what: "How the food industry shapes what 'healthy' means.", url: "", price: "verify", verify: true, lastVerified: "2026-06" }
+      { name: "In Defense of Food — Michael Pollan",            what: "\"Eat food, not too much, mostly plants.\" Best general read.",              url: "https://michaelpollan.com/books/in-defense-of-food/",                                price: "verify", verify: false, lastVerified: "2026-06" },
+      { name: "The Diet Myth — Tim Spector",                    what: "Microbiome + plant diversity case.",                                         url: "",                                                                                    price: "verify", verify: true, lastVerified: "2026-06" },
+      { name: "Food Politics — Marion Nestle",                  what: "How the food industry shapes what 'healthy' means.",                          url: "https://www.foodpolitics.com/",                                                      price: "verify", verify: false, lastVerified: "2026-06" },
+      { name: "How Not to Die — Michael Greger",                what: "Plant-forward case w/ extensive citations.",                                  url: "https://nutritionfacts.org/book/how-not-to-die/",                                    price: "verify", verify: false, lastVerified: "2026-06" },
+      { name: "The Omnivore's Dilemma — Michael Pollan",         what: "Where food comes from, deeply reported.",                                    url: "https://michaelpollan.com/books/the-omnivores-dilemma/",                              price: "verify", verify: false, lastVerified: "2026-06" },
+      { name: "Salt Sugar Fat — Michael Moss",                  what: "How processed-food companies engineer cravings.",                            url: "",                                                                                    price: "verify", verify: true, lastVerified: "2026-06" },
+      { name: "Ultra-Processed People — Chris van Tulleken",    what: "Modern accessible take on NOVA Group 4.",                                    url: "",                                                                                    price: "verify", verify: true, lastVerified: "2026-06" },
+      { name: "Spoon-Fed — Tim Spector",                         what: "Twenty myths in nutrition, debunked.",                                       url: "",                                                                                    price: "verify", verify: true, lastVerified: "2026-06" },
+      { name: "Why We Get Sick — Bikman / Why We Get Fat — Taubes", what: "Insulin-centric critiques. Read with debate caveats.",                  url: "",                                                                                    price: "verify", verify: true, lastVerified: "2026-06" },
+      { name: "The China Study — Campbell",                     what: "Influential, controversial. Read alongside its critics.",                    url: "",                                                                                    price: "verify", verify: true, lastVerified: "2026-06" }
     ]
   },
 
