@@ -9,6 +9,8 @@ import { RankBadge } from "./RankBadge";
 import { dueNow } from "@/lib/fsrs";
 import { ACHIEVEMENTS } from "@/data/achievements";
 import { StreakHeatmap } from "./StreakHeatmap";
+import { BarChart3, Sparkles, ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 export function Dashboard() {
  const s = useUserState();
@@ -59,19 +61,39 @@ export function Dashboard() {
  const hasHeatmapData = Object.keys(s.xpByDay ?? {}).length > 0;
  const hasQuizData = Object.values(s.domainProgress).some((d) => d.quizAnswered > 0);
 
+ const PageHero = ({ subtitle }: { subtitle: string }) => (
+  <header className="space-y-2">
+   <div className="flex items-center gap-2">
+    <span className="grid place-items-center w-9 h-9 rounded-xl" style={{ background: "color-mix(in oklab, var(--hue) 18%, transparent)", color: "var(--hue)" }}>
+     <BarChart3 size={18} />
+    </span>
+    <p className="dim text-xs uppercase tracking-widest">Your progress</p>
+   </div>
+   <h1 className="font-display text-3xl sm:text-4xl">Dashboard</h1>
+   <p className="dim">{subtitle}</p>
+  </header>
+ );
+
  if (!hasActivity) {
   return (
-   <div className="space-y-4 max-w-2xl mx-auto text-center mt-8">
-    <h1 className="font-display text-3xl">Your Dashboard</h1>
-    <p className="dim">Start any domain to populate this page. Once you open a concept, complete a mission, or review a card, your XP, streak, mastery radar, and achievements will live here.</p>
-    <a href="/" className="btn">Browse domains</a>
+   <div className="space-y-4">
+    <PageHero subtitle="Start a domain to populate this page." />
+    <section className="panel hero-glow p-6 sm:p-10 text-center space-y-3">
+     <Sparkles size={28} className="hue mx-auto" />
+     <h2 className="font-display text-2xl">Nothing here yet</h2>
+     <p className="dim max-w-xl mx-auto">Once you open a concept, complete a mission, or review a card, your XP, streak, mastery radar, calibration, and achievements will live here.</p>
+     <div className="flex flex-wrap justify-center gap-2 pt-2">
+      <Link href="/" className="btn">Browse domains <ArrowRight size={14} /></Link>
+      <Link href="/about" className="btn">Read methodology</Link>
+     </div>
+    </section>
    </div>
   );
  }
 
  return (
   <div className="space-y-5">
-   <h1 className="font-display text-3xl">Mastery Dashboard</h1>
+   <PageHero subtitle={`L${lp.current} · ${rank.name}. ${s.startedDomains.length} domain${s.startedDomains.length === 1 ? "" : "s"} touched. ${due} card${due === 1 ? "" : "s"} due now.`} />
 
    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
     <Stat label="Total XP" value={`${s.xp}`} />
