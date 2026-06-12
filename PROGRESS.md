@@ -2,7 +2,8 @@
 
 Spec: `POLYMATH_claude_code_prompt2.md` v5. Stack: Next.js 15 (App Router) + TS strict + Tailwind + Dexie + ts-fsrs + Zod. Hosted: Vercel.
 
-## Phase 5, Restructure UX, dashes, quotes, schema additions (in progress)
+## Phase 5, Restructure UX, dashes, quotes, schema additions (mostly shipped)
+This session shipped 5a through 5g end to end, 5h and 5i partially (subdomains everywhere, full new concept format on 7 concepts across 3 flagship domains), and the high-priority 5j items. Remaining work is concept enrichment for 12 more domains, mini diagrams, self-hosted fonts, single-file bundle, full service worker. See TODO.md.
 - [x] 5a. Em and en dash sweep across all source files. No em or en dash anywhere in content.
 - [x] 5b. Mentor strip hidden from Domain detail. Mentors optional in schema and types.
 - [x] 5c. Concept schema extended (optional): fullForm, definition, subdomain, prereqs, generic, expert, conceptQuiz (3 to 5), conceptTasks (basic / easy / advanced). Resource adds optional kind. Domain adds optional subdomains list.
