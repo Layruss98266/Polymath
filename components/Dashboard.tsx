@@ -9,6 +9,7 @@ import { RankBadge } from "./RankBadge";
 import { dueNow } from "@/lib/fsrs";
 import { ACHIEVEMENTS } from "@/data/achievements";
 import { StreakHeatmap } from "./StreakHeatmap";
+import { WeeklyDigest } from "./WeeklyDigest";
 import { BarChart3, Sparkles, ArrowRight } from "lucide-react";
 import Link from "next/link";
 
@@ -31,8 +32,8 @@ export function Dashboard() {
  const masteries = useMemo(() => DOMAIN_INDEX.map((e) => {
   const dom = domains[e.id];
   const p = s.domainProgress[e.id];
-  return { id: e.id, name: e.name, hue: e.hue, m: dom ? masteryPct(dom, p) : 0 };
- }), [domains, s.domainProgress]);
+  return { id: e.id, name: e.name, hue: e.hue, m: dom ? masteryPct(dom, p, s.conceptProgress) : 0 };
+ }), [domains, s.domainProgress, s.conceptProgress]);
 
  const lp = levelProgress(s.xp);
  const rank = globalRank(s.xp);
@@ -47,7 +48,7 @@ export function Dashboard() {
    const dom = domains[e.id];
    if (!dom) continue;
    const p = s.domainProgress[e.id];
-   const m = masteryPct(dom, p);
+   const m = masteryPct(dom, p, s.conceptProgress);
    const allowed = Math.max(1, Math.ceil(m * dom.capabilities.length));
    dom.capabilities.slice(0, allowed).forEach((c) => lines.push(c));
   }
@@ -101,6 +102,8 @@ export function Dashboard() {
     <Stat label="Streak" value={`${s.currentStreak}🔥 best ${s.longestStreak}`} />
     <Stat label="Cards reviewed" value={`${cardsReviewed} (${due} due)`} />
    </div>
+
+   <WeeklyDigest />
 
    {hasHeatmapData && (
     <section className="panel p-5">

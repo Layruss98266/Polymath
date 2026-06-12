@@ -5,7 +5,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import {
  Flame, Zap, Brain, MoonStar, Sun, Volume2, VolumeX, Settings,
  Menu, X, ArrowRight, Search, Bookmark, Map, BarChart3, Info,
- Layers, Save
+ Layers, Save, GraduationCap
 } from "lucide-react";
 import { useActions, useUserState, useHydrated } from "@/lib/state";
 import { levelProgress, globalRank } from "@/lib/xp";
@@ -13,6 +13,7 @@ import { dueNow } from "@/lib/fsrs";
 import { exportCode, importCode } from "@/lib/save";
 import { MegaMenu } from "./MegaMenu";
 import { PracticeMenu } from "./PracticeMenu";
+import { useFocusTrap } from "@/lib/focusTrap";
 
 // Top bar:
 // Left: logo + Domains mega menu + Practice dropdown (Review/Dashboard/Skill Map/My List) + About
@@ -37,8 +38,16 @@ export function TopBar() {
 
  useEffect(() => {
   if (!hydrated) return;
-  document.documentElement.dataset.theme = s.theme;
- }, [s.theme, hydrated]);
+  const root = document.documentElement;
+  root.dataset.theme = s.theme;
+  // Font scale lives on the html element so Tailwind's `rem`-based sizing
+  // picks it up everywhere. Default 1.
+  root.style.fontSize = `${(s.fontScale ?? 1) * 100}%`;
+  root.dataset.dyslexic = s.dyslexicFont ? "1" : "";
+  if (s.reducedMotionOverride === true) root.dataset.reduceMotion = "1";
+  else if (s.reducedMotionOverride === false) root.dataset.reduceMotion = "off";
+  else delete root.dataset.reduceMotion;
+ }, [s.theme, s.fontScale, s.dyslexicFont, s.reducedMotionOverride, hydrated]);
 
  useEffect(() => { setDrawer(false); setMore(false); }, [path]);
 
@@ -67,16 +76,17 @@ export function TopBar() {
 
  return (
   <header className="sticky top-0 z-30 backdrop-blur-md border-b" style={{ background: "color-mix(in oklab, var(--bg) 82%, transparent)", borderColor: "var(--line)" }}>
-   <div className="mx-auto max-w-6xl px-3 sm:px-4 h-14 flex items-center gap-2 sm:gap-4">
+   <div className="mx-auto max-w-6xl px-3 sm:px-4 h-14 grid items-center gap-2 sm:gap-4" style={{ gridTemplateColumns: "auto 1fr auto" }}>
     {/* Logo */}
     <Link href="/" className="font-display text-base sm:text-lg tracking-wide shrink-0 flex items-center gap-1">
      POLYMATH
     </Link>
 
-    {/* Desktop nav cluster */}
-    <div className="hidden sm:block shrink-0"><MegaMenu /></div>
-    <div className="hidden md:block shrink-0"><PracticeMenu /></div>
-    <nav aria-label="Primary" className="hidden lg:flex items-center gap-1 ml-1">
+    {/* Centered nav cluster (desktop). Justify-self center keeps it in the
+        middle of the available middle column regardless of side widths. */}
+    <nav aria-label="Primary" className="hidden sm:flex items-center gap-1 sm:gap-2 justify-self-center">
+     <MegaMenu />
+     <PracticeMenu />
      {NAV.map(({ href, label, Icon }) => {
       const active = isActive(href);
       return (
@@ -92,8 +102,9 @@ export function TopBar() {
       );
      })}
     </nav>
+    <span aria-hidden="true" className="sm:hidden" />
 
-    <div className="ml-auto flex items-center gap-2">
+    <div className="flex items-center gap-2 justify-self-end">
      <StatsPill />
 
      {/* Search shortcut */}
@@ -181,9 +192,29 @@ export function TopBar() {
          )}
         </Link>
        ))}
-       <Link href="/search"   className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm"><Search size={14} /> Search</Link>
-       <Link href="/my-list"  className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm"><Bookmark size={14} /> My List</Link>
-       <Link href="/settings" className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm"><Settings size={14} /> Settings</Link>
+       <div className="pt-3 mt-2 border-t" style={{ borderColor: "var(--line)" }}>
+        <p className="dim text-[10px] uppercase tracking-widest px-3 mb-1">Practice</p>
+        <Link href="/review" className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm" style={isActive("/review") ? { background: "rgba(255,255,255,0.05)", color: "var(--hue)" } : {}}>
+         <GraduationCap size={14} /> Review
+         {due > 0 && (
+          <span className="ml-auto inline-flex items-center justify-center min-w-[18px] h-[18px] text-[10px] font-bold rounded-full px-1" style={{ background: "var(--hue)", color: "#fff" }}>{due}</span>
+         )}
+        </Link>
+        <Link href="/dashboard" className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm" style={isActive("/dashboard") ? { background: "rgba(255,255,255,0.05)", color: "var(--hue)" } : {}}>
+         <BarChart3 size={14} /> Dashboard
+        </Link>
+        <Link href="/skill-map" className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm" style={isActive("/skill-map") ? { background: "rgba(255,255,255,0.05)", color: "var(--hue)" } : {}}>
+         <Map size={14} /> Skill map
+        </Link>
+        <Link href="/my-list" className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm" style={isActive("/my-list") ? { background: "rgba(255,255,255,0.05)", color: "var(--hue)" } : {}}>
+         <Bookmark size={14} /> My list
+        </Link>
+       </div>
+       <div className="pt-3 mt-2 border-t" style={{ borderColor: "var(--line)" }}>
+        <p className="dim text-[10px] uppercase tracking-widest px-3 mb-1">More</p>
+        <Link href="/search"   className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm"><Search size={14} /> Search</Link>
+        <Link href="/settings" className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm"><Settings size={14} /> Settings</Link>
+       </div>
       </nav>
       <div className="mt-4 pt-4 border-t flex flex-wrap gap-2" style={{ borderColor: "var(--line)" }}>
        <button className="btn flex-1 justify-center" onClick={() => a.setTheme(s.theme === "dark" ? "light" : "dark")}>
@@ -215,9 +246,16 @@ function SaveLoadModal({ onClose }: { onClose: () => void }) {
  const [code, setCode] = useState("");
  const [err, setErr] = useState<string | null>(null);
  const exported = useMemo(() => exportCode(s), [s]);
+ const dialogRef = useRef<HTMLDivElement>(null);
+ useFocusTrap(true, dialogRef);
+ useEffect(() => {
+  const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
+  document.addEventListener("keydown", onKey);
+  return () => document.removeEventListener("keydown", onKey);
+ }, [onClose]);
  return (
-  <div className="fixed inset-0 z-40 grid place-items-center p-4" style={{ background: "rgba(0,0,0,0.5)" }} onClick={onClose}>
-   <div className="panel p-5 max-w-xl w-full space-y-3" onClick={(e) => e.stopPropagation()}>
+  <div className="fixed inset-0 z-40 grid place-items-center p-4" role="dialog" aria-label="Save / Load progress" aria-modal="true" style={{ background: "rgba(0,0,0,0.5)" }} onClick={onClose}>
+   <div ref={dialogRef} className="panel p-5 max-w-xl w-full space-y-3" onClick={(e) => e.stopPropagation()}>
     <h3 className="font-display text-xl">Save / Load progress</h3>
     <p className="dim text-sm">Your progress is auto-saved locally. To move it to another device or browser, copy this code and paste it on the other side.</p>
     <label className="text-sm">Your save code</label>

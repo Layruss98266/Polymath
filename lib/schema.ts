@@ -56,7 +56,8 @@ const Concept = z.object({
  generic: z.string().optional(),
  expert: z.string().optional(),
  conceptQuiz: z.array(QuizQuestion).optional(),
- conceptTasks: z.array(ConceptTask).optional()
+ conceptTasks: z.array(ConceptTask).optional(),
+ diagram: Diagram.optional()
 });
 
 const RoadmapStage = z.object({
@@ -75,7 +76,8 @@ const Resource = z.object({
  weight: z.enum(["primary", "secondary", "popular"]).optional(),
  price: z.string().optional(),
  verify: z.boolean().optional(),
- lastVerified: z.string().optional()
+ lastVerified: z.string().optional(),
+ subdomains: z.array(z.string()).optional()
 });
 
 const Mission = z.object({ t: z.string(), d: z.string(), xp: z.number().int().positive() });
@@ -111,7 +113,12 @@ export const DomainSchema = z.object({
  flashcards: z.array(Flashcard).min(8),
  glossary: z.array(GlossaryItem).min(8),
 
- subdomains: z.array(z.object({ id: z.string(), name: z.string() })).optional(),
+ subdomains: z.array(z.object({
+  id: z.string(),
+  name: z.string(),
+  intro: z.string().optional(),
+  capabilities: z.array(z.string()).optional()
+ })).optional(),
  capstone: z.object({ t: z.string(), d: z.string(), xp: z.number().int().positive() }).optional(),
  safetyNote: z.string().optional()
 });

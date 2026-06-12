@@ -65,6 +65,34 @@ export function SettingsView() {
   downloadCsv(rows, "reflections");
  };
 
+ // Markdown export. One file, grouped by domain, sorted by concept index.
+ const exportReflectionsMarkdown = () => {
+  const byDomain: Record<string, { idx: number; text: string }[]> = {};
+  for (const [k, v] of Object.entries(s.notes)) {
+   if (!k.endsWith(":reflect")) continue;
+   const text = (v ?? "").trim();
+   if (!text) continue;
+   const [domain, idx] = k.split(":");
+   (byDomain[domain] ??= []).push({ idx: Number(idx), text });
+  }
+  const today = new Date().toISOString().slice(0, 10);
+  const total = Object.values(byDomain).reduce((n, arr) => n + arr.length, 0);
+  let md = `# Polymath reflections\n\nExported ${today}. ${total} reflections across ${Object.keys(byDomain).length} domains.\n\n`;
+  for (const [domain, entries] of Object.entries(byDomain).sort(([a], [b]) => a.localeCompare(b))) {
+   md += `## ${domain.replace(/_/g, " ")}\n\n`;
+   for (const { idx, text } of entries.sort((a, b) => a.idx - b.idx)) {
+    md += `**Concept #${idx + 1}**\n\n${text}\n\n`;
+   }
+  }
+  const blob = new Blob([md], { type: "text/markdown;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = `polymath-reflections-${today}.md`;
+  link.click();
+  URL.revokeObjectURL(url);
+ };
+
  const exportCardsCsv = () => {
   const rows = [["card_key", "domain", "due_iso", "stability", "difficulty", "reps", "lapses", "state"]];
   for (const c of s.cards) {
@@ -118,6 +146,46 @@ export function SettingsView() {
    </section>
 
    <section className="panel p-5 space-y-3">
+    <h2 className="font-display text-lg">Accessibility</h2>
+    <p className="dim text-sm">Local controls. All preferences live in your browser; nothing is sent anywhere.</p>
+
+    <div className="space-y-2">
+     <label className="text-sm font-medium">Text size</label>
+     <div className="flex flex-wrap gap-2">
+      {([0.9, 1, 1.1, 1.25] as const).map((scale) => (
+       <button
+        key={scale}
+        className={`btn ${(s.fontScale ?? 1) === scale ? "ring-1" : ""}`}
+        onClick={() => a.setFontScale(scale)}
+        aria-pressed={(s.fontScale ?? 1) === scale}
+        style={(s.fontScale ?? 1) === scale ? { borderColor: "var(--hue)" } : {}}
+       >
+        {scale === 0.9 ? "Small" : scale === 1 ? "Default" : scale === 1.1 ? "Large" : "Extra large"}
+       </button>
+      ))}
+     </div>
+    </div>
+
+    <div className="space-y-2 pt-2">
+     <label className="text-sm font-medium">Motion</label>
+     <p className="dim text-xs">By default Polymath honours your system <em>prefers-reduced-motion</em>. Override here.</p>
+     <div className="flex flex-wrap gap-2">
+      <button className={`btn ${s.reducedMotionOverride === undefined ? "ring-1" : ""}`} onClick={() => a.setReducedMotion(undefined)}>System default</button>
+      <button className={`btn ${s.reducedMotionOverride === true ? "ring-1" : ""}`} onClick={() => a.setReducedMotion(true)}>Reduce motion</button>
+      <button className={`btn ${s.reducedMotionOverride === false ? "ring-1" : ""}`} onClick={() => a.setReducedMotion(false)}>Allow motion</button>
+     </div>
+    </div>
+
+    <div className="space-y-2 pt-2">
+     <label className="text-sm font-medium">Dyslexia-friendly font</label>
+     <p className="dim text-xs">Switches body text to a higher-readability fallback stack (OpenDyslexic when installed, otherwise Comic Sans MS) with looser tracking.</p>
+     <button className="btn" onClick={a.toggleDyslexicFont} aria-pressed={!!s.dyslexicFont}>
+      {s.dyslexicFont ? "On" : "Off"}
+     </button>
+    </div>
+   </section>
+
+   <section className="panel p-5 space-y-3">
     <h2 className="font-display text-lg">Your numbers</h2>
     <ul className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center text-sm">
      <li className="panel p-3"><span className="font-display text-2xl block">{s.xp}</span><span className="dim text-xs">XP</span></li>
@@ -138,6 +206,27 @@ export function SettingsView() {
     </div>
 
     <div className="space-y-2 pt-2">
+     <label className="text-sm">Public profile share link</label>
+     <p className="dim text-xs">A read-only snapshot. XP and per-domain rank only, no notes or reflections. Anyone with the link sees only what is shown on the share page.</p>
+     <button className="btn" onClick={() => {
+      const ri: Record<string, number> = {};
+      for (const id of s.startedDomains) {
+       const dp = s.domainProgress[id];
+       if (!dp) continue;
+       const m = (dp.conceptsOpened + dp.missionsDone.length + dp.flashcardsGraduated) / 30;
+       const rankIdx = m >= 0.95 ? 6 : m >= 0.82 ? 5 : m >= 0.68 ? 4 : m >= 0.52 ? 3 : m >= 0.34 ? 2 : m >= 0.15 ? 1 : 0;
+       ri[id] = rankIdx;
+      }
+      const payload = { xp: s.xp, r: ri };
+      const code = typeof window === "undefined"
+       ? Buffer.from(JSON.stringify(payload), "utf-8").toString("base64")
+       : btoa(unescape(encodeURIComponent(JSON.stringify(payload))));
+      const url = `${window.location.origin}/share?d=${encodeURIComponent(code)}`;
+      navigator.clipboard.writeText(url);
+     }}>Copy public share link</button>
+    </div>
+
+    <div className="space-y-2 pt-2">
      <label className="text-sm">JSON file (download / upload)</label>
      <div className="flex flex-wrap gap-2">
       <button className="btn" onClick={downloadJson}><Download size={14} /> Download JSON</button>
@@ -153,7 +242,8 @@ export function SettingsView() {
      <p className="dim text-xs">Excel-friendly UTF-8 with BOM.</p>
      <div className="flex flex-wrap gap-2">
       <button className="btn" onClick={exportBookmarksCsv}><Download size={14} /> Bookmarks ({s.bookmarks.length})</button>
-      <button className="btn" onClick={exportReflectionsCsv}><Download size={14} /> Reflections ({reflectionCount})</button>
+      <button className="btn" onClick={exportReflectionsCsv}><Download size={14} /> Reflections CSV ({reflectionCount})</button>
+      <button className="btn" onClick={exportReflectionsMarkdown}><Download size={14} /> Reflections MD ({reflectionCount})</button>
       <button className="btn" onClick={exportCardsCsv}><Download size={14} /> Cards ({s.cards.length})</button>
      </div>
     </div>

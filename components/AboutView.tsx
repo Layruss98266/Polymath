@@ -182,6 +182,20 @@ export function AboutView() {
       </li>
      ))}
     </ul>
+
+    <div className="panel p-5 text-sm space-y-3" style={{ borderColor: "var(--bad)", color: "var(--fg)" }}>
+     <p className="font-medium uppercase tracking-wider text-xs" style={{ color: "var(--bad)" }}>Detailed Legal Disclaimer</p>
+     <p className="dim">
+      Polymath is an educational catalog and gamified learning environment. No content in the Finance, Investing, Law, Health, or Nutrition domains constitutes professional, financial, investment, legal, or medical advice.
+     </p>
+     <p className="dim">
+      Indian users should note that financial/investment references are for educational purposes and do not constitute SEBI-registered investment advisory services. Law references include transition notes to the 2024 codes; pending matters may run concurrently. Health/nutrition information is not medical advice; consult a licensed practitioner before altering health regimens.
+     </p>
+     <p className="font-medium uppercase tracking-wider text-xs mt-4" style={{ color: "var(--bad)" }}>Trademark Policy</p>
+     <p className="dim">
+      All third-party trademarks (including Apple, Vanguard, Zerodha, and McDonald's) are registered trademarks of their respective owners. Their nominative use here is purely for educational analysis and does not imply sponsorship or endorsement.
+     </p>
+    </div>
    </section>
 
    {/* Tech stack */}

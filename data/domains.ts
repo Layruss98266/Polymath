@@ -1,6 +1,7 @@
 // Domain registry. Authored progressively per Appendix C.
 // Each domain is its own dynamic-imported chunk (§9 lazy-load).
 
+import { cache } from "react";
 import type { Domain } from "@/lib/types";
 import { validateDomain } from "@/lib/schema";
 
@@ -46,9 +47,13 @@ export function findEntry(id: string): DomainEntry | undefined {
  return DOMAIN_INDEX.find((d) => d.id === id);
 }
 
-export async function loadDomain(id: string): Promise<Domain> {
+// Wrapped in React `cache()` so layout + page + generateMetadata in the same
+// request share one resolved promise, instead of dynamic-importing and Zod-
+// re-validating per call. Client callers (browser-side) hit the same import
+// path; cache() is a no-op there.
+export const loadDomain = cache(async (id: string): Promise<Domain> => {
  const e = findEntry(id);
  if (!e) throw new Error(`Unknown domain ${id}`);
  const mod = await e.loader();
  return validateDomain(mod.default, id);
-}
+});

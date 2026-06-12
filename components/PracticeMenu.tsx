@@ -59,6 +59,7 @@ export function PracticeMenu() {
     type="button"
     aria-haspopup="menu"
     aria-expanded={open}
+    aria-controls="polymath-practice-menu"
     onClick={() => setOpen((v) => !v)}
     className={`px-2.5 py-1.5 text-sm rounded-md inline-flex items-center gap-1.5 ${open ? "ring-1" : ""}`}
     style={open ? { color: "var(--hue)", borderColor: "var(--hue)" } : {}}
@@ -73,6 +74,7 @@ export function PracticeMenu() {
 
    {open && (
     <div
+     id="polymath-practice-menu"
      ref={panelRef}
      role="menu"
      aria-label="Practice options"

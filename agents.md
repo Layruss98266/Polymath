@@ -14,14 +14,31 @@ Single-page-ish learning app teaching ~75 real-world domains from basics to mast
 - **Host:** Vercel
 
 ## Layout
-- `app/`, routes: `/`, `/domain/[id]`, `/review`, `/dashboard`, `/skill-map`, `/my-list`
-- `app/layout.tsx`, root shell w/ top bar
-- `app/globals.css`, theme tokens
-- `lib/`, engine: schema, fsrs, xp, persistence, state
-- `components/`, diagram library (`components/diagrams/*`), UI pieces
-- `data/domains/`, one TS module per domain (typed, validated at load)
-- `data/paths.ts`, `data/achievements.ts`
-- `PROGRESS.md`, phase-by-phase build tracker (READ this before resuming work)
+- `app/`, routes:
+  - `/`, `/about`, `/search`, `/share`
+  - `/review`, `/dashboard`, `/skill-map`, `/my-list`, `/settings` (all noindex)
+  - `/domain/[id]` (Basics overview)
+  - `/domain/[id]/{concepts,quiz,flashcards,diagram,roadmap,resources,missions,cheatsheet,counter}` (per-tab pages)
+  - `/domain/[id]/concepts/[idx]` (single concept deep page, canonical share URL)
+  - `/domain/[id]/sub/[subdomain]` (subdomain page)
+  - `/domain/[id]/opengraph-image.tsx` (per-domain OG)
+  - `/domains.rss`, `/sitemap.xml`, `/robots.txt`
+- `app/layout.tsx`, root shell w/ centered top bar + footer + bottom nav + scroll-top FAB
+- `app/domain/[id]/layout.tsx`, shared chrome (DomainHeader + safety note + DomainTabBar + SubdomainStrip + TabQueryRedirect)
+- `app/globals.css`, theme tokens (light overrides `--hue` to `#d94a3d` for WCAG AA)
+- `lib/`, engine
+  - `state.tsx`: vanilla `useSyncExternalStore`. Every XP-granting action MUST dedupe against persisted state (see `quizSeen`, `reflectionSeen`).
+  - `tabs.ts`: single source of truth for tab ids, segments, unlock rules, and URL helpers. Use these everywhere; don't hard-code `/concepts`, `/quiz`, etc.
+  - `schema.ts`: Zod, validated at SSG build, fails the build on mismatch.
+  - `streak.ts`: weekly ISO-week grace.
+  - `fsrs.ts`, `xp.ts`, `mastery.ts`: pure functions covered by `tests/*.test.ts`.
+- `components/`, UI pieces
+  - `components/domain/`: route-segment domain chrome (DomainHeader, DomainTabBar, SubdomainStrip, DomainProvider, TabQueryRedirect, ConceptDeepPage, SubdomainPage). Don't reintroduce the old monolithic `DomainView`.
+  - `components/tabs/`: per-tab content components, used by the per-tab page.tsx files.
+  - `Diagram.tsx` exports `DiagramView` (15 generators).
+- `data/domains/`, one TS module per domain (typed, validated at build)
+- `data/paths.ts`, `data/achievements.ts`, `data/quotes.ts`
+- `PROGRESS.md`, phase-by-phase build tracker; `AUDIT.md` for the living issue list; `TODO.md` for the working backlog; `PLAN.md` for the current architecture plan.
 
 ## Run
 ```

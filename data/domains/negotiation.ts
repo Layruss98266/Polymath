@@ -49,7 +49,446 @@ const d: Domain = {
   { t: "Tactical empathy (Chris Voss)",     short: "Name the emotion you sense in the other side. It defuses faster than arguing against it.",                                                   deep: "Chris Voss spent decades as the FBI's lead international hostage negotiator and brought the techniques to business. The biggest single move he teaches is the verbal label: \"It seems like you're under a lot of pressure to close this quarter.\" Naming what the other side is feeling does something almost magical, it tells them you actually heard them, defuses the heat, and often gets them to correct you or say more than they meant to. The technique is invisible if you do it cleanly. It works because most of us spend negotiations talking; almost nobody is listening enough to name what's underneath.",                                                                                                                         status: "framework", reflect: "Try labeling once today in any conversation: \"It seems like…\" Watch what happens to the other person's posture." },
   { t: "Calibrated questions",          short: "\"How am I supposed to do that?\" beats \"no\" almost every time.",                                                               deep: "Voss's other big move. When someone makes a demand you can't meet, the instinct is to refuse, and refusing puts the other side in a corner where they fight back. A calibrated question does the same job from a different angle. \"How am I supposed to do that with the budget I have?\" \"What would you do in my position?\" \"What's driving the timeline?\" The problem ends up in their lap instead of yours, they don't feel shut down, and you've quietly gathered information. The trick is asking real questions, not passive-aggressive ones disguised as questions.",                                                                                                                                               status: "framework", reflect: "Where could you replace a hard \"no\" with \"how am I supposed to do that?\" this week?" },
   { t: "The mirror",               short: "Repeat the last few words they said, as a question. They keep talking.",                                                             deep: "Almost invisible, almost free. The other side says \"…and we just don't see a path to that number this quarter.\" You say, gently: \"…this quarter?\" Nine times out of ten, they fill the silence and explain more than they meant to. You learn what's actually driving them without asking a single direct question. It works because humans are deeply uncomfortable with silence, and a small open question is irresistible. Try it for a week in normal conversations and you'll be surprised how often it cracks something open.",                                                                                                                                                                 status: "framework", reflect: "Try the mirror on your next conversation. Count how many times the other person fills the silence with something useful." },
-  { t: "Win-win, or you didn't really win",   short: "If they walk out bitter, the next round is going to cost you.",                                                                 deep: "One-shot deals are rare. Most of your real negotiations, with bosses, vendors, partners, family, are part of a long sequence. A \"win\" where the other side walks out feeling cheated quietly costs you their cooperation, their referrals, and their willingness to negotiate again. The actual measure of a good outcome is: did you get a fair share of the value, and is the relationship intact? Track both. If either tanks, you didn't really win, you just borrowed a result from the future.",                                                                                                                                                                                 status: "framework", reflect: "Pick a 'win' you had recently. Is the relationship intact six months later? Did they come back to deal with you again?" }
+  { t: "Win-win, or you didn't really win",   short: "If they walk out bitter, the next round is going to cost you.",                                                                 deep: "One-shot deals are rare. Most of your real negotiations, with bosses, vendors, partners, family, are part of a long sequence. A \"win\" where the other side walks out feeling cheated quietly costs you their cooperation, their referrals, and their willingness to negotiate again. The actual measure of a good outcome is: did you get a fair share of the value, and is the relationship intact? Track both. If either tanks, you didn't really win, you just borrowed a result from the future.",                                                                                                                                                                                 status: "framework", reflect: "Pick a 'win' you had recently. Is the relationship intact six months later? Did they come back to deal with you again?" },
+  {
+   t: "Logrolling, trading across issues",
+   subdomain: "tactics",
+   definition: "Trading concessions across multiple issues so each side gets what it values most.",
+   short: "You care about price, they care about timing. Trade on the difference.",
+   deep: "Most negotiations have more than one variable on the table, price, timing, scope, payment terms, exclusivity, warranty. Logrolling is the move of finding issues where you and the other side weight things differently, then trading. You don't care much about a two-week delay; they care a lot. They don't care about an extra year of warranty; you care a lot. So you trade: they get the delay, you get the warranty. Both sides feel they won, because they each gave up something cheap to them and received something expensive to them. Single-issue haggling almost always leaves money on the table. The first move is widening the table.",
+   generic: "Imagine swapping lunchboxes. You hate the sandwich but love the cookie. Your friend loves the sandwich but doesn't want the cookie. A straight 50-50 split makes both of you sad. Swapping the whole sandwich for the whole cookie makes both of you happy. Negotiation works the same way when there is more than one thing on the table.",
+   expert: "Studied formally as integrative bargaining (Walton and McKersie, 1965; Pruitt, 1981). Requires multi-issue scope, asymmetric preferences, and information sharing sufficient to reveal priorities without giving up your reservation values. The Fisher and Ury \"expand the pie\" injunction operationalises through logrolling plus contingent contracts. Risk: premature disclosure of priorities can be exploited by a positional counterpart, so pair with cautious reciprocal disclosure.",
+   status: "framework",
+   reflect: "What's a second issue you could put on the table in your next negotiation that you barely care about, but they might?",
+   conceptQuiz: [
+    {
+     q: "Logrolling works best when…",
+     options: [
+      { text: "Each side ranks the issues differently.", correct: true },
+      { text: "Both sides want the exact same thing.", misconception: "Identical priorities leave nothing to trade; logrolling needs asymmetry." },
+      { text: "There is only one issue on the table.", misconception: "Single-issue negotiation cannot be logrolled by definition." },
+      { text: "Both sides hide all their preferences.", misconception: "Some cautious disclosure is required for trades to surface." }
+     ],
+     why: "The trade only creates value when each side values the issues differently."
+    },
+    {
+     q: "What is the first practical move to enable logrolling?",
+     options: [
+      { text: "Widen the table by adding more issues to discuss.", correct: true },
+      { text: "Cut the price by 10 percent up front.", misconception: "Unilateral concession on one issue is the opposite of trading across issues." },
+      { text: "Refuse to share any priorities.", misconception: "Total opacity prevents you and the counterpart from finding trades." },
+      { text: "Walk away to anchor low.", misconception: "Walking away is a BATNA move, not a logrolling move." }
+     ],
+     why: "Logrolling needs multiple issues, so the first step is naming more variables you both care about."
+    }
+   ],
+   conceptTasks: [
+    { level: "basic",    t: "List the issues",       d: "Write down five negotiable variables in your next deal beyond price.", xp: 10 },
+    { level: "easy",     t: "Rank both sides",       d: "Rank each issue by how much you care, then guess the other side's ranking.", xp: 20 },
+    { level: "advanced", t: "Propose a real trade",  d: "Offer a concession on your low-rank issue in exchange for theirs in a live deal.", xp: 40 }
+   ],
+   diagram: {
+    kind: "flow",
+    title: "Logrolling across issues",
+    caption: "Each side concedes on what it values less and wins what it values more, expanding total value instead of splitting one number.",
+    data: {
+     steps: ["List issues", "Rank by value (each side)", "Trade low-rank for high-rank", "Joint gains > 50/50 split"]
+    }
+   }
+  },
+  {
+   t: "Reactive devaluation",
+   subdomain: "emotion",
+   definition: "The tendency to discount a proposal simply because the other side offered it.",
+   short: "The moment they suggest it, it sounds worse than it actually is.",
+   deep: "Reactive devaluation is a quiet psychological bias studied by Lee Ross and others at Stanford. The same proposal, judged on paper, looks reasonable. The moment the rival side offers it, the brain quietly downgrades it. People assume that anything the other side is willing to give must be worth less than they thought, or that there must be a catch. It explains why negotiations stall on offers that, objectively, both sides would accept if they had imagined them on their own. Two practical antidotes: route the proposal through a neutral third party, or invite the other side to help build the option so it feels co-authored, not handed over.",
+   generic: "Picture trading lunch snacks at school. The chips look great until the kid you don't like offers them, then suddenly they look stale. Nothing changed about the chips. The same thing happens with offers in negotiation: the proposal feels worse because of who handed it to you.",
+   expert: "Demonstrated experimentally in Ross and Stillinger (1991) using Cold War arms-reduction proposals identical in substance but attributed to different sources. Mechanism overlaps with naive realism and motivated reasoning. Mitigations include single-text procedure (Camp David model), mediator-driven framing, and contingent contracts that let the counterpart co-design terms before commitment.",
+   status: "settled",
+   reflect: "When did you last reject an offer the moment it came from someone you didn't trust? Would the same offer have sounded fine from a friend?",
+   conceptQuiz: [
+    {
+     q: "Reactive devaluation predicts that…",
+     options: [
+      { text: "An identical proposal feels worse when the rival side offers it.", correct: true },
+      { text: "People always overvalue their own ideas.", misconception: "Related to endowment bias, but reactive devaluation is specifically about who is offering, not who owns." },
+      { text: "Offers get better the longer you wait.", misconception: "Delay can change anchoring but is not the mechanism here." },
+      { text: "Mediators have no effect on outcomes.", misconception: "The bias is one of the main reasons neutral mediators help." }
+     ],
+     why: "The bias attaches to the source of the offer, not its substance."
+    },
+    {
+     q: "Which move best reduces reactive devaluation in practice?",
+     options: [
+      { text: "Co-author the proposal with the other side so it feels jointly built.", correct: true },
+      { text: "Restate your position more loudly.", misconception: "Volume reinforces opposition rather than dissolving it." },
+      { text: "Refuse to discuss the proposal until they apologise.", misconception: "Adds friction without changing the source-bias problem." },
+      { text: "Hide the proposal until the last minute.", misconception: "Surprise tends to increase suspicion, not lower it." }
+     ],
+     why: "Co-authoring or third-party framing neutralises the source signal that drives the bias."
+    }
+   ],
+   conceptTasks: [
+    { level: "basic",    t: "Spot the bias",          d: "Recall one offer you dismissed quickly. Reassess it as if a friend had proposed it.", xp: 10 },
+    { level: "easy",     t: "Reframe through neutral", d: "Have a colleague present your next offer to a sceptical counterpart and note the response.", xp: 20 },
+    { level: "advanced", t: "Co-build the option",    d: "In a live negotiation, ask the other side to help draft the terms before you commit.", xp: 40 }
+   ]
+  },
+  {
+   t: "Splitting the difference trap",
+   subdomain: "tactics",
+   definition: "Settling on the midpoint of two numbers as a quick fairness ritual that usually leaves value on the table.",
+   short: "Meeting in the middle feels fair, and often costs both sides real money.",
+   deep: "Chris Voss named his book Never Split the Difference because the midpoint move is a habit, not a strategy. Two people throw out numbers, the midpoint sounds even, both sign. The problem is that midpoint says nothing about who valued what, what trades were available, or whether either side was anchoring high to be pulled to a target. Splitting also rewards whoever anchored more aggressively, since their starting number drags the midpoint toward them. The discipline is to slow down, ask why each number was offered, and surface a trade across issues instead of a numeric average. A vendor splitting the difference on price might happily extend payment terms by 30 days instead, which costs them little and helps you a lot.",
+   generic: "Imagine two kids splitting a pizza. One wants the cheesy middle, the other only eats crust. Cutting it down the middle gives each kid half of what they want and half of what they do not. Trading slices for crusts gives each kid everything they wanted. Splitting is the lazy cut.",
+   expert: "Voss (2016) builds on Raiffa's analytic critique of midpoint heuristics. The midpoint is the dominant equilibrium only under symmetric Nash bargaining assumptions, which rarely hold once issues are unbundled. In practice, midpoint settlement is correlated with single-issue framing, time pressure, and weak BATNA on at least one side. Mitigations: structured agenda with multiple issues, contingent contracts, and explicit reservation-value disclosure where trust allows.",
+   status: "framework",
+   reflect: "When did you last split the difference because it felt fair? What second issue could you have traded instead?",
+   conceptQuiz: [
+    {
+     q: "The main problem with splitting the difference is that…",
+     options: [
+      { text: "It ignores other issues that could be traded for greater joint value.", correct: true },
+      { text: "It is mathematically impossible to compute.", misconception: "The math is trivial, the issue is strategic, not arithmetic." },
+      { text: "It always favours the buyer.", misconception: "The midpoint can favour either side depending on anchors." },
+      { text: "It is illegal in most jurisdictions.", misconception: "There is no legal issue with midpoint settlement." }
+     ],
+     why: "Splitting freezes the conversation on price and skips the broader trade space."
+    },
+    {
+     q: "Who benefits most when both sides default to splitting the difference?",
+     options: [
+      { text: "The side that anchored most aggressively in the opening.", correct: true },
+      { text: "The side with the weaker BATNA.", misconception: "Weaker BATNA usually loses, regardless of midpoint." },
+      { text: "Neither side, the outcome is always neutral.", misconception: "Anchors bias the midpoint, so outcomes are rarely neutral." },
+      { text: "Whoever offered first the lower number.", misconception: "Lower openings often hurt the offerer; aggressive anchors drag the midpoint." }
+     ],
+     why: "Whichever side anchored further from a fair value pulls the midpoint toward them."
+    }
+   ],
+   conceptTasks: [
+    { level: "basic",    t: "Catch the split",       d: "Recall one negotiation where you split the difference. Write down what else was on the table you ignored.", xp: 10 },
+    { level: "easy",     t: "Add a second issue",    d: "In your next price discussion, propose trading on timing or terms instead of meeting in the middle.", xp: 20 },
+    { level: "advanced", t: "Run a no-split round",  d: "Conduct a live negotiation where you refuse the midpoint and unbundle at least three issues for trade.", xp: 40 }
+   ]
+  },
+  {
+   t: "Black Swan rule (Voss)",
+   subdomain: "foundations",
+   definition: "Hunting for the unknown unknowns that, once surfaced, change the entire shape of the deal.",
+   short: "The one fact you do not know yet is usually the fact that unlocks the deal.",
+   deep: "Chris Voss borrows Nassim Taleb's term for high-impact unknowns and applies it to the negotiating table. Most deals have at least one hidden fact that, if you knew it, would change your strategy completely. The vendor needs to close before quarter-end. The buyer has internal politics that make a particular feature non-negotiable. The decision actually rests with someone not in the room. Voss argues you cannot find these by asking direct questions, the counterpart will not volunteer them. You find them through patient open-ended questions, careful listening for tonal shifts, and meeting in person where possible. Once a black swan surfaces, the right move is usually to re-anchor the entire conversation around it, not to file it away politely.",
+   generic: "Picture haggling over a used bike. The seller seems stubborn on price. You eventually ask why they are selling, and they say they are moving abroad next week. That detail was a black swan. Now you know the real deadline, and the price is suddenly more flexible. You did not pry, you just listened.",
+   expert: "Voss and Raz (2016) define the three categories of information in negotiation: known knowns, known unknowns, and unknown unknowns (black swans). The framework draws on Rumsfeld's epistemology and Taleb's tail-risk framing. Practical heuristics: in-person discovery, calibrated questions that invite narrative, and explicit tracking of motivation, deadline, and authority gaps. Common failure mode: confirmation bias that filters out black swans because they threaten the working hypothesis of the deal.",
+   status: "framework",
+   reflect: "In your current negotiation, what is the one fact about their side you do not know that would change everything? How could you surface it without asking directly?",
+   conceptQuiz: [
+    {
+     q: "A black swan in Voss's framework is best described as…",
+     options: [
+      { text: "An unknown fact that, once surfaced, reshapes the deal.", correct: true },
+      { text: "A scripted concession you offer at the end.", misconception: "Concessions are tactical moves, not informational discoveries." },
+      { text: "Any number the other side refuses to accept.", misconception: "A refusal is a position, not a hidden fact." },
+      { text: "A rare type of negotiation contract.", misconception: "The term refers to information, not a contract form." }
+     ],
+     why: "Black swans are the high-impact unknown unknowns that change the strategy when revealed."
+    },
+    {
+     q: "Which technique is most likely to surface a black swan?",
+     options: [
+      { text: "Open-ended calibrated questions and in-person observation.", correct: true },
+      { text: "Sending a long email with every direct question listed.", misconception: "Direct interrogation prompts guarded answers, not revelations." },
+      { text: "Pressuring the other side with deadlines.", misconception: "Pressure narrows disclosure rather than expanding it." },
+      { text: "Avoiding any small talk to stay on topic.", misconception: "Small talk is often where black swans accidentally surface." }
+     ],
+     why: "Patient open questions and presence let the counterpart volunteer the fact you could not have asked about."
+    }
+   ],
+   conceptTasks: [
+    { level: "basic",    t: "List the unknowns",     d: "Write the three things about the other side's situation you most wish you knew before the next meeting.", xp: 10 },
+    { level: "easy",     t: "Ask one open question", d: "In your next conversation, ask one calibrated open question whose answer could change the deal.", xp: 20 },
+    { level: "advanced", t: "Run a discovery meet",  d: "Hold an in-person discovery meeting with no agenda except listening, and document any surfaced black swans.", xp: 40 }
+   ]
+  },
+  {
+   t: "Multi-party negotiation dynamics",
+   subdomain: "tactics",
+   definition: "The strategic interactions, coalition formation, vote trading, and blocking minorities that emerge once three or more parties negotiate simultaneously.",
+   short: "Add a third party and the math, the politics, and the etiquette all change.",
+   deep: "Two-party negotiation is a line between you and them. Add a third party and you get a triangle, with sides that can quietly gang up. Multi-party tables run on different physics. Coalitions form before the meeting starts, often informally. Vote trading lets parties swap support on issues they care about asymmetrically. Blocking minorities can kill a deal without ever proposing one, simply by refusing to move. The skilled multi-party negotiator counts coalitions before counting votes, identifies the pivotal swing party, and structures the agenda so easy issues build momentum before hard ones split the room. The single biggest mistake newcomers make is treating each bilateral conversation in isolation, when in fact every side conversation is being reported back across the table.",
+   generic: "Picture four roommates deciding where to order dinner. Two already messaged before the meeting and agreed on pizza. The third hates pizza but loves the fourth roommate, who is neutral. The pizza pair wins not because pizza is best, but because they pre-built a coalition. Multi-party tables work the same way, the deal is half done before everyone sits down.",
+   expert: "Studied by Raiffa (1982) and Susskind on consensus building. Key constructs: Shapley value for fair credit allocation, blocking minority thresholds in formal voting systems (EU Council, corporate boards), and logrolling across parties rather than issues. Failure modes include cycling (Condorcet paradox), pivotal-player capture, and side-payment leakage. Practical heuristics: pre-meeting bilateral mapping, single-text procedure to converge a draft, and explicit coalition disclosure norms where culture permits.",
+   status: "framework",
+   reflect: "In your next multi-party meeting, who has already talked to whom before the room assembles? If you do not know, you are already behind the parties who do.",
+   conceptQuiz: [
+    {
+     q: "A blocking minority in a multi-party negotiation can…",
+     options: [
+      { text: "Prevent a deal from forming without ever proposing one of its own.", correct: true },
+      { text: "Only block deals it has formally voted on twice.", misconception: "Blocking power often operates by refusal alone, no formal vote needed." },
+      { text: "Force the majority to accept any counter-offer.", misconception: "Blocking prevents action; it does not force the other side to accept terms." },
+      { text: "Exist only in two-party negotiations.", misconception: "Blocking minorities are a strictly multi-party phenomenon." }
+     ],
+     why: "Refusal to move is itself a tactic; blocking minorities use it to veto without proposing."
+    },
+    {
+     q: "Vote trading across multiple parties works best when…",
+     options: [
+      { text: "Parties weight different issues asymmetrically.", correct: true },
+      { text: "All parties weight every issue identically.", misconception: "Identical weights leave nothing to trade across parties." },
+      { text: "Only one issue is on the table.", misconception: "Single-issue tables cannot support trades by definition." },
+      { text: "No party is willing to disclose any priority.", misconception: "Trades require some cautious disclosure to surface." }
+     ],
+     why: "Asymmetric priorities create the room for parties to trade support on issues they value differently."
+    }
+   ],
+   conceptTasks: [
+    { level: "basic",    t: "Map the parties",        d: "List every party in your next multi-party negotiation and their likely top issue.", xp: 10 },
+    { level: "easy",     t: "Count coalitions",       d: "Identify which two parties are most likely to pre-align, and which third party is the swing vote.", xp: 20 },
+    { level: "advanced", t: "Run a coalition strategy", d: "Hold pre-meeting bilateral conversations to build a coalition before the full session, then run the room with that map.", xp: 40 }
+   ],
+   diagram: {
+    kind: "tree",
+    title: "Coalition map in a multi-party deal",
+    caption: "Three or more parties rarely negotiate as equals. Coalitions and swing votes emerge fast; map them before the room opens.",
+    data: {
+     root: "Negotiation (5 parties)",
+     children: [
+      { label: "Coalition A", children: [{ label: "Party 1" }, { label: "Party 2" }] },
+      { label: "Coalition B", children: [{ label: "Party 3" }, { label: "Party 4" }] },
+      { label: "Swing vote",  children: [{ label: "Party 5" }] }
+     ]
+    }
+   }
+  },
+  {
+   t: "Reservation point",
+   subdomain: "foundations",
+   definition: "The worst deal you would still say yes to before walking away to your BATNA.",
+   short: "Your last acceptable number. Cross it and you should leave.",
+   deep: "The reservation point is the precise number, or set of terms, below which you should reject the deal and walk to your BATNA. People confuse it with their target (what they hope for) or their first offer (what they ask for). It is neither. It is your floor. A buyer with a BATNA of buying a similar flat at 80 lakh has a reservation point near 80 lakh, anything above that is worse than walking. Writing the reservation point down before the meeting protects you from the live emotional pull to accept whatever the room wants. The clearest sign a negotiator has not done the prep is that they cannot tell you their reservation number when asked privately.",
+   generic: "Imagine selling your old phone. You decide before posting it that 6,000 rupees is the lowest you would accept, because below that you would rather keep it as a backup. A buyer offers 5,500. You walk. That 6,000 is your reservation point. It is the line you wrote down before your feelings could vote.",
+   expert: "Formalised in Raiffa (1982) and central to the Harvard PON curriculum. Distinct from aspiration (target) and from BATNA value, the reservation point is the indifference threshold between this deal and the outside option, adjusted for transaction costs and risk preferences. Common errors: confusing first offer with reservation, anchoring the reservation to the counterpart's number, and updating the reservation upward during the meeting under social pressure.",
+   status: "settled",
+   reflect: "What is the exact number below which you walk in your most live negotiation? If you cannot write it in one line, you do not have a reservation point yet.",
+   conceptQuiz: [
+    {
+     q: "The reservation point is best described as…",
+     options: [
+      { text: "The worst deal you would still accept before walking to your BATNA.", correct: true },
+      { text: "Your ideal outcome if everything goes well.", misconception: "That is the aspiration or target, not the floor." },
+      { text: "The first number you say in the room.", misconception: "First offers are usually well above the reservation point." },
+      { text: "The other side's expected counter-offer.", misconception: "Their counter is a guess about them; the reservation is your floor." }
+     ],
+     why: "Reservation is the indifference line between deal and walk."
+    },
+    {
+     q: "Why write the reservation point down before the meeting?",
+     options: [
+      { text: "To resist live emotional pressure to drift upward during the talk.", correct: true },
+      { text: "To share it with the other side as a sign of trust.", misconception: "Sharing your floor usually anchors the deal to it." },
+      { text: "Because the law requires it.", misconception: "No legal requirement applies." },
+      { text: "To prove to your boss you are flexible.", misconception: "Flexibility is not the purpose; protection is." }
+     ],
+     why: "The pre-commit document blocks in-the-room drift."
+    }
+   ],
+   conceptTasks: [
+    { level: "basic",    t: "Write the floor",      d: "For your next negotiation, write one sentence stating your reservation point in concrete terms.", xp: 10 },
+    { level: "easy",     t: "Stress test it",       d: "Ask a trusted friend whether your reservation point reflects your BATNA honestly, and adjust if not.", xp: 20 },
+    { level: "advanced", t: "Hold the line live",   d: "In a real negotiation, refuse any offer below the pre-committed reservation point, then write a short note on what tempted you to drift.", xp: 40 }
+   ]
+  },
+  {
+   t: "Distributive vs integrative bargaining",
+   subdomain: "foundations",
+   definition: "Two basic modes of negotiation: distributive splits a fixed pie, integrative grows it through trades across issues.",
+   short: "Splitting a fixed pie versus baking a bigger one together.",
+   deep: "Distributive bargaining is the classic single-issue haggle, you both want the highest price you can get from one number. Every rupee you win the other side loses, and the only levers are anchoring, patience, and walk-away credibility. Integrative bargaining, by contrast, treats the negotiation as a search for trades across multiple issues, where each side gives up something cheap to them in exchange for something valuable. Almost every real-world deal has integrative potential hiding inside, salary plus equity plus start date plus title, or price plus warranty plus payment terms. Beginners pick the distributive frame by default and leave value on the table. The discipline is to widen the scope to multiple issues before settling on numbers.",
+   generic: "Imagine two kids arguing over a chocolate bar. The distributive mode is to cut it in half and both leave a little annoyed. The integrative mode is to ask why each kid wants it. If one wants the chocolate and the other wants the wrapper for a collection, they both walk away with everything they wanted.",
+   expert: "Formalised by Walton and McKersie (1965) and Pruitt (1981). Distributive moves include opening anchors, concession patterns, and information control. Integrative moves include logrolling, contingent contracts, and post-settlement settlements. The Harvard Negotiation Project (Fisher and Ury, 1981) argued that most distributive framings are unforced errors driven by positional thinking. Failure mode: opening integrative talks without confirming basic ZOPA, which leads to creative trades on a deal that has no overlap to start with.",
+   status: "framework",
+   reflect: "Look at your next negotiation. Are there issues beyond the headline number you could put on the table to make it integrative?",
+   conceptQuiz: [
+    {
+     q: "Distributive bargaining is best characterised as…",
+     options: [
+      { text: "A single-issue split of a fixed pie where one side's gain is the other side's loss.", correct: true },
+      { text: "Always unethical and to be avoided.", misconception: "It is a mode, not a moral failure." },
+      { text: "Trading across multiple issues with different priorities.", misconception: "That describes integrative bargaining." },
+      { text: "Refusing to negotiate at all.", misconception: "Refusal is a walk-away, not a bargaining mode." }
+     ],
+     why: "Distributive bargaining treats the pie as fixed."
+    },
+    {
+     q: "Integrative bargaining requires…",
+     options: [
+      { text: "Multiple issues with asymmetric priorities between the parties.", correct: true },
+      { text: "Both sides agreeing on every issue from the start.", misconception: "Agreement up front leaves nothing to trade." },
+      { text: "Only one variable on the table.", misconception: "Single-variable deals cannot be integrative by definition." },
+      { text: "Total opacity about priorities.", misconception: "Some cautious disclosure is needed to find trades." }
+     ],
+     why: "Without asymmetry across multiple issues, integrative trades cannot form."
+    }
+   ],
+   conceptTasks: [
+    { level: "basic",    t: "Spot the mode",        d: "For your next negotiation, label whether you are framing it as distributive or integrative.", xp: 10 },
+    { level: "easy",     t: "Add an issue",          d: "Add at least one extra issue to a single-issue negotiation and propose a trade across it.", xp: 20 },
+    { level: "advanced", t: "Convert a haggle",       d: "Take a live single-issue haggle, surface three additional issues, and reach a deal that scores higher for both sides than the original split.", xp: 40 }
+   ]
+  },
+  {
+   t: "Coalition building",
+   subdomain: "tactics",
+   definition: "The pre-meeting work of aligning a subset of parties to act together so the room tips in a particular direction.",
+   short: "Most multi-party deals are won in the hallway, not the room.",
+   deep: "Coalition building is the quiet work of identifying which parties share enough interest to act together, then locking in that alignment before the formal session starts. A founder seeking board approval rarely waits until the meeting to make her case, she meets each director one by one, finds the two who will champion her, and walks in with three votes already promised. The same logic governs union talks, EU council votes, and family decisions about elder care. The skill has three parts: mapping each party's top interest, identifying the pivotal swing party whose support flips the room, and offering them something small but real to lock in their support. The most common rookie mistake is treating each conversation as separate, when every side meeting is being reported back across the table.",
+   generic: "Imagine four flatmates deciding whether to renew the lease. Before the house meeting, two of them text each other and agree to renew. They quietly check what the third needs, a slightly lower share of the bill, and offer it. By the time the meeting starts, three out of four already lean yes. The fourth flatmate is surprised, but the coalition decided the outcome before anyone sat down.",
+   expert: "Theorised in Raiffa (1982) and Susskind's consensus-building work. Key constructs: minimum winning coalition (Riker, 1962), pivotal player identification using the Banzhaf or Shapley-Shubik power index, and side-payment feasibility. Distinct from logrolling, coalition building is about who, not what. Failure modes include coalition betrayal mid-session, public versus private commitment gaps, and over-promising side payments that cannot be delivered.",
+   status: "framework",
+   reflect: "In your next multi-party meeting, who has already spoken to whom? If you do not know, you are already behind the parties who do.",
+   conceptQuiz: [
+    {
+     q: "The pivotal party in a coalition is the one whose support…",
+     options: [
+      { text: "Flips the room from losing to winning when added to the existing coalition.", correct: true },
+      { text: "Talks the loudest in the meeting.", misconception: "Volume is not the same as decisive support." },
+      { text: "Holds the formal chair role.", misconception: "The chair may or may not be pivotal depending on votes." },
+      { text: "Has the highest salary in the group.", misconception: "Compensation is unrelated to coalition power." }
+     ],
+     why: "Pivotal support is defined by its decisive effect on the outcome."
+    },
+    {
+     q: "Why is bilateral pre-meeting work often more important than the meeting itself?",
+     options: [
+      { text: "Commitments and trust form privately before the room assembles.", correct: true },
+      { text: "Formal meetings prohibit any real discussion.", misconception: "Real discussion happens in both venues; the private one usually sets the frame." },
+      { text: "Side conversations are stronger because they are recorded.", misconception: "They are usually not recorded; that is part of their utility." },
+      { text: "Coalitions are illegal in formal sessions.", misconception: "No such prohibition exists in standard negotiation contexts." }
+     ],
+     why: "The room ratifies what the bilateral work decided."
+    }
+   ],
+   conceptTasks: [
+    { level: "basic",    t: "Map the room",          d: "List every party in your next multi-party negotiation and their top likely interest.", xp: 10 },
+    { level: "easy",     t: "Identify the pivot",    d: "Identify the swing party whose support flips your side, and one small thing you could offer them.", xp: 20 },
+    { level: "advanced", t: "Run the bilaterals",    d: "Conduct three pre-meeting bilateral conversations, document the soft commitments, and run the formal session with a pre-built coalition.", xp: 40 }
+   ]
+  },
+  {
+   t: "Cultural negotiation differences",
+   subdomain: "emotion",
+   definition: "Systematic variations in how cultures handle directness, time, hierarchy, and relationship before a deal can close.",
+   short: "The same move means different things in different rooms.",
+   deep: "A direct ask that signals confidence in New York can read as rude in Tokyo. A long warm-up that builds trust in Riyadh can read as time-wasting in Berlin. Cultural differences are not stereotypes, they are statistical tendencies on dimensions like directness, polychronic versus monochronic time, power distance, and relationship-first versus task-first framing. Erin Meyer's culture map maps eight such axes, and a Dutch buyer negotiating with an Indian supplier is dancing across most of them. The discipline is not to abandon your own style but to widen your range, slow down when relationships matter, and ask explicit questions about the other side's decision process rather than assume yours is universal. The single most common mistake is interpreting silence, hierarchy, or polite agreement through your own cultural defaults.",
+   generic: "Imagine bargaining at a market in your home city. You haggle hard and walk away with a good price, and nobody is upset. Try the same move at a market in a place where bargaining is also a relationship dance, and the seller may quietly refuse to deal with you again. The number was fine. The pace and the warmth were the problem.",
+   expert: "Erin Meyer's culture map (2014) operationalises eight axes including communicating, evaluating, persuading, leading, deciding, trusting, disagreeing, and scheduling. Brett's Negotiating Globally (2014) adds dispute-resolution norms. Failure modes: stereotyping individuals, ignoring within-culture variance, and treating English fluency as a sign of Western negotiation defaults.",
+   status: "framework",
+   reflect: "Where on the directness axis do you sit by default? Where does your most important counterpart sit? Where could that mismatch quietly hurt the deal?",
+   conceptQuiz: [
+    {
+     q: "Erin Meyer's culture map argues that…",
+     options: [
+      { text: "Cultures vary systematically on axes like directness and time orientation that affect negotiation behaviour.", correct: true },
+      { text: "All cultures negotiate identically once translated.", misconception: "The whole point of the map is to highlight systematic differences." },
+      { text: "Culture is irrelevant once people speak the same language.", misconception: "Language fluency does not erase decision-style differences." },
+      { text: "Stereotypes are reliable predictors of individual behaviour.", misconception: "The map describes tendencies, not individual destiny." }
+     ],
+     why: "The map measures average tendencies across eight behavioural dimensions."
+    },
+    {
+     q: "Which is the most common cross-cultural negotiation mistake?",
+     options: [
+      { text: "Interpreting the other side's silence or politeness through your own cultural defaults.", correct: true },
+      { text: "Speaking the local language fluently.", misconception: "Fluency helps; the issue is reading non-verbal cues correctly." },
+      { text: "Bringing a written agenda to the meeting.", misconception: "Agendas can help; they are not the central mistake." },
+      { text: "Wearing formal clothing.", misconception: "Dress codes are minor compared to decision-style misreadings." }
+     ],
+     why: "Cultural defaults bias how silence, hierarchy, and politeness are read."
+    }
+   ],
+   conceptTasks: [
+    { level: "basic",    t: "Map yourself",          d: "Place yourself on three of Meyer's eight axes in writing.", xp: 10 },
+    { level: "easy",     t: "Map the counterpart",   d: "Estimate the counterpart's position on the same three axes and identify the largest gap.", xp: 20 },
+    { level: "advanced", t: "Adjust live",          d: "In a real cross-cultural negotiation, deliberately adjust pace and directness toward the counterpart's style, and document what changed.", xp: 40 }
+   ]
+  },
+  {
+   t: "Difficult conversations",
+   subdomain: "emotion",
+   definition: "A structured way to handle high-stakes emotional conversations by separating the what-happened story, the feelings, and the identity stakes.",
+   short: "Every hard talk has three conversations stacked inside it.",
+   deep: "Stone, Patton, and Heen's Harvard Negotiation Project framework names the move most people miss: every difficult conversation contains three layers. The what-happened layer is the dispute about facts and blame. The feelings layer is the unspoken hurt, fear, or anger that drives the room. The identity layer is the threat each side feels to their sense of being competent, good, or worthy. Most arguments collapse because the speakers fight on the what-happened layer while the real heat lives in the other two. The discipline is to surface all three, name the feelings without weaponising them, and acknowledge the identity stake instead of triggering it. A manager firing an employee who frames it as a feedback failure on her own part will land it gently, the same conversation framed as the employee being inadequate will explode.",
+   generic: "Imagine telling a friend their behaviour at a party hurt you. If you argue only about who said what, you both leave angry. If you also say how it made you feel, and acknowledge that you are not calling them a bad person, the same conversation lands very differently. The facts did not change. The other two layers got named.",
+   expert: "Stone, Patton, and Heen (1999) at the Harvard Negotiation Project synthesise from Rogerian therapy, Fisher and Ury, and adult development theory. Core moves: shift from blame to contribution, separate intent from impact, and use the and stance. Distinct from non-violent communication (Rosenberg) in emphasising identity work explicitly. Common failure mode: collapsing into apology that concedes facts rather than feelings, or weaponising feelings as accusations dressed in I statements.",
+   status: "framework",
+   reflect: "In your last hard conversation, did you fight on facts while feelings and identity went unspoken? Which of the three layers carried the actual heat?",
+   conceptQuiz: [
+    {
+     q: "The three conversations inside every difficult conversation are…",
+     options: [
+      { text: "What happened, feelings, and identity.", correct: true },
+      { text: "Facts, evidence, and arguments.", misconception: "Those are all parts of one layer; the framework names three different layers." },
+      { text: "Past, present, and future.", misconception: "Temporal slicing is not the layered model here." },
+      { text: "Buyer, seller, and mediator.", misconception: "Those are parties, not conversational layers." }
+     ],
+     why: "Stone, Patton, and Heen name what-happened, feelings, and identity as the three layers."
+    },
+    {
+     q: "Why do most difficult conversations collapse?",
+     options: [
+      { text: "The speakers fight on the what-happened layer while the heat lives in feelings and identity.", correct: true },
+      { text: "Both sides agree on every fact too quickly.", misconception: "Quick agreement on facts does not cause the collapse." },
+      { text: "There is no documented evidence.", misconception: "Lack of evidence is a sub-issue, not the central failure mode." },
+      { text: "The conversation lasts too long.", misconception: "Length is not the structural problem the model addresses." }
+     ],
+     why: "Surface the feelings and identity layers or the talk explodes on the wrong axis."
+    }
+   ],
+   conceptTasks: [
+    { level: "basic",    t: "Name the three",        d: "Recall your last hard conversation and write one sentence for each of the three layers as you experienced them.", xp: 10 },
+    { level: "easy",     t: "Practice the shift",    d: "In a moderate conversation, deliberately name a feeling without weaponising it and observe the response.", xp: 20 },
+    { level: "advanced", t: "Run a real one",        d: "Plan and hold a real difficult conversation using the three-layer frame, then write a post-mortem on which layer carried the heat.", xp: 40 }
+   ]
+  },
+  {
+   t: "Pre-commitment",
+   subdomain: "tactics",
+   definition: "Binding yourself in advance to a position or limit so the other side cannot pressure you off it during the meeting.",
+   short: "Tie your own hands before the room can untie them.",
+   deep: "Pre-commitment is the move of writing down, publicising, or contractually fixing a limit before the negotiation, so that future-you cannot drift under in-the-room pressure. Odysseus tying himself to the mast is the classic example, he knew the sirens would tempt him, so he removed his ability to comply. A buyer who tells the seller that her board has approved a maximum of 1 crore and cannot be overruled has pre-committed, and the seller's pressure stops at that wall. Pre-commitment also operates internally, writing down your reservation point before the meeting and refusing to update it in the moment. The trick works because credible commitment shifts the bargaining frontier, even if the limit is one you could in principle relax. The risk is that an over-tight pre-commitment can kill a deal that would have been worth taking.",
+   generic: "Imagine going to a sale with a strict budget written on a sticky note in your wallet. When the shop tries to upsell you, you point at the sticky note and say honestly, that is all I can spend today. The note did not change your wallet. It changed your ability to say no in the moment.",
+   expert: "Schelling (1960) formalised credible commitment in The Strategy of Conflict, showing that visibly binding oneself can dominate an apparently weaker position. Variants include third-party authority limits, public announcements, escrow structures, and contractual penalties. Distinct from bluffing because the commitment must be verifiable. Failure modes: over-rigid pre-commitments that prevent value-creating trades and pre-commitments that the counterpart correctly infers are theatre rather than real constraints.",
+   status: "framework",
+   reflect: "What pre-commitment could you make before your next negotiation that would protect you from in-the-room drift without killing the deal?",
+   conceptQuiz: [
+    {
+     q: "Pre-commitment shifts the bargaining frontier because…",
+     options: [
+      { text: "A visibly binding constraint reduces your ability to concede, which the counterpart must accept.", correct: true },
+      { text: "It makes you look more friendly.", misconception: "It often does the opposite; friendliness is not the mechanism." },
+      { text: "It increases the chance of an integrative trade.", misconception: "Pre-commitment can sometimes block trades, not enable them." },
+      { text: "It signals weakness to the other side.", misconception: "Credible commitment signals strength via reduced flexibility." }
+     ],
+     why: "Schelling showed that reduced flexibility, visibly demonstrated, strengthens position."
+    },
+    {
+     q: "The main risk of pre-commitment is…",
+     options: [
+      { text: "Killing a deal that would have been worth taking with more flexibility.", correct: true },
+      { text: "Making the other side trust you more.", misconception: "More trust is usually a benefit, not a risk." },
+      { text: "Forcing the other side to share their reservation point.", misconception: "Pre-commitment does not extract their floor." },
+      { text: "Increasing your own walk-away cost.", misconception: "It does the opposite by making walking the default if the limit is breached." }
+     ],
+     why: "Rigidity is the cost of credibility; sometimes the deal would have been worth bending."
+    }
+   ],
+   conceptTasks: [
+    { level: "basic",    t: "Write the limit",       d: "Write one pre-commitment in advance of your next negotiation, in one clear sentence.", xp: 10 },
+    { level: "easy",     t: "Make it visible",       d: "Communicate the pre-commitment to a third party (manager, partner) who can hold you to it.", xp: 20 },
+    { level: "advanced", t: "Use it under pressure", d: "Deploy the pre-commitment in a live negotiation and write a post-mortem on whether it protected the deal or killed value.", xp: 40 }
+   ]
+  }
  ],
 
  counterView: "Cialdini-style 'influence techniques' aren't neutral. There's a real ethical line between making your case clearly (good) and using cognitive levers against someone who'd refuse if they noticed (manipulative). Also: tactical-empathy-as-Voss-style-script can curdle into theatre if not anchored to genuine respect. The 'always make the first offer' / 'never make the first offer' debates are over-stated, the real answer is 'depends on your information advantage,' which is a less satisfying soundbite. Finally, negotiation training overweights one-shot deals; most of your real negotiations are repeated, and the relationship is part of the outcome.",
@@ -82,27 +521,27 @@ const d: Domain = {
 
  resources: {
   free: [
-   { name: "Harvard Program on Negotiation (PON), blog",     what: "PON publishes rigorous, free articles + research summaries.",             url: "https://www.pon.harvard.edu/category/daily/",         verify: false, lastVerified: "2026-06" },
-   { name: "Chris Voss, public talks (YouTube)",         what: "Free way to absorb the core moves.",                          url: "https://www.youtube.com/results?search_query=Chris+Voss+negotiation", verify: true, lastVerified: "2026-06" },
+   { name: "Harvard Program on Negotiation (PON), blog",     what: "PON publishes rigorous, free articles + research summaries.",             url: "https://www.pon.harvard.edu/category/daily/",         weight: "primary", verify: false, lastVerified: "2026-06" },
+   { name: "Chris Voss, public talks (YouTube)",         what: "Free way to absorb the core moves.",                          url: "https://www.youtube.com/results?search_query=Chris+Voss+negotiation", weight: "primary", verify: true, lastVerified: "2026-06" },
    { name: "MasterClass, Chris Voss preview clips (YouTube)",   what: "Free trailers + select clips from the paid course.",                 url: "https://www.youtube.com/@MasterClass",             verify: true, lastVerified: "2026-06" },
    { name: "Wikipedia, BATNA",                  what: "Compact reference + sources for the core concept.",                  url: "https://en.wikipedia.org/wiki/Best_alternative_to_a_negotiated_agreement", verify: false, lastVerified: "2026-06" },
    { name: "Stanford Online, Negotiation samplers",        what: "Some free sampler lessons; full courses paid.",                    url: "https://online.stanford.edu/",                 verify: false, lastVerified: "2026-06" },
-   { name: "FBI Crisis Negotiation Unit articles",         what: "Public articles + Behavioral Change Stairway Model.",                 url: "https://leb.fbi.gov/topics/crisis-negotiation",         verify: true, lastVerified: "2026-06" },
+   { name: "FBI Crisis Negotiation Unit articles",         what: "Public articles + Behavioral Change Stairway Model.",                 url: "https://leb.fbi.gov/topics/crisis-negotiation",         weight: "secondary", verify: true, lastVerified: "2026-06" },
    { name: "Negotiate Anything, podcast (Kwame Christian)",    what: "Free, regular interviews on negotiation craft.",                    url: "https://americannegotiationinstitute.com/podcasts/",      verify: false, lastVerified: "2026-06" },
-   { name: "Black Swan Group, blog (Chris Voss's company)",    what: "Articles + breakdowns from Voss's team.",                       url: "https://www.blackswanltd.com/blog",               verify: false, lastVerified: "2026-06" },
+   { name: "Black Swan Group, blog (Chris Voss's company)",    what: "Articles + breakdowns from Voss's team.",                       url: "https://www.blackswanltd.com/blog",               weight: "secondary", verify: false, lastVerified: "2026-06" },
    { name: "Adam Grant, Give and Take TED talk",         what: "Negotiation through the lens of reciprocity styles.",                 url: "https://www.ted.com/speakers/adam_grant",            verify: false, lastVerified: "2026-06" },
-   { name: "Getting to Yes, Fisher & Ury (library)",       what: "The original classic.",                                 url: "https://en.wikipedia.org/wiki/Getting_to_Yes",         verify: true, lastVerified: "2026-06" }
+   { name: "Getting to Yes, Fisher & Ury (library)",       what: "The original classic.",                                 url: "https://en.wikipedia.org/wiki/Getting_to_Yes",         weight: "popular", verify: false, lastVerified: "2026-06" }
   ],
   paid: [
-   { name: "Getting to Yes, Fisher & Ury",            what: "Principled negotiation, BATNA, interests vs positions.",                url: "https://en.wikipedia.org/wiki/Getting_to_Yes",         price: "verify", verify: true, lastVerified: "2026-06" },
-   { name: "Never Split the Difference, Chris Voss",       what: "Tactical empathy + labels + calibrated questions.",                  url: "https://www.blackswanltd.com/",                 price: "verify", verify: false, lastVerified: "2026-06" },
-   { name: "Getting More, Stuart Diamond",            what: "Emotion-aware, small-steps approach.",                         url: "",                                price: "verify", verify: true, lastVerified: "2026-06" },
-   { name: "Influence, Robert Cialdini",             what: "Six levers used in negotiation contexts.",                       url: "https://www.influenceatwork.com/",                price: "verify", verify: false, lastVerified: "2026-06" },
-   { name: "Bargaining for Advantage, G. Richard Shell",     what: "Academic Wharton classic, well-organised.",                      url: "",                                price: "verify", verify: true, lastVerified: "2026-06" },
-   { name: "Beyond Reason, Roger Fisher & Daniel Shapiro",    what: "Emotions in negotiation, from the Getting to Yes lineage.",              url: "",                                price: "verify", verify: true, lastVerified: "2026-06" },
+   { name: "Getting to Yes, Fisher & Ury",            what: "Principled negotiation, BATNA, interests vs positions.",                url: "https://en.wikipedia.org/wiki/Getting_to_Yes",         price: "verify", weight: "primary", verify: false, lastVerified: "2026-06" },
+   { name: "Never Split the Difference, Chris Voss",       what: "Tactical empathy + labels + calibrated questions.",                  url: "https://www.blackswanltd.com/",                 price: "verify", weight: "primary", verify: false, lastVerified: "2026-06" },
+   { name: "Getting More, Stuart Diamond",            what: "Emotion-aware, small-steps approach.",                         url: "",                                price: "verify", verify: false, lastVerified: "2026-06" },
+   { name: "Influence, Robert Cialdini",             what: "Six levers used in negotiation contexts.",                       url: "https://www.influenceatwork.com/",                price: "verify", weight: "secondary", verify: false, lastVerified: "2026-06" },
+   { name: "Bargaining for Advantage, G. Richard Shell",     what: "Academic Wharton classic, well-organised.",                      url: "",                                price: "verify", weight: "secondary", verify: false, lastVerified: "2026-06" },
+   { name: "Beyond Reason, Roger Fisher & Daniel Shapiro",    what: "Emotions in negotiation, from the Getting to Yes lineage.",              url: "",                                price: "verify", verify: false, lastVerified: "2026-06" },
    { name: "The Power of a Positive No, William Ury",       what: "Saying no without losing the relationship.",                      url: "https://williamury.com/",                    price: "verify", verify: false, lastVerified: "2026-06" },
-   { name: "Negotiation Genius, Malhotra & Bazerman",       what: "Harvard professors; behavioural + practical.",                     url: "",                                price: "verify", verify: true, lastVerified: "2026-06" },
-   { name: "Difficult Conversations, Stone/Patton/Heen",     what: "Adjacent skill, having the hard talk before the negotiation.",             url: "",                                price: "verify", verify: true, lastVerified: "2026-06" },
+   { name: "Negotiation Genius, Malhotra & Bazerman",       what: "Harvard professors; behavioural + practical.",                     url: "",                                price: "verify", verify: false, lastVerified: "2026-06" },
+   { name: "Difficult Conversations, Stone/Patton/Heen",     what: "Adjacent skill, having the hard talk before the negotiation.",             url: "",                                price: "verify", verify: false, lastVerified: "2026-06" },
    { name: "MasterClass, Chris Voss",               what: "Voss's full video course on negotiation.",                       url: "https://www.masterclass.com/classes/chris-voss-teaches-the-art-of-negotiation", price: "verify", verify: true, lastVerified: "2026-06" }
   ]
  },

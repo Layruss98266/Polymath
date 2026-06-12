@@ -53,15 +53,40 @@ export function ReviewSession() {
 
  const card = pool[i];
 
+ const [busy, setBusy] = useState(false);
  const onGrade = (g: Grade) => {
-  if (!card) return;
+  if (!card || busy) return;
+  setBusy(true);
   const existing = s.cards.find((c) => c.cardKey === card.cardKey) ?? newCard(card.cardKey, card.domainId);
   const next = grade(existing, g);
   a.upsertCard(next);
   a.addXP(4, "review");
   setFlipped(false);
   setI((x) => x + 1);
+  // Release the lock on the next tick once the new card is mounted.
+  setTimeout(() => setBusy(false), 50);
  };
+
+ // Keyboard shortcuts for the review loop:
+ //  Space / Enter -> flip; 1=Again, 2=Hard, 3=Good, 4=Easy (only when flipped)
+ useEffect(() => {
+  if (!card) return;
+  const onKey = (e: KeyboardEvent) => {
+   const target = e.target as HTMLElement | null;
+   if (target && /^(INPUT|TEXTAREA|SELECT)$/.test(target.tagName)) return;
+   if (target?.isContentEditable) return;
+   if (e.metaKey || e.ctrlKey || e.altKey) return;
+   if (e.key === " " || e.key === "Enter") { e.preventDefault(); setFlipped((f) => !f); return; }
+   if (!flipped) return;
+   if (e.key === "1") { e.preventDefault(); onGrade("again"); }
+   else if (e.key === "2") { e.preventDefault(); onGrade("hard"); }
+   else if (e.key === "3") { e.preventDefault(); onGrade("good"); }
+   else if (e.key === "4") { e.preventDefault(); onGrade("easy"); }
+  };
+  document.addEventListener("keydown", onKey);
+  return () => document.removeEventListener("keydown", onKey);
+ // eslint-disable-next-line react-hooks/exhaustive-deps
+ }, [card?.cardKey, flipped]);
 
  const weakest = useMemo(() => {
   return s.conceptProgress
@@ -222,7 +247,8 @@ export function ReviewSession() {
        <button
         key={g}
         onClick={() => onGrade(g)}
-        className="panel p-3 text-left transition-transform hover:translate-y-[-1px]"
+        disabled={busy}
+        className="panel p-3 text-left transition-transform hover:translate-y-[-1px] disabled:opacity-60"
         style={{ borderColor: st.color, background: st.bg }}
        >
         <div className="font-display text-base" style={{ color: st.color }}>{st.label}</div>
@@ -239,6 +265,9 @@ export function ReviewSession() {
 
    <p className="text-xs dim text-center">
     FSRS schedules each card based on how easily you recalled it. <em>Again</em> resurfaces in minutes, <em>Easy</em> waits weeks. That is spacing doing its job.
+   </p>
+   <p className="text-[11px] dim text-center" aria-label="Keyboard shortcuts">
+    <kbd className="chip !px-1.5 !py-0">Space</kbd> flip · <kbd className="chip !px-1.5 !py-0">1</kbd> Again · <kbd className="chip !px-1.5 !py-0">2</kbd> Hard · <kbd className="chip !px-1.5 !py-0">3</kbd> Good · <kbd className="chip !px-1.5 !py-0">4</kbd> Easy
    </p>
 
    {weakest.length > 0 && (

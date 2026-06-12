@@ -1,13 +1,25 @@
+import Link from "next/link";
 import type { Domain } from "@/lib/types";
 import { getChangelog } from "@/data/changelog";
+import { findEntry } from "@/data/domains";
 
 export function BasicsTab({ d }: { d: Domain }) {
  const changes = getChangelog(d.id);
+ const firstConcept = d.concepts[0];
  return (
   <div className="space-y-4">
    <div className="panel p-5">
     <h2 className="font-display text-xl mb-2">What is {d.name}?</h2>
     <p>{d.basics}</p>
+    {firstConcept && (
+     <Link
+      href={`/domain/${d.id}/concepts/0`}
+      className="btn mt-4 inline-flex"
+      style={{ background: "var(--hue)", color: "#0b0d1a", borderColor: "var(--hue)" }}
+     >
+      Start with concept #1: {firstConcept.t}
+     </Link>
+    )}
    </div>
    <div className="panel p-5">
     <h3 className="font-display text-lg mb-2">Why it matters</h3>
@@ -22,11 +34,14 @@ export function BasicsTab({ d }: { d: Domain }) {
    <div className="panel p-5">
     <p className="text-xs uppercase tracking-widest dim mb-2">Cross-domain links</p>
     <ul className="space-y-1">
-     {d.synthesis.map((s, i) => (
-      <li key={i} className="text-sm">
-       <span className="hue font-medium">{s.concept}</span> {" -> "} <a href={`/domain/${s.linksTo}`} className="underline">{s.linksTo}</a> <span className="dim">. {s.note}</span>
-      </li>
-     ))}
+     {d.synthesis.map((s, i) => {
+      const target = findEntry(s.linksTo);
+      return (
+       <li key={i} className="text-sm">
+        <span className="hue font-medium">{s.concept}</span> {" -> "} <Link href={`/domain/${s.linksTo}`} className="underline">{target?.name ?? s.linksTo}</Link> <span className="dim">. {s.note}</span>
+       </li>
+      );
+     })}
     </ul>
    </div>
 

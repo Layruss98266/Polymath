@@ -32,7 +32,7 @@ function QuizCard({ d, idx, q }: { d: Domain; idx: number; q: Domain["quiz"][num
  function pick(i: number) {
   if (submitted) return;
   setPicked(i);
-  a.recordQuizAnswer(d.id, i === correctIdx, calibrated);
+  a.recordQuizAnswer(d.id, i === correctIdx, calibrated, undefined, `${d.id}:quiz:${idx}`);
  }
 
  return (

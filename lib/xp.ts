@@ -54,12 +54,15 @@ export const DOMAIN_RANKS = [
 export type DomainRank = typeof DOMAIN_RANKS[number];
 
 // Per-domain rank from mastery %.
+// Thresholds raised so titles like Master and Grandmaster are not awarded for
+// shallow click-throughs. Paired with the rewritten masteryPct in lib/mastery
+// which separates "opened" from "proven" (opened + reflected + quizzed).
 export function domainRank(masteryPct: number): DomainRank {
- if (masteryPct >= 0.95) return "Grandmaster";
- if (masteryPct >= 0.82) return "Master";
- if (masteryPct >= 0.68) return "Expert";
- if (masteryPct >= 0.52) return "Specialist";
- if (masteryPct >= 0.34) return "Practitioner";
- if (masteryPct >= 0.15) return "Apprentice";
+ if (masteryPct >= 0.97) return "Grandmaster";
+ if (masteryPct >= 0.90) return "Master";
+ if (masteryPct >= 0.78) return "Expert";
+ if (masteryPct >= 0.60) return "Specialist";
+ if (masteryPct >= 0.42) return "Practitioner";
+ if (masteryPct >= 0.22) return "Apprentice";
  return "Novice";
 }

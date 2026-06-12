@@ -28,16 +28,35 @@ function inferKind(r: Resource): ResourceKind {
  return "book";
 }
 
+type Weight = "primary" | "secondary" | "popular";
+const WEIGHT_META: Record<Weight, { label: string; color: string; sub: string }> = {
+ primary:   { label: "Primary",   color: "var(--hue)", sub: "Start here. Highest signal." },
+ secondary: { label: "Secondary", color: "#60a5fa",    sub: "Go deeper after the primary." },
+ popular:   { label: "Popular",   color: "#fbbf24",    sub: "Widely cited. Mixed depth." }
+};
+
 export function ResourcesTab({ d }: { d: Domain }) {
  const [paid, setPaid] = useState(false);
  const [filter, setFilter] = useState<ResourceKind | "all">("all");
+ const [weight, setWeight] = useState<Weight | "all">("all");
 
  const list = useMemo(() => {
   const base = paid ? d.resources.paid : d.resources.free;
   const tagged = base.map((r) => ({ ...r, _kind: inferKind(r) }));
-  if (filter === "all") return tagged;
-  return tagged.filter((r) => r._kind === filter);
- }, [paid, filter, d.resources.free, d.resources.paid]);
+  const k = filter === "all" ? tagged : tagged.filter((r) => r._kind === filter);
+  if (weight === "all") return k;
+  return k.filter((r) => (r as any).weight === weight);
+ }, [paid, filter, weight, d.resources.free, d.resources.paid]);
+
+ const weightCounts = useMemo(() => {
+  const base = paid ? d.resources.paid : d.resources.free;
+  const c: Record<Weight, number> = { primary: 0, secondary: 0, popular: 0 };
+  for (const r of base) {
+   const w = (r as any).weight as Weight | undefined;
+   if (w && w in c) c[w]++;
+  }
+  return c;
+ }, [paid, d.resources.free, d.resources.paid]);
 
  const counts = useMemo(() => {
   const c: Record<ResourceKind, number> = { video: 0, article: 0, course: 0, book: 0, podcast: 0, tool: 0 };
@@ -66,6 +85,20 @@ export function ResourcesTab({ d }: { d: Domain }) {
     })}
    </div>
 
+   {(weightCounts.primary + weightCounts.secondary + weightCounts.popular) > 0 && (
+    <div className="flex gap-2 flex-wrap text-xs">
+     <button className={`chip ${weight === "all" ? "ring-1" : ""}`} onClick={() => setWeight("all")}>Any tier</button>
+     {(["primary", "secondary", "popular"] as Weight[]).map((w) => {
+      const meta = WEIGHT_META[w];
+      return (
+       <button key={w} className={`chip ${weight === w ? "ring-1" : ""}`} onClick={() => setWeight(w)} title={meta.sub} style={weight === w ? { borderColor: meta.color, color: meta.color } : {}}>
+        {meta.label} ({weightCounts[w]})
+       </button>
+      );
+     })}
+    </div>
+   )}
+
    <ol className="space-y-2">
     {list.map((r, i) => <ResourceRow key={i} idx={i} r={r} kind={(r as any)._kind as ResourceKind} />)}
     {list.length === 0 && <p className="dim text-sm">Nothing in that filter yet.</p>}
@@ -79,12 +112,19 @@ export function ResourcesTab({ d }: { d: Domain }) {
 function ResourceRow({ r, idx, kind }: { r: Resource; idx: number; kind: ResourceKind }) {
  const meta = KIND_ICON[kind];
  const Icon = meta.icon;
+ const w = (r as any).weight as Weight | undefined;
+ const wm = w ? WEIGHT_META[w] : null;
  return (
   <li className="panel p-3 flex flex-wrap items-start gap-3">
    <span className="chip">#{idx + 1}</span>
    <span className="chip" style={{ background: `${meta.color}22`, color: meta.color }} title={meta.label}>
     <Icon size={12} /> {meta.label}
    </span>
+   {wm && (
+    <span className="chip" title={wm.sub} style={{ borderColor: wm.color, color: wm.color }}>
+     {wm.label}
+    </span>
+   )}
    <div className="flex-1 min-w-0">
     <p className="font-medium">{r.name}</p>
     <p className="text-sm dim">{r.what}</p>

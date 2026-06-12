@@ -3,6 +3,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Search, ArrowRight, Brain, BarChart3, Map, Bookmark, Info, Settings, Compass, Layers, Sparkles } from "lucide-react";
 import { DOMAIN_INDEX } from "@/data/domains";
+import { useFocusTrap } from "@/lib/focusTrap";
 
 // Spotlight-style command palette. Cmd/Ctrl+K opens. Filters across:
 // - Pages (Review, Dashboard, Skill Map, My List, About, Settings, Search)
@@ -31,6 +32,8 @@ export function CommandPalette() {
  const [q, setQ] = useState("");
  const [active, setActive] = useState(0);
  const listRef = useRef<HTMLUListElement>(null);
+ const dialogRef = useRef<HTMLDivElement>(null);
+ useFocusTrap(open, dialogRef);
 
  // Open on Cmd/Ctrl+K
  useEffect(() => {
@@ -85,7 +88,7 @@ export function CommandPalette() {
 
  if (!open) return null;
  return (
-  <div className="fixed inset-0 z-50 flex items-start justify-center p-4 pt-[12vh]" role="dialog" aria-label="Command palette">
+  <div ref={dialogRef} className="fixed inset-0 z-50 flex items-start justify-center p-4 pt-[12vh]" role="dialog" aria-label="Command palette" aria-modal="true">
    <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.55)" }} onClick={() => setOpen(false)} />
    <div className="relative panel rounded-2xl w-full max-w-xl shadow-2xl overflow-hidden">
     <div className="flex items-center gap-2 px-4 py-3" style={{ borderBottom: "1px solid var(--line)" }}>
@@ -100,14 +103,20 @@ export function CommandPalette() {
       className="bg-transparent outline-none flex-1 text-base"
       spellCheck={false}
       autoComplete="off"
+      role="combobox"
+      aria-expanded="true"
+      aria-controls="cmdk-listbox"
+      aria-autocomplete="list"
+      aria-activedescendant={items[active] ? `cmdk-opt-${active}` : undefined}
      />
      <kbd className="chip font-mono text-[10px]">esc</kbd>
     </div>
-    <ul ref={listRef} role="listbox" aria-label="Results" className="max-h-[60vh] overflow-y-auto p-1.5">
+    <ul id="cmdk-listbox" ref={listRef} role="listbox" aria-label="Results" className="max-h-[60vh] overflow-y-auto p-1.5">
      {items.length === 0 && <li className="dim text-sm p-4">No matches.</li>}
      {items.map((it, i) => (
       <li key={`${it.kind}-${it.id}`}>
        <button
+        id={`cmdk-opt-${i}`}
         role="option"
         aria-selected={i === active}
         data-idx={i}

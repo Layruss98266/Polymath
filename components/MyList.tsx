@@ -5,6 +5,7 @@ import { Bookmark, Compass, NotebookPen, ArrowRight, Sparkles } from "lucide-rea
 import { useActions, useUserState } from "@/lib/state";
 import { findEntry } from "@/data/domains";
 import { PATHS } from "@/data/paths";
+import { conceptPath } from "@/lib/tabs";
 
 export function MyList() {
  const s = useUserState();
@@ -120,6 +121,9 @@ export function MyList() {
      </div>
      <span className="dim text-xs">{reflections.length} saved</span>
     </div>
+    {reflections.length > 0 && (
+     <p className="dim text-xs">Cross-link concepts inside a reflection with <code>[[domain_id:N]]</code>. Example: <code>[[psychology:0]]</code>.</p>
+    )}
     {reflections.length === 0 ? (
      <div className="panel p-5 sm:p-6 flex items-start gap-3">
       <Sparkles size={18} className="hue mt-1 shrink-0" />
@@ -141,7 +145,7 @@ export function MyList() {
           </p>
           <Link href={`/domain/${domainId}`} className="dim text-xs hover:underline inline-flex items-center gap-1">Open <ArrowRight size={11} /></Link>
          </div>
-         <p className="text-sm leading-relaxed">{v}</p>
+         <p className="text-sm leading-relaxed">{renderLinkedNote(v ?? "")}</p>
         </li>
        );
       })}
@@ -150,4 +154,30 @@ export function MyList() {
    </section>
   </div>
  );
+}
+
+// Render `[[domain_id]]` and `[[domain_id:N]]` markers in reflection text
+// as in-app links. Markers that don't resolve render as plain text.
+function renderLinkedNote(text: string): React.ReactNode {
+ const parts: React.ReactNode[] = [];
+ const re = /\[\[([a-z_]+)(?::(\d+))?\]\]/g;
+ let last = 0;
+ let m: RegExpExecArray | null;
+ let i = 0;
+ while ((m = re.exec(text)) !== null) {
+  if (m.index > last) parts.push(text.slice(last, m.index));
+  const id = m[1];
+  const ci = m[2] ? Number(m[2]) : null;
+  const e = findEntry(id);
+  if (!e) {
+   parts.push(m[0]);
+  } else {
+   const href = ci !== null ? conceptPath(id, ci) : `/domain/${id}`;
+   const label = ci !== null ? `${e.name} #${ci + 1}` : e.name;
+   parts.push(<Link key={`l${i++}`} href={href} className="hue underline">{label}</Link>);
+  }
+  last = m.index + m[0].length;
+ }
+ if (last < text.length) parts.push(text.slice(last));
+ return parts;
 }

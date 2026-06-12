@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Search, Layers, BookOpen, FileText, ArrowRight, Sparkles } from "lucide-react";
 import { DOMAIN_INDEX, loadDomain } from "@/data/domains";
 import type { Domain } from "@/lib/types";
+import { conceptPath, tabPath } from "@/lib/tabs";
 
 // Global search. Domain names + taglines + categories, concept titles + short
 // + deep + definition + generic, glossary terms + defs. Loads domain payloads
@@ -24,25 +25,68 @@ function highlight(text: string, q: string) {
  );
 }
 
+const HISTORY_KEY = "polymath:search-history";
+const HISTORY_MAX = 10;
+
+function readHistory(): string[] {
+ if (typeof window === "undefined") return [];
+ try { return JSON.parse(localStorage.getItem(HISTORY_KEY) || "[]"); } catch { return []; }
+}
+function writeHistory(items: string[]) {
+ if (typeof window === "undefined") return;
+ try { localStorage.setItem(HISTORY_KEY, JSON.stringify(items.slice(0, HISTORY_MAX))); } catch {}
+}
+
 export function SearchView() {
  const [q, setQ] = useState("");
+ // Debounced query. Filter and the heavy domain fan-out both key off this,
+ // so the user can type without triggering 6 loadDomain() calls per keystroke.
+ const [debouncedQ, setDebouncedQ] = useState("");
  const [loaded, setLoaded] = useState<Record<string, Domain>>({});
+ const [history, setHistory] = useState<string[]>([]);
+
+ useEffect(() => { setHistory(readHistory()); }, []);
 
  useEffect(() => {
-  if (!q.trim()) return;
+  const t = setTimeout(() => setDebouncedQ(q), 150);
+  return () => clearTimeout(t);
+ }, [q]);
+
+ // Persist any query worth remembering. 3+ chars, dedupe, most-recent first.
+ useEffect(() => {
+  const v = debouncedQ.trim();
+  if (v.length < 3) return;
+  setHistory((cur) => {
+   const next = [v, ...cur.filter((x) => x.toLowerCase() !== v.toLowerCase())].slice(0, HISTORY_MAX);
+   writeHistory(next);
+   return next;
+  });
+ }, [debouncedQ]);
+
+ const clearHistory = () => { setHistory([]); writeHistory([]); };
+
+ useEffect(() => {
+  // Only fan out the domain payloads when the query is meaningful. Below 3
+  // chars we still filter against the static index, but skip the network.
+  if (debouncedQ.trim().length < 3) return;
   const need = DOMAIN_INDEX.filter((d) => !loaded[d.id]);
   if (need.length === 0) return;
+  let cancelled = false;
   Promise.all(need.map(async (d) => {
    try { return [d.id, await loadDomain(d.id)] as const; } catch { return null; }
   })).then((entries) => {
+   if (cancelled) return;
    const next: Record<string, Domain> = { ...loaded };
    for (const e of entries) if (e) next[e[0]] = e[1];
    setLoaded(next);
   });
- }, [q]);
+  return () => { cancelled = true; };
+ // loaded intentionally excluded to avoid re-running when we set it
+ // eslint-disable-next-line react-hooks/exhaustive-deps
+ }, [debouncedQ]);
 
  const hits = useMemo<Hit[]>(() => {
-  const ql = q.trim().toLowerCase();
+  const ql = debouncedQ.trim().toLowerCase();
   if (!ql) return [];
   const out: Hit[] = [];
   for (const e of DOMAIN_INDEX) {
@@ -64,7 +108,7 @@ export function SearchView() {
    });
   }
   return out.slice(0, 80);
- }, [q, loaded]);
+ }, [debouncedQ, loaded]);
 
  const grouped = useMemo(() => ({
   domains: hits.filter((h) => h.kind === "domain"),
@@ -115,6 +159,19 @@ export function SearchView() {
        <p className="dim text-sm mt-1">Start typing above. Domain names show up first, then concepts (after each domain loads on first non-empty query), then glossary.</p>
       </div>
      </div>
+     {history.length > 0 && (
+      <div>
+       <div className="flex items-center justify-between mb-2">
+        <p className="dim text-xs uppercase tracking-widest">Recent searches</p>
+        <button className="dim text-xs hover:underline" onClick={clearHistory}>Clear</button>
+       </div>
+       <ul className="flex flex-wrap gap-2">
+        {history.map((t) => (
+         <li key={t}><button className="chip" onClick={() => setQ(t)}>{t}</button></li>
+        ))}
+       </ul>
+      </div>
+     )}
      <div>
       <p className="dim text-xs uppercase tracking-widest mb-2">Try one of these</p>
       <ul className="flex flex-wrap gap-2">
@@ -157,7 +214,7 @@ export function SearchView() {
      <ul className="space-y-2">
       {grouped.concepts.map((h, i) => (
        <li key={i}>
-        <Link href={`/domain/${h.domainId}`} className="panel lift block p-3">
+        <Link href={conceptPath(h.domainId, h.conceptIndex)} className="panel lift block p-3">
          <p className="font-medium">{highlight(h.title, q)}</p>
          <p className="dim text-xs">in {h.domainName}</p>
          <p className="text-sm mt-1">{highlight(h.snippet, q)}</p>
@@ -174,7 +231,7 @@ export function SearchView() {
      <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
       {grouped.glossary.map((h, i) => (
        <li key={i}>
-        <Link href={`/domain/${h.domainId}`} className="panel lift block p-3">
+        <Link href={tabPath(h.domainId, "concepts")} className="panel lift block p-3">
          <p className="font-medium">{highlight(h.title, q)}</p>
          <p className="dim text-xs">in {h.domainName}</p>
          <p className="text-sm mt-1">{highlight(h.snippet, q)}</p>

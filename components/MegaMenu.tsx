@@ -30,7 +30,22 @@ export function MegaMenu() {
 
  useEffect(() => {
   if (!open) return;
-  const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setOpen(false); };
+  const trigger = triggerRef.current;
+  const onKey = (e: KeyboardEvent) => {
+   if (e.key === "Escape") { setOpen(false); return; }
+   // Trap Tab inside the panel so keyboard users do not fall through to
+   // the page behind. Wrap from last to first and back.
+   if (e.key !== "Tab" || !panelRef.current) return;
+   const focusables = panelRef.current.querySelectorAll<HTMLElement>(
+    'a, button, input, [tabindex]:not([tabindex="-1"])'
+   );
+   if (focusables.length === 0) return;
+   const first = focusables[0];
+   const last = focusables[focusables.length - 1];
+   const active = document.activeElement as HTMLElement | null;
+   if (e.shiftKey && active === first) { e.preventDefault(); last.focus(); }
+   else if (!e.shiftKey && active === last) { e.preventDefault(); first.focus(); }
+  };
   const onClickOutside = (e: MouseEvent) => {
    const t = e.target as Node;
    if (panelRef.current?.contains(t)) return;
@@ -45,6 +60,9 @@ export function MegaMenu() {
    document.removeEventListener("keydown", onKey);
    document.removeEventListener("mousedown", onClickOutside);
    document.body.style.overflow = "";
+   // Restore focus to the trigger on close so the keyboard user does not
+   // get dumped at the start of the page.
+   trigger?.focus();
   };
  }, [open]);
 
@@ -53,7 +71,10 @@ export function MegaMenu() {
  const groups = useMemo(() => {
   const ql = q.trim().toLowerCase();
   const filtered = ql
-   ? DOMAIN_INDEX.filter((d) => d.name.toLowerCase().includes(ql) || d.tagline.toLowerCase().includes(ql) || d.category.toLowerCase().includes(ql))
+   ? DOMAIN_INDEX.filter((d) => {
+      const hay = [d.name, d.tagline, d.category, ...((d as any).subdomains ?? [])].join(" ").toLowerCase();
+      return hay.includes(ql);
+     })
    : DOMAIN_INDEX;
   const byCat: Record<string, typeof DOMAIN_INDEX> = {};
   for (const d of filtered) (byCat[d.category] ??= []).push(d);
@@ -76,6 +97,7 @@ export function MegaMenu() {
     type="button"
     aria-haspopup="menu"
     aria-expanded={open}
+    aria-controls="polymath-mega-menu"
     onClick={() => setOpen((v) => !v)}
     className={`chip ${open ? "ring-1" : ""}`}
     style={open ? { borderColor: "var(--hue)", color: "var(--hue)" } : {}}
@@ -96,6 +118,7 @@ export function MegaMenu() {
 
      {/* Menu panel. Fixed positioned, centered on small screens, anchored to viewport on desktop. */}
      <div
+      id="polymath-mega-menu"
       ref={panelRef}
       role="menu"
       aria-label="All domains"

@@ -1,9 +1,13 @@
 "use client";
 import { ReactNode, useState } from "react";
 import { useUserState } from "@/lib/state";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { ChevronDown, ChevronUp, Layers } from "lucide-react";
 import { HubHero } from "./HubHero";
 import { HubCatalogue } from "./HubCatalogue";
+import { TodayCard } from "./TodayCard";
+import { StartHereBento } from "./StartHereBento";
+import { MoreForYouRow } from "./MoreForYouRow";
+import { DOMAIN_INDEX } from "@/data/domains";
 
 // Hub-style home. Hero, catalogue, optional rituals strip. No long marketing
 // landing here, that lives on /about.
@@ -17,6 +21,9 @@ export function HomeShell({
  const s = useUserState();
  const [q, setQ] = useState("");
  const [expanded, setExpanded] = useState(false);
+ // Show all 15 domains only when the user explicitly asks for it. New users
+ // see 4 curated picks instead, so the catalogue does not overwhelm.
+ const [showCatalogue, setShowCatalogue] = useState(false);
 
  const started = s.startedDomains.length;
  const xp = s.xp;
@@ -27,6 +34,9 @@ export function HomeShell({
   <div className="space-y-6">
    <HubHero onSearch={setQ} />
 
+   {/* Today-at-a-glance numbers. Self-hides for absolute first-time visitors. */}
+   <TodayCard />
+
    {/* Light rituals appear automatically for returning users */}
    {isReturning && (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -35,7 +45,25 @@ export function HomeShell({
     </div>
    )}
 
-   <HubCatalogue q={q} setQ={setQ} />
+   {/* Progressive disclosure: new users see 4 curated picks; returning users
+       see a related-to-you row. The full catalogue stays one click away. */}
+   {!isReturning && <StartHereBento />}
+   {isReturning && <MoreForYouRow />}
+
+   <div id="all-domains" />
+   {!showCatalogue && (
+    <div className="flex flex-col items-center gap-2 py-4">
+     <button
+      className="btn"
+      onClick={() => setShowCatalogue(true)}
+      style={{ background: "var(--hue)", color: "#0b0d1a", borderColor: "var(--hue)" }}
+     >
+      <Layers size={14} /> Browse all {DOMAIN_INDEX.length} domains
+     </button>
+     <p className="dim text-xs">Or use the Domains menu in the top bar at any time.</p>
+    </div>
+   )}
+   {showCatalogue && <HubCatalogue q={q} setQ={setQ} />}
 
    {/* Optional ritual strip behind a single toggle so the page stays a hub */}
    <div className="flex justify-center pt-2">

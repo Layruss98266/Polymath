@@ -10,7 +10,7 @@ import { usePathname } from "next/navigation";
 // reappearing.
 
 const STEPS = [
- { Icon: Layers,      title: "Domains menu",      body: "Hover the Domains chip in the top bar to pop the full catalogue, grouped by category." },
+ { Icon: Layers,      title: "Domains menu",      body: "Open the Domains menu in the centered top bar to browse the catalogue. 15 domains, grouped by category." },
  { Icon: GraduationCap, title: "Practice menu",   body: "The Practice dropdown holds Review, Dashboard, Skill Map, and My List in one place." },
  { Icon: Search,      title: "Quick search",      body: "Press / to jump to global search. Or Cmd+K to open the command palette from anywhere." },
  { Icon: Keyboard,    title: "Shortcuts",         body: "Press ? to see all keyboard shortcuts. G+H for Home, G+R for Review, and so on." },

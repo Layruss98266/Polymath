@@ -1,0 +1,13 @@
+# Stop CRLF/LF churn on Windows. Treat all text as auto-detected and
+# normalise to LF in the repo, however your editor wrote it locally.
+* text=auto eol=lf
+
+# Lock binary types so git never tries to translate them.
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.ico  binary
+*.webp binary
+*.pdf  binary
+*.zip  binary

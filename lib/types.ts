@@ -45,6 +45,7 @@ export type Concept = {
  expert?: string;              // explanation for someone with domain knowledge
  conceptQuiz?: QuizQuestion[]; // 3 to 5 quiz items tied to this concept
  conceptTasks?: ConceptTask[]; // basic, easy, advanced tasks tied to this concept
+ diagram?: Diagram;            // optional inline mini-diagram tied to this concept
 };
 
 export type RoadmapStage = {
@@ -67,6 +68,10 @@ export type Resource = {
  price?: string;
  verify?: boolean;
  lastVerified?: string;
+ // Optional subdomain ids this resource is most relevant to. When present,
+ // the resource appears on those subdomain pages in addition to the domain
+ // Resources tab.
+ subdomains?: string[];
 };
 
 export type Mission = { t: string; d: string; xp: number };
@@ -113,7 +118,11 @@ export type Domain = {
  flashcards: Flashcard[];
  glossary: GlossaryItem[];
 
- subdomains?: { id: string; name: string }[];
+ // Each subdomain becomes its own page at /domain/[id]/sub/[subdomain]. The
+ // optional `intro` is shown at the top of that page. `capabilities` becomes
+ // the "what you'll be able to do" bullet list. Backwards compat: all new
+ // fields are optional, existing domains keep working without changes.
+ subdomains?: { id: string; name: string; intro?: string; capabilities?: string[] }[];
  capstone?: { t: string; d: string; xp: number };
  safetyNote?: string;
 };
@@ -186,4 +195,13 @@ export type UserState = {
  startedDomains: string[];
  // Per-day XP gained, keyed by YYYY-MM-DD. Only the last 400 days are kept.
  xpByDay?: Record<string, number>;
+ // Stable keys of quiz items already scored. Prevents farming XP by
+ // re-mounting a quiz card after switching tabs or reloading.
+ quizSeen?: string[];
+ // Stable keys of reflections already paid out. Same anti-farm reason.
+ reflectionSeen?: string[];
+ // Accessibility preferences. Each is optional so users on older saves keep
+ // the system defaults until they touch a toggle.
+ fontScale?: 0.9 | 1 | 1.1 | 1.25;
+ dyslexicFont?: boolean;
 };

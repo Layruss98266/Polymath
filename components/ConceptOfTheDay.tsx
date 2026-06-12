@@ -19,7 +19,7 @@ export function ConceptOfTheDay() {
  const s = useUserState();
  const hydrated = useHydrated();
  const day = useTodayKey();
- const [data, setData] = useState<{ domainId: string; domainName: string; hue: string; title: string; one: string } | null>(null);
+ const [data, setData] = useState<{ domainId: string; conceptIndex: number; domainName: string; hue: string; title: string; one: string } | null>(null);
 
  useEffect(() => {
   if (!hydrated || !day) return;
@@ -34,7 +34,7 @@ export function ConceptOfTheDay() {
    const ci = pickIndex(day + ":" + domainId, d.concepts.length);
    const c = d.concepts[ci];
    const oneLine = c.definition ?? c.short ?? c.deep.split(/[.!?]/)[0];
-   setData({ domainId, domainName: entry.name, hue: entry.hue, title: c.t, one: oneLine });
+   setData({ domainId, conceptIndex: ci, domainName: entry.name, hue: entry.hue, title: c.t, one: oneLine });
   }).catch(() => {});
   return () => { cancelled = true; };
  }, [hydrated, day, s.startedDomains.join(",")]);
@@ -49,9 +49,9 @@ export function ConceptOfTheDay() {
      <p className="font-display text-lg sm:text-xl mt-1">{data.title}</p>
      <p className="dim text-sm mt-1">{data.one}</p>
     </div>
-    <Link href={`/domain/${data.domainId}`} className="btn shrink-0 hidden sm:inline-flex">Open <ArrowRight size={14} /></Link>
+    <Link href={`/domain/${data.domainId}/concepts/${data.conceptIndex}`} className="btn shrink-0 hidden sm:inline-flex">Open <ArrowRight size={14} /></Link>
    </div>
-   <Link href={`/domain/${data.domainId}`} className="btn sm:hidden mt-3 w-full justify-center">Open</Link>
+   <Link href={`/domain/${data.domainId}/concepts/${data.conceptIndex}`} className="btn sm:hidden mt-3 w-full justify-center">Open</Link>
   </section>
  );
 }

@@ -1,7 +1,10 @@
 "use client";
 import { useMemo, useState } from "react";
+import Link from "next/link";
 import type { Domain, QuizOption } from "@/lib/types";
 import { useActions, useUserState } from "@/lib/state";
+import { DiagramView } from "@/components/Diagram";
+import { conceptPath } from "@/lib/tabs";
 import {
  ChevronLeft, ChevronRight, Bookmark, BookOpen, Brain, ListTree,
  Lightbulb, Layers, Target, CheckCircle2, X, AlertCircle
@@ -85,7 +88,7 @@ export function ConceptsTab({ d }: { d: Domain }) {
   if (quizState[qi]) return;
   const correct = oi === correctIdx;
   setQuizState((st) => ({ ...st, [qi]: { picked: oi, correct } }));
-  a.recordQuizAnswer(d.id, correct, true, idx);
+  a.recordQuizAnswer(d.id, correct, true, idx, `${d.id}:concept:${idx}:${qi}`);
  };
 
  // For TOC, determine each concept's state from store
@@ -178,7 +181,16 @@ export function ConceptsTab({ d }: { d: Domain }) {
      <div className="flex items-start gap-3 flex-wrap">
       <div className="flex-1 min-w-0">
        {subdomain && <p className="dim text-[10px] uppercase tracking-widest mb-1">{subdomain.name}</p>}
-       <h2 className="font-display text-2xl sm:text-3xl leading-tight">{concept.t}</h2>
+       <div className="flex items-center gap-2 flex-wrap">
+        <h2 className="font-display text-2xl sm:text-3xl leading-tight">{concept.t}</h2>
+        <Link
+         href={conceptPath(d.id, idx)}
+         className="chip text-[10px] dim hover:hue"
+         title="Open this concept on its own page for sharing"
+        >
+         shareable link
+        </Link>
+       </div>
        {concept.fullForm && <p className="dim text-sm mt-1">{concept.fullForm}</p>}
        {concept.short && <p className="text-sm mt-2 font-medium">{concept.short}</p>}
       </div>
@@ -293,6 +305,16 @@ export function ConceptsTab({ d }: { d: Domain }) {
        <p className="text-base">{explanation}</p>
       </article>
 
+      {/* Optional inline mini-diagram tied to this concept. Reuses the same
+          Diagram generator library as the domain-level Diagram tab so the
+          look stays consistent. */}
+      {concept.diagram && (
+       <div>
+        <div className="dim text-[10px] uppercase tracking-widest mb-2">Diagram</div>
+        <DiagramView diagram={concept.diagram} />
+       </div>
+      )}
+
       {/* Reflect */}
       <section className="panel p-5" style={{ background: "color-mix(in oklab, var(--hue) 4%, transparent)" }}>
        <header className="flex items-center gap-2 mb-2">
@@ -308,7 +330,7 @@ export function ConceptsTab({ d }: { d: Domain }) {
         placeholder="Your answer saves to your notes"
         aria-label="Your reflection"
        />
-       <p className="dim text-xs mt-2">Saves on blur. Findable later in My List.</p>
+       <p className="dim text-xs mt-2">Saves on blur. Findable later in My List. Use <code>[[domain_id:N]]</code> (eg <code>[[psychology:3]]</code>) to cross-link concepts.</p>
       </section>
 
       {/* Concept quiz */}

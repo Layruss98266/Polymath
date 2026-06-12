@@ -2,10 +2,15 @@
    navigation requests so users always get fresh content but can still browse
    offline once visited. Versioned cache name so we can roll forward cleanly. */
 
-const VERSION = "polymath-v1";
+// Cache namespace is derived from the `?v=` query the registrar passes.
+// New build → new version → new cache key → old caches are pruned in activate.
+const VERSION = "polymath-" + (new URL(self.location.href).searchParams.get("v") || "v1");
 const STATIC_CACHE = `${VERSION}-static`;
 const RUNTIME_CACHE = `${VERSION}-runtime`;
-const APP_SHELL = ["/", "/about", "/skill-map", "/manifest.webmanifest", "/icon-192.png", "/icon-512.png"];
+const APP_SHELL = [
+ "/", "/about", "/search", "/review", "/dashboard", "/skill-map", "/my-list", "/settings",
+ "/manifest.webmanifest", "/icon-192.png", "/icon-512.png"
+];
 
 self.addEventListener("install", (event) => {
  self.skipWaiting();

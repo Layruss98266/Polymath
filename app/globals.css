@@ -21,6 +21,7 @@
   --ink: #0e1023;
   --dim: #5b6079;
   --line: rgba(0,0,0,0.08);
+  --hue: #d94a3d;   /* darker coral so accent text on white panels hits WCAG AA */
   --good: #1f9d5b;
   --bad: #c52b2b;
 }
@@ -83,6 +84,17 @@ body { font-family: var(--font-ui); }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; }
+}
+
+/* User-controlled overrides set on the html element via TopBar effect. */
+html[data-reduce-motion="1"] *, html[data-reduce-motion="1"] *::before, html[data-reduce-motion="1"] *::after {
+  animation-duration: .001ms !important;
+  transition-duration: .001ms !important;
+}
+html[data-dyslexic="1"] body {
+  font-family: "OpenDyslexic", "Comic Sans MS", system-ui, sans-serif;
+  letter-spacing: 0.02em;
+  line-height: 1.6;
 }
 
 /* Hide scrollbars for horizontal-scroll containers (top bar, tab strip) */

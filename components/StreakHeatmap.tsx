@@ -47,11 +47,29 @@ export function StreakHeatmap({
   cols.push(padded.slice(i, i + 7));
  }
 
+ // Month labels. Show the abbreviated month name above the first column of
+ // each calendar month so readers can place where they are in the year.
+ const MONTH_NAMES = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+ const monthLabels = cols.map((col, ci) => {
+  const first = col.find((c) => c !== null);
+  if (!first) return null;
+  const m = new Date(first.date).getMonth();
+  if (ci === 0) return MONTH_NAMES[m];
+  const prevCol = cols[ci - 1].find((c) => c !== null);
+  if (!prevCol) return MONTH_NAMES[m];
+  return new Date(prevCol.date).getMonth() === m ? null : MONTH_NAMES[m];
+ });
+
  const total = Object.values(xpByDay).reduce((sum, v) => sum + v, 0);
  const active = Object.values(xpByDay).filter((v) => v > 0).length;
 
  return (
   <div className="overflow-x-auto no-scrollbar">
+   <div className="inline-grid gap-[3px] mb-1" style={{ gridAutoFlow: "column", gridTemplateColumns: `repeat(${cols.length}, 10px)` }} aria-hidden="true">
+    {monthLabels.map((m, ci) => (
+     <span key={ci} className="dim text-[9px] uppercase tracking-widest" style={{ minWidth: 10, height: 10, whiteSpace: "nowrap" }}>{m ?? ""}</span>
+    ))}
+   </div>
    <div className="inline-grid gap-[3px]" style={{ gridAutoFlow: "column", gridTemplateRows: "repeat(7, 10px)" }}>
     {cols.flatMap((col, ci) =>
      col.map((cell, ri) => (

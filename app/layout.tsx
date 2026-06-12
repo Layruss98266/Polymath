@@ -11,6 +11,8 @@ import { CommandPalette } from "@/components/CommandPalette";
 import { ServiceWorkerRegister } from "@/components/ServiceWorkerRegister";
 import { Coachmarks } from "@/components/Coachmarks";
 import { Footer } from "@/components/Footer";
+import { ScrollTopFab } from "@/components/ScrollTopFab";
+import { RouteAnnouncer } from "@/components/RouteAnnouncer";
 
 const SITE = "https://polymath.vercel.app";
 
@@ -18,7 +20,7 @@ export const metadata: Metadata = {
  metadataBase: new URL(SITE),
  title: {
   default: "Polymath. Learn anything, daily.",
-  template: "%s . Polymath"
+  template: "%s · Polymath"
  },
  description:
   "Learn dozens of real-world domains from absolute basics to mastery. Spaced repetition, real missions, real frameworks, honest game loop. No login, no dark patterns.",
@@ -49,8 +51,7 @@ export const metadata: Metadata = {
  twitter: {
   card: "summary_large_image",
   title: "Polymath",
-  description: "Learn anything, daily. FSRS spaced repetition, real frameworks, no dark patterns.",
-  creator: "@polymath"
+  description: "Learn anything, daily. FSRS spaced repetition, real frameworks, no dark patterns."
  },
  category: "education"
 };
@@ -88,6 +89,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
    <head>
     <link rel="icon" href="/icon-192.png" type="image/png" />
     <link rel="apple-touch-icon" href="/icon-192.png" />
+    <link rel="alternate" type="application/rss+xml" title="Polymath domains" href="/domains.rss" />
     <script
      type="application/ld+json"
      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -106,6 +108,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
      <ServiceWorkerRegister />
      <Coachmarks />
      <BottomNav />
+     <ScrollTopFab />
+     <RouteAnnouncer />
      <Footer />
     </StoreProvider>
    </body>

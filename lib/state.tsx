@@ -198,7 +198,18 @@ export function useActions() {
    const conceptProgress = existing
     ? s.conceptProgress.map((c) => (c === existing ? { ...c, reflectAnswer: answer } : c))
     : [...s.conceptProgress, { domainId, conceptIndex, opened: true, reflectAnswer: answer }];
-   return { ...s, conceptProgress, notes: { ...s.notes, [key]: answer }, xp: s.xp + (answer.trim().length > 20 ? XP.reflectionWritten : 0) };
+   // Award reflection XP only on the first save that crosses the 20-char
+   // threshold. Subsequent edits keep the note but do not pay out again,
+   // otherwise a focus/blur loop farms XP forever.
+   const alreadyPaid = (s.reflectionSeen ?? []).includes(key);
+   const earnsXp = !alreadyPaid && answer.trim().length > 20;
+   return {
+    ...s,
+    conceptProgress,
+    notes: { ...s.notes, [key]: answer },
+    xp: s.xp + (earnsXp ? XP.reflectionWritten : 0),
+    reflectionSeen: earnsXp ? [...(s.reflectionSeen ?? []), key] : s.reflectionSeen
+   };
   });
  }, [store]);
 
@@ -214,11 +225,16 @@ export function useActions() {
   });
  }, [store]);
 
- const recordQuizAnswer = useCallback((domainId: string, correct: boolean, calibrated: boolean, conceptIndex?: number) => {
+ const recordQuizAnswer = useCallback((domainId: string, correct: boolean, calibrated: boolean, conceptIndex?: number, quizKey?: string) => {
   store.patch((s) => {
    const dp = s.domainProgress[domainId];
    if (!dp) return s;
-   const xpGain = correct ? (XP.quizCorrectFirstTry + (calibrated ? XP.quizCorrectCalibrated : 0)) : 0;
+   // Dedupe by stable key. If the same quiz item has been scored before, the
+   // counter still increments (so the weakest-queue stays accurate) but no XP
+   // is awarded a second time and no double-count of correct/answered.
+   const key = quizKey ?? (typeof conceptIndex === "number" ? `${domainId}:concept:${conceptIndex}` : undefined);
+   const seen = key ? (s.quizSeen ?? []).includes(key) : false;
+   const xpGain = seen ? 0 : (correct ? (XP.quizCorrectFirstTry + (calibrated ? XP.quizCorrectCalibrated : 0)) : 0);
    const calibDelta = calibrated ? 1 : -1;
    const calibrationScore = clamp(((s.calibrationScore ?? 0) * 0.9) + (calibDelta * 0.1), -1, 1);
 
@@ -238,10 +254,13 @@ export function useActions() {
 
    return {
     ...s,
-    domainProgress: { ...s.domainProgress, [domainId]: { ...dp, quizAnswered: dp.quizAnswered + 1, quizCorrect: dp.quizCorrect + (correct ? 1 : 0) } },
+    domainProgress: seen
+     ? s.domainProgress
+     : { ...s.domainProgress, [domainId]: { ...dp, quizAnswered: dp.quizAnswered + 1, quizCorrect: dp.quizCorrect + (correct ? 1 : 0) } },
     conceptProgress,
     xp: s.xp + xpGain,
-    calibrationScore
+    calibrationScore,
+    quizSeen: key && !seen ? [...(s.quizSeen ?? []), key] : s.quizSeen
    };
   });
  }, [store]);
@@ -295,6 +314,18 @@ export function useActions() {
   store.patch((s) => ({ ...s, muteSound: !s.muteSound }));
  }, [store]);
 
+ const setFontScale = useCallback((scale: 0.9 | 1 | 1.1 | 1.25) => {
+  store.patch((s) => ({ ...s, fontScale: scale }));
+ }, [store]);
+
+ const toggleDyslexicFont = useCallback(() => {
+  store.patch((s) => ({ ...s, dyslexicFont: !s.dyslexicFont }));
+ }, [store]);
+
+ const setReducedMotion = useCallback((on: boolean | undefined) => {
+  store.patch((s) => ({ ...s, reducedMotionOverride: on }));
+ }, [store]);
+
  const refreshDailyQuest = useCallback((quest: NonNullable<UserState["dailyQuest"]>) => {
   store.patch((s) => (s.dailyQuest?.day === quest.day ? s : { ...s, dailyQuest: quest }));
  }, [store]);
@@ -311,9 +342,10 @@ export function useActions() {
  return useMemo(() => ({
   addXP, startDomain, openConcept, saveReflection, completeMission,
   recordQuizAnswer, upsertCard, completeCapstone, toggleBookmark, setNote,
-  setTheme, toggleMute, refreshDailyQuest, completeDailyQuest, importState,
+  setTheme, toggleMute, setFontScale, toggleDyslexicFont, setReducedMotion,
+  refreshDailyQuest, completeDailyQuest, importState,
   completeOnboarding, skipOnboarding
- }), [addXP, startDomain, openConcept, saveReflection, completeMission, recordQuizAnswer, upsertCard, completeCapstone, toggleBookmark, setNote, setTheme, toggleMute, refreshDailyQuest, completeDailyQuest, importState, completeOnboarding, skipOnboarding]);
+ }), [addXP, startDomain, openConcept, saveReflection, completeMission, recordQuizAnswer, upsertCard, completeCapstone, toggleBookmark, setNote, setTheme, toggleMute, setFontScale, toggleDyslexicFont, setReducedMotion, refreshDailyQuest, completeDailyQuest, importState, completeOnboarding, skipOnboarding]);
 }
 
 function clamp(n: number, lo: number, hi: number) { return Math.max(lo, Math.min(hi, n)); }

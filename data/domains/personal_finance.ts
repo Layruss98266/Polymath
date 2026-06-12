@@ -101,7 +101,8 @@ const d: Domain = {
     { level: "basic",    t: "Spot check your spending", d: "Open your bank app right now. Estimate last month's total spending to the nearest 10%. Then look at the real number. Note the gap.", xp: 10 },
     { level: "easy",     t: "Pick a savings rate",       d: "Decide a savings rate as a percentage of income (start with 10% if unsure). Write it down. That is the target for next month.", xp: 25 },
     { level: "advanced", t: "Lock it in",               d: "Set up a standing instruction so the chosen percent of your next salary moves to a separate account or SIP within 48 hours of landing. The mechanism is the win, not the size.", xp: 70 }
-   ]
+   ],
+   diagram: { kind: "flow", title: "Salary surplus flow", caption: "Surplus is what is left after fixed and variable spend.", data: { steps: ["Salary lands", "Auto-debit savings (e.g. 20%)", "Pay fixed bills (rent, EMIs)", "Spend on variable (food, transport)", "Leftover = real surplus"] } }
   },
   {
    t: "Emergency fund first",
@@ -150,14 +151,437 @@ const d: Domain = {
     { level: "basic",    t: "Calculate one month",  d: "Add up your essential monthly expenses: rent, groceries, utilities, basic transport, EMIs. That's your one-month buffer target.", xp: 10 },
     { level: "easy",     t: "Open a separate account", d: "Open a high-interest savings account (or buy units of a liquid fund) used only for the emergency fund. Keep it separate from your spending account.", xp: 25 },
     { level: "advanced", t: "Build to 3 months",     d: "Transfer enough to reach three months over the next few cycles. Once hit, leave it alone. Touch only in actual emergencies.", xp: 70 }
-   ]
+   ],
+   diagram: { kind: "bars", title: "Buffer target by income type", caption: "Months of essential expenses to hold in liquid cash.", data: { items: [{ label: "Salaried, dual income", value: 3 }, { label: "Salaried, single income", value: 4 }, { label: "Freelancer / variable", value: 6 }, { label: "Single income + dependents", value: 9 }], unit: "months" } }
   },
   { t: "Kill high-interest debt first",             short: "Credit cards and payday loans first, always. Nothing else competes.",                                                                             deep: "An Indian credit card typically charges 30 to 45% a year on whatever you don't pay off in the cycle. No legal investment beats that reliably. So paying down a credit card balance is basically a risk-free 30% return, better than any stock, bond, or fund you'll be pitched. There are two playbooks. The avalanche method says: pay the highest interest rate first (mathematically optimal). The snowball method says: pay the smallest balance first (motivationally easier, you knock one debt out fast, feel a win, keep going). Pick the one you'll actually finish, not the one that looks smarter on paper.",                                                                                 status: "debated",  reflect: "Write down every debt you have with its interest rate. The biggest rate gets attacked first, unless you know you'd quit without an early small win." },
   { t: "Pay yourself first (automate it)",            short: "Move money to savings the day your salary lands. Live on what's left, not the other way around.",                                                               deep: "Willpower runs out. Automation doesn't. People with identical incomes save wildly different amounts depending on one thing: whether the saving happens automatically before they see the money. Set up a standing instruction, the day after salary credits, ₹X gets pulled into a savings account or an investment SIP. You'll adjust your spending to the leftover. If you wait until the end of the month to save \"whatever's left,\" you'll find there's nothing left. There is always nothing left.",                                                                                                                                            status: "settled",  reflect: "What percentage of your last salary moved into savings or investments within two days of it landing? If \"none,\" that's the next 30-minute fix." },
   { t: "Index funds beat picking",                short: "Over long horizons, a cheap fund that tracks the whole market beats most clever ones.",                                                                    deep: "Every year, regulators publish a report (called SPIVA) that compares actively managed mutual funds against simple index funds. The same boring result keeps showing up: over 10 or 20 years, most active funds lose to the index after their fees are taken out. That doesn't mean active managers are stupid. It means the market is hard, fees are high, and \"average\" sounds boring but in practice means \"top quartile.\" For most of your equity allocation, just buy a broad Indian index fund (Nifty 50 or Total Market), keep buying it automatically, and don't touch it. You can have a small portion for active picks if you want the entertainment. The boring part is where the money is made.",                                            status: "settled",  reflect: "Pull up your largest actively managed mutual fund. Compare its 10-year return, after fees, against the Nifty 50 over the same period. Honestly." },
   { t: "Compounding",                      short: "Time × return × consistency. Time matters more than the other two.",                                                                             deep: "A 25-year-old investing ₹5,000 a month at a 10% average return ends up around ₹1.6 crore at 60. A 35-year-old doing the exact same thing ends up around ₹65 lakh, less than half. Same amount, same fund, same returns. Just ten extra years on the front end. The first decade looks tiny on the chart; the last decade is where the curve goes vertical. The single biggest favour you can do your future self is to start now, even if \"now\" means ₹500 a month. Increase the amount later. You can't make up the years.",                                                                                                                             status: "settled",  reflect: "If you'd started investing five years earlier than you did, what would change about today? Don't dwell on it, start now." },
   { t: "Inflation",                       short: "Cash quietly loses 5-7% of its buying power every year in India.",                                                                              deep: "Your grandparents could buy a kilo of arhar dal for a few rupees. Today it's around ₹150. Same dal, way more rupees, that's inflation in everyday clothes. Cash sitting in a low-interest account is shrinking in real terms every year. That's why your emergency fund goes in something liquid that at least keeps pace (a high-interest savings account or a liquid fund), and your long-term savings have to grow faster than inflation, which mostly means equities. \"Safe\" cash that loses 5% of its buying power every year is not actually safe.",                                                                                                               status: "settled",  reflect: "What did a litre of milk cost when you were a kid? What does it cost now? That gap is your real-world inflation lesson." },
-  { t: "Insurance: term + health, full stop",          short: "Pure term life (if anyone depends on you) and proper health insurance. Avoid anything that mixes insurance with investment.",                                                 deep: "Real insurance is simple and cheap: a term policy pays your family a chunk of money if you die during a set number of years. If you survive, you get nothing, which sounds bad, but that's exactly what insurance is for. The bundled products (ULIPs, endowment plans, \"return of premium\" policies) take what should be a ₹1,000-a-month problem and turn it into a ₹15,000-a-month one, because they're hiding an expensive investment inside. The agent earns a big commission. You earn a low return. Just buy term life if anyone depends on your income, and a real indemnity health policy. Invest the difference in an index fund.",                                                                         status: "framework", reflect: "Is anyone financially dependent on you? If yes, do you have term life cover worth roughly 10-15 times your annual income?" }
+  { t: "Insurance: term + health, full stop",          short: "Pure term life (if anyone depends on you) and proper health insurance. Avoid anything that mixes insurance with investment.",                                                 deep: "Real insurance is simple and cheap: a term policy pays your family a chunk of money if you die during a set number of years. If you survive, you get nothing, which sounds bad, but that's exactly what insurance is for. The bundled products (ULIPs, endowment plans, \"return of premium\" policies) take what should be a ₹1,000-a-month problem and turn it into a ₹15,000-a-month one, because they're hiding an expensive investment inside. The agent earns a big commission. You earn a low return. Just buy term life if anyone depends on your income, and a real indemnity health policy. Invest the difference in an index fund.",                                                                         status: "framework", reflect: "Is anyone financially dependent on you? If yes, do you have term life cover worth roughly 10-15 times your annual income?" },
+  {
+   t: "Lifestyle inflation",
+   subdomain: "fundamentals",
+   definition: "Lifestyle inflation is the silent creep where spending rises in lockstep with income, so a bigger salary leaves you with the same savings rate as before.",
+   short: "Raises do not make you wealthier if your costs rise the same week.",
+   deep: "You get a 30 percent raise. You feel rich for a weekend. Then the better apartment, the nicer car EMI, the upgraded phone plan, the more expensive coffee habit all show up over the next six months, and at the end of the year your savings rate is exactly where it was. This is lifestyle inflation. It is not bad in moderation, you should enjoy some of what you earn. The danger is unconscious creep, where every fixed cost ratchets up and never down. The fix is mechanical: when income rises, raise the automatic savings transfer the same week, before the spending finds it. Lock the percent, then enjoy the rest.",
+   generic: "Imagine a river that swells in monsoon. If you build wider banks to match, the river stays inside them. If you do not, it floods. Income is the river. Spending habits are the banks. Lifestyle inflation is what happens when the banks grow at exactly the river's pace and nothing is left for the reservoir.",
+   expert: "Behavioural finance literature calls this the hedonic treadmill applied to consumption: subjective satisfaction adapts to the new baseline within months, so the long-run happiness gain from a raise is small while the long-run savings drag is large. Fix by anchoring savings as a percentage of gross, with automatic increases pegged to salary revisions. Indian context: HRA, LTA, and bonus components can be partially routed to investments before they hit the spending account. Mr Money Mustache's writing on this is the canonical popular treatment.",
+   status: "settled",
+   reflect: "Compared to three years ago, your income is probably higher. Is your savings rate higher by the same percentage, or has spending eaten the gap?",
+   conceptQuiz: [
+    {
+     q: "The cleanest defence against lifestyle inflation is:",
+     options: [
+      { text: "Trying harder to spend less.", misconception: "Willpower decays. The mechanism, not the intent, is what holds." },
+      { text: "Automatically raising the savings percentage the same week a raise arrives.", correct: true },
+      { text: "Never accepting a raise.", misconception: "Strange and unnecessary. The raise itself is fine. The unconscious spending of it is the problem." },
+      { text: "Switching to cash only.", misconception: "Useful for tracking, but does not address the structural fix of locking the percent." }
+     ],
+     why: "Move the money before you see it. Spending adjusts to whatever lands in the account."
+    },
+    {
+     q: "Two friends both got 40 percent raises last year. One saved 40 percent of the raise; the other saved 0 percent of it. Over 20 years, the difference is:",
+     options: [
+      { text: "Negligible because both got the same raise.", misconception: "The raise was the same. What they did with it was not. Compounding amplifies that gap massively." },
+      { text: "Significant: the saver builds a substantially larger nest egg with no extra effort.", correct: true },
+      { text: "Negative for the saver, because they enjoyed less.", misconception: "Subjective utility is real but not what the question measures. Financially, the saver wins clearly." },
+      { text: "The same because lifestyle equalises everyone.", misconception: "Lifestyle inflation is a tendency, not a law. Anyone can opt out by locking the percent." }
+     ],
+     why: "A raise that is saved compounds for decades. A raise that is spent is gone within months, with only a new baseline of fixed costs to show for it."
+    }
+   ],
+   conceptTasks: [
+    { level: "basic",    t: "Compare two years",        d: "Pull your monthly expenses from two years ago vs today. Note which fixed costs have ratcheted up and which have not.", xp: 10 },
+    { level: "easy",     t: "Pre-commit the next raise", d: "Write down, today, what percentage of your next raise will go straight into investments. Set the automation now, before the raise lands.", xp: 20 },
+    { level: "advanced", t: "Cut one creeping cost",    d: "Identify one fixed cost that crept up in the last two years without adding real value. Cut or downgrade it, and redirect the difference to a SIP for at least six months.", xp: 40 }
+   ]
+  },
+  {
+   t: "Tax-advantaged accounts in India (PPF, NPS, ELSS)",
+   subdomain: "products",
+   fullForm: "Public Provident Fund, National Pension System, Equity Linked Savings Scheme",
+   definition: "Government-backed accounts that reduce your tax bill today, grow tax-free or tax-deferred, and have specific lock-ins, used to compound long-term savings more efficiently than a regular taxable account.",
+   prereqs: ["Spend less than you earn", "Index funds beat picking"],
+   short: "Three Indian wrappers that let your savings compound with less tax drag.",
+   deep: "Imagine two identical investments, same return, same time. One pays tax every year on its gains. The other does not. The second one ends up dramatically larger after 20 years. That is the point of tax-advantaged accounts. In India, the big three for individuals are PPF (a 15 year government-backed fixed-income account with tax-free interest and Section 80C deduction), NPS (a low-cost retirement account with extra 80CCD(1B) deduction up to 50,000 rupees, locked until 60), and ELSS (equity mutual funds with the shortest 80C lock-in of 3 years and full equity upside). Most beginners should fill 80C with a mix of ELSS and PPF before touching plain taxable investing, and add NPS for the extra 50,000 deduction if the lock-in is acceptable.",
+   generic: "Think of three different envelopes the government hands you. Each says, put your savings inside me and we will charge less tax. They have different rules about when you can open them again and what they can hold inside. Using the envelopes before plain pockets is one of the easiest legal upgrades to your savings.",
+   expert: "PPF: 15 year lock-in, EEE tax status, rate around 7 percent annual (reset quarterly), 1.5 lakh annual cap shared under 80C. NPS: Tier 1 locked until 60 with annuitisation rules, 80C eligible plus extra 50,000 under 80CCD(1B), low expense ratios (under 0.1 percent), choice of equity/corporate/government bond allocation. ELSS: 3 year lock-in (shortest among 80C), equity exposure, gains taxed as LTCG above 1.25 lakh per year. Rules and limits change with each Union Budget, verify current year before acting. The new tax regime removes many 80C benefits, so the optimal mix depends on which regime you opt for.",
+   status: "framework",
+   reflect: "Which tax regime did you file under last year, and did you use the 80C and 80CCD(1B) limits fully under the regime that allowed them?",
+   conceptQuiz: [
+    {
+     q: "Which of these has the shortest lock-in among 80C investments?",
+     options: [
+      { text: "PPF.", misconception: "PPF has a 15 year lock-in with limited partial withdrawals. The longest of the three." },
+      { text: "ELSS.", correct: true },
+      { text: "NPS Tier 1.", misconception: "NPS Tier 1 is locked until age 60 with annuitisation requirements. Effectively the longest practical lock-in." },
+      { text: "Tax-saving FD.", misconception: "Tax-saving FDs have a 5 year lock-in, longer than ELSS." }
+     ],
+     why: "ELSS funds have a 3 year lock-in, the shortest in the 80C basket, while offering equity returns."
+    },
+    {
+     q: "Why is filling tax-advantaged accounts often a better first move than a taxable index fund?",
+     options: [
+      { text: "Because taxable funds always lose money.", misconception: "Not true. They can earn well; they just lose more to tax over time." },
+      { text: "Because lower tax drag means more of the return compounds for you.", correct: true },
+      { text: "Because tax-advantaged accounts are government-guaranteed to outperform.", misconception: "Returns are not guaranteed. ELSS rises and falls with the market. The advantage is the tax wrapper, not a return guarantee." },
+      { text: "Because they have no fees.", misconception: "They have fees too. NPS is among the cheapest in the world, but PPF and ELSS still have costs or opportunity costs." }
+     ],
+     why: "Tax saved on the way in plus tax not owed on the way out leaves more capital working for you. Compounded over decades, the effect is large."
+    }
+   ],
+   conceptTasks: [
+    { level: "basic",    t: "Check your regime",   d: "Find out which tax regime (old or new) you filed under last year and what deductions you actually claimed.", xp: 10 },
+    { level: "easy",     t: "Open one wrapper",    d: "If you do not have one already and the old regime suits you, open a PPF account or start a small ELSS SIP this month, the minimum amount is enough.", xp: 20 },
+    { level: "advanced", t: "Build a 12 month plan", d: "Write a one page plan for the year: how much you will route through PPF, ELSS, and NPS to use 80C and 80CCD(1B) fully, given your regime and lock-in tolerance. Automate the contributions.", xp: 40 }
+   ]
+  },
+  {
+   t: "Term insurance vs ULIP trap",
+   subdomain: "products",
+   fullForm: "Unit Linked Insurance Plan (ULIP)",
+   definition: "Buy pure life cover (term insurance) and invest separately in low cost mutual funds, rather than buying a bundled product (ULIP, endowment, money back) that hides charges inside an insurance wrapper.",
+   short: "Insurance is insurance, investing is investing. Mixing them is how banks get rich, not you.",
+   deep: "Walk into any Indian bank and the relationship manager will pitch you a ULIP or endowment plan, dressed up as a smart combination of insurance plus investment. The maths is brutal once you unbundle it. A 30 year old non smoker can buy 1 crore of pure term cover for around 12,000 to 15,000 rupees a year. The same person paying 1 lakh a year into a ULIP gets perhaps 10 to 15 lakh of cover plus an investment component eaten by allocation charges, fund management charges, mortality charges, and policy admin charges that easily total 4 to 6 percent in early years. Bogle warned globally; Subramoney repeats the Indian version: separate the two. Buy pure term insurance equal to 10 to 15 times your annual income. Invest the rest in a low cost index fund or ELSS. After 20 years the unbundled version typically leaves you 30 to 50 percent richer with the same cover.",
+   generic: "Like buying a combined washing machine plus refrigerator. The salesman swears it is more efficient, but each function is worse than a dedicated appliance and the repair costs are higher. Two separate boxes, each doing one job well, almost always wins.",
+   expert: "ULIPs carry premium allocation charges (up to 6 percent in year 1), policy admin charges, fund management charges (up to 1.35 percent), and mortality charges deducted as units. IRDAI capped some charges post 2010 but the bundling still hides total cost. Term insurance is pure mortality risk, no investment component; for a healthy 30 year old, 1 crore cover is typically 8,000 to 15,000 INR per year. Section 80C covers both, but the new tax regime under Budget 2025 26 with the 7 lakh zero tax bucket and 75,000 standard deduction has reduced the 80C lure. For most earners, term plus ELSS or index fund dominates ULIP on both return and flexibility.",
+   status: "settled",
+   reflect: "If anyone is financially dependent on you, do you have 10 to 15 times your annual income in pure term cover, and is your investing happening in a separate vehicle?",
+   conceptQuiz: [
+    {
+     q: "Why does separating term insurance from investment usually beat a ULIP?",
+     options: [
+      { text: "Bundled products hide allocation and mortality charges that compound against returns.", correct: true },
+      { text: "Term insurance pays a higher death benefit than ULIPs.", misconception: "For the same premium, term cover is much higher, but the point is cost transparency on the investment side." },
+      { text: "ULIPs are illegal.", misconception: "They are legal and regulated by IRDAI, just expensive." },
+      { text: "Mutual funds are tax free.", misconception: "Equity funds pay LTCG above 1.25 lakh per year." }
+     ],
+     why: "The charges inside a ULIP eat returns in a way a plain index fund or ELSS plus separate term plan does not."
+    },
+    {
+     q: "A healthy 30 year old earning 12 lakh a year needs roughly how much pure term cover?",
+     options: [
+      { text: "Around 1.2 to 1.8 crore (10 to 15 times income).", correct: true },
+      { text: "Around 5 lakh.", misconception: "Far too low to replace lost income for dependents." },
+      { text: "Around 10 crore.", misconception: "Excess cover wastes premium without proportionate benefit." },
+      { text: "Zero, since they are healthy.", misconception: "Insurance is for the dependents, not the insured. Health does not remove the need." }
+     ],
+     why: "10 to 15 times annual income is the standard rule of thumb to replace earning capacity for dependents."
+    }
+   ],
+   conceptTasks: [
+    { level: "basic", t: "Audit your policies", d: "List every life insurance and ULIP policy you hold, with annual premium, sum assured, and surrender value.", xp: 10 },
+    { level: "easy", t: "Quote pure term", d: "Get pure term insurance quotes for 1 crore cover from three insurers using PolicyBazaar or directly.", xp: 20 },
+    { level: "advanced", t: "Unbundle and redirect", d: "If you hold a ULIP, run the maths on surrendering or making it paid up, buying pure term, and redirecting the difference to an index fund or ELSS SIP. Document the decision.", xp: 40 }
+   ]
+  },
+  {
+   t: "Liquid and arbitrage funds",
+   subdomain: "products",
+   definition: "Low volatility Indian mutual fund categories used as parking spots for emergency cash or short term goals, with tax treatment that often beats a bank savings account or short FD.",
+   short: "Boring funds that hold short paper or hedged equity, useful as a smarter cash bucket.",
+   deep: "A bank savings account in India pays around 3 to 4 percent and is fully taxed at slab. A liquid fund holds money market instruments maturing under 91 days and historically delivers close to 6 to 7 percent with same day or T plus 1 liquidity. Arbitrage funds hedge equity by going long cash and short futures, capturing a small spread that has averaged 5 to 7 percent annually. Both are useful slots for an emergency fund or a goal due in 1 to 3 years. The tax angle changed in 2024: debt mutual funds bought after April 2023 are taxed at slab rates without indexation, so the old advantage shrank, but arbitrage funds still get equity tax treatment (15 percent STCG, 12.5 percent LTCG above 1.25 lakh). Under the new tax regime in Budget 2025 26, the 7 lakh zero tax bucket and 75,000 standard deduction make small investors close to tax neutral, so the choice is mainly about liquidity and stability, not yield optimisation.",
+   generic: "Like keeping your spare cash in a sealed jar instead of a leaky tin. Both are within reach, but one quietly grows and the other quietly shrinks. The jar is not exciting, it just does its boring job better than the tin.",
+   expert: "Liquid funds: avg maturity under 91 days, regulated by SEBI as low duration, low credit risk; mark to market accounting since 2019. Post April 2023, debt funds (including liquid) lose indexation; gains taxed at slab. Arbitrage funds: classified as equity for tax (15 percent STCG, 12.5 percent LTCG above 1.25 lakh), structurally hedged so beta to equity is near zero. Yields track repo and short money market rates. Budget 2025 26 retained the 7 lakh rebate threshold and 75,000 standard deduction in the new regime. For emergency funds, split between sweep FD and liquid fund; for 1 to 3 year goals, arbitrage funds dominate on a post tax basis above the 7 lakh income line.",
+   status: "framework",
+   reflect: "Where is your emergency fund parked right now? What is its post tax yield versus a liquid or arbitrage fund?",
+   conceptQuiz: [
+    {
+     q: "Why might an arbitrage fund beat a liquid fund on a post tax basis for someone in the 20 to 30 percent slab?",
+     options: [
+      { text: "Arbitrage funds get equity tax treatment, while liquid funds are taxed at slab after April 2023.", correct: true },
+      { text: "Arbitrage funds always earn double the return.", misconception: "Returns are similar; the tax wrapper is the edge." },
+      { text: "Liquid funds are riskier.", misconception: "Both are low risk; the difference is mostly tax." },
+      { text: "Arbitrage funds are government guaranteed.", misconception: "Neither has a sovereign guarantee." }
+     ],
+     why: "Equity classification gives arbitrage funds 12.5 percent LTCG above 1.25 lakh, often beating slab taxation on liquid funds."
+    },
+    {
+     q: "Which is the best home for a 6 month emergency fund for a salaried Indian earner?",
+     options: [
+      { text: "A liquid fund or sweep FD, optimised for T plus 1 access not yield.", correct: true },
+      { text: "A small cap equity fund for higher long term return.", misconception: "Equity drawdowns hit hardest when you need the buffer." },
+      { text: "Cryptocurrency.", misconception: "Volatile and illiquid in stress; the opposite of an emergency fund." },
+      { text: "A 5 year tax saving FD.", misconception: "Locked in for 5 years; cannot be accessed for emergencies." }
+     ],
+     why: "Liquidity and stability beat yield for an emergency fund; liquid funds and sweep FDs give both."
+    }
+   ],
+   conceptTasks: [
+    { level: "basic", t: "Find the post tax yield", d: "Look up the 1 year return of a top rated liquid fund and your savings account interest. Compute post tax yield for both at your slab.", xp: 10 },
+    { level: "easy", t: "Open one liquid fund", d: "Start a small SIP or lump sum into a low expense liquid fund (Parag Parikh, ICICI, HDFC) used as your emergency parking spot.", xp: 20 },
+    { level: "advanced", t: "Split the buffer", d: "Restructure your emergency fund as 1 month in sweep FD plus 2 to 5 months in a liquid or arbitrage fund, and document the post tax yield improvement.", xp: 40 }
+   ]
+  },
+  {
+   t: "NPS asset allocation",
+   subdomain: "products",
+   fullForm: "National Pension System (NPS)",
+   definition: "Actively choosing the split between Equity (E), Corporate Debt (C), and Government Securities (G) inside the NPS, rather than defaulting to the auto choice glide path.",
+   short: "Inside NPS you can dial up Equity, Corporate Debt, and Government Securities. The default is conservative for most working age earners.",
+   deep: "NPS Tier 1 lets you pick Active Choice across three asset classes: Equity (E, capped at 75 percent until age 50, then tapering), Corporate Debt (C), and Government Securities (G). The Auto Choice default starts at moderate equity and reduces it sharply with age, which suits the regulator more than the saver. A 30 year old with a 30 year horizon usually wants close to the 75 percent E cap, with the balance split between C and G. The fees are stunning: NPS expense ratios are under 0.1 percent, among the cheapest pension products in the world. Pair this with the 50,000 additional 80CCD(1B) deduction (still available even within the new tax regime for employer contributions under 80CCD(2)) and NPS becomes one of the most efficient retirement vehicles available. The trade off is rigidity: 40 percent of the corpus must be annuitised at 60, which locks in current annuity rates and limits flexibility.",
+   generic: "Like choosing the seasoning on a meal that the canteen will cook for you for 30 years. The default is bland and safe. You are allowed to ask for more spice when you are young and tone it down as you age, but only if you actually ask.",
+   expert: "PFRDA rules: Active Choice allows E up to 75 percent (cap reduces 2.5 percent annually after 50 to 50 percent at 60); C and G unrestricted. Auto Choice glide paths: Aggressive (LC75), Moderate (LC50), Conservative (LC25). Expense ratio capped at 0.09 percent. Section 80C up to 1.5 lakh plus 80CCD(1B) extra 50,000; 80CCD(2) for employer contribution up to 10 percent of basic + DA (14 percent for govt) is available even under the new tax regime. At 60: 60 percent lump sum tax free, 40 percent mandatory annuity (taxable in retirement). Active Choice typically dominates Auto Choice for 25 to 45 year olds on total expected corpus, with the trade off being more equity volatility en route.",
+   status: "framework",
+   reflect: "If you have an NPS account, are you on Active or Auto choice, and what is your current E,C,G split? Does it match your horizon?",
+   conceptQuiz: [
+    {
+     q: "What is the equity cap under Active Choice in NPS for an investor under 50?",
+     options: [
+      { text: "75 percent.", correct: true },
+      { text: "100 percent.", misconception: "PFRDA caps equity at 75 percent to ensure some diversification." },
+      { text: "50 percent.", misconception: "That is closer to the Moderate Auto Choice (LC50) glide path." },
+      { text: "25 percent.", misconception: "That is the Conservative Auto Choice (LC25) starting point." }
+     ],
+     why: "Active Choice lets equity go up to 75 percent until age 50, then tapers."
+    },
+    {
+     q: "Why might a 32 year old prefer Active Choice over Auto Choice in NPS?",
+     options: [
+      { text: "Auto Choice reduces equity faster than a 30 year horizon needs.", correct: true },
+      { text: "Active Choice has lower fees.", misconception: "Fees are the same across Active and Auto Choice." },
+      { text: "Active Choice gives a government guaranteed return.", misconception: "Returns are market linked in both modes." },
+      { text: "Active Choice removes the annuity requirement.", misconception: "The 40 percent annuitisation rule applies regardless of choice mode." }
+     ],
+     why: "Long horizons reward higher equity exposure; Active Choice lets you stay near the 75 percent cap longer."
+    }
+   ],
+   conceptTasks: [
+    { level: "basic", t: "Find your current split", d: "Log into your NPS account (CRA portal) and note your current Active or Auto choice and E,C,G percentages.", xp: 10 },
+    { level: "easy", t: "Switch one allocation", d: "If you are under 45 and on Auto Choice Moderate or Conservative, evaluate switching to Active Choice with 70 to 75 percent E, and document why.", xp: 20 },
+    { level: "advanced", t: "Plan to 60", d: "Project your NPS corpus to age 60 at your current contribution and allocation, then re project with a 5 percent higher equity allocation. Compare and decide.", xp: 40 }
+   ]
+  },
+  {
+   t: "Term insurance sum assured rule of thumb",
+   subdomain: "products",
+   definition: "A guideline for how much life cover a term policy should provide, typically 10 to 20 times annual income plus outstanding liabilities.",
+   short: "Cover should equal at least 10 to 20 times yearly income plus debts, paid out as tax free lump sum.",
+   deep: "If you earn 12 lakh a year and have a 50 lakh home loan, your dependants will need roughly 12 lakh times 15, or 1.8 crore, plus the 50 lakh loan, for a total cover of around 2.3 crore. The logic: the lump sum, if invested at 7 percent post tax, should generate enough to replace your income for 20 plus years while clearing debts. Indian term cover is cheap, a healthy 30 year old non smoker can get 1 crore for around 12,000 a year. Yet 80 percent of working Indians are underinsured because they either bought ULIPs (which mix savings and insurance badly) or relied on employer cover (which dies when the job does). The most common mistake is buying too little because the premium quote feels manageable.",
+   generic: "Like having enough fuel to finish the journey, not just to reach the next petrol pump. The cover has to last your family decades, not a few years.",
+   expert: "Human Life Value approach (Solomon Huebner). Modified human capital approach discounts future income streams to present value, typically using a 6 to 7 percent real rate. Section 10(10D) of the Income Tax Act exempts death benefit from tax. IRDAI data shows under penetration, life insurance penetration in India was around 3 percent of GDP in 2023, with most cover skewed to investment linked plans rather than pure protection.",
+   status: "framework",
+   reflect: "If you died tonight, would your sum assured genuinely fund your family for 20 years plus clear all liabilities, or is the number a guess?",
+   conceptQuiz: [
+    {
+     q: "Why is term insurance preferable to ULIPs for protection?",
+     options: [
+      { text: "Term offers much higher cover per rupee of premium, pure protection without bundled investment.", correct: true },
+      { text: "Term policies build cash value over time.", misconception: "Term has no cash value; that is precisely what makes it cheap." },
+      { text: "ULIPs are illegal in India.", misconception: "ULIPs are legal and regulated; they are simply inefficient for protection alone." },
+      { text: "Term pays a guaranteed return.", misconception: "Term pays nothing if you survive the term; that is the trade off for cheap cover." }
+     ],
+     why: "Pure protection without bundled investment means premium per crore of cover is a fraction of ULIP cost."
+    },
+    {
+     q: "You earn 15 lakh per year and have a 70 lakh home loan. Your minimum term cover should be roughly...",
+     options: [
+      { text: "Around 2.5 crore.", correct: true },
+      { text: "Around 50 lakh.", misconception: "Less than your loan alone; family would still owe the bank." },
+      { text: "Around 5 crore.", misconception: "Possible but well above the 10 to 20 times rule for this income." },
+      { text: "Around 15 lakh.", misconception: "One year of income; nowhere near sufficient for 20 plus years of replacement." }
+     ],
+     why: "15 lakh times 12 to 15, plus the 70 lakh loan, lands around 2.5 to 3 crore as a reasonable target."
+    }
+   ],
+   conceptTasks: [
+    { level: "basic", t: "Calculate target cover", d: "Compute your target sum assured as 15 times annual income plus all outstanding loans.", xp: 10 },
+    { level: "easy", t: "Compare quotes", d: "Get online quotes from at least three insurers (claim settlement ratio above 95 percent) for your target cover and write down the cheapest.", xp: 20 },
+    { level: "advanced", t: "Buy and disclose", d: "Buy a term policy matching your target cover, disclose every health condition honestly, and add a riders review (critical illness, accidental death) decision in writing.", xp: 40 }
+   ]
+  },
+  {
+   t: "Health insurance basics and India OPD trends",
+   subdomain: "products",
+   definition: "A medical insurance policy that reimburses or cashlessly pays hospital and increasingly outpatient costs, against an annual premium.",
+   short: "Annual premium buys you cashless hospital cover plus, increasingly, outpatient cover.",
+   deep: "A single hospitalisation in a tier 1 Indian city can run 5 to 15 lakh; ICU days for serious illness easily cross 25 lakh. A 30 year old in Bengaluru can get 10 lakh family floater cover for roughly 18,000 to 25,000 per year. The traditional Indian health policy covered only inpatient hospitalisation over 24 hours, missing the 70 percent of healthcare spend that happens at OPD, diagnostics, and pharmacy. Since 2023, IRDAI has pushed standardised products and insurers like Niva Bupa, HDFC Ergo, and Star have launched OPD add ons covering teleconsult, lab tests, and outpatient pharmacy. Critical exclusions to read: pre existing disease waiting (typically 2 to 4 years), room rent capping (huge bill shock source), and no claim bonus terms. Buying young matters: premiums rise sharply after 45 and pre existing conditions trigger lifelong loadings.",
+   generic: "Like a maintenance contract on a car that covers breakdowns but not service. Newer contracts now also cover routine service, but you pay more for them.",
+   expert: "IRDAI's 2023 standardisation introduced the Arogya Sanjeevani and Saral Suraksha policy families with mandated cover features. Ayushman Bharat PMJAY provides 5 lakh family cover for low income households. Private retail health insurance penetration remains under 5 percent of population. Section 80D of the Income Tax Act allows premium deduction up to 25,000 for self and family, plus 50,000 for senior citizen parents.",
+   status: "framework",
+   reflect: "Does your current health cover account for room rent capping, pre existing disease waiting, and your family's likely medical inflation over the next decade?",
+   conceptQuiz: [
+    {
+     q: "What is the biggest hidden cost in many Indian health policies?",
+     options: [
+      { text: "Room rent capping that proportionately scales down all other bill items.", correct: true },
+      { text: "GST on the premium.", misconception: "GST is a real cost but disclosed up front and small relative to claim deductions." },
+      { text: "Mandatory annual medical tests.", misconception: "Most policies do not require annual tests; one off underwriting tests at issue are common." },
+      { text: "Free OPD consultations.", misconception: "Free OPD is a feature, not a cost." }
+     ],
+     why: "If your room costs 8,000 and the cap is 5,000 (50 percent of cap), all associated charges, ICU, surgery, doctor fees, are scaled proportionately, slashing claim payouts."
+    },
+    {
+     q: "Why does buying health insurance young matter?",
+     options: [
+      { text: "Premiums and exclusions lock in based on health at issue; waiting periods complete before you likely need cover.", correct: true },
+      { text: "Young people get free cover.", misconception: "No insurer offers free cover; premiums are just lower." },
+      { text: "Indian law mandates cover under 30.", misconception: "There is no such mandate." },
+      { text: "Pre existing conditions are ignored after age 30.", misconception: "Pre existing conditions trigger lifetime loadings or exclusions whenever discovered." }
+     ],
+     why: "Health insurance prices for health risk at issue, and waiting periods need to complete before serious claims; starting late stacks the deck against you."
+    }
+   ],
+   conceptTasks: [
+    { level: "basic", t: "Audit your policy", d: "Read your current health policy and write down the sum insured, room rent cap, pre existing waiting period, and co pay clauses.", xp: 10 },
+    { level: "easy", t: "Shop floater plans", d: "Get quotes for a 10 to 25 lakh family floater with no room rent capping and OPD add on; compare against your current policy.", xp: 20 },
+    { level: "advanced", t: "Build a multi layer cover", d: "Set up a base floater of 10 lakh plus a 50 lakh super top up policy, and document the trigger threshold and claims process.", xp: 40 }
+   ]
+  },
+  {
+   t: "50-30-20 rule and its critique",
+   subdomain: "fundamentals",
+   definition: "A budgeting heuristic that allocates 50 percent of post tax income to needs, 30 percent to wants, and 20 percent to savings and debt repayment.",
+   short: "Half on needs, 30 percent on wants, 20 percent on savings and debt; a starting frame, not a law.",
+   deep: "Popularised by Elizabeth Warren, the rule gives a quick mental model for someone who has never budgeted. For a Bengaluru software engineer earning 1 lakh take home, that suggests 50,000 for rent, food, transport, EMIs; 30,000 for entertainment, eating out, travel; 20,000 for SIPs and debt prepayment. The critique: in high cost Indian metros, rent alone for a young professional often consumes 35 to 40 percent of income, blowing past the 50 percent needs bucket. The 20 percent savings rate is also too low for someone aiming for early retirement (FIRE target is typically 40 to 60 percent savings rate). For high earners, fixed needs may drop to 25 percent and the savings rate should climb proportionately. Use the rule as a sanity check, not a prescription, and revisit ratios as income grows.",
+   generic: "Like a recipe that says one cup flour to half cup water. Works for the standard loaf, but if you are baking a thin flatbread, you adjust. Same with budgets across income levels.",
+   expert: "Warren and Tyagi (2005), All Your Worth, the Ultimate Lifetime Money Plan. The rule originated in US middle income context with vastly different housing and healthcare costs. Behavioural finance research (Thaler, mental accounting) supports the value of category buckets for self control, even when the specific ratios are imperfect. FIRE literature (Vicki Robin, Mr Money Mustache) advocates inverting the ratios to 25 to 35 percent needs and 50 plus percent savings for accelerated financial independence.",
+   status: "debated",
+   reflect: "What percentage of your take home actually goes to savings each month, and how does that compare to the goal you have set for yourself?",
+   conceptQuiz: [
+    {
+     q: "What is the strongest critique of the 50-30-20 rule for Indian metro earners?",
+     options: [
+      { text: "Rent and essential costs often exceed 50 percent of take home in tier 1 cities, breaking the needs bucket.", correct: true },
+      { text: "The rule is illegal in India.", misconception: "It is a private heuristic, not regulated." },
+      { text: "The maths does not add up to 100.", misconception: "50 plus 30 plus 20 equals 100; the issue is calibration, not arithmetic." },
+      { text: "Savings should be zero for young people.", misconception: "Starting savings early is one of the highest leverage moves; the rule actually supports this." }
+     ],
+     why: "In Bengaluru, Mumbai, Delhi, basic rent and essentials often exceed 50 percent, forcing tight wants or savings."
+    },
+    {
+     q: "For someone pursuing FIRE, what savings rate is typically targeted?",
+     options: [
+      { text: "40 to 60 percent of post tax income.", correct: true },
+      { text: "10 to 15 percent.", misconception: "Too low; FIRE math requires high savings rates to retire decades early." },
+      { text: "Exactly 20 percent, per Warren's rule.", misconception: "FIRE explicitly pushes well beyond the conventional 20 percent." },
+      { text: "100 percent of income.", misconception: "Impossible to live on nothing; the target is high but not absolute." }
+     ],
+     why: "FIRE practitioners show that retiring 20 plus years early requires consistent savings rates of 40 percent and up."
+    }
+   ],
+   conceptTasks: [
+    { level: "basic", t: "Compute actual ratios", d: "Over the last 3 months, compute your actual needs, wants, and savings percentages from bank and credit card statements.", xp: 10 },
+    { level: "easy", t: "Set personal targets", d: "Based on your goals (FIRE, normal retirement, house down payment), write personal target percentages and pin them on your wall.", xp: 20 },
+    { level: "advanced", t: "Engineer the bump", d: "Identify one structural change (move to cheaper rent, switch jobs, cut a subscription stack) that bumps savings rate by 5 percentage points and execute within 60 days.", xp: 40 }
+   ]
+  },
+  {
+   t: "Debt avalanche vs snowball",
+   subdomain: "debt",
+   definition: "Two competing strategies for paying off multiple debts: avalanche prioritises highest interest rate first; snowball prioritises smallest balance first.",
+   short: "Avalanche saves more money; snowball gives faster wins. Pick the one you will actually finish.",
+   deep: "You have a 2 lakh credit card balance at 42 percent APR, a 5 lakh personal loan at 14 percent, and a 50,000 BNPL at 24 percent. The avalanche method targets the credit card first, mathematically optimal because the highest rate compounds against you fastest. The snowball method targets the 50,000 BNPL first, you clear an account quickly, get a behavioural win, and momentum carries you to the next. Dave Ramsey, who popularised snowball, argues openly that the maths is worse but people actually finish the snowball, whereas avalanche plans get abandoned at month 7 when no debt is closed yet. Honest answer: if you have proven discipline, run avalanche. If your past pattern is starting plans and quitting, run snowball. The behavioural win compounds.",
+   generic: "Like cleaning a messy house: the avalanche way says start with the biggest mess first, snowball says clear one small corner so you can see progress. The right answer depends on whether you will keep going.",
+   expert: "Gal and McShane (2012) studied snowball behaviour and confirmed that small wins increase persistence. The behavioural mechanism is the goal gradient effect (Hull, Kivetz et al), where progress closer to a sub goal accelerates effort. Avalanche is the mathematically optimal solution but ignores motivation drift. NCDLI data and US household debt repayment studies show snowball drives higher completion rates among lower discipline households.",
+   status: "debated",
+   reflect: "When you started past financial plans, did you finish them? If not, snowball's behavioural win may matter more for you than avalanche's math.",
+   conceptQuiz: [
+    {
+     q: "Which strategy mathematically minimises total interest paid?",
+     options: [
+      { text: "Avalanche, paying highest interest rate first.", correct: true },
+      { text: "Snowball, paying smallest balance first.", misconception: "Snowball is suboptimal mathematically but better for motivation." },
+      { text: "Paying all debts equally.", misconception: "Equal payments waste money on lower rate debts while higher rate debts compound." },
+      { text: "Pay only minimums forever.", misconception: "Minimums on high APR debts can compound indefinitely; principal barely moves." }
+     ],
+     why: "Avalanche targets the highest cost compounding first, minimising lifetime interest paid."
+    },
+    {
+     q: "Why does the snowball method work for many people despite worse math?",
+     options: [
+      { text: "Closing small accounts creates visible wins that sustain motivation through the plan.", correct: true },
+      { text: "Smaller debts have lower interest rates.", misconception: "Balance size is unrelated to rate; the BNPL example shows this." },
+      { text: "Tax law favours small debts.", misconception: "No such tax provision exists." },
+      { text: "Banks waive smaller debts.", misconception: "Banks do not waive debts based on size." }
+     ],
+     why: "The behavioural goal gradient effect: visible early wins make people more likely to finish the full plan."
+    }
+   ],
+   conceptTasks: [
+    { level: "basic", t: "List every debt", d: "Write down every debt: lender, balance, APR, and minimum payment.", xp: 10 },
+    { level: "easy", t: "Pick a method", d: "Choose avalanche or snowball based on your honest track record of finishing plans, and commit it in writing.", xp: 20 },
+    { level: "advanced", t: "Execute and track", d: "Set up auto pay for minimums plus surplus to the target debt, and track payoff dates. Recalibrate monthly until first debt is closed.", xp: 40 }
+   ]
+  },
+  {
+   t: "Credit card debt math",
+   subdomain: "debt",
+   definition: "The compounding cost of carrying balances on credit cards, where typical Indian APRs of 36 to 48 percent silently consume household wealth.",
+   short: "At 42 percent APR, an unpaid 1 lakh becomes 2 lakh in under 2 years if you only pay minimums.",
+   deep: "Indian credit cards advertise interest in percent per month (commonly 3 to 3.6 percent), which translates to 36 to 43 percent annualised. If you carry 1 lakh at 3.5 percent monthly and pay only the 5 percent minimum (5,000), the math goes like this: month 1 interest is 3,500, so only 1,500 of the 5,000 actually reduces principal. At this rate, you would take roughly 5 years to pay it off and total interest paid would exceed 1 lakh. The killer move: never carry a balance past the grace period. If you cannot pay full statement balance, you do not afford the card. For existing balances, transfer to a personal loan at 12 to 16 percent or seek a 0 percent EMI conversion (read the processing fee fine print). RBI data shows credit card outstanding crossed 2.5 lakh crore in 2024; the silent disaster is in revolved balances.",
+   generic: "Like running with a backpack full of bricks. Each month you do not put down the bricks, more bricks get added. At some point the pace at which bricks pile on exceeds your speed.",
+   expert: "Effective annualised rate (EAR) compounds monthly rates: (1 plus monthly rate) to the 12th, minus 1. A 3.5 percent monthly rate yields EAR around 51 percent. Minimum payment trap: most cards mandate the higher of 5 percent of outstanding or 200 rupees, which guarantees decades of carrying for any meaningful balance. RBI data 2024 shows credit card delinquencies (90 plus days past due) rising in urban India, particularly among under 35s. Section 3 of the RBI Master Direction on Credit Cards mandates disclosure of EAR.",
+   status: "settled",
+   reflect: "Are you carrying any credit card balance past the grace period? If yes, what is the actual EAR you are paying, and how does it compare to your highest investment return?",
+   conceptQuiz: [
+    {
+     q: "If a credit card charges 3.5 percent per month, what is the rough effective annualised rate?",
+     options: [
+      { text: "Around 51 percent.", correct: true },
+      { text: "Exactly 3.5 percent times 12 equals 42 percent.", misconception: "That is the simple rate; effective rate compounds the monthly cost." },
+      { text: "Around 10 percent.", misconception: "Far below the true compounded cost." },
+      { text: "Zero, if you pay minimums.", misconception: "Minimums keep you in the trap longer, not free." }
+     ],
+     why: "Monthly compounding: (1.035 to the 12th) minus 1 ≈ 51 percent annualised."
+    },
+    {
+     q: "What is the safest rule for using credit cards?",
+     options: [
+      { text: "Pay the full statement balance every month within the grace period.", correct: true },
+      { text: "Pay the minimum due always.", misconception: "Minimums trap you in compounding interest, often for years." },
+      { text: "Use multiple cards to rotate balances.", misconception: "Rotation does not eliminate the underlying interest cost." },
+      { text: "Avoid using cards entirely.", misconception: "Cards used responsibly build credit and offer fraud protection; the issue is revolving." }
+     ],
+     why: "Within the grace period, no interest accrues; revolving any balance triggers full APR compounding."
+    }
+   ],
+   conceptTasks: [
+    { level: "basic", t: "Check your statement", d: "Read your latest credit card statement and write down the monthly rate, EAR, and your current balance.", xp: 10 },
+    { level: "easy", t: "Build the payoff plan", d: "If you carry a balance, calculate the actual months to payoff at current payment level, and the total interest you will pay.", xp: 20 },
+    { level: "advanced", t: "Refinance or convert", d: "If carrying over 50,000, evaluate a personal loan at 14 percent or an EMI conversion (with processing fee) and execute the lower total cost route.", xp: 40 }
+   ]
+  },
+  {
+   t: "Estate planning basics (India: will, nominee vs heir)",
+   subdomain: "products",
+   definition: "The process of arranging how your assets will pass to family on death, through wills, nominations, and joint ownership, in line with Indian succession law.",
+   short: "Without a will, Indian succession law (not your wishes) decides who gets what.",
+   deep: "The critical Indian gotcha: a nominee on your bank account, mutual fund, or insurance policy is a trustee, not the legal heir. The Supreme Court has held repeatedly (Sarbati Devi vs Usha Devi, 1984) that nominations under most acts are administrative conveniences; the asset still goes to legal heirs as per succession law. The exception is shares under the Companies Act, where Supreme Court rulings (Jayanand Salgaonkar 2016) have wavered but the Securities and Exchange Board has clarified the equity treatment. The fix is simple: write a will. A handwritten will, signed and witnessed by two adults who are not beneficiaries, is legally valid in India and costs nothing. Probate is mandatory only in Mumbai, Kolkata, and Chennai for certain wills. Update your will every major life event: marriage, divorce, child, property purchase, parent death.",
+   generic: "Like leaving handwritten instructions for your house keys before a long trip. The note that says give it to Ravi is what actually matters, not the box you wrote on it.",
+   expert: "Indian Succession Act 1925 governs intestacy for non Hindus (Hindus, Sikhs, Jains, Buddhists follow Hindu Succession Act 1956). Section 30 of HSA grants testamentary freedom; you can will away self acquired property to anyone. Joint family or ancestral property has restrictions. Probate is mandatory for wills made in or relating to property in Mumbai, Kolkata, Chennai jurisdiction (HC presidency towns). Recent reforms: 2024 SEBI guidelines on nomination claim resolution for deceased investors.",
+   status: "settled",
+   reflect: "Do you have a written will, or are you assuming nominations on your accounts will sort everything out?",
+   conceptQuiz: [
+    {
+     q: "What is the legal status of a nominee on a bank account in India?",
+     options: [
+      { text: "Trustee who must transfer the asset to legal heirs under succession law.", correct: true },
+      { text: "Absolute owner once the account holder dies.", misconception: "Supreme Court has held nominations do not override succession; nominee is a trustee." },
+      { text: "Only valid for tax purposes.", misconception: "Nominations have legal effect, but limited to administrative transfer." },
+      { text: "Invalid without notarisation.", misconception: "Standard bank nominations need no notarisation to be valid." }
+     ],
+     why: "Sarbati Devi vs Usha Devi (1984) and later judgments confirm nominees hold assets in trust for heirs, not as owners."
+    },
+    {
+     q: "What makes a simple Indian will valid?",
+     options: [
+      { text: "Written, signed by the testator, and witnessed by two adults who are not beneficiaries.", correct: true },
+      { text: "Must be on stamp paper of high denomination.", misconception: "Wills require no stamp duty in India." },
+      { text: "Must be notarised by a sub registrar.", misconception: "Registration is optional and not required for validity." },
+      { text: "Must be on a printed template only.", misconception: "Handwritten wills are equally valid if other formalities are met." }
+     ],
+     why: "Section 63 of the Indian Succession Act requires writing, signature, and two attesting witnesses."
+    }
+   ],
+   conceptTasks: [
+    { level: "basic", t: "List your assets", d: "List every financial and physical asset, account, fund, property, with current approximate value.", xp: 10 },
+    { level: "easy", t: "Draft a simple will", d: "Write a one page will distributing your assets, sign it, and have two non beneficiary adults witness it.", xp: 20 },
+    { level: "advanced", t: "Build the full estate kit", d: "Combine the will with updated nominations on every account, a power of attorney for medical decisions, and a sealed letter to family with passwords and asset locations.", xp: 40 }
+   ]
+  }
  ],
 
  counterView:
@@ -192,11 +616,11 @@ const d: Domain = {
 
  resources: {
   free: [
-   { name: "Zerodha Varsity (India-specific)",             what: "Genuinely good, free course on Indian markets, taxes, mutual funds, insurance.",                 url: "https://zerodha.com/varsity/",                      verify: false, lastVerified: "2026-06" },
-   { name: "Morgan Housel, Collab Fund blog",             what: "Short, behavioural-finance essays from the Psychology of Money author.",                    url: "https://collabfund.com/blog/",                      verify: false, lastVerified: "2026-06" },
-   { name: "JL Collins, Stock Series",                 what: "Plain-English case for index investing. US-flavoured; math is universal.",                   url: "https://jlcollinsnh.com/stock-series/",                  verify: false, lastVerified: "2026-06" },
-   { name: "RBI, Financial Education",                 what: "Official India: banking, lending, scams, regulation.",                             url: "https://www.rbi.org.in/financialeducation/Home.aspx",            verify: true, lastVerified: "2026-06" },
-   { name: "SEBI, Investor Awareness",                 what: "Regulator's own investor-education materials. Bias-free baseline.",                      url: "https://investor.sebi.gov.in/",                      verify: false, lastVerified: "2026-06" },
+   { name: "Zerodha Varsity (India-specific)",             what: "Genuinely good, free course on Indian markets, taxes, mutual funds, insurance.",                 url: "https://zerodha.com/varsity/",                      weight: "primary",   verify: false, lastVerified: "2026-06" },
+   { name: "Morgan Housel, Collab Fund blog",             what: "Short, behavioural-finance essays from the Psychology of Money author.",                    url: "https://collabfund.com/blog/",                      weight: "primary",   verify: false, lastVerified: "2026-06" },
+   { name: "JL Collins, Stock Series",                 what: "Plain-English case for index investing. US-flavoured; math is universal.",                   url: "https://jlcollinsnh.com/stock-series/",                  weight: "secondary", verify: false, lastVerified: "2026-06" },
+   { name: "RBI, Financial Education",                 what: "Official India: banking, lending, scams, regulation.",                             url: "https://www.rbi.org.in/financialeducation/Home.aspx",            weight: "primary",   verify: false, lastVerified: "2026-06" },
+   { name: "SEBI, Investor Awareness",                 what: "Regulator's own investor-education materials. Bias-free baseline.",                      url: "https://investor.sebi.gov.in/",                      weight: "secondary", verify: false, lastVerified: "2026-06" },
    { name: "Bogleheads Wiki",                      what: "Community wiki built around John Bogle's philosophy. Deep, practical.",                     url: "https://www.bogleheads.org/wiki/Main_Page",                verify: false, lastVerified: "2026-06" },
    { name: "Investopedia, Personal Finance",              what: "Reference-grade glossary + tutorials.",                                     url: "https://www.investopedia.com/personal-finance-4427760",          verify: false, lastVerified: "2026-06" },
    { name: "Khan Academy, Personal Finance",              what: "Free structured intro for absolute beginners.",                                 url: "https://www.khanacademy.org/college-careers-more/personal-finance",    verify: false, lastVerified: "2026-06" },
@@ -204,16 +628,16 @@ const d: Domain = {
    { name: "Value Research Online",                   what: "India: mutual fund + tax research. Free articles + premium tools.",                       url: "https://www.valueresearchonline.com/",                   verify: false, lastVerified: "2026-06" }
   ],
   paid: [
-   { name: "The Psychology of Money, Morgan Housel",          what: "Why behaviour beats spreadsheets. The single best general personal-finance read.",               url: "https://www.morganhousel.com/the-psychology-of-money/",          price: "verify", verify: true, lastVerified: "2026-06" },
+   { name: "The Psychology of Money, Morgan Housel",          what: "Why behaviour beats spreadsheets. The single best general personal-finance read.",               url: "https://www.collabfund.com/blog/the-psychology-of-money/",          price: "verify", verify: false, lastVerified: "2026-06" },
    { name: "I Will Teach You to Be Rich, Ramit Sethi",         what: "Actionable system for automating money, paired with permission to spend on what you love.",           url: "https://www.iwillteachyoutoberich.com/",                  price: "verify", verify: false, lastVerified: "2026-06" },
-   { name: "The Simple Path to Wealth, JL Collins",           what: "Father-to-daughter letters explaining the low-cost index path.",                        url: "https://jlcollinsnh.com/the-simple-path-to-wealth/",            price: "verify", verify: true, lastVerified: "2026-06" },
-   { name: "Let's Talk Money, Monika Halan",              what: "India-specific personal finance fundamentals from a respected author.",                     url: "",                                     price: "verify", verify: true, lastVerified: "2026-06" },
-   { name: "Your Money or Your Life, Vicki Robin",           what: "Money as life energy, \"enough\" as a skill. The original FI book.",                      url: "https://yourmoneyoryourlife.com/",                     price: "verify", verify: true, lastVerified: "2026-06" },
-   { name: "Same as Ever, Morgan Housel",                what: "Behavioural patterns that don't change. Companion to Psychology of Money.",                   url: "https://www.morganhousel.com/",                      price: "verify", verify: true, lastVerified: "2026-06" },
-   { name: "The Total Money Makeover, Dave Ramsey",           what: "Behaviour-first debt elimination. Math-suboptimal, behaviour-strong. (See counter-view.)",            url: "https://www.ramseysolutions.com/store/books/the-total-money-makeover",   price: "verify", verify: true, lastVerified: "2026-06" },
-   { name: "The Millionaire Next Door, Stanley & Danko",        what: "Who actually accumulates wealth and how (US data).",                              url: "",                                     price: "verify", verify: true, lastVerified: "2026-06" },
-   { name: "Coffee Can Investing, Saurabh Mukherjea",          what: "India-specific long-term buy-and-hold for quality businesses.",                         url: "",                                     price: "verify", verify: true, lastVerified: "2026-06" },
-   { name: "The Million Dollar Question, P. V. Subramanyam (Subra)",   what: "India: tax + insurance + investing fundamentals, no-nonsense voice.",                      url: "https://www.subramoney.com/",                       price: "verify", verify: true, lastVerified: "2026-06" }
+   { name: "The Simple Path to Wealth, JL Collins",           what: "Father-to-daughter letters explaining the low-cost index path.",                        url: "https://jlcollinsnh.com/the-simple-path-to-wealth/",            price: "verify", verify: false, lastVerified: "2026-06" },
+   { name: "Let's Talk Money, Monika Halan",              what: "India-specific personal finance fundamentals from a respected author.",                     url: "",                                     price: "verify", verify: false, lastVerified: "2026-06" },
+   { name: "Your Money or Your Life, Vicki Robin",           what: "Money as life energy, \"enough\" as a skill. The original FI book.",                      url: "https://yourmoneyoryourlife.com/",                     price: "verify", verify: false, lastVerified: "2026-06" },
+   { name: "Same as Ever, Morgan Housel",                what: "Behavioural patterns that don't change. Companion to Psychology of Money.",                   url: "https://www.morganhousel.com/",                      price: "verify", verify: false, lastVerified: "2026-06" },
+   { name: "The Total Money Makeover, Dave Ramsey",           what: "Behaviour-first debt elimination. Math-suboptimal, behaviour-strong. (See counter-view.)",            url: "https://www.ramseysolutions.com/store/books/the-total-money-makeover",   price: "verify", verify: false, lastVerified: "2026-06" },
+   { name: "The Millionaire Next Door, Stanley & Danko",        what: "Who actually accumulates wealth and how (US data).",                              url: "",                                     price: "verify", verify: false, lastVerified: "2026-06" },
+   { name: "Coffee Can Investing, Saurabh Mukherjea",          what: "India-specific long-term buy-and-hold for quality businesses.",                         url: "",                                     price: "verify", verify: false, lastVerified: "2026-06" },
+   { name: "The Million Dollar Question, P. V. Subramanyam (Subra)",   what: "India: tax + insurance + investing fundamentals, no-nonsense voice.",                      url: "https://www.subramoney.com/",                       price: "verify", verify: false, lastVerified: "2026-06" }
   ]
  },
 

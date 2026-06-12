@@ -45,7 +45,14 @@ export function FlashcardsTab({ d }: { d: Domain }) {
     <span>·</span>
     <span>{due} due now in this domain</span>
    </div>
-   <article className="panel p-6 min-h-[180px]" onClick={() => setFlipped((f) => !f)} role="button" tabIndex={0}>
+   <article
+    className="panel p-6 min-h-[180px] cursor-pointer"
+    onClick={() => setFlipped((f) => !f)}
+    onKeyDown={(e) => { if (e.key === " " || e.key === "Enter") { e.preventDefault(); setFlipped((f) => !f); } }}
+    role="button"
+    tabIndex={0}
+    aria-pressed={flipped}
+   >
     <p className="text-xs uppercase tracking-widest dim mb-2">{flipped ? "Back" : "Front, tap to flip"}</p>
     <p className="text-lg font-medium">{flipped ? card.back : card.front}</p>
    </article>

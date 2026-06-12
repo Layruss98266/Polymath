@@ -1,9 +1,10 @@
 "use client";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Sparkles, X } from "lucide-react";
 import { useActions, useUserState, useHydrated } from "@/lib/state";
+import { useFocusTrap } from "@/lib/focusTrap";
 
 // Skippable 20 second onboarding. Pick 2 to 3 goals, get a recommended starting
 // domain and Path. Triggers automatically on first run; can be reopened later
@@ -38,6 +39,9 @@ export function Onboarding() {
  const pathname = usePathname();
  const [picked, setPicked] = useState<string[]>([]);
  const [done, setDone] = useState(false);
+ const dialogRef = useRef<HTMLDivElement>(null);
+ const dialogOpen = hydrated && !s.onboarded && !done && pathname === "/";
+ useFocusTrap(dialogOpen, dialogRef);
 
  if (!hydrated) return null;
  if (s.onboarded) return null;
@@ -56,11 +60,18 @@ export function Onboarding() {
 
  const finish = () => {
   a.completeOnboarding(picked.map((id) => GOALS.find((g) => g.id === id)?.label ?? id));
+  // Pre-bookmark the recommended domain (or domains) so it shows up in My
+  // List right after onboarding. First concept of each recommended domain.
+  for (const id of picked) {
+   const rec = GOALS.find((g) => g.id === id);
+   if (!rec?.recDomainId) continue;
+   a.toggleBookmark(`${rec.recDomainId}:0`);
+  }
  };
 
  return (
   <div className="fixed inset-0 z-40 grid place-items-center p-4" style={{ background: "rgba(0,0,0,0.65)" }}>
-   <div className="panel p-6 max-w-2xl w-full space-y-4" role="dialog" aria-label="Welcome">
+   <div className="panel p-6 max-w-2xl w-full space-y-4" role="dialog" aria-label="Welcome" aria-modal="true" ref={dialogRef}>
     <div className="flex items-start gap-3">
      <Sparkles size={24} className="hue mt-1 shrink-0" />
      <div className="flex-1">
