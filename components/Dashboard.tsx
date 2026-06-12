@@ -7,6 +7,7 @@ import { masteryPct } from "@/lib/mastery";
 import { domainRank, globalRank, levelProgress } from "@/lib/xp";
 import { RankBadge } from "./RankBadge";
 import { dueNow } from "@/lib/fsrs";
+import { ACHIEVEMENTS } from "@/data/achievements";
 
 export function Dashboard() {
  const s = useUserState();
@@ -33,6 +34,22 @@ export function Dashboard() {
  const lp = levelProgress(s.xp);
  const rank = globalRank(s.xp);
  const due = dueNow(s.cards).length;
+
+ // Surface capabilities for domains the user has actually touched. Cap based
+ // on mastery so beginners do not get a wall of unearned statements.
+ const capabilityLines = useMemo(() => {
+  const lines: string[] = [];
+  for (const e of DOMAIN_INDEX) {
+   if (!s.startedDomains.includes(e.id)) continue;
+   const dom = domains[e.id];
+   if (!dom) continue;
+   const p = s.domainProgress[e.id];
+   const m = masteryPct(dom, p);
+   const allowed = Math.max(1, Math.ceil(m * dom.capabilities.length));
+   dom.capabilities.slice(0, allowed).forEach((c) => lines.push(c));
+  }
+  return lines.slice(0, 12);
+ }, [domains, s.domainProgress, s.startedDomains]);
  const cardsReviewed = s.cards.reduce((sum, c) => sum + c.reps, 0);
  const calib = Math.round(((s.calibrationScore ?? 0) + 1) * 50);
 
@@ -67,13 +84,38 @@ export function Dashboard() {
    <section className="panel p-5">
     <h2 className="font-display text-xl mb-3">Achievements</h2>
     {s.achievements.length === 0
-     ? <p className="dim text-sm">No achievements yet , open a domain to earn your first.</p>
+     ? <p className="dim text-sm">No achievements yet. Open a domain to earn your first.</p>
      : (
       <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
-       {s.achievements.map((a) => (
-        <li key={a.id} className="panel p-3">
-         <p className="font-medium">{a.name}</p>
-         <p className="dim text-sm">{a.desc}</p>
+       {s.achievements.map((a) => {
+        const def = ACHIEVEMENTS.find((d) => d.id === a.id);
+        return (
+         <li key={a.id} className="panel p-3 flex items-start gap-3">
+          <div className="text-2xl">{def?.icon ?? "🏅"}</div>
+          <div className="flex-1 min-w-0">
+           <p className="font-medium">{a.name}</p>
+           <p className="dim text-sm">{a.desc}</p>
+          </div>
+         </li>
+        );
+       })}
+      </ul>
+     )}
+    {s.achievements.length > 0 && s.achievements.length < ACHIEVEMENTS.length && (
+     <p className="dim text-xs mt-3">{s.achievements.length} of {ACHIEVEMENTS.length} earned. Keep going.</p>
+    )}
+   </section>
+
+   <section className="panel p-5">
+    <h2 className="font-display text-xl mb-3">You can now</h2>
+    {capabilityLines.length === 0
+     ? <p className="dim text-sm">As you progress concepts, the things you can now explain or do show up here.</p>
+     : (
+      <ul className="space-y-1">
+       {capabilityLines.map((c, i) => (
+        <li key={i} className="text-sm flex items-start gap-2">
+         <span className="hue mt-1">✓</span>
+         <span>{c}</span>
         </li>
        ))}
       </ul>
@@ -82,11 +124,20 @@ export function Dashboard() {
 
    <section className="panel p-5">
     <h2 className="font-display text-xl mb-3">Calibration</h2>
-    <p className="dim text-sm mb-2">A rough score of how well your confidence on quizzes tracks reality. 50 = neutral, &gt;50 = well-calibrated, &lt;50 = mis-calibrated.</p>
+    <p className="dim text-sm mb-2">
+     Calibration measures how well your confidence on quizzes matches reality.
+     The score sits between 0 and 100. Above 50 means you tend to be sure when right and uncertain when wrong (well calibrated).
+     Below 50 means the opposite (the dangerous mix: sure but wrong).
+    </p>
     <div className="h-3 rounded-full overflow-hidden" style={{ background: "var(--line)" }}>
-     <div className="h-full" style={{ width: `${calib}%`, background: "var(--hue)" }} />
+     <div className="h-full" style={{ width: `${calib}%`, background: "var(--hue)", transition: "width .3s" }} />
     </div>
-    <p className="text-xs dim mt-2">Confident-and-wrong is the most expensive combination. Better to be sure when right and uncertain when wrong.</p>
+    <p className="text-xs dim mt-2">Your score: {calib} of 100.</p>
+    <p className="text-xs dim mt-2">
+     <strong>Why this matters.</strong> Confident and wrong is the most expensive failure mode in any field
+     (medicine, investing, engineering). Building the habit of registering uncertainty before you act
+     is one of the most transferable upgrades on this app.
+    </p>
    </section>
   </div>
  );

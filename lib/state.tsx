@@ -6,6 +6,27 @@ import { defaultState } from "./migrations";
 import { loadState, saveState } from "./db";
 import { tickStreak, todayKey } from "./streak";
 import { XP, levelOf } from "./xp";
+import { ACHIEVEMENTS } from "@/data/achievements";
+
+// Fire confetti on level up, gated on prefers-reduced-motion.
+function celebrate() {
+ if (typeof window === "undefined") return;
+ if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+ import("canvas-confetti").then((m) => {
+  try { m.default({ particleCount: 90, spread: 70, origin: { y: 0.6 } }); } catch {}
+ }).catch(() => {});
+}
+
+// Auto-award any achievement whose condition is now satisfied. Pure on state.
+function applyAchievements(s: UserState): UserState {
+ const have = new Set(s.achievements.map((a) => a.id));
+ const fresh: Achievement[] = [];
+ for (const def of ACHIEVEMENTS) {
+  if (have.has(def.id)) continue;
+  if (def.check(s)) fresh.push({ id: def.id, name: def.name, desc: def.desc, unlockedAt: Date.now() });
+ }
+ return fresh.length ? { ...s, achievements: [...s.achievements, ...fresh] } : s;
+}
 
 type Listener = () => void;
 
@@ -30,9 +51,14 @@ class Store {
  }
 
  set(next: UserState) {
-  this.state = next;
+  const prevLevel = levelOf(this.state.xp);
+  // Auto award any achievements that now satisfy their condition.
+  const enriched = applyAchievements(next);
+  const nextLevel = levelOf(enriched.xp);
+  this.state = enriched;
   this.emit();
   this.scheduleSave();
+  if (this.hydrated && nextLevel > prevLevel) celebrate();
  }
 
  patch(fn: (s: UserState) => UserState) { this.set(fn(this.state)); }
