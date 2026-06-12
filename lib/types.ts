@@ -76,7 +76,7 @@ export type Domain = {
  whyItMatters: string[];
  realWorldExample: string;
 
- mentors: Mentor[];
+ mentors?: Mentor[];
  diagrams: Diagram[];
  synthesis: Synthesis[];
 
