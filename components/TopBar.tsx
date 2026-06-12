@@ -47,6 +47,14 @@ export function TopBar() {
      <button className="btn shrink-0 !p-2" aria-label="Toggle theme" onClick={() => a.setTheme(s.theme === "dark" ? "light" : "dark")}>
       {s.theme === "dark" ? <Sun size={14} /> : <MoonStar size={14} />}
      </button>
+     <button
+      className="btn shrink-0 !p-2 hidden md:inline-flex"
+      aria-label="Keyboard shortcuts"
+      title="Keyboard shortcuts (?)"
+      onClick={() => { const ev = new KeyboardEvent("keydown", { key: "?" }); window.dispatchEvent(ev); }}
+     >
+      <span className="text-xs font-mono">?</span>
+     </button>
      <button className="btn shrink-0 hidden sm:inline-flex" onClick={() => setShowSave(true)}>Save / Load</button>
     </div>
    </div>

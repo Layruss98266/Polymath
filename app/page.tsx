@@ -5,6 +5,7 @@ import { DomainGrid } from "@/components/DomainGrid";
 import { LevelRing } from "@/components/LevelRing";
 import { FocusTimer } from "@/components/FocusTimer";
 import { ContinueLearning } from "@/components/ContinueLearning";
+import { ConceptOfTheDay } from "@/components/ConceptOfTheDay";
 
 export default function HomePage() {
  return (
@@ -31,6 +32,7 @@ export default function HomePage() {
    </section>
 
    <DailyQuote />
+   <ConceptOfTheDay />
    <ContinueLearning />
    <DailyQuest />
    <SessionPicker />

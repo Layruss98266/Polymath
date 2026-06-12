@@ -5,6 +5,7 @@ import { TopBar } from "@/components/TopBar";
 import { OveruseNudge } from "@/components/OveruseNudge";
 import { Onboarding } from "@/components/Onboarding";
 import { Toaster } from "@/components/Toaster";
+import { KeyboardShortcuts } from "@/components/KeyboardShortcuts";
 
 export const metadata: Metadata = {
  title: "POLYMATH. Learn anything, daily.",
@@ -30,6 +31,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
      <OveruseNudge />
      <Onboarding />
      <Toaster />
+     <KeyboardShortcuts />
      <footer className="mx-auto max-w-6xl px-4 py-10 text-xs dim">
       Resource names are real but editions/prices/links change, verify before buying.
       Built per <code>POLYMATH</code> v5 spec. Education, not advice, see each domain's safety note.
