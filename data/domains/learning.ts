@@ -41,6 +41,13 @@ const d: Domain = {
   { concept: "Generation effect", linksTo: "psychology", note: "Why your concept opens with a prediction first , the struggle is the point." }
  ],
 
+ subdomains: [
+  { id: "mechanics", name: "Mechanics of Memory" },
+  { id: "practice", name: "Practice Methods" },
+  { id: "transfer", name: "Transfer and Application" },
+  { id: "habits", name: "Habits and Sleep" },
+ ],
+
  concepts: [
   { t: "Retrieval beats re-reading. Always.",          short: "Closing the book and trying to remember crushes re-reading the same page twice.",                                                 deep: "Re-reading feels productive. Highlighting feels productive. You sit down for an hour and your brain says \"good work.\" The problem: you're recognising the material, not remembering it. And recognition fades fast. The brutally simple alternative , close the book, look away, and try to write down what you just read , is uncomfortable because you discover how little you actually retained. That discomfort is the work happening. The act of pulling information out is what builds the path back to it next time. Self-test early, self-test often, get the wrong answer cheerfully and move on.",                                                                                                     status: "settled",  reflect: "When did you last actually close your laptop, look away, and try to write down what you'd just learned? If never , try it tonight." },
   { t: "Spaced repetition",                   short: "Review just as you're about to forget, and the next forgetting is a lot slower.",                                                 deep: "Hermann Ebbinghaus, working alone in the 1880s with nonsense syllables, showed that forgetting is sharp at first and then slows down. Each well-timed review flattens the next forgetting curve. Tools like Anki , and the FSRS algorithm this app uses , automate the scheduling for you. The cards you nearly remember resurface; the easy ones wait days, weeks, months. It feels harder than just re-reading. That's why it works. You can install 5 minutes of this into your day and learn more durably than someone studying for an hour the wrong way.",                                                                                                                                 status: "settled",  reflect: "What's one topic in your life that would compound the most if you put it on a daily 5-minute spaced-review habit?" },

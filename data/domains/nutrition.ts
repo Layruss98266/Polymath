@@ -37,6 +37,13 @@ const d: Domain = {
   { concept: "Marketing → health claims", linksTo: "marketing", note: "Most food labels are positioning before they're nutrition." }
  ],
 
+ subdomains: [
+  { id: "basics", name: "Macro Basics" },
+  { id: "quality", name: "Food Quality" },
+  { id: "myths", name: "Myths and Marketing" },
+  { id: "habits", name: "Sustainable Habits" },
+ ],
+
  concepts: [
   { t: "Calories: physics is still in charge",    short: "Long-term weight is governed by energy in vs energy out. No diet repeals thermodynamics.",                                                deep: "Every successful diet , keto, vegan, intermittent fasting, low-fat, Mediterranean , works for the same underlying reason: people end up eating less than they burn over time. The diet that works for you is the one you can sustain, because all of them have to obey the same physics. That doesn't make \"just eat less\" useful advice , food choice, satiety, hormones, and lifestyle dramatically affect whether you can sustain a deficit, and willpower runs out. But if any \"magic\" diet works, it's because it quietly lowered your intake, usually by cutting ultra-processed food. Knowing this protects you from the next confidently-sold metabolic miracle.",                                                                                                      status: "settled",  reflect: "Roughly, what are your maintenance calories per day? If you don't know, that's the next basic measurement." },
   { t: "Protein matters more than you think",     short: "Especially as you age. For muscle, satiety, and not feeling hungry every two hours.",                                                  deep: "Most adults eat enough protein to avoid clinical deficiency and not nearly enough for what they actually need. As you age, the body becomes less efficient at using dietary protein for muscle , so you actually need more, not less. A reasonable target for an active adult is 1.2 to 1.6 grams per kilogram of bodyweight per day, distributed across meals rather than dumped into one. The bonus: protein is the most satiating macro , meals with enough protein keep you genuinely full for longer, which makes everything else easier.",                                                                                                                                                                       status: "settled",  reflect: "Roughly how much protein did you eat yesterday? Was it spread across meals or concentrated in one?" },

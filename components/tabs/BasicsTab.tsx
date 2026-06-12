@@ -1,6 +1,8 @@
 import type { Domain } from "@/lib/types";
+import { getChangelog } from "@/data/changelog";
 
 export function BasicsTab({ d }: { d: Domain }) {
+ const changes = getChangelog(d.id);
  return (
   <div className="space-y-4">
    <div className="panel p-5">
@@ -22,11 +24,34 @@ export function BasicsTab({ d }: { d: Domain }) {
     <ul className="space-y-1">
      {d.synthesis.map((s, i) => (
       <li key={i} className="text-sm">
-       <span className="hue font-medium">{s.concept}</span> → <a href={`/domain/${s.linksTo}`} className="underline">{s.linksTo}</a> · <span className="dim">{s.note}</span>
+       <span className="hue font-medium">{s.concept}</span> {" -> "} <a href={`/domain/${s.linksTo}`} className="underline">{s.linksTo}</a> <span className="dim">. {s.note}</span>
       </li>
      ))}
     </ul>
    </div>
+
+   {d.subdomains && d.subdomains.length > 0 && (
+    <div className="panel p-5">
+     <p className="text-xs uppercase tracking-widest dim mb-2">Sub-domains in this area</p>
+     <div className="flex flex-wrap gap-2">
+      {d.subdomains.map((sd) => <span key={sd.id} className="chip">{sd.name}</span>)}
+     </div>
+    </div>
+   )}
+
+   {changes.length > 0 && (
+    <details className="panel p-5">
+     <summary className="cursor-pointer text-sm dim">Content changelog</summary>
+     <ul className="mt-3 space-y-2 text-sm">
+      {changes.map((c, i) => (
+       <li key={i} className="flex gap-3">
+        <span className="dim shrink-0">{c.date}</span>
+        <span>{c.note}</span>
+       </li>
+      ))}
+     </ul>
+    </details>
+   )}
   </div>
  );
 }

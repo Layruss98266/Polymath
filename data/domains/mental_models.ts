@@ -40,6 +40,13 @@ const d: Domain = {
   { concept: "Steelmanning", linksTo: "psychology", note: "The discipline of arguing against your own bias." }
  ],
 
+ subdomains: [
+  { id: "decision", name: "Decision Tools" },
+  { id: "reasoning", name: "Reasoning Tools" },
+  { id: "systems", name: "Systems and Cycles" },
+  { id: "thinking_traps", name: "Thinking Traps" },
+ ],
+
  concepts: [
   { t: "Inversion",               short: "Instead of asking \"how do I succeed?\" ask \"what would guarantee failure?\" Avoid those.",                                                 deep: "Charlie Munger's favourite trick. Imagine you want to be a great spouse. Asking \"how do I have a great marriage?\" is huge, fuzzy, paralysing. Asking \"what would guarantee a terrible marriage?\" produces an answerable list in two minutes: never listen, hold grudges, take them for granted, lie about money. Stop doing those things and you're 80% of the way there. Engineers use this every day in failure-mode analysis: instead of designing for success, design out failure. Stoics used it 2,000 years ago. It works on most ill-defined problems , career, parenting, fitness , because failure is much easier to describe than success.",                                                                                                                 status: "framework", reflect: "Pick a goal of yours. List the things that would guarantee its failure. Are you doing any of them?" },
   { t: "Opportunity cost",            short: "Every choice quietly costs you the next-best thing you could have done instead.",                                                      deep: "You spend two hours scrolling Instagram tonight. Free, right? No. The real cost is the next-best thing those two hours could have bought you , a chapter of a book, an early night, time with someone you love, a walk. The reason most of our decisions feel free is that we never name the alternative. Once you do, the choice often changes. Time is the most precious resource you have because you can't make more of it. Money you can earn back. Hours you can't.",                                                                                                                                                                                                       status: "settled",  reflect: "How did you spend the last two hours? What was the genuine next-best thing you could have done instead?" },

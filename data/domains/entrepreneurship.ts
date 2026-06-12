@@ -35,6 +35,13 @@ const d: Domain = {
   { concept: "Calibrated questions", linksTo: "negotiation", note: "Same skill as Voss's open questions , the Mom Test reframed." }
  ],
 
+ subdomains: [
+  { id: "discovery", name: "Customer Discovery" },
+  { id: "shipping", name: "Shipping and PMF" },
+  { id: "strategy", name: "Strategy and Niche" },
+  { id: "distribution", name: "Distribution" },
+ ],
+
  concepts: [
   { t: "The Mom Test (Rob Fitzpatrick)",     short: "Ask about their past, not your idea. Customers lie kindly when you ask about the future.",                                                 deep: "Imagine asking your mother whether she'd buy your new app. She loves you. Of course she'll say yes. That same kindness happens with every customer you ask \"would you use this?\" , they're being polite, and they're guessing about a hypothetical future they have no real data on. Useless. Rob Fitzpatrick's tiny book reframes the entire conversation: stop asking about your idea, start asking about their past behaviour. \"When did you last hit this problem? What did you do? What did it cost you? Who else tried to help?\" Past behaviour is honest, because it actually happened. Future intent is fiction. Run five conversations this way and you'll learn more than from a hundred polite \"yes I'd use it\" surveys.",                                                                     status: "framework", reflect: "Take the last customer or user interview you did. How many of your questions were about their past behaviour vs. about your idea?" },
   { t: "Build → Measure → Learn",        short: "Treat each big assumption as an experiment, not a plan.",                                                                  deep: "Eric Ries's Lean Startup put a name on something good founders already did. Every business idea is really a stack of beliefs , \"people will pay for this,\" \"they'll find us through this channel,\" \"they'll stay for a year.\" Each belief is a guess until you've tested it. The discipline is: pick the riskiest belief, build the smallest possible thing that tests it (often a spreadsheet, a landing page, a manual service done by you in person), put it in front of real people, measure what they actually do (not what they say they'd do), then update or change direction. Most startups die because they spent two years building before testing the first belief , and the first belief was wrong.",                                                                                 status: "framework", reflect: "What's the riskiest belief in your current project? What's the cheapest possible experiment that could prove it wrong?" },

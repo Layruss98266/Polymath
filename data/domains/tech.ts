@@ -40,6 +40,13 @@ const d: Domain = {
   { concept: "Tokens / compute / model", linksTo: "ai_ml", note: "The systems thinking transfers , APIs, latency, compute budgets all show up." }
  ],
 
+ subdomains: [
+  { id: "basics", name: "Language Basics" },
+  { id: "structures", name: "Data Structures" },
+  { id: "workflow", name: "Workflow and Git" },
+  { id: "mindset", name: "Engineering Mindset" },
+ ],
+
  concepts: [
   { t: "Variables, types, and control flow",   short: "Storage, decisions, and loops. Every language has these. Once you've got them, the rest is detail.",                                             deep: "Every programming language, no matter how trendy, gives you the same three primitives. A way to store a value with a name (a variable). A way to make a choice (if/else). A way to repeat work (for/while loops). Pick a friendly first language , Python or JavaScript , and burn these into your fingers until they're automatic. Syntax is the cheap part of programming; you can memorise it in a week. The real work is learning to break a fuzzy real-world problem into a sequence of tiny precise steps. That part takes years and never quite ends. Start with: \"can I write a 10-line script today that does one useful thing in my life?\" If the answer is yes, you can program , everything from here is scale.",                                                                                 status: "settled",  reflect: "Could you write a 10-line script today that did one useful thing for you? If not, that's the very first project , rename some files, send a daily reminder, anything." },
   { t: "Functions and composition",       short: "Name a thing once. Call it many times. Build big systems out of small named blocks.",                                                     deep: "A function is a named block of code you can re-use. Instead of writing the same 20 lines in three different places, you write them once, give them a name, and call them three times. The discipline behind the syntax is small but important: one function, one job. If a function does two things, split it. Code that follows this rule is readable months later by your future self. Code that doesn't becomes the spaghetti you avoid touching. Most senior engineers spend more time pulling tangles into clean small functions than writing brand new ones.",                                                                                                                                                      status: "settled",  reflect: "Open something you wrote six months ago. Can you still read it? Can you change one part without breaking three others?" },

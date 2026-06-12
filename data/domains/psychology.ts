@@ -35,6 +35,13 @@ const d: Domain = {
   { concept: "Anchoring", linksTo: "personal_finance", note: "Why the first price you see decides what feels expensive." }
  ],
 
+ subdomains: [
+  { id: "biases", name: "Cognitive Biases" },
+  { id: "thinking", name: "Two Systems Thinking" },
+  { id: "influence", name: "Influence and Social" },
+  { id: "mindset", name: "Self and Mindset" },
+ ],
+
  concepts: [
   { t: "System 1 vs System 2",        short: "You have two thinking modes. One's fast and runs the show. The other's slow and shows up late.",                                     deep: "Daniel Kahneman's framing: System 1 is fast, automatic, effortless , it sees a face and knows your friend is angry, before you've decided anything. System 2 is slow, careful, expensive , it's what kicks in when you balance a long bill or learn a new word. You feel like System 2 runs your life because it's the part of you that talks in sentences. It doesn't. System 1 handles 95% of your day; System 2 only gets called in when System 1 hits something it can't pattern-match. Most cognitive biases are System 1 quietly getting away with a wrong answer because System 2 never bothered to check.",                                                                                              status: "framework", reflect: "Name three decisions you made today that felt 'considered.' How much was actually System 1 dressed in a suit?" },
   { t: "Confirmation bias",          short: "You notice things that fit what you already believe. You barely notice things that don't.",                                        deep: "Pay attention next time you read the news on a topic you have strong opinions about. You'll find yourself nodding at the parts that fit your view, and skipping past or finding clever objections to the parts that don't. That's confirmation bias, and it's running in the background all the time , in how you read people, evaluate ideas, pick stocks, judge politicians. The only real defence is uncomfortable: actively look for the best version of the opposing case (called 'steelmanning'), not just the strawman version that's easy to dismiss.",                                                                                                                                     status: "settled",  reflect: "Pick one strong opinion of yours. What evidence would change it? If your honest answer is 'nothing,' that's a flag." },

@@ -40,6 +40,13 @@ const d: Domain = {
   { concept: "Selection pressure", linksTo: "investing", note: "Survivorship bias is a misreading of selection , same idea, different domain." }
  ],
 
+ subdomains: [
+  { id: "mechanics", name: "Classical Mechanics" },
+  { id: "thermo", name: "Thermodynamics" },
+  { id: "em_relativity", name: "EM and Relativity" },
+  { id: "bio_stats", name: "Biology and Statistics" },
+ ],
+
  concepts: [
   { t: "Newton's three laws of motion",         short: "Inertia. F = m·a. Every push gets a push back.",                                                                 deep: "Three sentences that together explain almost every moving thing in your everyday life. First law: an object at rest stays at rest, and one moving stays moving, unless something pushes or pulls it. (That's why your coffee cup keeps sliding when you brake the car.) Second law: a force on something equals its mass times how fast its motion changes. (That's why pushing a shopping trolley feels easy and pushing a stuck car feels impossible , same effort, way more mass.) Third law: every push has an equal opposite push back. (That's why a rocket goes up , it pushes exhaust down, the exhaust pushes the rocket up.) The maths is high-school level. The intuition lasts forever.",                                                                                                                                                             status: "settled",  reflect: "Watch yourself for one minute. Find Newton's three laws operating right now , in how you walk, how you sit, how you breathe." },
   { t: "Conservation laws",               short: "Energy, momentum, and charge don't appear or disappear. They just change form.",                                                 deep: "If you turn on a kettle, electrical energy becomes heat. Some of that heat goes into the water; some leaks into the room. The total is conserved , none of it disappeared, even the bits that escaped your goal. This is one of the deepest patterns in physics, and once you've felt it, the question \"where did that energy go?\" becomes a useful tool everywhere. The same machinery powers chemistry (atoms rearrange, conserved), biology (calories in food turn into work, heat, and stored fat), and engineering (every system has losses you have to account for).",                                                                                                                                                                                                                     status: "settled",  reflect: "Trace one calorie of breakfast through your morning. Where did its energy go , body heat, movement, thinking, storage?" },

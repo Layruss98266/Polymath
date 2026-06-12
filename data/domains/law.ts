@@ -41,6 +41,13 @@ const d: Domain = {
   { concept: "Negotiation", linksTo: "negotiation", note: "Most contracts are negotiated agreements , same skills apply." }
  ],
 
+ subdomains: [
+  { id: "foundations", name: "Foundations" },
+  { id: "contracts", name: "Contracts and Civil" },
+  { id: "rights", name: "Rights and Constitution" },
+  { id: "practical", name: "Practical Action" },
+ ],
+
  concepts: [
   { t: "Civil vs criminal",              short: "Criminal is the state versus you. Civil is you versus someone else, almost always about money.",                                             deep: "These are two different systems running on different rules. Criminal cases are the state (or the government) prosecuting someone for breaking a public rule , theft, assault, fraud. The stakes are usually liberty; the standard of proof is high (\"beyond reasonable doubt\"); the accused doesn't have to prove innocence. Civil cases are private parties arguing , broken contracts, accidents, defamation, property disputes. The stakes are usually money; the standard of proof is lower (\"on the balance of probabilities\" , basically, more likely than not). The same incident can spawn both: a car accident can lead to criminal charges (rash driving) and a separate civil case (you suing the driver for hospital bills).",                                                                                                                             status: "settled",  reflect: "The last legal story in the news you paid attention to , was it criminal or civil? They follow completely different rules." },
   { t: "Contract = offer + acceptance + consideration", short: "A promise the law will help enforce. It needs three small ingredients.",                                                       deep: "Almost every adult interaction is a contract underneath. A job offer (offer) you accept (acceptance) in exchange for salary (consideration). A rental agreement. An insurance policy. The terms of service on every app. The law generally enforces what's written , not what was meant, not what was implied over coffee. So the boring habit pays huge dividends: read what you sign before you sign it. Especially the bits in the small print. \"I'll trust them\" is a sentence said before most preventable legal disasters.",                                                                                                                                                                                                                                 status: "settled",  reflect: "Take one contract you signed in the last year. Could you state its key obligations from memory? If not, that's where to look first." },

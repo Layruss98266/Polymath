@@ -35,6 +35,13 @@ const d: Domain = {
   { concept: "Story structure", linksTo: "negotiation", note: "Framing in negotiation is the same skill as setting up a story." }
  ],
 
+ subdomains: [
+  { id: "foundations", name: "Foundations" },
+  { id: "structure", name: "Structure and Story" },
+  { id: "audience", name: "Audience and Tailoring" },
+  { id: "clarity", name: "Clarity and Brevity" },
+ ],
+
  concepts: [
   { t: "Ethos · Pathos · Logos",          short: "Credibility, emotion, logic. Use all three , and most people use only logic.",                                                        deep: "Aristotle's diagnosis from 2,400 years ago is uncomfortably current. Most people, when trying to convince someone, reach straight for facts: more data, more bullet points, more slides. That's logos alone , and it's the weakest single mode. The full picture also needs ethos (who you are, why you should be trusted on this) and pathos (why it matters right now, emotionally). A pitch with all three lands. A pitch with only logos bounces. Notice this in any meeting where the side with worse data won the room , they probably brought more ethos and pathos to the table.",                                                                                                                                       status: "framework", reflect: "Pick your last big pitch or email. Where are ethos, pathos, and logos in it? Which is missing?" },
   { t: "BLUF , Bottom Line Up Front",       short: "Lead with the conclusion. Then defend it.",                                                                         deep: "McKinsey consultants and the military both arrived at the same idea: busy readers stop after the first sentence. So make that sentence carry the message. The instinct most of us have is to build to the conclusion , set context, walk through the analysis, then reveal the answer at the end. That's fine when you're telling a story. It's a disaster when you're delivering information to someone who'll read line one and then skim. Put the answer in line one. Defend it underneath. The reader who skims still leaves with the right takeaway. The reader who reads carefully gets the defence. Everyone wins.",                                                                                                                         status: "framework", reflect: "Open the last long email you sent. Where's the actual bottom line in it? If it isn't in the first sentence, what would change if you moved it there?" },

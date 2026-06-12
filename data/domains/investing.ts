@@ -48,6 +48,13 @@ const d: Domain = {
   { concept: "Cycles + emotion", linksTo: "psychology", note: "Loss aversion makes most investor mistakes happen at exactly the worst time." }
  ],
 
+ subdomains: [
+  { id: "compounding", name: "Compounding and Time" },
+  { id: "fund_basics", name: "Funds and Fees" },
+  { id: "risk", name: "Risk and Allocation" },
+  { id: "behaviour", name: "Behaviour and Cycles" },
+ ],
+
  concepts: [
   { t: "Compounding",               short: "Returns on returns. The first decade looks small. The last decade is where the curve goes vertical.",                                         deep: "Investing ₹5,000 a month at 10% returns produces about ₹12 lakh after 10 years, ₹38 lakh after 20, ₹1 crore after 25, and ₹1.6 crore after 30. The first decade looks almost linear , your money grows mostly because you keep adding it. By the last decade, the money is earning more than you're contributing, and the curve takes off. This is why the single biggest variable in investing is time, not return. A 25-year-old saving small amounts often beats a 40-year-old saving large ones. Procrastination is the most expensive thing in personal finance.",                                                                                                                                                     status: "settled",  reflect: "Where did procrastination cost you financially? Don't dwell on it , start the next thing today." },
   { t: "Index funds beat most pickers",      short: "Over 10+ years, after fees, most clever fund managers lose to the boring index.",                                                     deep: "The Indian regulator publishes a report called SPIVA. The US has the same. The result is depressingly consistent: over a 10 or 20-year window, the majority of actively managed mutual funds , even ones run by smart, well-paid people , fail to beat their benchmark index after their fees are subtracted. The reason isn't that the managers are stupid. The market is hard, fees compound against you, and most edges erode. For most of your equity allocation, the boring answer is the right answer: buy a broad index fund (Nifty 50, Total Market), keep buying it, and ignore the people trying to convince you they have a better idea.",                                                                                                             status: "settled",  reflect: "Pull up your largest actively managed fund. Compare its 10-year return after fees vs the index. Honest answer?" },

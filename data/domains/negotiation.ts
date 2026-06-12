@@ -34,6 +34,13 @@ const d: Domain = {
   { concept: "Specificity", linksTo: "communication", note: "Specific asks land. 'A fair raise' doesn't." }
  ],
 
+ subdomains: [
+  { id: "foundations", name: "Foundations" },
+  { id: "tactics", name: "Tactics" },
+  { id: "emotion", name: "Emotion and Empathy" },
+  { id: "ethics", name: "Win-Win and Ethics" },
+ ],
+
  concepts: [
   { t: "BATNA",                 short: "Your Best Alternative To a Negotiated Agreement. Whatever you'll do if this deal falls through.",                                               deep: "Fisher and Ury's most important single idea. Your power at any negotiating table isn't your patience or your charm , it's your BATNA, the option you can walk to if this deal collapses. If your BATNA is \"go home and have a stressful conversation with my landlord,\" you're weak. If your BATNA is \"take the offer from the other company that's still on my desk,\" you're strong, and the other side can usually feel it. The best work in negotiation happens before you sit down: actually improving your BATNA. Get a second offer. Save up enough buffer to walk away. Then enter the room.",                                                                                                                               status: "framework", reflect: "What's your BATNA in your most live negotiation right now? If you can't answer in a sentence, that's the prep gap." },
   { t: "Positions versus interests",       short: "What they're demanding vs. why they want it.",                                                                         deep: "A position is the thing being asked for: \"I want ₹15 lakh.\" An interest is the reason underneath: \"I want financial security and a clear path to a senior role.\" Positions are narrow , you fight about them until someone moves. Interests are wide , there are usually five different ways to satisfy each one. The orange-sisters story works because once you ask why, suddenly there's a deal nobody saw. Almost every stuck negotiation is two people arguing about positions while their actual interests are perfectly compatible.",                                                                                                                                                             status: "framework", reflect: "Pick a recent stuck negotiation. What was the position on each side? Now ask 'why?' What's the interest underneath?" },

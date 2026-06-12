@@ -47,6 +47,13 @@ const d: Domain = {
   { concept: "Behaviour > strategy", linksTo: "investing", note: "Same pattern: simple habits you keep beat clever ones you don't." }
  ],
 
+ subdomains: [
+  { id: "movement", name: "Movement and Strength" },
+  { id: "rest", name: "Sleep and Stress" },
+  { id: "food_health", name: "Food Patterns" },
+  { id: "mindset", name: "Healthspan Mindset" },
+ ],
+
  concepts: [
   { t: "VO₂max , cardio fitness",        short: "The single most predictive thing you can move for longevity. Bigger effect than most medications.",                                              deep: "VO₂max is a measure of how much oxygen your body can use during peak exercise. It tracks all-cause mortality more strongly than almost any other single lifestyle number across many large studies. The effect is genuinely huge , moving from the bottom quartile to just above average matters more than most pills your doctor will write you. The good news: it's movable. 150 minutes a week of moderate cardio (brisk walking, easy cycling, swimming where you can still hold a conversation) will move it. Twice that and add some harder intervals, you move it a lot. It's the single highest-leverage habit you can install in your 30s and 40s.",                                                                                                               status: "settled",  reflect: "When did you last actually get out of breath on purpose? If you can't remember this week, that's the first move." },
   { t: "Strength and muscle mass",        short: "Muscle is metabolic insurance now. In later life, it's the single biggest reason you don't fall.",                                               deep: "Sarcopenia is the medical word for the muscle loss that happens with age. It's also one of the single biggest predictors of late-life frailty, falls, and death over 65. The cruel irony: many older adults think lifting weights is dangerous and avoid it, which guarantees the muscle decline that actually makes them frail. The evidence is the opposite , resistance training twice or three times a week, even with very modest weights, dramatically slows the curve. Start now, regardless of age, regardless of where you're starting from. Future-you has fewer hospital visits because of it.",                                                                                                                                      status: "settled",  reflect: "What's your current strength baseline? Could you do 10 push-ups today? When did you last try?" },
