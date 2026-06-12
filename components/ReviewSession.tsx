@@ -98,17 +98,30 @@ export function ReviewSession() {
  if (!hydrated) return <p className="dim">Loading...</p>;
 
  if (pool.length === 0) {
+  const nothingStarted = s.startedDomains.length === 0;
   return (
    <>
     <WeakBlock />
-    <div className="panel p-6 space-y-3">
-    <div className="flex items-center gap-2">
-     <Brain size={20} className="hue" />
-     <h1 className="font-display text-2xl">Nothing due. Great.</h1>
-    </div>
-    <p>Nothing's due to review right now. The FSRS scheduler holds each card back until it'll actually stretch you. <em>Why this works:</em> retrieving an answer just as you're about to forget it is the most efficient form of practice we have.</p>
-    <p className="dim text-sm">Open any domain's Flashcards tab to add new cards into the rotation.</p>
-    <Link href="/" className="btn">Back to domains</Link>
+    <div className="panel hero-glow p-6 sm:p-8 space-y-4">
+     <div className="flex items-center gap-2">
+      <Brain size={20} className="hue" />
+      <h1 className="font-display text-2xl">{nothingStarted ? "No cards in rotation yet." : "Nothing due. Great."}</h1>
+     </div>
+     {nothingStarted ? (
+      <>
+       <p>To start spaced repetition, open any domain and read at least one concept. Flashcards from the domains you have started will appear here, scheduled by FSRS.</p>
+       <Link href="/" className="btn">Browse domains</Link>
+      </>
+     ) : (
+      <>
+       <p>Nothing is due to review right now. The FSRS scheduler holds each card back until it will actually stretch you. <em>Why this works:</em> retrieving an answer just as you are about to forget it is the most efficient form of practice we have.</p>
+       <p className="dim text-sm">Open any domain's Flashcards tab to add new cards into the rotation.</p>
+       <div className="flex flex-wrap gap-2">
+        <Link href="/" className="btn">Back to domains</Link>
+        <Link href="/dashboard" className="btn">See dashboard</Link>
+       </div>
+      </>
+     )}
     </div>
    </>
   );
