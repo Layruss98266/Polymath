@@ -8,6 +8,7 @@ import { domainRank, globalRank, levelProgress } from "@/lib/xp";
 import { RankBadge } from "./RankBadge";
 import { dueNow } from "@/lib/fsrs";
 import { ACHIEVEMENTS } from "@/data/achievements";
+import { StreakHeatmap } from "./StreakHeatmap";
 
 export function Dashboard() {
  const s = useUserState();
@@ -63,6 +64,12 @@ export function Dashboard() {
     <Stat label="Streak" value={`${s.currentStreak}🔥 (best ${s.longestStreak})`} />
     <Stat label="Cards reviewed" value={`${cardsReviewed} (${due} due)`} />
    </div>
+
+   <section className="panel p-5">
+    <h2 className="font-display text-xl mb-3">Activity (last 365 days)</h2>
+    <StreakHeatmap currentStreak={s.currentStreak} xpToday={Math.min(60, s.xp % 250)} />
+    <p className="text-xs dim mt-2">Current streak fills back from today. We do not yet log per-day XP, so the depth of older cells is approximate.</p>
+   </section>
 
    <section className="panel p-5">
     <h2 className="font-display text-xl mb-3">Per-domain mastery</h2>

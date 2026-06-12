@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
-import { Flame, Zap, Trophy, Brain, MoonStar, Sun, Map, Bookmark, Search, Volume2, VolumeX } from "lucide-react";
+import { Flame, Zap, Trophy, Brain, MoonStar, Sun, Map, Bookmark, Search, Volume2, VolumeX, Settings } from "lucide-react";
 import { useActions, useUserState, useHydrated } from "@/lib/state";
 import { levelProgress, globalRank } from "@/lib/xp";
 import { dueNow } from "@/lib/fsrs";
@@ -55,6 +55,7 @@ export function TopBar() {
      >
       <span className="text-xs font-mono">?</span>
      </button>
+     <Link href="/settings" className="btn shrink-0 !p-2" aria-label="Settings"><Settings size={14} /></Link>
      <button className="btn shrink-0 hidden sm:inline-flex" onClick={() => setShowSave(true)}>Save / Load</button>
     </div>
    </div>
