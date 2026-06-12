@@ -4,8 +4,9 @@ import { Brain, RefreshCw } from "lucide-react";
 import Link from "next/link";
 import { useActions, useUserState, useHydrated } from "@/lib/state";
 import { dueNow, newCard, grade, type Grade } from "@/lib/fsrs";
-import { DOMAIN_INDEX, loadDomain } from "@/data/domains";
+import { DOMAIN_INDEX, loadDomain, findEntry } from "@/data/domains";
 import type { Domain } from "@/lib/types";
+import { AlertTriangle } from "lucide-react";
 
 type CardInPlay = { domainId: string; cardKey: string; front: string; back: string; due: number };
 
@@ -60,19 +61,56 @@ export function ReviewSession() {
   setI((x) => x + 1);
  };
 
- if (!hydrated) return <p className="dim">Loading…</p>;
+ // Surface the 5 concepts with the worst accuracy across all started domains.
+ // Needs at least 2 attempts on the concept to count, so single bad guesses
+ // do not dominate the list.
+ const weakest = useMemo(() => {
+  return s.conceptProgress
+   .filter((c) => (c.attempts ?? 0) >= 2 && (c.accuracy ?? 0) < 0.6)
+   .sort((a, b) => (a.accuracy ?? 0) - (b.accuracy ?? 0))
+   .slice(0, 5);
+ }, [s.conceptProgress]);
+
+ const WeakBlock = () => (
+  weakest.length > 0 ? (
+   <div className="panel p-4 mb-3" style={{ borderColor: "var(--bad)" }}>
+    <div className="flex items-center gap-2 mb-2">
+     <AlertTriangle size={16} style={{ color: "var(--bad)" }} />
+     <h3 className="font-display text-sm uppercase tracking-widest">Weakest concepts</h3>
+    </div>
+    <p className="dim text-sm mb-2">These are the concepts you have answered most wrongly across domains you have touched. The scheduler will give them more reps; open them and try the prediction prompt again.</p>
+    <ul className="space-y-1">
+     {weakest.map((w) => {
+      const e = findEntry(w.domainId);
+      return (
+       <li key={`${w.domainId}-${w.conceptIndex}`} className="text-sm flex items-center gap-2">
+        <span className="chip" style={{ background: "rgba(255,115,115,0.15)", color: "var(--bad)" }}>{Math.round((w.accuracy ?? 0) * 100)}%</span>
+        <Link href={`/domain/${w.domainId}`} className="hue underline">{e?.name ?? w.domainId}</Link>
+        <span className="dim">concept #{w.conceptIndex + 1}</span>
+       </li>
+      );
+     })}
+    </ul>
+   </div>
+  ) : null
+ );
+
+ if (!hydrated) return <p className="dim">Loading...</p>;
 
  if (pool.length === 0) {
   return (
-   <div className="panel p-6 space-y-3">
+   <>
+    <WeakBlock />
+    <div className="panel p-6 space-y-3">
     <div className="flex items-center gap-2">
      <Brain size={20} className="hue" />
-     <h1 className="font-display text-2xl">Nothing due , great.</h1>
+     <h1 className="font-display text-2xl">Nothing due. Great.</h1>
     </div>
     <p>Nothing's due to review right now. The FSRS scheduler holds each card back until it'll actually stretch you. <em>Why this works:</em> retrieving an answer just as you're about to forget it is the most efficient form of practice we have.</p>
     <p className="dim text-sm">Open any domain's Flashcards tab to add new cards into the rotation.</p>
     <Link href="/" className="btn">Back to domains</Link>
-   </div>
+    </div>
+   </>
   );
  }
 
@@ -93,6 +131,7 @@ export function ReviewSession() {
 
  return (
   <div className="space-y-3" style={{ ["--hue" as any]: domain?.hue ?? "#ff6b5e" }}>
+   <WeakBlock />
    <div className="flex items-center gap-2 text-sm dim">
     <Brain size={16} className="hue" />
     <span>{i + 1} / {pool.length}</span>

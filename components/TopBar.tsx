@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
-import { Flame, Zap, Trophy, Brain, MoonStar, Sun, Map, Bookmark } from "lucide-react";
+import { Flame, Zap, Trophy, Brain, MoonStar, Sun, Map, Bookmark, Search } from "lucide-react";
 import { useActions, useUserState, useHydrated } from "@/lib/state";
 import { levelProgress, globalRank } from "@/lib/xp";
 import { dueNow } from "@/lib/fsrs";
@@ -36,6 +36,7 @@ export function TopBar() {
      <Link href="/review" className="chip shrink-0" title="Spaced-repetition review">
       <Brain size={14} className="hue" /> <span className="hidden sm:inline">Review</span> {due > 0 && <span className="ml-0.5 inline-flex items-center justify-center min-w-[18px] h-[18px] text-[10px] font-bold rounded-full px-1" style={{ background: "var(--hue)", color: "#fff" }}>{due}</span>}
      </Link>
+     <Link href="/search" className="chip shrink-0" aria-label="Search"><Search size={14} className="hue" /></Link>
      <Link href="/skill-map" className="chip shrink-0 hidden md:inline-flex"><Map size={14} className="hue" /> Skill map</Link>
      <Link href="/my-list" className="chip shrink-0 hidden md:inline-flex"><Bookmark size={14} className="hue" /> My list</Link>
      <Link href="/skill-map" className="chip shrink-0 md:hidden" aria-label="Skill map"><Map size={14} className="hue" /></Link>

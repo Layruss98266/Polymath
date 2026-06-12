@@ -58,7 +58,7 @@ export function ConceptsTab({ d }: { d: Domain }) {
   if (quizState[qi]) return;
   const correct = oi === correctIdx;
   setQuizState((s) => ({ ...s, [qi]: { picked: oi, correct } }));
-  a.recordQuizAnswer(d.id, correct, true);
+  a.recordQuizAnswer(d.id, correct, true, idx);
  };
 
  return (

@@ -199,17 +199,32 @@ export function useActions() {
   });
  }, [store]);
 
- const recordQuizAnswer = useCallback((domainId: string, correct: boolean, calibrated: boolean) => {
+ const recordQuizAnswer = useCallback((domainId: string, correct: boolean, calibrated: boolean, conceptIndex?: number) => {
   store.patch((s) => {
    const dp = s.domainProgress[domainId];
    if (!dp) return s;
    const xpGain = correct ? (XP.quizCorrectFirstTry + (calibrated ? XP.quizCorrectCalibrated : 0)) : 0;
-   // calibration score: +1 confident&right or unsure&wrong; -1 confident&wrong or sure&unsure mismatch
    const calibDelta = calibrated ? 1 : -1;
    const calibrationScore = clamp(((s.calibrationScore ?? 0) * 0.9) + (calibDelta * 0.1), -1, 1);
+
+   // If we know which concept this was for, track per concept accuracy for
+   // the weakest concepts queue.
+   let conceptProgress = s.conceptProgress;
+   if (typeof conceptIndex === "number") {
+    const existing = conceptProgress.find((c) => c.domainId === domainId && c.conceptIndex === conceptIndex);
+    if (existing) {
+     const attempts = (existing.attempts ?? 0) + 1;
+     const right = Math.round((existing.accuracy ?? 0) * (existing.attempts ?? 0)) + (correct ? 1 : 0);
+     conceptProgress = conceptProgress.map((c) => c === existing ? { ...c, attempts, accuracy: right / attempts } : c);
+    } else {
+     conceptProgress = [...conceptProgress, { domainId, conceptIndex, opened: true, attempts: 1, accuracy: correct ? 1 : 0 }];
+    }
+   }
+
    return {
     ...s,
     domainProgress: { ...s.domainProgress, [domainId]: { ...dp, quizAnswered: dp.quizAnswered + 1, quizCorrect: dp.quizCorrect + (correct ? 1 : 0) } },
+    conceptProgress,
     xp: s.xp + xpGain,
     calibrationScore
    };

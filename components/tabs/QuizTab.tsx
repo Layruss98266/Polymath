@@ -45,8 +45,13 @@ function QuizCard({ d, idx, q }: { d: Domain; idx: number; q: Domain["quiz"][num
      {(["guess", "fairly", "certain"] as Confidence[]).map((c) => (
       <button key={c} className={`chip ${conf === c ? "ring-1" : ""}`} onClick={() => setConf(c)}>{c}</button>
      ))}
-     {q.testOut && <span className="chip dim">pre-assessment</span>}
+     {q.testOut && (
+      <span className="chip" style={{ background: "rgba(96,165,250,0.15)", color: "#60a5fa" }} title="Get this right and the related concept is treated as already proven">Test out</span>
+     )}
     </div>
+   )}
+   {q.testOut && !submitted && (
+    <p className="dim text-xs">Pre assessment. If you already know this, answer correctly and the related concept gets marked as proven so you can skip the long read.</p>
    )}
 
    <ul className="space-y-2">
