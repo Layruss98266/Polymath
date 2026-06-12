@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { Flame, Zap, Trophy, Brain, MoonStar, Sun, Map, Bookmark, Search, Volume2, VolumeX, Settings, Info } from "lucide-react";
+import { MegaMenu } from "./MegaMenu";
 import { useActions, useUserState, useHydrated } from "@/lib/state";
 import { levelProgress, globalRank } from "@/lib/xp";
 import { dueNow } from "@/lib/fsrs";
@@ -27,6 +28,7 @@ export function TopBar() {
   <header className="sticky top-0 z-30 backdrop-blur-md bg-[color:var(--bg)]/80 border-b border-[color:var(--line)]">
    <div className="mx-auto max-w-6xl px-3 sm:px-4 py-2 sm:py-3 flex items-center gap-2 sm:gap-3">
     <Link href="/" className="font-display text-base sm:text-lg tracking-wide shrink-0">POLYMATH</Link>
+    <div className="hidden sm:block shrink-0"><MegaMenu /></div>
 
     <div className="ml-auto flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm overflow-x-auto no-scrollbar">
      <span className="chip shrink-0" title="Total XP"><Zap size={14} className="hue" /> {s.xp} XP</span>
