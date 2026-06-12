@@ -56,12 +56,14 @@ export type RoadmapStage = {
 };
 
 export type ResourceKind = "article" | "video" | "course" | "book" | "podcast" | "tool";
+export type SourceWeight = "primary" | "secondary" | "popular";
 
 export type Resource = {
  name: string;
  what: string;
  url: string;
  kind?: ResourceKind;
+ weight?: SourceWeight;
  price?: string;
  verify?: boolean;
  lastVerified?: string;

@@ -7,6 +7,9 @@ import { Onboarding } from "@/components/Onboarding";
 import { Toaster } from "@/components/Toaster";
 import { KeyboardShortcuts } from "@/components/KeyboardShortcuts";
 import { BottomNav } from "@/components/BottomNav";
+import { CommandPalette } from "@/components/CommandPalette";
+import { ServiceWorkerRegister } from "@/components/ServiceWorkerRegister";
+import { Coachmarks } from "@/components/Coachmarks";
 import { Footer } from "@/components/Footer";
 
 const SITE = "https://polymath.vercel.app";
@@ -99,6 +102,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
      <Onboarding />
      <Toaster />
      <KeyboardShortcuts />
+     <CommandPalette />
+     <ServiceWorkerRegister />
+     <Coachmarks />
      <BottomNav />
      <Footer />
     </StoreProvider>

@@ -5,6 +5,7 @@ import { exportCode, importCode } from "@/lib/save";
 import { defaultState } from "@/lib/migrations";
 import { clearState } from "@/lib/db";
 import { Download, Upload, Trash2, RotateCcw, MoonStar, Sun, Volume2, VolumeX } from "lucide-react";
+import { ShareCard } from "./ShareCard";
 
 // Central place to manage local preferences and progress.
 // Reset clears progress but keeps preferences. Wipe removes everything.
@@ -29,6 +30,47 @@ export function SettingsView() {
   link.download = `polymath-progress-${new Date().toISOString().slice(0, 10)}.json`;
   link.click();
   URL.revokeObjectURL(url);
+ };
+
+ // CSV exports: bookmarks, reflections, cards. Useful for analysis or notes
+ // outside the app. UTF-8 BOM so Excel handles it correctly.
+ const downloadCsv = (rows: string[][], name: string) => {
+  const csv = "﻿" + rows.map((r) => r.map((c) => `"${(c ?? "").replace(/"/g, '""')}"`).join(",")).join("\n");
+  const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = `polymath-${name}-${new Date().toISOString().slice(0, 10)}.csv`;
+  link.click();
+  URL.revokeObjectURL(url);
+ };
+
+ const exportBookmarksCsv = () => {
+  const rows = [["domain", "concept_index"]];
+  for (const b of s.bookmarks) {
+   const [domain, idx] = b.split(":");
+   rows.push([domain, idx]);
+  }
+  downloadCsv(rows, "bookmarks");
+ };
+
+ const exportReflectionsCsv = () => {
+  const rows = [["domain", "concept_index", "reflection"]];
+  for (const [k, v] of Object.entries(s.notes)) {
+   if (!k.endsWith(":reflect")) continue;
+   if (!(v ?? "").trim()) continue;
+   const [domain, idx] = k.split(":");
+   rows.push([domain, idx, v]);
+  }
+  downloadCsv(rows, "reflections");
+ };
+
+ const exportCardsCsv = () => {
+  const rows = [["card_key", "domain", "due_iso", "stability", "difficulty", "reps", "lapses", "state"]];
+  for (const c of s.cards) {
+   rows.push([c.cardKey, c.domainId, new Date(c.due).toISOString(), String(c.stability), String(c.difficulty), String(c.reps), String(c.lapses), String(c.state)]);
+  }
+  downloadCsv(rows, "cards");
  };
 
  const uploadJson = (file: File) => {
@@ -105,6 +147,18 @@ export function SettingsView() {
       </label>
      </div>
     </div>
+
+    <div className="space-y-2 pt-2">
+     <label className="text-sm">CSV exports for analysis or notes</label>
+     <p className="dim text-xs">Excel-friendly UTF-8 with BOM.</p>
+     <div className="flex flex-wrap gap-2">
+      <button className="btn" onClick={exportBookmarksCsv}><Download size={14} /> Bookmarks ({s.bookmarks.length})</button>
+      <button className="btn" onClick={exportReflectionsCsv}><Download size={14} /> Reflections ({reflectionCount})</button>
+      <button className="btn" onClick={exportCardsCsv}><Download size={14} /> Cards ({s.cards.length})</button>
+     </div>
+    </div>
+
+    <ShareCard />
 
     <div className="space-y-2 pt-2">
      <label className="text-sm">Restore from a code</label>

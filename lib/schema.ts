@@ -72,6 +72,7 @@ const Resource = z.object({
  what: z.string(),
  url: z.string(),
  kind: z.enum(["article", "video", "course", "book", "podcast", "tool"]).optional(),
+ weight: z.enum(["primary", "secondary", "popular"]).optional(),
  price: z.string().optional(),
  verify: z.boolean().optional(),
  lastVerified: z.string().optional()
