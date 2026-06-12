@@ -618,7 +618,7 @@ const d: Domain = {
    { name: "Indian Kanoon, free case search",      what: "Searchable database of Indian court judgments.",                   url: "https://indiankanoon.org/",                              weight: "secondary", verify: false, lastVerified: "2026-06" },
    { name: "Bar & Bench (India legal news)",        what: "Free legal news + analysis on Indian cases.",                     url: "https://www.barandbench.com/",                            verify: false, lastVerified: "2026-06" },
    { name: "LiveLaw (India legal news)",         what: "Free, current legal reporting.",                            url: "https://www.livelaw.in/",                               verify: false, lastVerified: "2026-06" },
-   { name: "NALSAR / NLU OpenCourseWare (where available)", what: "Free Indian law-school lectures and materials.",                    url: "https://www.nalsar.ac.in/",                              verify: true, lastVerified: "2026-06" },
+   { name: "NALSAR / NLU OpenCourseWare (where available)", what: "Free Indian law-school lectures and materials.",                    url: "https://www.nalsar.ac.in/",                              verify: false, lastVerified: "2026-06" },
    { name: "Constitution of India (full text, govt)",   what: "Free official PDF + translations.",                          url: "https://legislative.gov.in/constitution-of-india/",                  weight: "primary", verify: false, lastVerified: "2026-06" }
   ],
   paid: [

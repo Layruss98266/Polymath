@@ -526,7 +526,7 @@ const d: Domain = {
    { name: "MasterClass, Chris Voss preview clips (YouTube)",   what: "Free trailers + select clips from the paid course.",                 url: "https://www.youtube.com/@MasterClass",             verify: true, lastVerified: "2026-06" },
    { name: "Wikipedia, BATNA",                  what: "Compact reference + sources for the core concept.",                  url: "https://en.wikipedia.org/wiki/Best_alternative_to_a_negotiated_agreement", verify: false, lastVerified: "2026-06" },
    { name: "Stanford Online, Negotiation samplers",        what: "Some free sampler lessons; full courses paid.",                    url: "https://online.stanford.edu/",                 verify: false, lastVerified: "2026-06" },
-   { name: "FBI Crisis Negotiation Unit articles",         what: "Public articles + Behavioral Change Stairway Model.",                 url: "https://leb.fbi.gov/topics/crisis-negotiation",         weight: "secondary", verify: true, lastVerified: "2026-06" },
+   { name: "FBI Crisis Negotiation Unit articles",         what: "Public articles + Behavioral Change Stairway Model.",                 url: "https://leb.fbi.gov/topics/crisis-negotiation",         weight: "secondary", verify: false, lastVerified: "2026-06" },
    { name: "Negotiate Anything, podcast (Kwame Christian)",    what: "Free, regular interviews on negotiation craft.",                    url: "https://americannegotiationinstitute.com/podcasts/",      verify: false, lastVerified: "2026-06" },
    { name: "Black Swan Group, blog (Chris Voss's company)",    what: "Articles + breakdowns from Voss's team.",                       url: "https://www.blackswanltd.com/blog",               weight: "secondary", verify: false, lastVerified: "2026-06" },
    { name: "Adam Grant, Give and Take TED talk",         what: "Negotiation through the lens of reciprocity styles.",                 url: "https://www.ted.com/speakers/adam_grant",            verify: false, lastVerified: "2026-06" },
@@ -542,7 +542,7 @@ const d: Domain = {
    { name: "The Power of a Positive No, William Ury",       what: "Saying no without losing the relationship.",                      url: "https://williamury.com/",                    price: "verify", verify: false, lastVerified: "2026-06" },
    { name: "Negotiation Genius, Malhotra & Bazerman",       what: "Harvard professors; behavioural + practical.",                     url: "",                                price: "verify", verify: false, lastVerified: "2026-06" },
    { name: "Difficult Conversations, Stone/Patton/Heen",     what: "Adjacent skill, having the hard talk before the negotiation.",             url: "",                                price: "verify", verify: false, lastVerified: "2026-06" },
-   { name: "MasterClass, Chris Voss",               what: "Voss's full video course on negotiation.",                       url: "https://www.masterclass.com/classes/chris-voss-teaches-the-art-of-negotiation", price: "verify", verify: true, lastVerified: "2026-06" }
+   { name: "MasterClass, Chris Voss",               what: "Voss's full video course on negotiation.",                       url: "https://www.masterclass.com/classes/chris-voss-teaches-the-art-of-negotiation", price: "verify", verify: false, lastVerified: "2026-06" }
   ]
  },
 
