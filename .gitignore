@@ -12,3 +12,4 @@ tsconfig.tsbuildinfo
 .vscode/
 dist/
 build/
+.agentmaster/

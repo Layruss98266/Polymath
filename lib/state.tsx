@@ -279,12 +279,14 @@ export function useActions() {
    const reviewXp = XP.flashcardReviewed;
 
    // FSRS state 2 = Review (a card has graduated out of Learning).
-   // Increment flashcardsGraduated once per card the first time it crosses
-   // into Review state. Without this the 22 percent flashcards slice of
-   // masteryPct never increases.
-   const justGraduated = card.state === 2 && (prev?.state ?? 0) !== 2;
+   // Increment flashcardsGraduated and award XP ONCE per card lifetime.
+   // The state can oscillate 2 -> 3 -> 2 if the learner fails and re-passes
+   // a graduated card; without the persisted set below this would re-fire.
+   const seen = s.graduatedCards ?? [];
+   const justGraduated = card.state === 2 && !seen.includes(card.cardKey);
    let domainProgress = s.domainProgress;
    let graduationXp = 0;
+   let graduatedCards = seen;
    if (justGraduated) {
     const dp = s.domainProgress[card.domainId];
     if (dp) {
@@ -293,10 +295,11 @@ export function useActions() {
       [card.domainId]: { ...dp, flashcardsGraduated: dp.flashcardsGraduated + 1 }
      };
      graduationXp = XP.flashcardGraduated;
+     graduatedCards = [...seen, card.cardKey];
     }
    }
 
-   return { ...s, cards, domainProgress, xp: s.xp + reviewXp + graduationXp };
+   return { ...s, cards, domainProgress, graduatedCards, xp: s.xp + reviewXp + graduationXp };
   });
  }, [store]);
 

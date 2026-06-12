@@ -1,4 +1,6 @@
 import { ImageResponse } from "next/og";
+import { DOMAIN_INDEX } from "@/data/domains";
+import { QUOTES } from "@/data/quotes";
 
 export const alt = "Polymath. Learn anything, daily.";
 export const size = { width: 1200, height: 630 };
@@ -42,9 +44,9 @@ export default function OG() {
      A daily learning loop for real-world domains. FSRS spaced repetition. Honest game loop. No dark patterns.
     </div>
     <div style={{ marginTop: 40, fontSize: 20, color: "#9aa0bf", display: "flex", gap: 24 }}>
-     <span>15 Core domains</span>
+     <span>{DOMAIN_INDEX.length} core domains</span>
      <span>·</span>
-     <span>411 daily quotes</span>
+     <span>{QUOTES.length} daily quotes</span>
      <span>·</span>
      <span>polymath.vercel.app</span>
     </div>

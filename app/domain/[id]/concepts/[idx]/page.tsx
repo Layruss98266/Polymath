@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { loadDomain, findEntry, DOMAIN_INDEX } from "@/data/domains";
 import { ConceptDeepPage } from "@/components/domain/ConceptDeepPage";
+import { safeJsonLd } from "@/lib/jsonLd";
 
 export async function generateStaticParams() {
  const out: { id: string; idx: string }[] = [];
@@ -54,7 +55,7 @@ export default async function ConceptPage({ params }: { params: Promise<{ id: st
   };
   return (
    <>
-    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }} />
     <ConceptDeepPage domain={domain} conceptIdx={n} />
    </>
   );

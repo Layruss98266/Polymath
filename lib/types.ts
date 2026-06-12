@@ -195,6 +195,10 @@ export type UserState = {
  startedDomains: string[];
  // Per-day XP gained, keyed by YYYY-MM-DD. Only the last 400 days are kept.
  xpByDay?: Record<string, number>;
+ // Stable keys of flashcards that have already crossed into FSRS Review.
+ // Without this, a learner who fails a graduated card (state 2 -> 3) then
+ // passes it again (3 -> 2) is awarded the graduation XP a second time.
+ graduatedCards?: string[];
  // Stable keys of quiz items already scored. Prevents farming XP by
  // re-mounting a quiz card after switching tabs or reloading.
  quizSeen?: string[];

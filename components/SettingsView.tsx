@@ -1,10 +1,10 @@
 "use client";
 import { useMemo, useState } from "react";
 import { useUserState, useActions } from "@/lib/state";
-import { exportCode, importCode } from "@/lib/save";
+import { exportCode, importCode, utf8ToBase64 } from "@/lib/save";
 import { defaultState } from "@/lib/migrations";
 import { clearState } from "@/lib/db";
-import { rankIndexFromProgress } from "@/lib/shareRank";
+import { rankIndexFromProgress, SHARE_RANK_DEFAULT_TOTALS } from "@/lib/shareRank";
 import { Download, Upload, Trash2, RotateCcw, MoonStar, Sun, Volume2, VolumeX } from "lucide-react";
 import { ShareCard } from "./ShareCard";
 
@@ -227,12 +227,10 @@ export function SettingsView() {
        // The actual domain payloads aren't loaded here; pass a generous
        // default of 10 per surface (matches the typical 8-14 actuals).
        // The same helper is used by ShareCard so both surfaces agree.
-       ri[id] = rankIndexFromProgress(dp, { concepts: 10, missions: 5, quiz: 5, flashcards: 8 });
+       ri[id] = rankIndexFromProgress(dp, SHARE_RANK_DEFAULT_TOTALS);
       }
       const payload = { xp: s.xp, r: ri };
-      const code = typeof window === "undefined"
-       ? Buffer.from(JSON.stringify(payload), "utf-8").toString("base64")
-       : btoa(unescape(encodeURIComponent(JSON.stringify(payload))));
+      const code = utf8ToBase64(JSON.stringify(payload));
       const url = `${window.location.origin}/share?d=${encodeURIComponent(code)}`;
       navigator.clipboard.writeText(url);
      }}>Copy public share link</button>

@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { StoreProvider } from "@/lib/state";
+import { safeJsonLd } from "@/lib/jsonLd";
 import { TopBar } from "@/components/TopBar";
 import { OveruseNudge } from "@/components/OveruseNudge";
 import { Onboarding } from "@/components/Onboarding";
@@ -92,7 +93,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <link rel="alternate" type="application/rss+xml" title="Polymath domains" href="/domains.rss" />
     <script
      type="application/ld+json"
-     dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+     dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }}
     />
    </head>
    <body>

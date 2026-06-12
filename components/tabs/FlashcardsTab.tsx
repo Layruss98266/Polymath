@@ -31,11 +31,18 @@ export function FlashcardsTab({ d }: { d: Domain }) {
  const card = d.flashcards[i];
  const sr = cardForIndex(i);
 
+ // Mirror ReviewSession's busy lock so a double-tap doesn't award two
+ // upsertCards (and therefore two flashcardReviewed XP) before the next
+ // card mounts.
+ const [busy, setBusy] = useState(false);
  const gradeAndNext = (g: Grade) => {
+  if (busy) return;
+  setBusy(true);
   const next = grade(sr, g);
   a.upsertCard(next);
   setFlipped(false);
   setI((x) => x + 1);
+  setTimeout(() => setBusy(false), 50);
  };
 
  return (
@@ -58,10 +65,10 @@ export function FlashcardsTab({ d }: { d: Domain }) {
    </article>
    {flipped && (
     <div className="grid grid-cols-4 gap-2">
-     <button className="btn" onClick={() => gradeAndNext("again")}>Again</button>
-     <button className="btn" onClick={() => gradeAndNext("hard")}>Hard</button>
-     <button className="btn" onClick={() => gradeAndNext("good")}>Good</button>
-     <button className="btn" onClick={() => gradeAndNext("easy")}>Easy</button>
+     <button className="btn disabled:opacity-60" disabled={busy} onClick={() => gradeAndNext("again")}>Again</button>
+     <button className="btn disabled:opacity-60" disabled={busy} onClick={() => gradeAndNext("hard")}>Hard</button>
+     <button className="btn disabled:opacity-60" disabled={busy} onClick={() => gradeAndNext("good")}>Good</button>
+     <button className="btn disabled:opacity-60" disabled={busy} onClick={() => gradeAndNext("easy")}>Easy</button>
     </div>
    )}
    <p className="text-xs dim">

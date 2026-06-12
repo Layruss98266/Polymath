@@ -11,6 +11,11 @@
 
 import type { DomainProgress } from "./types";
 
+// Sensible defaults so callers without a loaded Domain payload still get a
+// reasonable estimate. These match the medians across the current 15
+// authored domains (concepts: 13, missions: 7, quiz: 5, flashcards: 8).
+export const SHARE_RANK_DEFAULT_TOTALS = { concepts: 13, missions: 7, quiz: 5, flashcards: 8 } as const;
+
 const W = {
  conceptsOpened: 0.30,
  missions: 0.20,

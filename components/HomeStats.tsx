@@ -1,9 +1,10 @@
 import { DOMAIN_INDEX } from "@/data/domains";
 import { QUOTES } from "@/data/quotes";
+import { CONCEPT_COUNT_TOTAL } from "@/data/conceptStats";
 
 // Tiny hero strip surfacing the three numbers that say "this is real"
-// without bragging. Server-renderable: no client state. Reads two static
-// imports.
+// without bragging. Server-renderable: no client state. Reads three static
+// imports so the stat always matches reality.
 export function HomeStats() {
  const domainCount = DOMAIN_INDEX.length;
  const quoteCount = QUOTES.length;
@@ -13,7 +14,7 @@ export function HomeStats() {
    aria-label="At a glance"
   >
    <Stat label="domains" value={String(domainCount)} sub="catalogued, India aware" />
-   <Stat label="concepts" value="175+" sub="enriched + cross linked" />
+   <Stat label="concepts" value={`${CONCEPT_COUNT_TOTAL}+`} sub="enriched + cross linked" />
    <Stat label="daily quotes" value={String(quoteCount)} sub="real, attributed, no fakes" />
    <Stat label="login required" value="0" sub="all state is in your browser" />
   </ul>

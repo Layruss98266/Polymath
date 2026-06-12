@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { Sparkles, ArrowRight } from "lucide-react";
 import { DOMAIN_INDEX } from "@/data/domains";
 import { levelOf, globalRank, DOMAIN_RANKS, type DomainRank } from "@/lib/xp";
+import { base64ToUtf8 } from "@/lib/save";
 
 // Read-only public profile. Decodes a base64-encoded payload from the URL and
 // renders a snapshot. The payload only carries XP and a domain-mastery map.
@@ -19,9 +20,7 @@ type Payload = {
 
 function decodeRaw(raw: string): Payload | null {
  try {
-  const json = typeof window === "undefined"
-   ? Buffer.from(raw, "base64").toString("utf-8")
-   : decodeURIComponent(escape(atob(raw)));
+  const json = base64ToUtf8(raw);
   const parsed = JSON.parse(json);
   if (typeof parsed.xp !== "number" || typeof parsed.r !== "object") return null;
   return parsed as Payload;
