@@ -12,19 +12,17 @@ import { levelProgress, globalRank } from "@/lib/xp";
 import { dueNow } from "@/lib/fsrs";
 import { exportCode, importCode } from "@/lib/save";
 import { MegaMenu } from "./MegaMenu";
+import { PracticeMenu } from "./PracticeMenu";
 
-// Top bar redesigned to a clean SaaS landing-style header:
-// Left: logo + Domains mega menu + primary nav (Review, Dashboard, About, Skill Map).
-// Right: compact stats pill (XP, streak, due) + utility cluster (search, theme, more) + primary CTA.
-// Mobile: logo + hamburger drawer.
+// Top bar:
+// Left: logo + Domains mega menu + Practice dropdown (Review/Dashboard/Skill Map/My List) + About
+// Right: compact stats pill + utility cluster + primary CTA
+// Mobile: logo + hamburger drawer
 
 type LinkItem = { href: string; label: string; Icon: typeof Brain };
 
 const NAV: LinkItem[] = [
- { href: "/review",    label: "Review",    Icon: Brain },
- { href: "/dashboard", label: "Dashboard", Icon: BarChart3 },
- { href: "/skill-map", label: "Skill Map", Icon: Map },
- { href: "/about",     label: "About",     Icon: Info }
+ { href: "/about", label: "About", Icon: Info }
 ];
 
 export function TopBar() {
@@ -77,7 +75,8 @@ export function TopBar() {
 
     {/* Desktop nav cluster */}
     <div className="hidden sm:block shrink-0"><MegaMenu /></div>
-    <nav aria-label="Primary" className="hidden lg:flex items-center gap-1 ml-2">
+    <div className="hidden md:block shrink-0"><PracticeMenu /></div>
+    <nav aria-label="Primary" className="hidden lg:flex items-center gap-1 ml-1">
      {NAV.map(({ href, label, Icon }) => {
       const active = isActive(href);
       return (
@@ -89,9 +88,6 @@ export function TopBar() {
        >
         <Icon size={14} className={active ? "hue" : "dim"} />
         <span>{label}</span>
-        {href === "/review" && due > 0 && (
-         <span className="ml-1 inline-flex items-center justify-center min-w-[16px] h-[16px] text-[9px] font-bold rounded-full px-1" style={{ background: "var(--hue)", color: "#fff" }}>{due}</span>
-        )}
        </Link>
       );
      })}
