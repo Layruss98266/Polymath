@@ -17,19 +17,22 @@ type GoalOption = {
  recPath?: string;
 };
 
+// Order matters. First-gen Indian undergraduates search money and clarity
+// first; the "manipulation" framing was a paranoia-flavoured lead and got
+// re-worded plus moved down the list.
 const GOALS: GoalOption[] = [
- { id: "manipulation", label: "Become hard to manipulate",       recDomainId: "psychology",       recPath: "hard_to_manipulate" },
- { id: "money",        label: "Get my money in order",            recDomainId: "personal_finance", recPath: "money_from_zero" },
- { id: "build",        label: "Build and sell something",          recDomainId: "entrepreneurship", recPath: "build_and_sell" },
- { id: "think",        label: "Think more clearly",                recDomainId: "mental_models",    recPath: "think_clearly" },
- { id: "communicate",  label: "Communicate so things land",        recDomainId: "communication" },
- { id: "negotiate",    label: "Negotiate without losing my voice", recDomainId: "negotiation" },
- { id: "ai",           label: "Use AI tools at 10x the level",     recDomainId: "ai_ml" },
- { id: "code",         label: "Get fluent at programming",         recDomainId: "tech" },
- { id: "health",       label: "Take charge of my health",          recDomainId: "health" },
- { id: "learn",        label: "Learn anything faster",             recDomainId: "learning" },
- { id: "law",          label: "Understand my legal rights",        recDomainId: "law" },
- { id: "invest",       label: "Make my savings work for me",       recDomainId: "investing" }
+ { id: "money",        label: "Get my money in order",                recDomainId: "personal_finance", recPath: "money_from_zero" },
+ { id: "think",        label: "Think more clearly",                    recDomainId: "mental_models",    recPath: "think_clearly" },
+ { id: "communicate",  label: "Communicate so things land",            recDomainId: "communication" },
+ { id: "learn",        label: "Learn anything faster",                 recDomainId: "learning" },
+ { id: "ai",           label: "Use AI tools at 10x the level",         recDomainId: "ai_ml" },
+ { id: "manipulation", label: "Spot manipulation in ads and arguments", recDomainId: "psychology",       recPath: "hard_to_manipulate" },
+ { id: "negotiate",    label: "Negotiate without losing my voice",     recDomainId: "negotiation" },
+ { id: "build",        label: "Build and sell something",              recDomainId: "entrepreneurship", recPath: "build_and_sell" },
+ { id: "invest",       label: "Make my savings work for me",           recDomainId: "investing" },
+ { id: "health",       label: "Take charge of my health",              recDomainId: "health" },
+ { id: "code",         label: "Get fluent at programming",             recDomainId: "tech" },
+ { id: "law",          label: "Understand my legal rights",            recDomainId: "law" }
 ];
 
 export function Onboarding() {

@@ -54,7 +54,19 @@ export function TopBar() {
  useEffect(() => {
   if (!more) return;
   const onClick = (e: MouseEvent) => { if (moreRef.current && !moreRef.current.contains(e.target as Node)) setMore(false); };
-  const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setMore(false); };
+  const onKey = (e: KeyboardEvent) => {
+   if (e.key === "Escape") { setMore(false); return; }
+   const menu = moreRef.current?.querySelector('[role="menu"]') as HTMLElement | null;
+   if (!menu) return;
+   const items = Array.from(menu.querySelectorAll<HTMLElement>('[role="menuitem"]'));
+   if (items.length === 0) return;
+   const active = document.activeElement as HTMLElement | null;
+   const idx = active ? items.indexOf(active) : -1;
+   if (e.key === "ArrowDown") { e.preventDefault(); items[(idx + 1 + items.length) % items.length]?.focus(); }
+   else if (e.key === "ArrowUp") { e.preventDefault(); items[(idx - 1 + items.length) % items.length]?.focus(); }
+   else if (e.key === "Home") { e.preventDefault(); items[0]?.focus(); }
+   else if (e.key === "End") { e.preventDefault(); items[items.length - 1]?.focus(); }
+  };
   document.addEventListener("mousedown", onClick);
   document.addEventListener("keydown", onKey);
   return () => { document.removeEventListener("mousedown", onClick); document.removeEventListener("keydown", onKey); };
@@ -188,7 +200,7 @@ export function TopBar() {
         >
          <Icon size={14} /> {label}
          {href === "/review" && due > 0 && (
-          <span className="ml-auto inline-flex items-center justify-center min-w-[18px] h-[18px] text-[10px] font-bold rounded-full px-1" style={{ background: "var(--hue)", color: "#fff" }}>{due}</span>
+          <span className="ml-auto inline-flex items-center justify-center min-w-[18px] h-[18px] text-[10px] font-bold rounded-full px-1" style={{ background: "var(--hue)", color: "#0b0d1a" }}>{due}</span>
          )}
         </Link>
        ))}
@@ -197,7 +209,7 @@ export function TopBar() {
         <Link href="/review" className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm" style={isActive("/review") ? { background: "rgba(255,255,255,0.05)", color: "var(--hue)" } : {}}>
          <GraduationCap size={14} /> Review
          {due > 0 && (
-          <span className="ml-auto inline-flex items-center justify-center min-w-[18px] h-[18px] text-[10px] font-bold rounded-full px-1" style={{ background: "var(--hue)", color: "#fff" }}>{due}</span>
+          <span className="ml-auto inline-flex items-center justify-center min-w-[18px] h-[18px] text-[10px] font-bold rounded-full px-1" style={{ background: "var(--hue)", color: "#0b0d1a" }}>{due}</span>
          )}
         </Link>
         <Link href="/dashboard" className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm" style={isActive("/dashboard") ? { background: "rgba(255,255,255,0.05)", color: "var(--hue)" } : {}}>
@@ -264,7 +276,7 @@ function SaveLoadModal({ onClose }: { onClose: () => void }) {
     <hr className="border-[color:var(--line)]" />
     <label className="text-sm">Paste a code to restore</label>
     <textarea className="w-full h-24 panel p-2 text-xs" value={code} onChange={(e) => setCode(e.target.value)} />
-    {err && <p className="text-sm" style={{ color: "var(--bad)" }}>{err}</p>}
+    {err && <p role="alert" className="text-sm" style={{ color: "var(--bad)" }}>{err}</p>}
     <div className="flex gap-2">
      <button className="btn" onClick={() => {
       try { a.importState(importCode(code)); setErr(null); onClose(); }

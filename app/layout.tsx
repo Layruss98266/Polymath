@@ -100,7 +100,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <StoreProvider>
      <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:btn">Skip to content</a>
      <TopBar />
-     <main id="main" className="mx-auto max-w-6xl px-4 py-6 pb-24 sm:pb-6">{children}</main>
+     <main id="main" tabIndex={-1} className="mx-auto max-w-6xl px-4 py-6 pb-24 sm:pb-6">{children}</main>
      <OveruseNudge />
      <Onboarding />
      <Toaster />

@@ -8,7 +8,8 @@ const d: Domain = {
  name: "Law & Legal Basics",
  tagline: "How rules work, so they don't surprise you",
 
- basics: "Law is the official rulebook a society uses to decide who has which rights, how disputes get sorted out, and how power gets channelled. You don't need a law degree to live well, but you do need a rough map. Most everyday legal disasters happen to people who didn't know what they were signing, or didn't know what they were entitled to. The shape of contracts, the difference between criminal and civil cases, your basic rights, when to suck it up and when to pay a real lawyer, that's the literacy. With it, most contracts you sign in your life stop being scary. Without it, you're trusting that everyone you deal with has your interests at heart, which is a brave assumption.",
+ basics: "Law is the official rulebook a society uses to decide who has which rights, how disputes get sorted out, and how power gets channelled. You don't need a law degree to live well, but you do need a rough map.",
+ deepBasics: "Most everyday legal disasters happen to people who didn't know what they were signing, or didn't know what they were entitled to. The shape of contracts, the difference between criminal and civil cases, your basic rights, when to suck it up and when to pay a real lawyer, that's the literacy. With it, most contracts you sign in your life stop being scary. Without it, you're trusting that everyone you deal with has your interests at heart, which is a brave assumption.",
  whyItMatters: [
   "You can read a rental agreement, a job offer, an insurance policy without being quietly trapped by it.",
   "You know roughly what your rights are when stopped, when arrested, when a service company refuses a refund.",

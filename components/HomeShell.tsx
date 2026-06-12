@@ -25,11 +25,11 @@ export function HomeShell({
  const s = useUserState();
  const [q, setQ] = useState("");
  const [expanded, setExpanded] = useState(false);
- // Show all 15 domains only when the user explicitly asks for it. New users
- // see 4 curated picks instead, so the catalogue does not overwhelm.
- // If the user types in the hero search though, auto-open the catalogue so
- // the typing has somewhere to land.
- const [showCatalogue, setShowCatalogue] = useState(false);
+ // The catalogue is the product. A learning-directory hub that hides its 15
+ // domains behind a Browse button reads as a marketing site, not a catalogue.
+ // We default it ON now; persona-1 (Priya) flagged the gate as a P0 and
+ // persona-2 (Rohit) agreed. The 4 curated picks still sit above.
+ const [showCatalogue, setShowCatalogue] = useState(true);
  const effectiveShowCatalogue = showCatalogue || q.trim().length > 0;
 
  const started = s.startedDomains.length;

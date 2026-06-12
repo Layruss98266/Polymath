@@ -8,7 +8,8 @@ const d: Domain = {
  name: "Negotiation & Persuasion",
  tagline: "Reach agreement without losing yourself",
 
- basics: "Negotiation isn't smooth talking or sneaky tricks. It's the boring, careful work of finding a deal that's better for both sides than walking away with nothing. The single biggest mistake people make is fighting about positions (\"I want ₹X\") instead of asking about interests (why each side actually wants what they're asking for). Once you separate those two things, deals that looked impossible start to feel obvious. You're not trying to win. You're trying to find the version of the deal where both of you walk out lighter than you walked in.",
+ basics: "Negotiation isn't smooth talking or sneaky tricks. It's the boring, careful work of finding a deal that's better for both sides than walking away with nothing.",
+ deepBasics: "The single biggest mistake people make is fighting about positions (\"I want ₹X\") instead of asking about interests (why each side actually wants what they're asking for). Once you separate those two things, deals that looked impossible start to feel obvious. You're not trying to win. You're trying to find the version of the deal where both of you walk out lighter than you walked in.",
  whyItMatters: [
   "Your salary, your rent, your deadline, your boundary with a difficult relative, all negotiations, all the time.",
   "Most people massively under-negotiate. A 10% higher starting salary, compounded across a career, is more money than most lottery winners take home.",
@@ -42,14 +43,310 @@ const d: Domain = {
  ],
 
  concepts: [
-  { t: "BATNA",                 short: "Your Best Alternative To a Negotiated Agreement. Whatever you'll do if this deal falls through.",                                               deep: "Fisher and Ury's most important single idea. Your power at any negotiating table isn't your patience or your charm, it's your BATNA, the option you can walk to if this deal collapses. If your BATNA is \"go home and have a stressful conversation with my landlord,\" you're weak. If your BATNA is \"take the offer from the other company that's still on my desk,\" you're strong, and the other side can usually feel it. The best work in negotiation happens before you sit down: actually improving your BATNA. Get a second offer. Save up enough buffer to walk away. Then enter the room.",                                                                                                                               status: "framework", reflect: "What's your BATNA in your most live negotiation right now? If you can't answer in a sentence, that's the prep gap." },
-  { t: "Positions versus interests",       short: "What they're demanding vs. why they want it.",                                                                         deep: "A position is the thing being asked for: \"I want ₹15 lakh.\" An interest is the reason underneath: \"I want financial security and a clear path to a senior role.\" Positions are narrow, you fight about them until someone moves. Interests are wide, there are usually five different ways to satisfy each one. The orange-sisters story works because once you ask why, suddenly there's a deal nobody saw. Almost every stuck negotiation is two people arguing about positions while their actual interests are perfectly compatible.",                                                                                                                                                             status: "framework", reflect: "Pick a recent stuck negotiation. What was the position on each side? Now ask 'why?' What's the interest underneath?" },
-  { t: "ZOPA, Zone of Possible Agreement",   short: "The overlap between each side's acceptable ranges. If there's no overlap, there's no deal.",                                                 deep: "You're willing to sell your scooter for at least ₹30,000. The buyer is willing to pay up to ₹35,000. The ZOPA, the Zone of Possible Agreement, is the strip between ₹30,000 and ₹35,000. Any number in there is a deal both of you can live with. The whole negotiation is just figuring out where, in that strip, you land. If your minimum is higher than their maximum, there's no ZOPA, and no amount of clever talking will fix it. A surprising number of failed negotiations aren't disagreements; they're cases where nobody realised there was no overlap in the first place.",                                                                                                                                            status: "settled",  reflect: "Think about your last negotiation. Did you ever try to figure out where the ZOPA was? Could you have, with the right questions?" },
-  { t: "Anchoring (the first number on the table)", short: "Whoever puts the first number out drags everything toward it.",                                                               deep: "Research is consistent here, including with experienced negotiators: the first specific number named in a negotiation pulls the whole conversation toward it, even when both sides know it's a starting position. You've heard \"never make the first offer\", that's not quite right. The smarter rule is: if you have a real information advantage (you've researched the market, you know the comparable salaries), make the first offer high and confident. If you don't, let them anchor, and then negotiate from there. Either way, the first number is doing a lot of work, so don't let it be a random number you didn't think about.",                                                                                                             status: "settled",  reflect: "When did anchoring last get used on you? What number would you have brought to the table first if you'd prepared?" },
-  { t: "Tactical empathy (Chris Voss)",     short: "Name the emotion you sense in the other side. It defuses faster than arguing against it.",                                                   deep: "Chris Voss spent decades as the FBI's lead international hostage negotiator and brought the techniques to business. The biggest single move he teaches is the verbal label: \"It seems like you're under a lot of pressure to close this quarter.\" Naming what the other side is feeling does something almost magical, it tells them you actually heard them, defuses the heat, and often gets them to correct you or say more than they meant to. The technique is invisible if you do it cleanly. It works because most of us spend negotiations talking; almost nobody is listening enough to name what's underneath.",                                                                                                                         status: "framework", reflect: "Try labeling once today in any conversation: \"It seems like…\" Watch what happens to the other person's posture." },
-  { t: "Calibrated questions",          short: "\"How am I supposed to do that?\" beats \"no\" almost every time.",                                                               deep: "Voss's other big move. When someone makes a demand you can't meet, the instinct is to refuse, and refusing puts the other side in a corner where they fight back. A calibrated question does the same job from a different angle. \"How am I supposed to do that with the budget I have?\" \"What would you do in my position?\" \"What's driving the timeline?\" The problem ends up in their lap instead of yours, they don't feel shut down, and you've quietly gathered information. The trick is asking real questions, not passive-aggressive ones disguised as questions.",                                                                                                                                               status: "framework", reflect: "Where could you replace a hard \"no\" with \"how am I supposed to do that?\" this week?" },
-  { t: "The mirror",               short: "Repeat the last few words they said, as a question. They keep talking.",                                                             deep: "Almost invisible, almost free. The other side says \"…and we just don't see a path to that number this quarter.\" You say, gently: \"…this quarter?\" Nine times out of ten, they fill the silence and explain more than they meant to. You learn what's actually driving them without asking a single direct question. It works because humans are deeply uncomfortable with silence, and a small open question is irresistible. Try it for a week in normal conversations and you'll be surprised how often it cracks something open.",                                                                                                                                                                 status: "framework", reflect: "Try the mirror on your next conversation. Count how many times the other person fills the silence with something useful." },
-  { t: "Win-win, or you didn't really win",   short: "If they walk out bitter, the next round is going to cost you.",                                                                 deep: "One-shot deals are rare. Most of your real negotiations, with bosses, vendors, partners, family, are part of a long sequence. A \"win\" where the other side walks out feeling cheated quietly costs you their cooperation, their referrals, and their willingness to negotiate again. The actual measure of a good outcome is: did you get a fair share of the value, and is the relationship intact? Track both. If either tanks, you didn't really win, you just borrowed a result from the future.",                                                                                                                                                                                 status: "framework", reflect: "Pick a 'win' you had recently. Is the relationship intact six months later? Did they come back to deal with you again?" },
+  {
+   t: "BATNA",
+   subdomain: "foundations",
+   definition: "Your Best Alternative To a Negotiated Agreement, the course of action you take if this deal fails.",
+   short: "Your Best Alternative To a Negotiated Agreement. Whatever you'll do if this deal falls through.",
+   deep: "Fisher and Ury's most important single idea. Your power at any negotiating table isn't your patience or your charm, it's your BATNA, the option you can walk to if this deal collapses. If your BATNA is \"go home and have a stressful conversation with my landlord,\" you're weak. If your BATNA is \"take the offer from the other company that's still on my desk,\" you're strong, and the other side can usually feel it. The best work in negotiation happens before you sit down: actually improving your BATNA. Get a second offer. Save up enough buffer to walk away. Then enter the room.",
+   generic: "Imagine going to a market with only one shop in mind. You will pay whatever they ask, because you have nowhere else to go. Now imagine three shops in walking distance selling the same thing. Suddenly the first shop becomes very reasonable. The other shops are your BATNA.",
+   expert: "Defined by Fisher and Ury (Getting to Yes, 1981) at the Harvard Negotiation Project. Your reservation point should equal the value of your BATNA adjusted for transaction costs and risk. Improving the BATNA before entering negotiation is typically higher leverage than improving in-room tactics. Distinct from reservation point (the floor) and aspiration (the target).",
+   status: "framework",
+   reflect: "What's your BATNA in your most live negotiation right now? If you can't answer in a sentence, that's the prep gap.",
+   conceptQuiz: [
+    {
+     q: "Your BATNA is best described as…",
+     options: [
+      { text: "What you will do if this specific deal does not happen.", correct: true },
+      { text: "The lowest price you will accept in this deal.", misconception: "That is your reservation point, derived from but not identical to BATNA." },
+      { text: "The other side's opening offer.", misconception: "Their offer is data about them, not your alternative." },
+      { text: "A negotiation tactic to use under pressure.", misconception: "BATNA is a strategic position, not a tactical move." }
+     ],
+     why: "BATNA is the outside option, the thing you walk to if no deal forms."
+    },
+    {
+     q: "The highest-leverage way to improve your power in a negotiation is usually to…",
+     options: [
+      { text: "Improve your BATNA before you sit down.", correct: true },
+      { text: "Talk faster in the meeting.", misconception: "Pace does not change the underlying alternatives." },
+      { text: "Hide your reservation point from yourself.", misconception: "Self-blindness undermines discipline, not the other side." },
+      { text: "Refuse to prepare at all.", misconception: "Lack of preparation weakens, never strengthens, your position." }
+     ],
+     why: "A better outside option shifts the whole bargaining frontier in your favour."
+    }
+   ],
+   conceptTasks: [
+    { level: "basic",    t: "Name your BATNA",     d: "Write your BATNA for your most live negotiation in one sentence.", xp: 10 },
+    { level: "easy",     t: "Improve it",          d: "Take one concrete step this week to make your BATNA better, a second offer, a backup plan, a saved buffer.", xp: 20 },
+    { level: "advanced", t: "Enter on strength",   d: "Go into a real negotiation only after your BATNA is documented and stronger than it was a month ago, then debrief on how it changed the room.", xp: 40 }
+   ]
+  },
+  {
+   t: "Positions versus interests",
+   subdomain: "foundations",
+   definition: "A position is what someone demands on the surface. An interest is the underlying need that demand is trying to satisfy.",
+   short: "What they're demanding vs. why they want it.",
+   deep: "A position is the thing being asked for: \"I want ₹15 lakh.\" An interest is the reason underneath: \"I want financial security and a clear path to a senior role.\" Positions are narrow, you fight about them until someone moves. Interests are wide, there are usually five different ways to satisfy each one. The orange-sisters story works because once you ask why, suddenly there's a deal nobody saw. Almost every stuck negotiation is two people arguing about positions while their actual interests are perfectly compatible.",
+   generic: "Picture two kids each demanding the front seat of the car. The position is the seat. Ask why and you learn one gets carsick, the other just wants to control the music. Suddenly there is a deal: front seat plus aux cable. The fight was never really about the seat.",
+   expert: "Fisher and Ury (1981) make separating positions from interests the first of their four pillars of principled negotiation. Interests are typically multi-dimensional (economic, identity, autonomy, security) and asymmetric across parties, which is what makes integrative trades possible. The diagnostic question is repeated why; the failure mode is positional bargaining that locks the conversation onto a single number.",
+   status: "framework",
+   reflect: "Pick a recent stuck negotiation. What was the position on each side? Now ask 'why?' What's the interest underneath?",
+   conceptQuiz: [
+    {
+     q: "An interest, as distinct from a position, is best described as…",
+     options: [
+      { text: "The underlying need or motivation behind the surface demand.", correct: true },
+      { text: "The exact number the person is asking for.", misconception: "That is the position, the surface demand itself." },
+      { text: "The mediator's neutral framing.", misconception: "Mediators surface interests but do not own them." },
+      { text: "A legal claim filed in court.", misconception: "Interest here is psychological, not legal." }
+     ],
+     why: "Interests are the why beneath the demand."
+    },
+    {
+     q: "Most stuck negotiations are stuck because…",
+     options: [
+      { text: "Both sides argue about positions while their interests are compatible.", correct: true },
+      { text: "One side is dishonest by nature.", misconception: "Character explanations rarely fit; structure usually does." },
+      { text: "The room is too small.", misconception: "Setting is rarely the structural cause." },
+      { text: "Interests cannot ever overlap.", misconception: "They overlap surprisingly often, once surfaced." }
+     ],
+     why: "Positional bargaining hides the trades that interests would reveal."
+    }
+   ],
+   conceptTasks: [
+    { level: "basic",    t: "Name both layers",   d: "For one current negotiation, write each side's position and then the interest beneath it.", xp: 10 },
+    { level: "easy",     t: "Ask why three times", d: "In your next negotiation, ask why behind their stated demand at least three times, then write down what you learned.", xp: 20 },
+    { level: "advanced", t: "Build an interest deal", d: "Propose a deal in a live negotiation that satisfies both sides' interests without matching either opening position.", xp: 40 }
+   ]
+  },
+  {
+   t: "ZOPA, Zone of Possible Agreement",
+   subdomain: "foundations",
+   definition: "The range between each side's reservation point where any settlement is preferable to no deal for both parties.",
+   short: "The overlap between each side's acceptable ranges. If there's no overlap, there's no deal.",
+   deep: "You're willing to sell your scooter for at least ₹30,000. The buyer is willing to pay up to ₹35,000. The ZOPA, the Zone of Possible Agreement, is the strip between ₹30,000 and ₹35,000. Any number in there is a deal both of you can live with. The whole negotiation is just figuring out where, in that strip, you land. If your minimum is higher than their maximum, there's no ZOPA, and no amount of clever talking will fix it. A surprising number of failed negotiations aren't disagreements; they're cases where nobody realised there was no overlap in the first place.",
+   generic: "Imagine you want to sell your old bike for at least 4000 rupees, and your neighbour wants to buy one for at most 5000. Anywhere between 4000 and 5000 is a deal you both prefer to walking away. That strip is the ZOPA.",
+   expert: "Formalised in Raiffa (1982) as central to the Harvard PON curriculum. ZOPA exists only when buyer reservation exceeds seller reservation; otherwise the negotiation is non-overlapping and no settlement dominates BATNA for both sides. The challenge is that reservations are private information, so the ZOPA must be inferred through anchoring, calibrated questions, and contingent contracts.",
+   status: "settled",
+   reflect: "Think about your last negotiation. Did you ever try to figure out where the ZOPA was? Could you have, with the right questions?",
+   conceptQuiz: [
+    {
+     q: "A ZOPA exists when…",
+     options: [
+      { text: "The buyer's maximum is greater than or equal to the seller's minimum.", correct: true },
+      { text: "Both sides feel friendly toward each other.", misconception: "Affect is unrelated to whether numerical ranges overlap." },
+      { text: "Only one side has prepared a BATNA.", misconception: "Asymmetric preparation does not create or destroy a ZOPA." },
+      { text: "There is no BATNA on either side.", misconception: "Absent BATNAs simply make the ZOPA wider, not necessary." }
+     ],
+     why: "ZOPA is mechanically the overlap of reservation ranges."
+    },
+    {
+     q: "Many failed negotiations actually fail because…",
+     options: [
+      { text: "There was never a ZOPA, and neither side realised it.", correct: true },
+      { text: "One side talked more than the other.", misconception: "Airtime alone does not destroy a real overlap." },
+      { text: "Mediators were never invited.", misconception: "Mediators help, but cannot manufacture an absent overlap." },
+      { text: "The room was too cold.", misconception: "Setting does not cause structural non-overlap." }
+     ],
+     why: "Without overlap, no amount of cleverness produces a deal."
+    }
+   ],
+   conceptTasks: [
+    { level: "basic",    t: "Estimate the ZOPA",  d: "For your next negotiation, write your reservation point and your best guess at theirs, then describe the ZOPA in one sentence.", xp: 10 },
+    { level: "easy",     t: "Test the overlap",   d: "Ask two calibrated questions designed to narrow your estimate of the other side's reservation.", xp: 20 },
+    { level: "advanced", t: "Walk on no-ZOPA",    d: "In a live negotiation where you confirm there is no ZOPA, walk away cleanly and document the signals that confirmed it.", xp: 40 }
+   ]
+  },
+  {
+   t: "Anchoring (the first number on the table)",
+   subdomain: "tactics",
+   definition: "The cognitive bias by which the first specific number in a negotiation pulls subsequent counter-offers and final settlements toward it.",
+   short: "Whoever puts the first number out drags everything toward it.",
+   deep: "Research is consistent here, including with experienced negotiators: the first specific number named in a negotiation pulls the whole conversation toward it, even when both sides know it's a starting position. You've heard \"never make the first offer\", that's not quite right. The smarter rule is: if you have a real information advantage (you've researched the market, you know the comparable salaries), make the first offer high and confident. If you don't, let them anchor, and then negotiate from there. Either way, the first number is doing a lot of work, so don't let it be a random number you didn't think about.",
+   generic: "Imagine browsing a market stall. The seller says 2000 rupees and your brain quietly starts thinking about 1500 as a win. If the seller had said 500, your brain would have anchored there and thought 400 was a win. The number you heard first changed everything you were willing to pay.",
+   expert: "Demonstrated by Tversky and Kahneman (1974) in the heuristics and biases programme, replicated extensively in negotiation contexts by Galinsky and Mussweiler (2001) showing first-mover advantage with informational asymmetry. The robust finding: first offers correlate strongly with final settlements even among experienced negotiators. Mitigation when receiving: explicitly counter-anchor with your own reasoned number rather than negotiating against theirs.",
+   status: "settled",
+   reflect: "When did anchoring last get used on you? What number would you have brought to the table first if you'd prepared?",
+   conceptQuiz: [
+    {
+     q: "The anchoring effect in negotiation predicts that…",
+     options: [
+      { text: "The first specific number pulls the final settlement toward it.", correct: true },
+      { text: "Whoever speaks last sets the price.", misconception: "Last-mover advantage is not the documented effect; first-mover anchoring is." },
+      { text: "Numbers do not influence emotional reasoning.", misconception: "Anchoring is precisely a numeric effect on judgment." },
+      { text: "Anchors only work on inexperienced negotiators.", misconception: "Studies show experienced negotiators are also susceptible." }
+     ],
+     why: "First-number anchors bias the entire range of acceptable counter-offers."
+    },
+    {
+     q: "When should you make the first offer?",
+     options: [
+      { text: "When you have a genuine information advantage about market value.", correct: true },
+      { text: "Always, regardless of information.", misconception: "Bad anchors with weak information backfire." },
+      { text: "Never, it always hurts you.", misconception: "Refusing to anchor surrenders the framing advantage when you have it." },
+      { text: "Only after the deal is closed.", misconception: "Offers after close are not offers; they are renegotiations." }
+     ],
+     why: "Anchoring helps when your number is well calibrated and hurts when it is not."
+    }
+   ],
+   conceptTasks: [
+    { level: "basic",    t: "Spot the anchor",     d: "Recall the last purchase you negotiated. Identify which side anchored and how it shaped the final price.", xp: 10 },
+    { level: "easy",     t: "Prepare a number",    d: "Before your next negotiation, research a defensible first number and write a one-line justification for it.", xp: 20 },
+    { level: "advanced", t: "Anchor with evidence", d: "In a live negotiation where you have an information advantage, anchor first with a confident, evidence-backed number and track the settlement against your anchor.", xp: 40 }
+   ]
+  },
+  {
+   t: "Tactical empathy (Chris Voss)",
+   subdomain: "emotion",
+   definition: "The deliberate use of labels and verbal acknowledgment to recognise and defuse the other side's emotions during a negotiation.",
+   short: "Name the emotion you sense in the other side. It defuses faster than arguing against it.",
+   deep: "Chris Voss spent decades as the FBI's lead international hostage negotiator and brought the techniques to business. The biggest single move he teaches is the verbal label: \"It seems like you're under a lot of pressure to close this quarter.\" Naming what the other side is feeling does something almost magical, it tells them you actually heard them, defuses the heat, and often gets them to correct you or say more than they meant to. The technique is invisible if you do it cleanly. It works because most of us spend negotiations talking; almost nobody is listening enough to name what's underneath.",
+   generic: "Imagine your friend is venting about a bad day. Most people jump in with advice. Instead, you say, sounds like you are exhausted and a bit hurt that nobody noticed. They visibly relax. You did not solve anything. You just named what they were feeling, and that alone changed the temperature.",
+   expert: "Voss (Never Split the Difference, 2016) operationalised tactical empathy from FBI Crisis Negotiation Unit practice and the Behavioral Change Stairway Model. The verbal label (it seems like, it sounds like, it looks like) sidesteps the defensive reaction triggered by direct questions about emotion. Related to affect labelling research (Lieberman et al., 2007), which shows naming emotion reduces amygdala activation. Failure mode is scripted delivery that reads as theatre.",
+   status: "framework",
+   reflect: "Try labeling once today in any conversation: \"It seems like…\" Watch what happens to the other person's posture.",
+   conceptQuiz: [
+    {
+     q: "A Voss-style label sounds most like…",
+     options: [
+      { text: "It seems like you are under pressure to close this quarter.", correct: true },
+      { text: "Why are you so upset right now?", misconception: "Direct questions about feeling trigger defence, not openness." },
+      { text: "You should calm down and be reasonable.", misconception: "That is a command, not a label." },
+      { text: "I do not care how you feel.", misconception: "Dismissal is the opposite of tactical empathy." }
+     ],
+     why: "Labels begin with a tentative phrase that invites correction without interrogating."
+    },
+    {
+     q: "Tactical empathy works because…",
+     options: [
+      { text: "Naming an emotion reduces its intensity and signals that the speaker was heard.", correct: true },
+      { text: "It tricks the other side into agreeing with everything.", misconception: "It is not coercive; it opens dialogue rather than closing it." },
+      { text: "It avoids dealing with feelings entirely.", misconception: "It deals with feelings directly by naming them." },
+      { text: "It only works on hostage takers.", misconception: "The technique generalises to ordinary business and personal contexts." }
+     ],
+     why: "Affect labelling research and field practice both support the calming and opening effect."
+    }
+   ],
+   conceptTasks: [
+    { level: "basic",    t: "Try one label",       d: "In any conversation today, use the phrase it seems like to name an emotion you sense and observe the response.", xp: 10 },
+    { level: "easy",     t: "Label in tension",    d: "Use a label early in a mildly tense exchange and note whether the temperature dropped.", xp: 20 },
+    { level: "advanced", t: "Run a real session",  d: "In a real high-stakes negotiation, open with two or three labels before any positional move, then debrief on what you learned about the other side.", xp: 40 }
+   ]
+  },
+  {
+   t: "Calibrated questions",
+   subdomain: "tactics",
+   definition: "Open-ended how and what questions that hand the problem back to the other side without confrontation.",
+   short: "\"How am I supposed to do that?\" beats \"no\" almost every time.",
+   deep: "Voss's other big move. When someone makes a demand you can't meet, the instinct is to refuse, and refusing puts the other side in a corner where they fight back. A calibrated question does the same job from a different angle. \"How am I supposed to do that with the budget I have?\" \"What would you do in my position?\" \"What's driving the timeline?\" The problem ends up in their lap instead of yours, they don't feel shut down, and you've quietly gathered information. The trick is asking real questions, not passive-aggressive ones disguised as questions.",
+   generic: "Imagine your roommate keeps asking you to cover bills they cannot pay. Saying no leads to a fight. Asking how am I supposed to do that on my own salary lets them sit with the problem and often come back with their own solution. Same refusal, less heat.",
+   expert: "Voss (2016) defines calibrated questions as open-ended interrogatives beginning with how or what that constrain the counterpart to think before responding. Yes or no questions trigger reactive commitment; calibrated questions defer it. The technique inherits from Socratic dialogue and motivational interviewing (Miller and Rollnick). Failure mode is sarcastic delivery that reads as a disguised refusal.",
+   status: "framework",
+   reflect: "Where could you replace a hard \"no\" with \"how am I supposed to do that?\" this week?",
+   conceptQuiz: [
+    {
+     q: "A calibrated question is best characterised by…",
+     options: [
+      { text: "An open how or what question that puts the problem in the counterpart's lap.", correct: true },
+      { text: "A yes or no question demanding commitment.", misconception: "Closed questions trigger reactance, the opposite of the goal." },
+      { text: "A sarcastic restatement of their demand.", misconception: "Sarcasm masquerading as a question fails the technique." },
+      { text: "A leading question designed to trap them.", misconception: "Calibrated questions invite thinking, not gotchas." }
+     ],
+     why: "How and what questions delegate the constraint without an explicit refusal."
+    },
+    {
+     q: "Why does how am I supposed to do that work better than a flat no?",
+     options: [
+      { text: "It makes the other side think through the constraint rather than fight your refusal.", correct: true },
+      { text: "It is shorter than saying no.", misconception: "Length is not the mechanism." },
+      { text: "It legally binds them to accept your terms.", misconception: "No legal effect applies." },
+      { text: "It always extracts a concession.", misconception: "Concessions are not guaranteed; cooperation increases on average." }
+     ],
+     why: "The counterpart owns the constraint and often produces the solution themselves."
+    }
+   ],
+   conceptTasks: [
+    { level: "basic",    t: "Replace one no",      d: "Pick one no you said this week and rewrite it as a calibrated question.", xp: 10 },
+    { level: "easy",     t: "Use it live",         d: "Use a calibrated question in your next negotiation and note how the other side responded.", xp: 20 },
+    { level: "advanced", t: "Build a question set", d: "Prepare a set of five calibrated questions for a major upcoming negotiation, deploy them, then debrief on which surfaced the most useful information.", xp: 40 }
+   ]
+  },
+  {
+   t: "The mirror",
+   subdomain: "emotion",
+   definition: "Repeating the last one to three words the counterpart said back to them, as a soft question, to invite elaboration.",
+   short: "Repeat the last few words they said, as a question. They keep talking.",
+   deep: "Almost invisible, almost free. The other side says \"…and we just don't see a path to that number this quarter.\" You say, gently: \"…this quarter?\" Nine times out of ten, they fill the silence and explain more than they meant to. You learn what's actually driving them without asking a single direct question. It works because humans are deeply uncomfortable with silence, and a small open question is irresistible. Try it for a week in normal conversations and you'll be surprised how often it cracks something open.",
+   generic: "A friend says, I just cannot deal with my brother anymore. You repeat softly, your brother? And they explain. You did not ask anything. You just opened the door, and the words walked through.",
+   expert: "Voss (2016) names this technique from FBI hostage practice, where its low-pressure delivery makes it ideal for tense, uncertain dialogues. Rooted in Rogerian reflective listening and motivational interviewing's reflection technique. The implicit upward inflection signals invitation rather than challenge. Failure mode: mechanical repetition that sounds robotic, or mirroring too many words at once, which sounds like interrogation.",
+   status: "framework",
+   reflect: "Try the mirror on your next conversation. Count how many times the other person fills the silence with something useful.",
+   conceptQuiz: [
+    {
+     q: "The mirror technique consists of…",
+     options: [
+      { text: "Repeating the last one to three words the counterpart said, as a question.", correct: true },
+      { text: "Paraphrasing their entire paragraph in your own words.", misconception: "That is summarising, a different and heavier move." },
+      { text: "Staring silently until they speak.", misconception: "Silence helps but is not the mirror itself." },
+      { text: "Asking a long direct question about their motive.", misconception: "Mirrors are intentionally tiny and indirect." }
+     ],
+     why: "The mirror is a minimal verbal nudge that invites the speaker to continue."
+    },
+    {
+     q: "The mirror works mainly because…",
+     options: [
+      { text: "People are uncomfortable with silence and naturally elaborate when gently prompted.", correct: true },
+      { text: "It hypnotises the counterpart into agreeing.", misconception: "There is no hypnotic effect; it just invites continuation." },
+      { text: "It forces them to repeat themselves precisely.", misconception: "It invites new information, not repetition." },
+      { text: "It signals dominance.", misconception: "The technique is intentionally low-status and inviting." }
+     ],
+     why: "Soft invitation plus a small silence pulls more information out than direct questions."
+    }
+   ],
+   conceptTasks: [
+    { level: "basic",    t: "Try one mirror",     d: "In one conversation today, mirror the last two words the other person said and observe the response.", xp: 10 },
+    { level: "easy",     t: "Mirror under tension", d: "Use the mirror in a mildly tense exchange and note what new information surfaced.", xp: 20 },
+    { level: "advanced", t: "Run a mirror sweep", d: "In a live negotiation, use the mirror at least three times in the first ten minutes, then write down everything you learned that direct questions would have missed.", xp: 40 }
+   ]
+  },
+  {
+   t: "Win-win, or you didn't really win",
+   subdomain: "ethics",
+   definition: "The principle that a negotiated outcome should leave both sides better off relative to no deal, because most real negotiations are repeated games.",
+   short: "If they walk out bitter, the next round is going to cost you.",
+   deep: "One-shot deals are rare. Most of your real negotiations, with bosses, vendors, partners, family, are part of a long sequence. A \"win\" where the other side walks out feeling cheated quietly costs you their cooperation, their referrals, and their willingness to negotiate again. The actual measure of a good outcome is: did you get a fair share of the value, and is the relationship intact? Track both. If either tanks, you didn't really win, you just borrowed a result from the future.",
+   generic: "Imagine winning a board game by cheating against your sister. You won this round. But she will never play with you again, and now the cousins know too. The next ten games you wanted to play are gone. The win cost you the season.",
+   expert: "Fisher and Ury (1981) and Lax and Sebenius (The Manager as Negotiator, 1986) frame this as integrative outcome with relationship capital. In repeated game theory (Axelrod, The Evolution of Cooperation, 1984), tit-for-tat outperforms aggressive strategies precisely because exploitation poisons future rounds. Distinct from naive niceness; win-win is not concession, it is structuring deals so both sides prefer continuing the relationship to defecting.",
+   status: "framework",
+   reflect: "Pick a 'win' you had recently. Is the relationship intact six months later? Did they come back to deal with you again?",
+   conceptQuiz: [
+    {
+     q: "Win-win in repeated negotiations is best understood as…",
+     options: [
+      { text: "An outcome where both sides prefer the deal to walking away and the relationship survives.", correct: true },
+      { text: "Always splitting every difference equally.", misconception: "Equal splits are not the same as mutual benefit." },
+      { text: "Letting the other side win every round.", misconception: "Concession is not win-win; it is loss-loss disguised." },
+      { text: "Refusing to negotiate at all.", misconception: "No deal is not a win for either side." }
+     ],
+     why: "Win-win is structural: both sides prefer the deal to the alternative and want to continue dealing."
+    },
+    {
+     q: "The reason aggressive zero-sum tactics underperform in repeated games is…",
+     options: [
+      { text: "Burned counterparties withdraw cooperation, referrals, and future deals.", correct: true },
+      { text: "They are illegal in most jurisdictions.", misconception: "Legality is not the constraint; reputation and repeated play are." },
+      { text: "They feel uncomfortable to use.", misconception: "Discomfort is not the structural reason." },
+      { text: "They always lose in the first round too.", misconception: "They often win round one; the cost is later rounds." }
+     ],
+     why: "Axelrod's repeated-game results show cooperative strategies dominate over time."
+    }
+   ],
+   conceptTasks: [
+    { level: "basic",    t: "Audit a recent win",  d: "Pick a recent negotiation you won. Write whether the relationship is intact six months on, and what that suggests.", xp: 10 },
+    { level: "easy",     t: "Track two metrics",   d: "In your next negotiation, define and track both the outcome share and a relationship-health score afterward.", xp: 20 },
+    { level: "advanced", t: "Run a repeat deal",   d: "Negotiate a multi-round arrangement with the same counterpart, deliberately structuring round one so they want round two, then debrief on what changed.", xp: 40 }
+   ]
+  },
   {
    t: "Logrolling, trading across issues",
    subdomain: "tactics",

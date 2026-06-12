@@ -8,7 +8,8 @@ const d: Domain = {
  name: "Entrepreneurship & Startups",
  tagline: "Find a real problem and solve it",
 
- basics: "Entrepreneurship is the work of building something other people pay you to use. Most people who fail at it don't fail from a shortage of ideas, they fail by solving problems nobody asked them to solve, for customers who exist mostly in their pitch deck. The actual discipline is small and uncomfortable: talk to real potential buyers about their actual lives, ship the smallest possible version of your idea before you feel ready, and let reality vote on what's next. The plan is wrong. The customer is the teacher. Your job is to listen, ship, learn, repeat.",
+ basics: "Entrepreneurship is the work of building something other people pay you to use. Most people who fail at it don't fail from a shortage of ideas, they fail by solving problems nobody asked them to solve, for customers who exist mostly in their pitch deck.",
+ deepBasics: "The actual discipline is small and uncomfortable: talk to real potential buyers about their actual lives, ship the smallest possible version of your idea before you feel ready, and let reality vote on what's next. The plan is wrong. The customer is the teacher. Your job is to listen, ship, learn, repeat.",
  whyItMatters: [
   "Even if you never start a company, the underlying skills, talking to users, scrappy shipping, killing your darlings, compound everywhere.",
   "Most jobs are getting more entrepreneurial. \"Hours at desk\" is being replaced by \"outcomes shipped.\"",

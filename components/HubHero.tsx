@@ -64,16 +64,19 @@ export function HubHero({ onSearch }: { onSearch?: (q: string) => void }) {
      <Link href="/search" className="hidden sm:inline-flex chip" title="Global search across concepts and glossary">Global <ArrowRight size={11} aria-hidden="true" /></Link>
     </form>
 
-    {/* Stats strip */}
+    {/* Stats strip. Concrete-utility language; jargon ("FSRS") lives on
+        /about. For new users we say "Start anywhere", not "0 touched" so the
+        empty state doesn't read like a chore list. */}
     <div className="flex flex-wrap items-center gap-x-5 gap-y-2 mt-5 text-xs sm:text-sm dim">
      <span className="inline-flex items-center gap-1.5"><Layers size={14} className="hue" /> {total} domains</span>
      <span>·</span>
-     <span>{touched} touched by you</span>
+     <span>{touched > 0 ? `${touched} touched by you` : "Start anywhere"}</span>
      <span>·</span>
-     <span>FSRS spaced repetition</span>
+     <span>Daily 5-min reviews remember what you forget</span>
      <span>·</span>
      <span>Works offline</span>
     </div>
+    <p className="dim text-[11px] mt-2">Made for India context. Finance, law, health are localised.</p>
 
     {/* Quick-jump pills */}
     <div className="mt-5">

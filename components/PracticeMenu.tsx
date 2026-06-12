@@ -33,7 +33,18 @@ export function PracticeMenu() {
 
  useEffect(() => {
   if (!open) return;
-  const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setOpen(false); };
+  const onKey = (e: KeyboardEvent) => {
+   if (e.key === "Escape") { setOpen(false); return; }
+   if (!panelRef.current) return;
+   const items = Array.from(panelRef.current.querySelectorAll<HTMLElement>('[role="menuitem"]'));
+   if (items.length === 0) return;
+   const active = document.activeElement as HTMLElement | null;
+   const idx = active ? items.indexOf(active) : -1;
+   if (e.key === "ArrowDown") { e.preventDefault(); items[(idx + 1 + items.length) % items.length]?.focus(); }
+   else if (e.key === "ArrowUp") { e.preventDefault(); items[(idx - 1 + items.length) % items.length]?.focus(); }
+   else if (e.key === "Home") { e.preventDefault(); items[0]?.focus(); }
+   else if (e.key === "End") { e.preventDefault(); items[items.length - 1]?.focus(); }
+  };
   const onClickOutside = (e: MouseEvent) => {
    const t = e.target as Node;
    if (panelRef.current?.contains(t)) return;
@@ -67,7 +78,7 @@ export function PracticeMenu() {
     <GraduationCap size={14} className={open ? "hue" : "dim"} />
     <span>Practice</span>
     {due > 0 && (
-     <span className="ml-1 inline-flex items-center justify-center min-w-[16px] h-[16px] text-[9px] font-bold rounded-full px-1" style={{ background: "var(--hue)", color: "#fff" }}>{due}</span>
+     <span className="ml-1 inline-flex items-center justify-center min-w-[16px] h-[16px] text-[9px] font-bold rounded-full px-1" style={{ background: "var(--hue)", color: "#0b0d1a" }}>{due}</span>
     )}
     <ChevronDown size={12} style={{ transform: open ? "rotate(180deg)" : "none", transition: "transform .15s" }} />
    </button>
@@ -98,7 +109,7 @@ export function PracticeMenu() {
           <span className="flex items-center gap-2">
            <span className="text-sm font-medium">{label}</span>
            {href === "/review" && due > 0 && (
-            <span className="text-[10px] px-1.5 py-0.5 rounded-full" style={{ background: "var(--hue)", color: "#fff" }}>{due} due</span>
+            <span className="text-[10px] px-1.5 py-0.5 rounded-full" style={{ background: "var(--hue)", color: "#0b0d1a" }}>{due} due</span>
            )}
           </span>
           <span className="block dim text-xs">{desc}</span>

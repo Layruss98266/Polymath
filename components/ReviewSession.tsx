@@ -226,10 +226,14 @@ export function ReviewSession() {
    </div>
 
    {/* Card */}
+   <div role="status" aria-live="polite" className="sr-only">
+    {flipped ? "Answer revealed. Choose Again, Hard, Good, or Easy." : ""}
+   </div>
    <article
     className="panel relative overflow-hidden min-h-[220px] sm:min-h-[260px] cursor-pointer select-none"
     role="button"
     tabIndex={0}
+    aria-pressed={flipped}
     aria-label={flipped ? "Card back, click to flip to front" : "Card front, click to flip to back"}
     onClick={() => setFlipped((f) => !f)}
     onKeyDown={(e) => { if (e.key === " " || e.key === "Enter") { e.preventDefault(); setFlipped((f) => !f); } }}

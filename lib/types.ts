@@ -99,6 +99,7 @@ export type Domain = {
  tagline: string;
 
  basics: string;
+ deepBasics?: string;
  whyItMatters: string[];
  realWorldExample: string;
 

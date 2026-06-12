@@ -66,7 +66,7 @@ export function StreakHeatmap({
  const active = Object.values(xpByDay).filter((v) => v > 0).length;
 
  return (
-  <div className="overflow-x-auto no-scrollbar">
+  <div className="overflow-x-auto no-scrollbar" role="img" aria-label={`Activity heatmap: ${active} active days, ${total} XP earned`}>
    <div className="inline-grid gap-[3px] mb-1" style={{ gridAutoFlow: "column", gridTemplateColumns: `repeat(${cols.length}, 10px)` }} aria-hidden="true">
     {monthLabels.map((m, ci) => (
      <span key={ci} className="dim text-[9px] uppercase tracking-widest" style={{ minWidth: 10, height: 10, whiteSpace: "nowrap" }}>{m ?? ""}</span>
@@ -78,7 +78,7 @@ export function StreakHeatmap({
       <span
        key={`${ci}-${ri}`}
        title={cell ? `${cell.date}: ${cell.xp} XP` : ""}
-       aria-label={cell ? `${cell.date}: ${cell.xp} XP` : "padding"}
+       aria-hidden="true"
        style={{
         width: 10, height: 10, borderRadius: 2,
         background: cell ? colors[cell.level] : "transparent"

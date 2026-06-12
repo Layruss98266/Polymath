@@ -30,7 +30,7 @@ export function BottomNav() {
  })();
  return (
   <nav
-   aria-label="Primary"
+   aria-label="Mobile primary navigation"
    className="sm:hidden fixed bottom-0 left-0 right-0 z-30 border-t backdrop-blur-md"
    style={{ background: "color-mix(in oklab, var(--bg) 88%, transparent)", borderColor: "var(--line)", ...(domainHue ? ({ ["--hue" as any]: domainHue } as any) : {}) }}
   >
@@ -50,7 +50,7 @@ export function BottomNav() {
          {href === "/review" && due > 0 && (
           <span
            className="absolute -top-1 -right-2 min-w-[14px] h-[14px] text-[8px] font-bold rounded-full px-1 flex items-center justify-center"
-           style={{ background: "var(--hue)", color: "#fff" }}
+           style={{ background: "var(--hue)", color: "#0b0d1a" }}
           >{due}</span>
          )}
         </span>

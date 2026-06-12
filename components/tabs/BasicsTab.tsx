@@ -11,6 +11,12 @@ export function BasicsTab({ d }: { d: Domain }) {
    <div className="panel p-5">
     <h2 className="font-display text-xl mb-2">What is {d.name}?</h2>
     <p>{d.basics}</p>
+    {d.deepBasics && (
+     <details className="mt-3">
+      <summary className="cursor-pointer text-sm dim">Read more</summary>
+      <p className="mt-2">{d.deepBasics}</p>
+     </details>
+    )}
     {firstConcept && (
      <Link
       href={`/domain/${d.id}/concepts/0`}

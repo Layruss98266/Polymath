@@ -8,7 +8,8 @@ const d: Domain = {
  name: "Learning How to Learn",
  tagline: "The meta-skill that compounds across every other domain",
 
- basics: "Almost everything school taught you about studying is wrong, not by accident, but because the wrong things feel productive. Re-reading a chapter, highlighting half the page, watching the lecture twice, they all feel like learning while you do them. Then a week later you've forgotten everything. The methods that actually work feel worse in the moment: closing the book and trying to remember, taking a test before you feel ready, mixing topics together, struggling. The uncomfortable feeling is the work happening. Once you get this, learning anything new gets a lot cheaper for the rest of your life.",
+ basics: "Almost everything school taught you about studying is wrong, not by accident, but because the wrong things feel productive. Re-reading a chapter, highlighting half the page, watching the lecture twice, they all feel like learning while you do them.",
+ deepBasics: "Then a week later you've forgotten everything. The methods that actually work feel worse in the moment: closing the book and trying to remember, taking a test before you feel ready, mixing topics together, struggling. The uncomfortable feeling is the work happening. Once you get this, learning anything new gets a lot cheaper for the rest of your life.",
  whyItMatters: [
   "Every other domain on this app gets multiplied. Better study methods are leverage.",
   "Stop wasting your evenings on highlighters and feeling busy without remembering anything.",

@@ -263,7 +263,7 @@ export function SettingsView() {
     <div className="space-y-2 pt-2">
      <label className="text-sm">Restore from a code</label>
      <textarea value={code} onChange={(e) => setCode(e.target.value)} className="w-full h-20 panel p-2 text-xs" aria-label="Paste code" />
-     {err && <p className="text-sm" style={{ color: "var(--bad)" }}>{err}</p>}
+     {err && <p role="alert" className="text-sm" style={{ color: "var(--bad)" }}>{err}</p>}
      <button className="btn" onClick={() => { try { a.importState(importCode(code)); setErr(null); setCode(""); } catch (e: any) { setErr(e.message ?? "Invalid code"); } }}>Restore</button>
     </div>
    </section>

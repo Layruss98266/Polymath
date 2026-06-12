@@ -8,7 +8,8 @@ const d: Domain = {
  name: "Tech & Programming",
  tagline: "Speak to machines, build things",
 
- basics: "Programming is the strange art of writing instructions so precise that a machine, which has no common sense at all, can follow them and produce something useful. The syntax (the punctuation and grammar of any specific language) you can learn in a few weeks. The actual job is harder and slower: breaking fuzzy real-world problems into precise small steps, reading other people's code without your eyes glazing over, and shipping things that don't fall apart when a real user touches them. The good news, those underlying skills don't expire. Languages come and go, but knowing how to think like a programmer is a lifetime tool.",
+ basics: "Programming is the strange art of writing instructions so precise that a machine, which has no common sense at all, can follow them and produce something useful. The syntax (the punctuation and grammar of any specific language) you can learn in a few weeks.",
+ deepBasics: "The actual job is harder and slower: breaking fuzzy real-world problems into precise small steps, reading other people's code without your eyes glazing over, and shipping things that don't fall apart when a real user touches them. The good news, those underlying skills don't expire. Languages come and go, but knowing how to think like a programmer is a lifetime tool.",
  whyItMatters: [
   "Massive leverage. One person who codes can build things that used to need a team of ten.",
   "Modern jobs across every industry now expect you to read APIs, configs, and logs without panicking. Hiding from tech is no longer free.",

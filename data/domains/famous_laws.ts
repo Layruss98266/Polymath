@@ -8,7 +8,8 @@ const d: Domain = {
  name: "Famous Scientific Laws",
  tagline: "The rules of reality, in plain words",
 
- basics: "Scientific laws are short sentences that survived hundreds of years of clever people trying to break them. You don't need the maths to use them, you need the feel. Knowing F=ma in your gut changes how you push a stuck shopping trolley. Knowing entropy in your gut changes how you treat any system left alone (it gets messier, never tidier, without effort). Once you've collected maybe a dozen of these, physics and biology and chemistry stop feeling like separate school subjects and start feeling like one project, humans trying to write down how reality actually works, in the smallest possible number of words.",
+ basics: "Scientific laws are short sentences that survived hundreds of years of clever people trying to break them. You don't need the maths to use them, you need the feel.",
+ deepBasics: "Knowing F=ma in your gut changes how you push a stuck shopping trolley. Knowing entropy in your gut changes how you treat any system left alone (it gets messier, never tidier, without effort). Once you've collected maybe a dozen of these, physics and biology and chemistry stop feeling like separate school subjects and start feeling like one project, humans trying to write down how reality actually works, in the smallest possible number of words.",
  whyItMatters: [
   "You build intuition that travels across fields. The same idea (energy conserved, disorder grows, populations selected) keeps showing up.",
   "You can tell when someone's using science-sounding words to dress up a claim that isn't really science.",

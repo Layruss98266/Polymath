@@ -115,6 +115,7 @@ export const DomainSchema = z.object({
  tagline: z.string(),
 
  basics: z.string(),
+ deepBasics: z.string().optional(),
  whyItMatters: z.array(z.string()).min(2),
  realWorldExample: z.string(),
 

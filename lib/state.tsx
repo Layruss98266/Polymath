@@ -13,7 +13,12 @@ import { Sound } from "./sound";
 // chord additionally gated on the user's mute toggle.
 function celebrate(mute: boolean) {
  if (typeof window === "undefined") return;
- if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+ // Respect the user's explicit override AND the system preference. If the
+ // override is "1" (Reduce), suppress regardless of system. If the override
+ // is "off" (Allow), fire even when the system says reduce.
+ const override = document.documentElement.dataset.reduceMotion;
+ if (override === "1") return;
+ if (override !== "off" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
  import("canvas-confetti").then((m) => {
   try { m.default({ particleCount: 90, spread: 70, origin: { y: 0.6 } }); } catch {}
  }).catch(() => {});

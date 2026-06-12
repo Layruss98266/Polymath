@@ -8,7 +8,8 @@ const d: Domain = {
  name: "Health, Longevity & How the Body Works",
  tagline: "Live longer, feel better, what's actually solid",
 
- basics: "Almost everything you need to do to live well into old age is unglamorous and free. Move your body, sleep enough, eat mostly plants, have people you can call at 3 am, don't smoke, don't drink much. Do those, and basically every chronic disease that matters, heart, diabetes, cancer, dementia, shifts in your favour. Modern medicine is fantastic at pulling you back from the brink and surprisingly bad at keeping you off it; that gap is bridged by what you do daily. The internet is full of confident influencers selling protocols and supplements, and the science is honestly noisier than they pretend. But the basics are rock solid. Start there.",
+ basics: "Almost everything you need to do to live well into old age is unglamorous and free. Move your body, sleep enough, eat mostly plants, have people you can call at 3 am, don't smoke, don't drink much.",
+ deepBasics: "Do those, and basically every chronic disease that matters, heart, diabetes, cancer, dementia, shifts in your favour. Modern medicine is fantastic at pulling you back from the brink and surprisingly bad at keeping you off it; that gap is bridged by what you do daily. The internet is full of confident influencers selling protocols and supplements, and the science is honestly noisier than they pretend. But the basics are rock solid. Start there.",
  whyItMatters: [
   "Almost every chronic disease that wrecks late life shifts in your favour from the basics alone.",
   "You become a literate patient, you can ask doctors better questions and catch wishful prescriptions.",

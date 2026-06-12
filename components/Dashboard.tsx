@@ -178,7 +178,15 @@ export function Dashboard() {
       The score sits between 0 and 100. Above 50 means you tend to be sure when right and uncertain when wrong (well calibrated).
       Below 50 means the opposite, the dangerous mix of sure but wrong.
      </p>
-     <div className="h-3 rounded-full overflow-hidden" style={{ background: "var(--line)" }}>
+     <div
+      className="h-3 rounded-full overflow-hidden"
+      style={{ background: "var(--line)" }}
+      role="progressbar"
+      aria-valuenow={calib}
+      aria-valuemin={0}
+      aria-valuemax={100}
+      aria-label="Calibration score"
+     >
       <div className="h-full" style={{ width: `${calib}%`, background: "var(--hue)", transition: "width .3s" }} />
      </div>
      <p className="text-xs dim mt-2">Your score, {calib} of 100.</p>
@@ -214,6 +222,7 @@ function Radar({ values }: { values: { label: string; value: number; hue: string
  const polygon = pts.map((p, i) => `${i === 0 ? "M" : "L"} ${p.x} ${p.y}`).join(" ") + " Z";
 
  return (
+  <>
   <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label="Mastery radar" style={{ width: "100%", maxHeight: 420, color: "var(--ink)" }}>
    {grid.map((g) => <path key={g} d={ring(g)} fill="none" stroke="var(--line)" />)}
    {angles.map((a, i) => (
@@ -221,7 +230,7 @@ function Radar({ values }: { values: { label: string; value: number; hue: string
    ))}
    <path d={polygon} fill="var(--hue)" fillOpacity="0.25" stroke="var(--hue)" />
    {pts.map((p, i) => (
-    <g key={i}>
+    <g key={i} aria-label={`${p.label}: ${Math.round(values[i].value * 100)} percent`}>
      <circle cx={p.x} cy={p.y} r={4} fill={p.hue} />
      <text
       x={cx + (R + 18) * Math.cos(p.a)}
@@ -233,5 +242,13 @@ function Radar({ values }: { values: { label: string; value: number; hue: string
     </g>
    ))}
   </svg>
+  <div className="sr-only">
+   <ul>
+    {values.map((v, i) => (
+     <li key={i}>{v.label}: {Math.round(v.value * 100)}%</li>
+    ))}
+   </ul>
+  </div>
+  </>
  );
 }

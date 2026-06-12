@@ -8,7 +8,8 @@ const d: Domain = {
  name: "Investing & Markets",
  tagline: "Own assets that compound",
 
- basics: "Investing is buying a piece of something that pays you over time, a business, a bond, a property. The single boring strategy that actually works for ordinary people, in basically every long enough window: buy a low-cost index fund, hold it for decades, ignore the news, keep adding. That's it. It feels too simple. Almost every more exciting alternative is either gambling in disguise, or beats the boring version only after a level of effort and luck most people never reach. The job isn't to be a genius. The job is to be patient and not interrupt the compounding.",
+ basics: "Investing is buying a piece of something that pays you over time, a business, a bond, a property. The single boring strategy that actually works for ordinary people, in basically every long enough window: buy a low-cost index fund, hold it for decades, ignore the news, keep adding.",
+ deepBasics: "That's it. It feels too simple. Almost every more exciting alternative is either gambling in disguise, or beats the boring version only after a level of effort and luck most people never reach. The job isn't to be a genius. The job is to be patient and not interrupt the compounding.",
  whyItMatters: [
   "Compounding is the only known force that turns a regular salary into actual freedom over time.",
   "Most active fund managers, even the famous ones, lose to a cheap index fund over 10-20 years, after their fees.",

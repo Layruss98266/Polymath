@@ -38,7 +38,15 @@ export function DomainHeader({ domain }: { domain: Domain }) {
      <span>Mastery</span>
      <span>{Math.round(m * 100)}%</span>
     </div>
-    <div className="h-1.5 rounded-full overflow-hidden" style={{ background: "var(--line)" }}>
+    <div
+     className="h-1.5 rounded-full overflow-hidden"
+     style={{ background: "var(--line)" }}
+     role="progressbar"
+     aria-valuenow={Math.round(m * 100)}
+     aria-valuemin={0}
+     aria-valuemax={100}
+     aria-label={`${domain.name} mastery`}
+    >
      <div className="h-full" style={{ width: `${Math.round(m * 100)}%`, background: domain.hue, transition: "width .3s" }} />
     </div>
    </div>

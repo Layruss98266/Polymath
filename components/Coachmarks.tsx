@@ -9,12 +9,11 @@ import { usePathname } from "next/navigation";
 // next / previous / skip. Stores done flag in localStorage so it doesn't keep
 // reappearing.
 
+// Two steps. Anything beyond this is discoverable, and 5 popups after
+// onboarding was the loudest "too much" signal from the persona review.
 const STEPS = [
- { Icon: Layers,      title: "Domains menu",      body: "Open the Domains menu in the centered top bar to browse the catalogue. 15 domains, grouped by category." },
- { Icon: GraduationCap, title: "Practice menu",   body: "The Practice dropdown holds Review, Dashboard, Skill Map, and My List in one place." },
- { Icon: Search,      title: "Quick search",      body: "Press / to jump to global search. Or Cmd+K to open the command palette from anywhere." },
- { Icon: Keyboard,    title: "Shortcuts",         body: "Press ? to see all keyboard shortcuts. G+H for Home, G+R for Review, and so on." },
- { Icon: Sparkles,    title: "Pick a domain below", body: "Open any concept. Two minutes. The rest of the app turns on as you go." }
+ { Icon: Layers,   title: "Domains menu",    body: "Open the Domains menu in the centered top bar to browse the catalogue. 15 domains, grouped by category." },
+ { Icon: Keyboard, title: "Press ? anytime", body: "Question mark shows keyboard shortcuts. / jumps to global search. Cmd+K opens the command palette. That is the whole tour." }
 ];
 
 const STORAGE_KEY = "polymath:coachmarks-done";
@@ -49,7 +48,7 @@ export function Coachmarks() {
  const step = STEPS[i];
  const Icon = step.Icon;
  return (
-  <div role="dialog" aria-label="Quick tour" className="fixed bottom-4 right-4 z-30 panel p-4 max-w-sm" style={{ borderColor: "var(--hue)" }}>
+  <div role="region" aria-label="Quick tour" className="fixed bottom-4 right-4 z-30 panel p-4 max-w-sm" style={{ borderColor: "var(--hue)" }}>
    <div className="flex items-start gap-3">
     <span className="grid place-items-center w-9 h-9 rounded-xl shrink-0" style={{ background: "color-mix(in oklab, var(--hue) 14%, transparent)", color: "var(--hue)" }}>
      <Icon size={16} />
