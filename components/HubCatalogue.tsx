@@ -118,16 +118,22 @@ export function HubCatalogue({ q, setQ }: { q: string; setQ: (v: string) => void
     <button
      className={`chip ${cat === "all" ? "ring-1" : ""}`}
      style={cat === "all" ? { borderColor: "var(--hue)", color: "var(--hue)" } : {}}
+     aria-pressed={cat === "all"}
      onClick={() => setCat("all")}
-    >All <span className="dim ml-1">{DOMAIN_INDEX.length}</span></button>
+    >
+     All <span className="dim ml-1">{DOMAIN_INDEX.length}</span>
+     {cat === "all" && <span className="sr-only">. Currently selected.</span>}
+    </button>
     {CATEGORIES.map((c) => (
      <button
       key={c}
       className={`chip ${cat === c ? "ring-1" : ""}`}
       style={cat === c ? { borderColor: "var(--hue)", color: "var(--hue)" } : {}}
+      aria-pressed={cat === c}
       onClick={() => setCat(c)}
      >
       {c} <span className="dim ml-1">{catCount(c)}</span>
+      {cat === c && <span className="sr-only">. Currently selected.</span>}
      </button>
     ))}
     {(q.trim() || cat !== "all") && <button className="chip ml-auto" onClick={() => { setQ(""); setCat("all"); }}>Reset</button>}

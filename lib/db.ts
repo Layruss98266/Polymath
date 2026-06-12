@@ -24,19 +24,38 @@ function db(): PolymathDB {
  return _db;
 }
 
+// Hardened load. Any one of these failure modes returns defaults so the app
+// always boots: IndexedDB closed, browser blocks storage, value malformed,
+// migration throws, JSON parse throws. We never crash on hydrate.
+function safeMigrate(value: unknown): UserState | null {
+ try { return migrate(value); } catch (e) {
+  console.warn("[db] migration threw, falling back to defaults", e);
+  return null;
+ }
+}
+
 export async function loadState(): Promise<UserState> {
  if (typeof window === "undefined") return defaultState();
  try {
   const row = await db().state.get(SINGLETON_ID);
-  if (row?.value) return migrate(row.value);
+  if (row?.value) {
+   const mig = safeMigrate(row.value);
+   if (mig) return mig;
+  }
  } catch (e) {
   _useIDB = false;
   console.warn("[db] IndexedDB unavailable, falling back to localStorage", e);
  }
  try {
   const raw = localStorage.getItem(LS_KEY);
-  if (raw) return migrate(JSON.parse(raw));
- } catch {}
+  if (raw) {
+   const parsed = JSON.parse(raw);
+   const mig = safeMigrate(parsed);
+   if (mig) return mig;
+  }
+ } catch (e) {
+  console.warn("[db] localStorage parse failed", e);
+ }
  return defaultState();
 }
 

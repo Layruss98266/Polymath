@@ -9,22 +9,87 @@ import { KeyboardShortcuts } from "@/components/KeyboardShortcuts";
 import { BottomNav } from "@/components/BottomNav";
 import { Footer } from "@/components/Footer";
 
+const SITE = "https://polymath.vercel.app";
+
 export const metadata: Metadata = {
- title: "POLYMATH. Learn anything, daily.",
+ metadataBase: new URL(SITE),
+ title: {
+  default: "Polymath. Learn anything, daily.",
+  template: "%s . Polymath"
+ },
  description:
-  "A daily-habit learning app teaching dozens of real-world domains from absolute basics to mastery. Spaced repetition, real missions, real frameworks.",
- manifest: "/manifest.webmanifest"
+  "Learn dozens of real-world domains from absolute basics to mastery. Spaced repetition, real missions, real frameworks, honest game loop. No login, no dark patterns.",
+ applicationName: "Polymath",
+ keywords: [
+  "spaced repetition", "FSRS", "learning app", "polymath",
+  "mental models", "personal finance", "marketing", "AI",
+  "concept quizzes", "epistemic honesty", "real-world missions"
+ ],
+ authors: [{ name: "Polymath" }],
+ creator: "Polymath",
+ publisher: "Polymath",
+ manifest: "/manifest.webmanifest",
+ alternates: { canonical: "/" },
+ robots: {
+  index: true,
+  follow: true,
+  googleBot: { index: true, follow: true, "max-snippet": -1, "max-image-preview": "large" }
+ },
+ openGraph: {
+  type: "website",
+  siteName: "Polymath",
+  title: "Polymath. Learn anything, daily.",
+  description: "A daily learning loop for real-world domains. FSRS spaced repetition. Honest game loop.",
+  url: SITE,
+  locale: "en_US"
+ },
+ twitter: {
+  card: "summary_large_image",
+  title: "Polymath",
+  description: "Learn anything, daily. FSRS spaced repetition, real frameworks, no dark patterns.",
+  creator: "@polymath"
+ },
+ category: "education"
 };
 
 export const viewport: Viewport = {
- themeColor: "#0b0d1a",
+ themeColor: [
+  { media: "(prefers-color-scheme: dark)",  color: "#0b0d1a" },
+  { media: "(prefers-color-scheme: light)", color: "#f7f7fb" }
+ ],
  width: "device-width",
- initialScale: 1
+ initialScale: 1,
+ maximumScale: 5,
+ colorScheme: "dark light"
+};
+
+// JSON-LD structured data. Helps search engines understand this is an
+// educational application with a catalogue of learning resources.
+const jsonLd = {
+ "@context": "https://schema.org",
+ "@type": "WebApplication",
+ name: "Polymath",
+ applicationCategory: "EducationalApplication",
+ operatingSystem: "Web",
+ url: SITE,
+ description:
+  "A daily learning loop for real-world domains. Spaced repetition, real missions, real frameworks, honest game loop. No login, no dark patterns.",
+ offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+ isAccessibleForFree: true,
+ inLanguage: "en"
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
  return (
   <html lang="en" suppressHydrationWarning>
+   <head>
+    <link rel="icon" href="/icon-192.png" type="image/png" />
+    <link rel="apple-touch-icon" href="/icon-192.png" />
+    <script
+     type="application/ld+json"
+     dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+    />
+   </head>
    <body>
     <StoreProvider>
      <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:btn">Skip to content</a>

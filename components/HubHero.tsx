@@ -46,18 +46,22 @@ export function HubHero({ onSearch }: { onSearch?: (q: string) => void }) {
      style={{ borderColor: q ? "var(--hue)" : "var(--line)" }}
      onSubmit={(e) => { e.preventDefault(); onSearch?.(q); }}
     >
-     <Search size={18} className="dim shrink-0" />
+     <label htmlFor="hub-search" className="sr-only">Filter the catalogue by name, tagline, or category</label>
+     <Search size={18} className="dim shrink-0" aria-hidden="true" />
      <input
+      id="hub-search"
+      type="search"
       value={q}
       onChange={(e) => { setQ(e.target.value); onSearch?.(e.target.value); }}
       placeholder="Find a domain by name, tagline, or category..."
       className="bg-transparent outline-none flex-1 text-sm sm:text-base"
-      aria-label="Filter the catalogue"
+      autoComplete="off"
+      spellCheck={false}
      />
      {q && (
-      <button type="button" className="chip" onClick={() => { setQ(""); onSearch?.(""); }}>Clear</button>
+      <button type="button" className="chip" onClick={() => { setQ(""); onSearch?.(""); }} aria-label="Clear filter">Clear</button>
      )}
-     <Link href="/search" className="hidden sm:inline-flex chip" title="Global search across concepts and glossary">Global <ArrowRight size={11} /></Link>
+     <Link href="/search" className="hidden sm:inline-flex chip" title="Global search across concepts and glossary">Global <ArrowRight size={11} aria-hidden="true" /></Link>
     </form>
 
     {/* Stats strip */}

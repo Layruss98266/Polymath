@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Sparkles, ShieldCheck, Brain, Award, Compass, BookOpen, CheckCircle2, AlertTriangle, ArrowRight, Github } from "lucide-react";
+import { Sparkles, ShieldCheck, Brain, Award, Compass, BookOpen, CheckCircle2, AlertTriangle, ArrowRight, Github, Lock } from "lucide-react";
 
 const PRINCIPLES = [
  {
@@ -196,6 +196,22 @@ export function AboutView() {
      <li className="flex items-start gap-2"><BookOpen size={14} className="hue mt-0.5 shrink-0" /> Lazy-loaded domains, dynamic imports per domain</li>
      <li className="flex items-start gap-2"><BookOpen size={14} className="hue mt-0.5 shrink-0" /> 15 inline SVG diagram generators, currentColor and CSS vars, no external images</li>
      <li className="flex items-start gap-2"><BookOpen size={14} className="hue mt-0.5 shrink-0" /> canvas-confetti gated on prefers-reduced-motion</li>
+    </ul>
+   </section>
+
+   {/* Privacy */}
+   <section className="panel p-6 sm:p-8 space-y-3" style={{ borderColor: "var(--good)" }}>
+    <div className="flex items-center gap-2">
+     <Lock size={18} style={{ color: "var(--good)" }} />
+     <h2 className="font-display text-2xl">Privacy</h2>
+    </div>
+    <p>No login, no accounts, no analytics, no cookies for tracking, no third-party scripts. Your progress lives in IndexedDB in your browser, with a localStorage fallback. The only network request the app needs is the initial page load from Vercel's CDN. The site does not phone home.</p>
+    <ul className="text-sm dim space-y-1 list-disc pl-6">
+     <li>No personal data is collected, transmitted, or stored on any server.</li>
+     <li>Your XP, streaks, reflections, bookmarks, and flashcard schedules all live locally.</li>
+     <li>The Save / Load and Settings pages let you export a portable JSON file or a base64 code, both 100% client-side.</li>
+     <li>Wipe in Settings clears the local store. Uninstalling the browser or clearing site data removes everything.</li>
+     <li>The PWA manifest is shipped so you can install the app, but no service worker is currently registered. Once one is, it will only cache the build assets for offline use.</li>
     </ul>
    </section>
 
