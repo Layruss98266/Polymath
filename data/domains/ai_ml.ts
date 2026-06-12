@@ -39,13 +39,115 @@ const d: Domain = {
  ],
 
  synthesis: [
-  { concept: "Hallucination",   linksTo: "marketing",     note: "Confident-fluent-but-wrong is a cognitive failure mode marketers exploit on humans, too." },
-  { concept: "Prompting",     linksTo: "marketing",     note: "A prompt is a brief. Clear input → clear output , the same skill as good copy." }
+  { concept: "Hallucination",   linksTo: "marketing",     note: "Confident-fluent-but-wrong is a cognitive failure mode marketers exploit on humans too." },
+  { concept: "Prompting",     linksTo: "marketing",     note: "A prompt is a brief. Clear input, clear output. The same skill as good copy." }
+ ],
+
+ subdomains: [
+  { id: "foundations", name: "Foundations" },
+  { id: "usage",       name: "Using AI Well" },
+  { id: "math",        name: "The Maths Intuition" },
+  { id: "ethics",      name: "Safety and Ethics" }
  ],
 
  concepts: [
-  { t: "Training vs inference",           short: "Training is the years of schooling. Inference is the answer in the exam.",                                                       deep: "There are two phases in the life of an AI model. Training is the long, expensive process of feeding it billions of examples until billions of internal numbers (parameters) settle into a pattern. That phase is done in giant data centres and might take weeks. Once it's done, the model is frozen. Inference is what happens every time you type a question , the frozen model looks at your input and produces an output. Fast and cheap, comparatively. Your prompts don't teach the model anything new; you're just asking the already-trained student to take another exam.",                                                                              status: "settled",  reflect: "The next time an AI gets a recent news event wrong, ask yourself: was it trained before this happened?" },
-  { t: "Tokens",                  short: "AI doesn't read letters. It reads chunks of words called tokens.",                                                            deep: "Imagine the AI has a vocabulary book of about 50,000 little chunks. Common words like \"hello\" are one chunk. Unusual words like \"reinforcement\" get split into pieces: \"rein\", \"force\", \"ment\". Roughly, four English letters ≈ one token. This is why an AI can write Shakespeare but can't reliably count the letter \"r\" in \"strawberry\" , it never sees the letters; it sees \"straw\" and \"berry\" as two tokens and the question feels weird. Tokens also explain why long conversations have limits (the model can only hold N tokens at a time) and why API pricing is per token.",                                                                             status: "settled",  reflect: "Ask any AI to count the letter R in \"strawberry\". When it slips, you'll understand tokens better than reading any explainer." },
+  {
+   t: "Training vs inference",
+   subdomain: "foundations",
+   definition: "Training is the slow, expensive learning phase where the model's internal numbers are set. Inference is the fast usage phase that runs every time you ask it something.",
+   short: "Training is the years of schooling. Inference is the answer in the exam.",
+   deep: "There are two phases in the life of an AI model. Training is the long, expensive process of feeding it billions of examples until billions of internal numbers (parameters) settle into a pattern. That phase is done in giant data centres and might take weeks. Once it's done, the model is frozen. Inference is what happens every time you type a question. The frozen model looks at your input and produces an output. Fast and cheap, comparatively. Your prompts don't teach the model anything new; you're just asking the already-trained student to take another exam.",
+   generic: "Think of a student who graduated last year. Their schooling is over (training). Every test they sit now uses the knowledge they already had at graduation (inference). When you chat with an AI, you are giving the graduate a test, not changing their education.",
+   expert: "The training-inference split is foundational to how all modern ML systems are deployed. Training updates weights via gradient descent on a loss function. Inference is a single forward pass. The cost asymmetry is huge: training GPT-4-class models costs hundreds of millions of dollars; per-query inference is cents. Fine-tuning and continual learning blur the line but do not erase it. The model's knowledge cutoff is set by the training data, not the inference time.",
+   status: "settled",
+   reflect: "The next time an AI gets a recent news event wrong, ask yourself: was it trained before this happened?",
+   conceptQuiz: [
+    {
+     q: "When you chat with an AI, you are using:",
+     options: [
+      { text: "Training.", misconception: "Training has already happened. Chatting does not change the model's parameters." },
+      { text: "Inference.", correct: true },
+      { text: "Backpropagation.", misconception: "Backprop is the algorithm used during training, not when you query the model." },
+      { text: "Labelling.", misconception: "Labelling is data preparation before training. Has nothing to do with chat." }
+     ],
+     why: "Chatting runs a forward pass on the already-trained model. That's inference."
+    },
+    {
+     q: "An AI confidently tells you about an event from last week. The first sceptical question to ask is:",
+     options: [
+      { text: "Was this event in its training data?", correct: true },
+      { text: "How fast is the AI's CPU?", misconception: "Compute speed has nothing to do with whether recent facts are accurate." },
+      { text: "What language is the AI written in?", misconception: "Implementation language is irrelevant to knowledge cutoff." },
+      { text: "Does the AI have Wi-Fi?", misconception: "Most LLMs without explicit tool use have no live connection. Recency is a training-data question." }
+     ],
+     why: "If the event happened after the model's training cutoff, it cannot really know about it. The model might confabulate plausibly."
+    },
+    {
+     q: "True or false: more conversation makes the model smarter over time.",
+     options: [
+      { text: "True. The model learns from each chat.", misconception: "By default, frozen models do not update from chats. Confused with continual learning, which is a different setup." },
+      { text: "False. The model is frozen at inference time.", correct: true },
+      { text: "Only if the chat is in English.", misconception: "Language has nothing to do with this." },
+      { text: "Only with subscription pricing.", misconception: "Pricing has nothing to do with whether weights update." }
+     ],
+     why: "Standard deployed LLMs do not update weights from user conversations. Updates happen during training cycles."
+    }
+   ],
+   conceptTasks: [
+    { level: "basic",    t: "Ask about its cutoff", d: "Ask any AI chatbot when its training data ends. Note the answer and how confident it sounds.", xp: 10 },
+    { level: "easy",     t: "Catch a stale fact",   d: "Ask the chatbot about an event you know happened after the cutoff. Document one confidently wrong answer.", xp: 25 },
+    { level: "advanced", t: "Build a hybrid",       d: "Use any tool (RAG, search plugin, Perplexity, etc.) that combines training with live retrieval. Compare the answer quality on a recent fact.", xp: 70 }
+   ]
+  },
+  {
+   t: "Tokens",
+   subdomain: "foundations",
+   definition: "Tokens are the sub-word chunks an AI reads and writes. About 4 English characters or 3/4 of a word per token.",
+   prereqs: ["Training vs inference"],
+   short: "AI doesn't read letters. It reads chunks of words called tokens.",
+   deep: "Imagine the AI has a vocabulary book of about 50,000 little chunks. Common words like 'hello' are one chunk. Unusual words like 'reinforcement' get split into pieces: 'rein', 'force', 'ment'. Roughly, four English letters equals one token. This is why an AI can write Shakespeare but can't reliably count the letter 'r' in 'strawberry'. It never sees the letters; it sees 'straw' and 'berry' as two tokens and the question feels weird. Tokens also explain why long conversations have limits (the model can only hold N tokens at a time) and why API pricing is per token.",
+   generic: "Imagine a friend who reads only by glancing at full words at a time, never letter by letter. Ask them to count the letters in a word and they fumble, because they were never reading letters in the first place. AIs work the same way, but instead of full words, they read in sub-word chunks called tokens.",
+   expert: "Tokenisation is done by BPE (Byte Pair Encoding) or its variants. The tokenizer is fixed at training time and varies per model family (GPT, Llama, etc.). Token count drives context window cost, API pricing, and architecture limits. For most English text, expect roughly 1 token per 4 chars or 100 tokens per 75 words. Languages with non-Latin scripts (Hindi, Mandarin) often have worse compression and cost more per equivalent message.",
+   status: "settled",
+   reflect: "Ask any AI to count the letter R in 'strawberry'. When it slips, you'll understand tokens better than reading any explainer.",
+   conceptQuiz: [
+    {
+     q: "A token is roughly:",
+     options: [
+      { text: "One letter.", misconception: "If tokens were letters, AIs would be perfect at counting letters. They are not." },
+      { text: "About 3/4 of a word.", correct: true },
+      { text: "One sentence.", misconception: "Sentences split into many tokens. Pricing and limits are per token, not per sentence." },
+      { text: "One pixel.", misconception: "Pixels appear in vision models. Tokens are text." }
+     ],
+     why: "Tokens are sub-word chunks. About 4 characters or 3/4 of a word in English."
+    },
+    {
+     q: "Why does an AI fail to count letters in a word reliably?",
+     options: [
+      { text: "Because it has bad RAM.", misconception: "RAM has nothing to do with this. It is about what the model sees." },
+      { text: "Because it sees the word as tokens, not letters.", correct: true },
+      { text: "Because it is intentionally lying.", misconception: "There is no intent. It is a structural limitation of the input representation." },
+      { text: "Because English is hard.", misconception: "This happens across languages. It is about tokenisation, not English." }
+     ],
+     why: "The tokenizer splits 'strawberry' into 'straw' and 'berry'. The model never sees individual letters to count."
+    },
+    {
+     q: "Why does it cost more to send a long Hindi message to an LLM than the same English message?",
+     options: [
+      { text: "Because Hindi is more expensive.", misconception: "Companies do not charge by language. They charge by tokens." },
+      { text: "Because non-Latin scripts often tokenize into more tokens per equivalent meaning.", correct: true },
+      { text: "Because Hindi servers are slower.", misconception: "Server location does not affect token count." },
+      { text: "There is no difference.", misconception: "There is, and it can be 2x or more for some scripts." }
+     ],
+     why: "Tokenizers were largely trained on English. Other scripts often compress less efficiently into tokens, increasing cost."
+    }
+   ],
+   conceptTasks: [
+    { level: "basic",    t: "Strawberry test",     d: "Ask any AI to count the letter R in 'strawberry'. Watch what happens.", xp: 10 },
+    { level: "easy",     t: "Count your tokens",   d: "Take a paragraph you wrote. Paste it into a token counter (OpenAI's tokenizer page or any free tool) and note how many tokens it produces vs the word count.", xp: 25 },
+    { level: "advanced", t: "Optimise your prompt", d: "Take a verbose prompt you use often. Rewrite it to use fewer tokens without losing the meaning. Measure the savings.", xp: 70 }
+   ]
+  },
   { t: "Neural networks and parameters",      short: "Billions of tiny tunable knobs that, together, store patterns.",                                                             deep: "A neural network is layers of very simple maths units stacked together. Each unit has a number called a weight. \"Learning\" is just nudging these weights, billions of times, so that the model's outputs slowly start matching the right answers in the training data. GPT-4-class models have over a trillion of these knobs. More knobs roughly equals more capability , but the quality of the training data and the architecture matter just as much. A small, well-trained model can beat a huge, badly-trained one. Scale isn't the only ingredient.",                                                                                                   status: "settled",  reflect: "Why does \"the bigger the model, the smarter it is\" only get you halfway to the truth?" },
   { t: "Supervised, unsupervised, and RL",     short: "Three different teachers.",                                                                               deep: "Supervised learning is school with an answer key , you show the model thousands of cats and dogs labelled \"cat\" or \"dog,\" and it learns to label new ones. Unsupervised learning is school without an answer key , show it a million customer records and let it cluster them into groups it discovers by itself. Reinforcement learning is school by trial and error , the model takes an action, gets a reward or a penalty, adjusts. Modern chatbots blend these: first pre-trained unsupervised on the internet to predict next words, then refined with RL from human feedback (RLHF) to be more helpful and less awful.",                                                                    status: "settled",  reflect: "Which of these three styles does your own learning look most like, right now?" },
   { t: "Hallucination",               short: "Confident, fluent, totally wrong. The signature failure of LLMs.",                                                            deep: "Ask a chatbot for the references in a textbook it's never read. It'll often give you a list of perfectly-formatted citations , authors, journal names, page numbers , that don't exist. Not one of them. The model isn't lying on purpose. It's doing exactly what it was built for: producing text that looks like what should come next. Plausible has nothing to do with true. The fluency is the problem , a confident wrong answer feels right to humans, so we forward it, build on it, ship it. The fix is boring: anything important that comes out of an AI, you verify against a primary source. Treat it like a brilliant intern who occasionally makes things up.",                                            status: "settled",  reflect: "When did an AI most confidently mislead you? What clue could have warned you sooner?" },

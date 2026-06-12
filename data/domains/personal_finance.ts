@@ -44,12 +44,114 @@ const d: Domain = {
 
  synthesis: [
   { concept: "Compounding",     linksTo: "investing",    note: "The same engine drives both. Personal finance feeds it; investing tunes it." },
-  { concept: "Anchoring on price", linksTo: "marketing",    note: "Knowing what makes you buy makes you spend less. See Marketing → social proof + anchoring." }
+  { concept: "Anchoring on price", linksTo: "marketing",    note: "Knowing what makes you buy makes you spend less. See Marketing for social proof and anchoring." }
+ ],
+
+ subdomains: [
+  { id: "fundamentals", name: "Fundamentals" },
+  { id: "debt",         name: "Debt and Buffer" },
+  { id: "automation",   name: "Automation and Habits" },
+  { id: "products",     name: "Products and Protection" }
  ],
 
  concepts: [
-  { t: "Spend less than you earn",               short: "The entire game, in five words.",                                                                                               deep: "Everything else in personal finance is a footnote on this rule. The cleverest investing strategy in the world can't fix a leaking budget. Income matters less than the gap between what comes in and what goes out , that's why people on huge salaries go broke and people on modest ones quietly become wealthy. You don't have to track every chai. You do have to know, roughly, what slice of last month's income made it out alive. If you can't answer that, you can't fix anything else.",                                                                                                                                      status: "settled",  reflect: "Roughly , what percentage of your income did you spend last month? If you can't answer to the nearest 10%, that's the first thing to fix." },
-  { t: "Emergency fund first",                 short: "Three to six months of essential spending, in a boring place you can grab in a day.",                                                                     deep: "Imagine your phone breaks, your car needs a new battery, and you lose your job , all in the same month. Without a cash buffer, those small disasters become a credit card spiral that takes years to pay back. With one, they're inconvenient and survivable. That's the entire job of an emergency fund. Three months of essential expenses to start with, six if your income is irregular. Put it in a high-interest savings account or a liquid mutual fund , not in stocks (markets fall hardest exactly when you need the money), not in a tin (inflation eats it). The point is boring access, not return.",                                                                                    status: "settled",  reflect: "If your salary stopped landing tomorrow, how many months could you actually keep paying rent and groceries? If the answer is under three, that's the goal." },
+  {
+   t: "Spend less than you earn",
+   subdomain: "fundamentals",
+   definition: "The whole subject in five words. Income minus spending leaves the surplus that everything else builds on.",
+   short: "The entire game, in five words.",
+   deep: "Everything else in personal finance is a footnote on this rule. The cleverest investing strategy in the world can't fix a leaking budget. Income matters less than the gap between what comes in and what goes out. That's why people on huge salaries go broke and people on modest ones quietly become wealthy. You don't have to track every chai. You do have to know, roughly, what slice of last month's income made it out alive. If you can't answer that, you can't fix anything else.",
+   generic: "Imagine a leaky bucket. Whether the tap (your income) is wide or narrow does not matter if the hole at the bottom is leaking it all out. Patching the bucket beats turning up the tap, almost always. The patching is spending less.",
+   expert: "The savings rate is the most important single number in personal finance. Doubling your savings rate roughly cuts your required working years in half (rough rule from FIRE math). 5% savings rate means you need to work about 60 years to retire. 50% means about 17. The math is in posts like Mr Money Mustache's 'Shockingly Simple Math Behind Early Retirement'. Beware of lifestyle inflation: as income rises, costs creep up and the savings rate stays put. Lock the percent first, not the rupee amount.",
+   status: "settled",
+   reflect: "Roughly what percentage of your income did you spend last month? If you can't answer to the nearest 10%, that's the first thing to fix.",
+   conceptQuiz: [
+    {
+     q: "Your income just doubled. The most likely outcome for your savings rate is:",
+     options: [
+      { text: "It doubles automatically.", misconception: "Without a deliberate lock on the percent, lifestyle creep usually swallows most of the raise." },
+      { text: "It stays roughly the same unless you deliberately lock the percent.", correct: true },
+      { text: "It crashes to zero.", misconception: "Some people do this, but it is not the typical outcome." },
+      { text: "It is unaffected by income.", misconception: "It is connected; the point is whether you keep the percent constant or let costs creep." }
+     ],
+     why: "Lifestyle inflation is the silent killer of high earners. Lock your savings rate as a percent of income, automatically, before the new spending shows up."
+    },
+    {
+     q: "Two friends earn the same salary. Friend A saves 20%, Friend B saves 5%. Twenty years later:",
+     options: [
+      { text: "A is roughly four times wealthier than B.", correct: true },
+      { text: "They are roughly even because both saved.", misconception: "The gap compounds. 4x the contributions over 20 years at the same return is a huge gap." },
+      { text: "B is wealthier because B 'lived more'.", misconception: "Living more is a real choice. But measured in financial wealth, A wins overwhelmingly." },
+      { text: "Cannot be determined.", misconception: "We can estimate well using the savings rate alone." }
+     ],
+     why: "Savings rate is the single most predictive number for medium-term wealth accumulation."
+    },
+    {
+     q: "Where should the very first 30 minutes of personal-finance effort go?",
+     options: [
+      { text: "Pick the right index fund.", misconception: "Premature. You cannot tune the engine before you know the fuel level." },
+      { text: "Get a rough number for how much you spent last month.", correct: true },
+      { text: "Read three books before doing anything.", misconception: "Books help, but they delay action. The first 30 minutes is a real number, not theory." },
+      { text: "Find a financial advisor.", misconception: "An advisor cannot help you until you know your own basic numbers." }
+     ],
+     why: "You cannot manage what you cannot see. Knowing the rough number is the first lever."
+    }
+   ],
+   conceptTasks: [
+    { level: "basic",    t: "Spot check your spending", d: "Open your bank app right now. Estimate last month's total spending to the nearest 10%. Then look at the real number. Note the gap.", xp: 10 },
+    { level: "easy",     t: "Pick a savings rate",       d: "Decide a savings rate as a percentage of income (start with 10% if unsure). Write it down. That is the target for next month.", xp: 25 },
+    { level: "advanced", t: "Lock it in",               d: "Set up a standing instruction so the chosen percent of your next salary moves to a separate account or SIP within 48 hours of landing. The mechanism is the win, not the size.", xp: 70 }
+   ]
+  },
+  {
+   t: "Emergency fund first",
+   subdomain: "debt",
+   definition: "A liquid cash buffer of three to six months of essential expenses, kept in a boring high-interest account you can access in a day.",
+   prereqs: ["Spend less than you earn"],
+   short: "Three to six months of essential spending, in a boring place you can grab in a day.",
+   deep: "Imagine your phone breaks, your car needs a new battery, and you lose your job. All in the same month. Without a cash buffer, those small disasters become a credit card spiral that takes years to pay back. With one, they're inconvenient and survivable. That's the entire job of an emergency fund. Three months of essential expenses to start with, six if your income is irregular. Put it in a high-interest savings account or a liquid mutual fund. Not in stocks (markets fall hardest exactly when you need the money), not in a tin (inflation eats it). The point is boring access, not return.",
+   generic: "Think of it as a financial seatbelt. You hope you never need it. When a shock hits (job loss, medical bill, sudden home repair), it stops the shock from turning into a financial disaster.",
+   expert: "The buffer size depends on income stability and obligations. Salaried with a partner: 3 months. Single-income freelancer with kids: 6 to 12 months. Place it in instruments with same-day or T+1 liquidity. Liquid funds in India yield close to short-term FD rates with better liquidity. The opportunity cost of holding cash vs equity is real but the optionality value is higher than most spreadsheets credit. Inflation matters but the buffer should not chase yield; chase it elsewhere.",
+   status: "settled",
+   reflect: "If your salary stopped landing tomorrow, how many months could you actually keep paying rent and groceries? If the answer is under three, that's the goal.",
+   conceptQuiz: [
+    {
+     q: "Where should an emergency fund live?",
+     options: [
+      { text: "In stocks for higher return.", misconception: "Markets fall hardest exactly when you need the money. The point of an emergency fund is access, not return." },
+      { text: "In a high-interest savings account or a liquid mutual fund.", correct: true },
+      { text: "In a tin under the bed.", misconception: "Inflation eats the buying power. Theft is also a real risk." },
+      { text: "In long-term FDs.", misconception: "Lock-ins defeat the purpose; you cannot access the money quickly when you need it." }
+     ],
+     why: "Liquidity beats yield for an emergency buffer. Three months in a boring liquid place."
+    },
+    {
+     q: "Before investing in equities, what comes first?",
+     options: [
+      { text: "Pick the best stock.", misconception: "Premature. One forced sale in a downturn can erase the gains." },
+      { text: "Building a 3 to 6 month emergency fund.", correct: true },
+      { text: "Buying a house.", misconception: "House is illiquid and tied up. It is not an emergency fund." },
+      { text: "Maxing out credit card limits.", misconception: "Credit cards are debt, not savings. At 30 to 45% interest in India, they destroy wealth fast." }
+     ],
+     why: "Without a buffer, market dips force you to sell at the worst time. Buffer first, then invest."
+    },
+    {
+     q: "Your buffer should cover how many months of expenses if you are a salaried single earner with stable income?",
+     options: [
+      { text: "1 month.", misconception: "Too thin. One bad month wipes it out." },
+      { text: "3 months (then build to 6).", correct: true },
+      { text: "12 months.", misconception: "Overkill for stable salaried income; the opportunity cost gets large." },
+      { text: "5 years.", misconception: "Way too much cash drag. Better directed elsewhere." }
+     ],
+     why: "Three months as the starting target, six months if income is irregular or you have dependents."
+    }
+   ],
+   conceptTasks: [
+    { level: "basic",    t: "Calculate one month",  d: "Add up your essential monthly expenses: rent, groceries, utilities, basic transport, EMIs. That's your one-month buffer target.", xp: 10 },
+    { level: "easy",     t: "Open a separate account", d: "Open a high-interest savings account (or buy units of a liquid fund) used only for the emergency fund. Keep it separate from your spending account.", xp: 25 },
+    { level: "advanced", t: "Build to 3 months",     d: "Transfer enough to reach three months over the next few cycles. Once hit, leave it alone. Touch only in actual emergencies.", xp: 70 }
+   ]
+  },
   { t: "Kill high-interest debt first",             short: "Credit cards and payday loans first, always. Nothing else competes.",                                                                             deep: "An Indian credit card typically charges 30 to 45% a year on whatever you don't pay off in the cycle. No legal investment beats that reliably. So paying down a credit card balance is basically a risk-free 30% return , better than any stock, bond, or fund you'll be pitched. There are two playbooks. The avalanche method says: pay the highest interest rate first (mathematically optimal). The snowball method says: pay the smallest balance first (motivationally easier , you knock one debt out fast, feel a win, keep going). Pick the one you'll actually finish, not the one that looks smarter on paper.",                                                                                 status: "debated",  reflect: "Write down every debt you have with its interest rate. The biggest rate gets attacked first , unless you know you'd quit without an early small win." },
   { t: "Pay yourself first (automate it)",            short: "Move money to savings the day your salary lands. Live on what's left, not the other way around.",                                                               deep: "Willpower runs out. Automation doesn't. People with identical incomes save wildly different amounts depending on one thing: whether the saving happens automatically before they see the money. Set up a standing instruction , the day after salary credits, ₹X gets pulled into a savings account or an investment SIP. You'll adjust your spending to the leftover. If you wait until the end of the month to save \"whatever's left,\" you'll find there's nothing left. There is always nothing left.",                                                                                                                                            status: "settled",  reflect: "What percentage of your last salary moved into savings or investments within two days of it landing? If \"none,\" that's the next 30-minute fix." },
   { t: "Index funds beat picking",                short: "Over long horizons, a cheap fund that tracks the whole market beats most clever ones.",                                                                    deep: "Every year, regulators publish a report (called SPIVA) that compares actively managed mutual funds against simple index funds. The same boring result keeps showing up: over 10 or 20 years, most active funds lose to the index after their fees are taken out. That doesn't mean active managers are stupid. It means the market is hard, fees are high, and \"average\" sounds boring but in practice means \"top quartile.\" For most of your equity allocation, just buy a broad Indian index fund (Nifty 50 or Total Market), keep buying it automatically, and don't touch it. You can have a small portion for active picks if you want the entertainment. The boring part is where the money is made.",                                            status: "settled",  reflect: "Pull up your largest actively managed mutual fund. Compare its 10-year return, after fees, against the Nifty 50 over the same period. Honestly." },
