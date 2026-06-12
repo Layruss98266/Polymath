@@ -24,12 +24,39 @@ const Synthesis = z.object({
  note: z.string()
 });
 
+const QuizOption = z.union([
+ z.object({ text: z.string(), correct: z.literal(true) }),
+ z.object({ text: z.string(), correct: z.literal(false).optional(), misconception: z.string() })
+]);
+
+const QuizQuestion = z.object({
+ q: z.string(),
+ options: z.array(QuizOption).min(2),
+ why: z.string(),
+ testOut: z.boolean().optional()
+});
+
+const ConceptTask = z.object({
+ level: z.enum(["basic", "easy", "advanced"]),
+ t: z.string(),
+ d: z.string(),
+ xp: z.number().int().positive()
+});
+
 const Concept = z.object({
  t: z.string(),
  short: z.string(),
  deep: z.string(),
  status: z.enum(["settled", "debated", "framework"]),
- reflect: z.string()
+ reflect: z.string(),
+ fullForm: z.string().optional(),
+ definition: z.string().optional(),
+ subdomain: z.string().optional(),
+ prereqs: z.array(z.string()).optional(),
+ generic: z.string().optional(),
+ expert: z.string().optional(),
+ conceptQuiz: z.array(QuizQuestion).optional(),
+ conceptTasks: z.array(ConceptTask).optional()
 });
 
 const RoadmapStage = z.object({
@@ -44,24 +71,13 @@ const Resource = z.object({
  name: z.string(),
  what: z.string(),
  url: z.string(),
+ kind: z.enum(["article", "video", "course", "book", "podcast", "tool"]).optional(),
  price: z.string().optional(),
  verify: z.boolean().optional(),
  lastVerified: z.string().optional()
 });
 
 const Mission = z.object({ t: z.string(), d: z.string(), xp: z.number().int().positive() });
-
-const QuizOption = z.union([
- z.object({ text: z.string(), correct: z.literal(true) }),
- z.object({ text: z.string(), correct: z.literal(false).optional(), misconception: z.string() })
-]);
-
-const QuizQuestion = z.object({
- q: z.string(),
- options: z.array(QuizOption).min(2),
- why: z.string(),
- testOut: z.boolean().optional()
-});
 
 const Flashcard = z.object({ front: z.string(), back: z.string() });
 const GlossaryItem = z.object({ term: z.string(), def: z.string() });
@@ -94,6 +110,7 @@ export const DomainSchema = z.object({
  flashcards: z.array(Flashcard).min(8),
  glossary: z.array(GlossaryItem).min(8),
 
+ subdomains: z.array(z.object({ id: z.string(), name: z.string() })).optional(),
  capstone: z.object({ t: z.string(), d: z.string(), xp: z.number().int().positive() }).optional(),
  safetyNote: z.string().optional()
 });
@@ -103,7 +120,7 @@ export type DomainParsed = z.infer<typeof DomainSchema>;
 export function validateDomain(d: unknown, ctx = ""): DomainParsed {
  const r = DomainSchema.safeParse(d);
  if (!r.success) {
-  // In dev , loud failure. In prod , return a best-effort parse so the app doesn't crash.
+  // In dev, loud failure. In prod, return a best-effort parse so the app doesn't crash.
   if (typeof window !== "undefined" && process.env.NODE_ENV !== "production") {
    console.error(`[domain schema] ${ctx} failed validation`, r.error.flatten());
   }

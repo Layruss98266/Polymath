@@ -23,12 +23,28 @@ export type Diagram = {
 
 export type Synthesis = { concept: string; linksTo: string; note: string };
 
+export type ConceptTask = {
+ level: "basic" | "easy" | "advanced";
+ t: string;
+ d: string;
+ xp: number;
+};
+
 export type Concept = {
  t: string;
  short: string;
  deep: string;
  status: EpistemicStatus;
  reflect: string;
+ // Phase 5c additions, all optional so existing domains keep working
+ fullForm?: string;            // expansion of any acronym in the concept name
+ definition?: string;          // one-line dictionary style
+ subdomain?: string;           // optional grouping inside the domain
+ prereqs?: string[];           // titles of prior concepts that help
+ generic?: string;             // explanation for someone with zero background
+ expert?: string;              // explanation for someone with domain knowledge
+ conceptQuiz?: QuizQuestion[]; // 3 to 5 quiz items tied to this concept
+ conceptTasks?: ConceptTask[]; // basic, easy, advanced tasks tied to this concept
 };
 
 export type RoadmapStage = {
@@ -39,10 +55,13 @@ export type RoadmapStage = {
  time: string;
 };
 
+export type ResourceKind = "article" | "video" | "course" | "book" | "podcast" | "tool";
+
 export type Resource = {
  name: string;
  what: string;
  url: string;
+ kind?: ResourceKind;
  price?: string;
  verify?: boolean;
  lastVerified?: string;
@@ -92,6 +111,7 @@ export type Domain = {
  flashcards: Flashcard[];
  glossary: GlossaryItem[];
 
+ subdomains?: { id: string; name: string }[];
  capstone?: { t: string; d: string; xp: number };
  safetyNote?: string;
 };

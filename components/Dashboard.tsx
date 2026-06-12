@@ -5,6 +5,7 @@ import { DOMAIN_INDEX, loadDomain } from "@/data/domains";
 import type { Domain } from "@/lib/types";
 import { masteryPct } from "@/lib/mastery";
 import { domainRank, globalRank, levelProgress } from "@/lib/xp";
+import { RankBadge } from "./RankBadge";
 import { dueNow } from "@/lib/fsrs";
 
 export function Dashboard() {
@@ -57,7 +58,7 @@ export function Dashboard() {
      {masteries.map((m) => (
       <li key={m.id} className="flex items-center justify-between border border-[color:var(--line)] rounded-xl p-3">
        <span className="font-medium">{m.name}</span>
-       <span className="chip" style={{ color: m.hue }}>{domainRank(m.m)} · {Math.round(m.m * 100)}%</span>
+       <span className="inline-flex items-center gap-2"><RankBadge rank={domainRank(m.m)} size="sm" /><span className="dim text-xs">{Math.round(m.m * 100)}%</span></span>
       </li>
      ))}
     </ul>

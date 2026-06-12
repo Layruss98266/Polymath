@@ -14,7 +14,7 @@ import { QuizTab } from "./tabs/QuizTab";
 import { FlashcardsTab } from "./tabs/FlashcardsTab";
 import { CheatsheetTab } from "./tabs/CheatsheetTab";
 import { CounterViewTab } from "./tabs/CounterViewTab";
-// MentorStrip removed per user request. Schema makes mentors optional.
+import { RankBadge } from "./RankBadge";
 
 const TABS = [
  "Basics", "Diagram", "Concepts", "Zero→Grandmaster",
@@ -48,8 +48,8 @@ export function DomainView({ domain }: { domain: Domain }) {
     </div>
     <div className="text-right">
      <p className="text-xs dim">Your rank</p>
-     <p className="font-display text-xl hue">{rank}</p>
-     <p className="text-xs dim">{Math.round(m * 100)}% mastery</p>
+     <RankBadge rank={rank} size="lg" />
+     <p className="text-xs dim mt-1">{Math.round(m * 100)}% mastery</p>
     </div>
    </header>
 

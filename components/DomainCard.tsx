@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { useUserState } from "@/lib/state";
 import { domainRank } from "@/lib/xp";
+import { RankBadge } from "./RankBadge";
 import type { DomainEntry } from "@/data/domains";
 
 export function DomainCard({ d }: { d: DomainEntry }) {
@@ -25,7 +26,7 @@ export function DomainCard({ d }: { d: DomainEntry }) {
      <p className="dim text-xs uppercase tracking-wider">{d.category}</p>
      <p className="text-sm mt-1 line-clamp-2">{d.tagline}</p>
      <div className="mt-3 flex items-center gap-2 text-xs">
-      <span className="chip" style={{ color: d.hue }}>{started ? rank : "Untouched"}</span>
+      {started ? <RankBadge rank={rank} size="sm" /> : <span className="chip dim">Untouched</span>}
       {d.core && <span className="chip">Core 15</span>}
      </div>
     </div>
