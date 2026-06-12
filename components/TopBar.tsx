@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
-import { Flame, Zap, Trophy, Brain, MoonStar, Sun, Map, Bookmark, Search } from "lucide-react";
+import { Flame, Zap, Trophy, Brain, MoonStar, Sun, Map, Bookmark, Search, Volume2, VolumeX } from "lucide-react";
 import { useActions, useUserState, useHydrated } from "@/lib/state";
 import { levelProgress, globalRank } from "@/lib/xp";
 import { dueNow } from "@/lib/fsrs";
@@ -41,6 +41,9 @@ export function TopBar() {
      <Link href="/my-list" className="chip shrink-0 hidden md:inline-flex"><Bookmark size={14} className="hue" /> My list</Link>
      <Link href="/skill-map" className="chip shrink-0 md:hidden" aria-label="Skill map"><Map size={14} className="hue" /></Link>
      <Link href="/my-list" className="chip shrink-0 md:hidden" aria-label="My list"><Bookmark size={14} className="hue" /></Link>
+     <button className="btn shrink-0 !p-2" aria-label={s.muteSound ? "Unmute sounds" : "Mute sounds"} onClick={a.toggleMute}>
+      {s.muteSound ? <VolumeX size={14} /> : <Volume2 size={14} />}
+     </button>
      <button className="btn shrink-0 !p-2" aria-label="Toggle theme" onClick={() => a.setTheme(s.theme === "dark" ? "light" : "dark")}>
       {s.theme === "dark" ? <Sun size={14} /> : <MoonStar size={14} />}
      </button>

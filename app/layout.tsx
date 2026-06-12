@@ -6,9 +6,10 @@ import { OveruseNudge } from "@/components/OveruseNudge";
 import { Onboarding } from "@/components/Onboarding";
 
 export const metadata: Metadata = {
- title: "POLYMATH , learn anything, daily",
+ title: "POLYMATH. Learn anything, daily.",
  description:
-  "A daily-habit learning app teaching dozens of real-world domains from absolute basics to mastery. Spaced repetition, real missions, real mentors."
+  "A daily-habit learning app teaching dozens of real-world domains from absolute basics to mastery. Spaced repetition, real missions, real frameworks.",
+ manifest: "/manifest.webmanifest"
 };
 
 export const viewport: Viewport = {

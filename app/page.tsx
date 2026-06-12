@@ -4,6 +4,7 @@ import { SessionPicker } from "@/components/SessionPicker";
 import { DomainGrid } from "@/components/DomainGrid";
 import { LevelRing } from "@/components/LevelRing";
 import { FocusTimer } from "@/components/FocusTimer";
+import { ContinueLearning } from "@/components/ContinueLearning";
 
 export default function HomePage() {
  return (
@@ -15,14 +16,15 @@ export default function HomePage() {
       Learn anything.<br />Two minutes a day.
      </h1>
      <p className="dim max-w-xl">
-      Real frameworks, real ranked resources, real-world missions, spaced repetition, and an honest game loop.
-      <strong className="ink"> No dark patterns.</strong> XP only for genuine learning actions.
+      Real frameworks. Real ranked resources. Real-world missions. Spaced repetition.
+      An honest game loop with <strong className="ink">no dark patterns</strong>. XP only for genuine learning actions.
      </p>
     </div>
     <LevelRing />
    </section>
 
    <DailyQuote />
+   <ContinueLearning />
    <DailyQuest />
    <SessionPicker />
    <FocusTimer />

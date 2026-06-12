@@ -7,14 +7,17 @@ import { loadState, saveState } from "./db";
 import { tickStreak, todayKey } from "./streak";
 import { XP, levelOf } from "./xp";
 import { ACHIEVEMENTS } from "@/data/achievements";
+import { Sound } from "./sound";
 
-// Fire confetti on level up, gated on prefers-reduced-motion.
-function celebrate() {
+// Fire confetti and an optional chord on level up. Both gated on prefers-reduced-motion;
+// chord additionally gated on the user's mute toggle.
+function celebrate(mute: boolean) {
  if (typeof window === "undefined") return;
  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
  import("canvas-confetti").then((m) => {
   try { m.default({ particleCount: 90, spread: 70, origin: { y: 0.6 } }); } catch {}
  }).catch(() => {});
+ Sound.levelUp(mute);
 }
 
 // Auto-award any achievement whose condition is now satisfied. Pure on state.
@@ -58,7 +61,7 @@ class Store {
   this.state = enriched;
   this.emit();
   this.scheduleSave();
-  if (this.hydrated && nextLevel > prevLevel) celebrate();
+  if (this.hydrated && nextLevel > prevLevel) celebrate(!!enriched.muteSound);
  }
 
  patch(fn: (s: UserState) => UserState) { this.set(fn(this.state)); }
