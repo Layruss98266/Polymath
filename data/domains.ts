@@ -40,7 +40,16 @@ export const DOMAIN_INDEX: DomainEntry[] = [
  { id: "ai_ml",      name: "AI & Machine Learning",  category: "Tech & Future", icon: "🤖", hue: "#6db5ff", tagline: "Understand the machines rewriting everything",    core: true, loader: () => import("./domains/ai_ml") },
  // World & Knowledge
  { id: "famous_laws",   name: "Famous Scientific Laws",  category: "World & Knowledge", icon: "⚛️", hue: "#c084fc", tagline: "The rules of reality, in plain words",     core: true, loader: () => import("./domains/famous_laws") },
- { id: "law",       name: "Law & Legal Basics",    category: "World & Knowledge", icon: "⚖️", hue: "#fcd34d", tagline: "How rules work, so they don't surprise you",  core: true, loader: () => import("./domains/law") }
+ { id: "law",       name: "Law & Legal Basics",    category: "World & Knowledge", icon: "⚖️", hue: "#fcd34d", tagline: "How rules work, so they don't surprise you",  core: true, loader: () => import("./domains/law") },
+ // Career & Skills
+ { id: "sales",          name: "Sales",            category: "Career",    icon: "🤝", hue: "#22c55e", tagline: "Help people buy what they actually need",              core: false, loader: () => import("./domains/sales") },
+ { id: "leadership",     name: "Leadership",       category: "Career",    icon: "🧭", hue: "#ef4444", tagline: "Get things done through people, not despite them",     core: false, loader: () => import("./domains/leadership") },
+ // Personal
+ { id: "productivity",   name: "Productivity",     category: "Personal",  icon: "⚡", hue: "#f59e0b", tagline: "Do the right things, not just more things",           core: false, loader: () => import("./domains/productivity") },
+ // Skills
+ { id: "design_thinking", name: "Design Thinking", category: "Skills",    icon: "🎨", hue: "#8b5cf6", tagline: "Solve the right problem, not just a problem",         core: false, loader: () => import("./domains/design_thinking") },
+ // Technology
+ { id: "data_science",   name: "Data Science",     category: "Technology", icon: "📊", hue: "#06b6d4", tagline: "Turn data into decisions, not just dashboards",      core: false, loader: () => import("./domains/data_science") }
 ];
 
 export function findEntry(id: string): DomainEntry | undefined {

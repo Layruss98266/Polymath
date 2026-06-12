@@ -37,12 +37,13 @@ const d: Domain = {
    title: "SPIN Question Types",
    caption: "Four question types that move a buyer from awareness to urgency. Situation and Problem questions uncover pain. Implication and Need-payoff questions amplify it.",
    data: {
-    axes: { x: "Specificity", y: "Buyer Urgency Created" },
-    points: [
-     { label: "Situation", x: 20, y: 10 },
-     { label: "Problem", x: 40, y: 30 },
-     { label: "Implication", x: 60, y: 70 },
-     { label: "Need-Payoff", x: 80, y: 90 }
+    xAxis: ["Low specificity", "High specificity"],
+    yAxis: ["Low urgency created", "High urgency created"],
+    items: [
+     { label: "Situation", x: 0.2, y: 0.1 },
+     { label: "Problem", x: 0.4, y: 0.3 },
+     { label: "Implication", x: 0.6, y: 0.7 },
+     { label: "Need-Payoff", x: 0.8, y: 0.9 }
     ]
    }
   }

@@ -31,12 +31,13 @@ const d: Domain = {
    title: "Eisenhower Matrix",
    caption: "Tasks sorted by urgency and importance. Most people live in Q1 and Q3. The leverage is in Q2.",
    data: {
-    axes: { x: "Urgency", y: "Importance" },
-    points: [
-     { label: "Q1: Do now (crisis)", x: 80, y: 80 },
-     { label: "Q2: Schedule (deep work, planning)", x: 20, y: 80 },
-     { label: "Q3: Delegate (interruptions)", x: 80, y: 20 },
-     { label: "Q4: Eliminate (time-wasters)", x: 20, y: 20 }
+    xAxis: ["Not urgent", "Urgent"],
+    yAxis: ["Not important", "Important"],
+    items: [
+     { label: "Q1: Do now (crisis)", x: 0.85, y: 0.85 },
+     { label: "Q2: Schedule (deep work)", x: 0.15, y: 0.85 },
+     { label: "Q3: Delegate (interruptions)", x: 0.85, y: 0.15 },
+     { label: "Q4: Eliminate (time-wasters)", x: 0.15, y: 0.15 }
     ]
    }
   },
