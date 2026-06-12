@@ -2,20 +2,15 @@
 import { ReactNode, useState } from "react";
 import { useUserState } from "@/lib/state";
 import { ChevronDown, ChevronUp, Sparkles } from "lucide-react";
-import { HomeHero, HeroFeatures, HeroHow, HeroStats } from "./HomeHero";
+import { HomeHero, HeroFeatures, HeroHow, HeroStats, HeroCategories, HeroPrinciples, HeroFinalCTA } from "./HomeHero";
 import { LevelRing } from "./LevelRing";
 
-// Home is the most-visited page. Decide what to show based on user maturity:
-// - Fresh user: full marketing hero (hero, stats, features, how) + catalogue. No empty rituals.
-// - Returning user: compact hero + concept of the day + continue + daily quest + catalogue.
-// - Active user: compact hero + level ring + every ritual.
-// All hidden sections can be revealed with a single "Show more" toggle.
 type Tier = "fresh" | "returning" | "active";
 
 export function HomeShell({
- hero, quote, conceptOfDay, continueLearning, dailyQuest, sessionPicker, focusTimer, domainGrid
+ quote, conceptOfDay, continueLearning, dailyQuest, sessionPicker, focusTimer, domainGrid
 }: {
- hero?: ReactNode; quote: ReactNode; conceptOfDay: ReactNode; continueLearning: ReactNode;
+ quote: ReactNode; conceptOfDay: ReactNode; continueLearning: ReactNode;
  dailyQuest: ReactNode; sessionPicker: ReactNode; focusTimer: ReactNode; domainGrid: ReactNode;
 }) {
  const s = useUserState();
@@ -26,63 +21,71 @@ export function HomeShell({
  const tier: Tier = started === 0 ? "fresh" : (started < 3 || xp < 100) ? "returning" : "active";
 
  const fresh = tier === "fresh";
- const showQuote          = !fresh || expanded;
- const showConceptOfDay   = (tier !== "fresh") || expanded;
- const showContinue       = started > 0;
- const showQuest          = started > 0 || expanded;
- const showSession        = tier === "active" || expanded;
- const showTimer          = tier === "active" || expanded;
- const showMarketingHero  = fresh && !expanded;
- const showRingSplit      = !fresh;
 
- return (
-  <div className="space-y-6">
-   {/* Marketing hero for fresh users: big and self contained. */}
-   {showMarketingHero && (
-    <>
-     <HomeHero />
-     <HeroStats />
-     <HeroHow />
-     <HeroFeatures />
-    </>
-   )}
-
-   {/* Returning + active users get a compact hero with the level ring beside it. */}
-   {showRingSplit && (
+ // For returning + active users we collapse the marketing strip and surface their rituals.
+ if (!fresh) {
+  return (
+   <div className="space-y-6">
     <section className="grid grid-cols-1 md:grid-cols-[1fr_300px] gap-4">
-     {hero ?? <HomeHero />}
+     <HomeHero />
      <LevelRing />
     </section>
-   )}
+    {quote}
+    {conceptOfDay}
+    {continueLearning}
+    {dailyQuest}
+    {tier === "active" && sessionPicker}
+    {tier === "active" && focusTimer}
+    <div id="domains" className="scroll-mt-20">{domainGrid}</div>
+   </div>
+  );
+ }
 
-   {fresh && (
-    <section className="panel p-4 sm:p-5 flex items-start gap-3" style={{ borderColor: "var(--hue)" }}>
-     <Sparkles size={18} className="hue mt-1 shrink-0" />
-     <div className="text-sm">
-      <p className="font-medium">First time? Pick a domain below.</p>
-      <p className="dim mt-1">Open its Basics tab. Five minutes. The rest of the app turns on as you start learning.</p>
-     </div>
-    </section>
-   )}
+ // Fresh user: full landing experience.
+ return (
+  <div className="space-y-10 sm:space-y-12">
+   <HomeHero />
 
-   {showQuote && quote}
-   {showConceptOfDay && conceptOfDay}
-   {showContinue && continueLearning}
-   {showQuest && dailyQuest}
-   {showSession && sessionPicker}
-   {showTimer && focusTimer}
+   <HeroStats />
 
-   <div id="domains" className="scroll-mt-20">
+   <HeroHow />
+
+   <HeroFeatures />
+
+   <HeroCategories />
+
+   <HeroPrinciples />
+
+   {/* First-time hint sits just above the catalogue */}
+   <section className="panel p-4 sm:p-5 flex items-start gap-3" style={{ borderColor: "var(--hue)" }}>
+    <Sparkles size={18} className="hue mt-1 shrink-0" />
+    <div className="text-sm">
+     <p className="font-medium">Ready? Pick a domain below.</p>
+     <p className="dim mt-1">Open its Basics tab. Five minutes. The rest of the app, daily quest, spaced repetition, achievements, turns on as you start learning.</p>
+    </div>
+   </section>
+
+   <div id="domains" className="scroll-mt-20 space-y-3">
     {domainGrid}
    </div>
 
-   {(fresh || tier === "returning") && (
-    <div className="flex justify-center">
-     <button className="chip" onClick={() => setExpanded((v) => !v)}>
-      {expanded ? <><ChevronUp size={12} /> Show less</> : <><ChevronDown size={12} /> Show daily rituals</>}
-     </button>
+   {/* Optional daily rituals for the curious fresh visitor */}
+   {expanded && (
+    <div className="space-y-4">
+     {quote}
+     {conceptOfDay}
+     {dailyQuest}
+     {sessionPicker}
+     {focusTimer}
     </div>
    )}
+   <div className="flex justify-center">
+    <button className="chip" onClick={() => setExpanded((v) => !v)}>
+     {expanded ? <><ChevronUp size={12} /> Hide daily rituals</> : <><ChevronDown size={12} /> Preview the daily rituals</>}
+    </button>
+   </div>
+
+   <HeroFinalCTA />
   </div>
  );
 }
