@@ -44,14 +44,310 @@ const d: Domain = {
  ],
 
  concepts: [
-  { t: "Ethos · Pathos · Logos",          short: "Credibility, emotion, logic. Use all three, and most people use only logic.",                                                        deep: "Aristotle's diagnosis from 2,400 years ago is uncomfortably current. Most people, when trying to convince someone, reach straight for facts: more data, more bullet points, more slides. That's logos alone, and it's the weakest single mode. The full picture also needs ethos (who you are, why you should be trusted on this) and pathos (why it matters right now, emotionally). A pitch with all three lands. A pitch with only logos bounces. Notice this in any meeting where the side with worse data won the room, they probably brought more ethos and pathos to the table.",                                                                                                                                       status: "framework", reflect: "Pick your last big pitch or email. Where are ethos, pathos, and logos in it? Which is missing?" },
-  { t: "BLUF, Bottom Line Up Front",       short: "Lead with the conclusion. Then defend it.",                                                                         deep: "McKinsey consultants and the military both arrived at the same idea: busy readers stop after the first sentence. So make that sentence carry the message. The instinct most of us have is to build to the conclusion, set context, walk through the analysis, then reveal the answer at the end. That's fine when you're telling a story. It's a disaster when you're delivering information to someone who'll read line one and then skim. Put the answer in line one. Defend it underneath. The reader who skims still leaves with the right takeaway. The reader who reads carefully gets the defence. Everyone wins.",                                                                                                                         status: "settled", reflect: "Open the last long email you sent. Where's the actual bottom line in it? If it isn't in the first sentence, what would change if you moved it there?" },
-  { t: "Specifics beat abstractions",       short: "\"Fast\" is forgettable. \"0-60 in 3 seconds\" sticks.",                                                                   deep: "Your brain is built to hold pictures, not categories. \"Fast,\" \"helpful,\" \"innovative\", these are categories. They evaporate the moment you read them. \"0-60 in 3 seconds,\" \"replied within 4 minutes,\" \"the orange one with the broken zip\", these are pictures. The Heath brothers (Made to Stick) call this concreteness, and it's one of the strongest single moves a writer can make. Look at your last paragraph. Underline every vague word. Replace each with a specific number, a real scene, a named example. The paragraph stops being something to skim and starts being something to remember.",                                                                                                                         status: "settled",  reflect: "Take one sentence of yours and replace every abstraction with a specific. Read it back. Different paragraph?" },
-  { t: "Story structure, weeknight version",    short: "Setup → trouble → choice → consequence. Most updates should follow this shape.",                                                       deep: "Joseph Campbell's hero's journey is the heavy-cake version of story, the one with twelve stages and a refusal of the call. The weeknight version, the one you can actually use in a project update or a pitch, is much smaller: \"here's how things were, then something broke, here's the choice we made, here's what happened.\" Almost any work update can be told this way. The brain is genuinely built to remember story-shaped information much better than bullet-shaped information. Try it in your next status email, the same content, told as a tiny story, gets remembered and forwarded. The bulleted version gets archived.",                                                                                                               status: "framework", reflect: "Take your most recent project update. Could you re-tell it as setup → trouble → choice → consequence in 60 seconds?" },
-  { t: "Audience tailoring",            short: "Same idea, different audiences, different starting points.",                                                                 deep: "A board of investors hears the same product update very differently from the engineering team that built it. The board wants the metric, the engineer wants the constraint, the customer wants the benefit, the journalist wants the story. Skilled communicators map who they're talking to and start there, not where their own thinking ended. Beginners write for themselves. Pros write for the specific person on the other side, in language that person already uses. The same idea, told to a CFO and to a designer, should be almost two different paragraphs.",                                                                                                                                               status: "settled",  reflect: "Take a recent message you sent. How would you rewrite it if the audience knew half as much? Twice as much?" },
-  { t: "Show, don't tell",             short: "Give them the evidence; let them draw the conclusion.",                                                                    deep: "\"She was angry\" is telling. \"She slammed the door so hard the photo frame fell off the wall\" is showing. The second sentence does more work because the reader does part of it, and what readers conclude for themselves, they remember and own. Storytellers, journalists, lawyers all live by this rule. Most business writing breaks it constantly, it asserts the conclusion (\"this was a breakthrough product launch\") instead of giving the evidence (\"we hit 50,000 users in 11 days; the previous record was 40,000 in 60\"). Trust the reader to land where the evidence points. They'll trust you more for it.",                                                                                                                      status: "framework", reflect: "Find one 'told' sentence in your writing. Show it instead. Read both. Which lands harder?" },
-  { t: "The curse of knowledge",          short: "Once you know something, you almost can't remember not knowing it. This is why experts explain badly.",                                            deep: "The Heath brothers' clearest single observation. The moment you've understood something, the version of you that didn't understand it disappears. So you forget what bits were confusing, you skip the foundation a beginner would need, you use jargon that doesn't feel like jargon to you anymore. Every expert who's ever been told \"can you explain that more simply?\" has been bitten by this. The only honest cure is regular blank-slate feedback, let someone outside the field read or hear your explanation and tell you the first place they got lost. That place is the curse, made visible.",                                                                                                                               status: "settled",  reflect: "Show your last technical explanation to someone outside the field. Where do they trip? That's the curse, in your work." },
-  { t: "Brevity",                 short: "Cut everything that isn't earning its place. Most drafts are 30% too long.",                                                         deep: "Almost every first draft has a quiet 30% of words that aren't doing real work, qualifiers, throat-clearing openers, restatements of what you already said. Strunk and White, Zinsser, Pinker: all of them say roughly the same thing, the second draft is where writing actually happens. The cut isn't about being curt; it's about respecting the reader's time. The same idea, said in fewer words, is also harder to misread. Try this on anything long you wrote recently, cut 30%, no exceptions. Almost always, the shorter version is also the clearer one.",                                                                                                                                               status: "settled",  reflect: "Cut your last long message by 30%. What was lost? What was gained?" },
+  {
+   t: "Ethos · Pathos · Logos",
+   subdomain: "foundations",
+   definition: "Aristotle's three modes of persuasion, the credibility of the speaker, the emotional state of the audience, and the logical argument itself.",
+   short: "Credibility, emotion, logic. Use all three, and most people use only logic.",
+   deep: "Aristotle's diagnosis from 2,400 years ago is uncomfortably current. Most people, when trying to convince someone, reach straight for facts: more data, more bullet points, more slides. That's logos alone, and it's the weakest single mode. The full picture also needs ethos (who you are, why you should be trusted on this) and pathos (why it matters right now, emotionally). A pitch with all three lands. A pitch with only logos bounces. Notice this in any meeting where the side with worse data won the room, they probably brought more ethos and pathos to the table.",
+   generic: "Imagine asking a friend to lend you money. You can list every reason you need it (logic). You can remind them you have always paid them back (credibility). You can tell them why this moment matters to you (emotion). All three together get a yes. Logic alone often does not.",
+   expert: "Aristotle's Rhetoric (circa 350 BCE) divides artistic proofs into ethos (character of the speaker), pathos (emotion of the audience), and logos (reasoning of the argument). Modern rhetoric (Toulmin, Perelman) extends but does not replace the triad. Cialdini's authority and liking principles map to ethos; Heath brothers' emotional and story principles map to pathos. The common failure mode in technical and corporate communication is logos-only delivery to audiences who decide on ethos and pathos first.",
+   status: "framework",
+   reflect: "Pick your last big pitch or email. Where are ethos, pathos, and logos in it? Which is missing?",
+   conceptQuiz: [
+    {
+     q: "Aristotle's three modes of persuasion are…",
+     options: [
+      { text: "Ethos, pathos, and logos.", correct: true },
+      { text: "Logic, rhetoric, and grammar.", misconception: "Those are the three classical liberal arts, not the modes of persuasion." },
+      { text: "Speaker, channel, and receiver.", misconception: "That is Shannon's communication model, not Aristotle's modes." },
+      { text: "Simple, unexpected, concrete.", misconception: "Those are Heath brothers' SUCCESs principles, not Aristotle's." }
+     ],
+     why: "Ethos, pathos, logos are credibility, emotion, and logic in Aristotle's Rhetoric."
+    },
+    {
+     q: "The most common persuasion failure in technical settings is…",
+     options: [
+      { text: "Relying on logos alone with audiences who decide on ethos and pathos first.", correct: true },
+      { text: "Using too many stories.", misconception: "Stories carry pathos; the failure is the opposite." },
+      { text: "Speaking too softly.", misconception: "Volume is downstream of the structural failure." },
+      { text: "Wearing the wrong colour shirt.", misconception: "Surface signals matter less than the missing modes." }
+     ],
+     why: "Data-heavy pitches under-supply credibility and emotion."
+    }
+   ],
+   conceptTasks: [
+    { level: "basic",    t: "Tag the modes",       d: "Take your last pitch or memo and label each section as ethos, pathos, or logos.", xp: 10 },
+    { level: "easy",     t: "Fill the gap",        d: "Identify the missing mode in your draft and add one sentence supplying it.", xp: 20 },
+    { level: "advanced", t: "Pitch with all three", d: "Deliver a real five-minute pitch deliberately balancing ethos, pathos, and logos, then ask listeners which mode landed hardest.", xp: 40 }
+   ]
+  },
+  {
+   t: "BLUF, Bottom Line Up Front",
+   subdomain: "structure",
+   definition: "A writing convention that places the conclusion or recommendation in the first sentence, with supporting context and analysis below.",
+   short: "Lead with the conclusion. Then defend it.",
+   deep: "McKinsey consultants and the military both arrived at the same idea: busy readers stop after the first sentence. So make that sentence carry the message. The instinct most of us have is to build to the conclusion, set context, walk through the analysis, then reveal the answer at the end. That's fine when you're telling a story. It's a disaster when you're delivering information to someone who'll read line one and then skim. Put the answer in line one. Defend it underneath. The reader who skims still leaves with the right takeaway. The reader who reads carefully gets the defence. Everyone wins.",
+   generic: "Imagine texting a friend whether dinner is still on. They reply with three paragraphs about traffic, work, and their cousin, and only at the end say yes. You wanted the yes in line one. BLUF just puts the yes first.",
+   expert: "Codified by US military doctrine (BLUF, bottom line up front) and by Barbara Minto in The Pyramid Principle (1987) as the executive memo convention. Sits at the intersection of journalism's inverted pyramid and consulting's MECE structure. Evidence base: Doumont (2009) shows top-down structures dramatically improve retention in time-pressured readers. Failure modes: leading with a hedged conclusion, or leading with context disguised as the bottom line.",
+   status: "settled",
+   reflect: "Open the last long email you sent. Where's the actual bottom line in it? If it isn't in the first sentence, what would change if you moved it there?",
+   conceptQuiz: [
+    {
+     q: "BLUF means…",
+     options: [
+      { text: "Bottom line up front, leading the document with the conclusion.", correct: true },
+      { text: "Brief language uses few words.", misconception: "Made-up expansion; not the convention." },
+      { text: "Build logic up first, then conclude.", misconception: "That is the opposite, narrative build-up to a conclusion." },
+      { text: "Bullet lists under formal headings.", misconception: "Formatting style, not the BLUF principle." }
+     ],
+     why: "BLUF is bottom line up front, the conclusion in line one."
+    },
+    {
+     q: "BLUF works mainly because…",
+     options: [
+      { text: "Busy readers often stop after the first sentence, so it must carry the message.", correct: true },
+      { text: "Readers prefer longer documents.", misconception: "BLUF assumes the opposite scanning behaviour." },
+      { text: "Conclusions are illegal at the end.", misconception: "No restriction applies; this is a stylistic choice." },
+      { text: "It hides the analysis from reviewers.", misconception: "Analysis still appears below the lead." }
+     ],
+     why: "Top-loading the conclusion matches how scanning readers actually consume documents."
+    }
+   ],
+   conceptTasks: [
+    { level: "basic",    t: "Find the buried lead", d: "Open three emails you wrote this week. Identify the actual bottom line and move it to line one.", xp: 10 },
+    { level: "easy",     t: "BLUF for a week",      d: "Write every work email for one week with the conclusion in the first sentence. Note response speed.", xp: 20 },
+    { level: "advanced", t: "Ship a BLUF memo",     d: "Write a decision memo that opens with one BLUF sentence followed by a structured defence, then ask three readers what they took away in 30 seconds.", xp: 40 }
+   ]
+  },
+  {
+   t: "Specifics beat abstractions",
+   subdomain: "clarity",
+   definition: "The writing principle that concrete details, names, and numbers make ideas more memorable, persuasive, and verifiable than abstract categories.",
+   short: "\"Fast\" is forgettable. \"0-60 in 3 seconds\" sticks.",
+   deep: "Your brain is built to hold pictures, not categories. \"Fast,\" \"helpful,\" \"innovative\", these are categories. They evaporate the moment you read them. \"0-60 in 3 seconds,\" \"replied within 4 minutes,\" \"the orange one with the broken zip\", these are pictures. The Heath brothers (Made to Stick) call this concreteness, and it's one of the strongest single moves a writer can make. Look at your last paragraph. Underline every vague word. Replace each with a specific number, a real scene, a named example. The paragraph stops being something to skim and starts being something to remember.",
+   generic: "Imagine telling a friend about a restaurant. Saying it was good gives them nothing to picture. Saying the chef brought out a smoking glass dome that lifted to reveal one perfect dumpling, that they will remember. The detail builds the picture; the category does not.",
+   expert: "Heath and Heath (Made to Stick, 2007) name concreteness as the C in SUCCESs, drawing on Paivio's dual-coding theory (1971) which shows concrete imagery is encoded both verbally and visually, doubling retention. Reinforced by Pinker (The Sense of Style, 2014) on the curse of nominalisation and by journalism's specificity rules. Failure mode: false specificity, made-up numbers that read concrete but invite scrutiny that reveals them as ornament.",
+   status: "settled",
+   reflect: "Take one sentence of yours and replace every abstraction with a specific. Read it back. Different paragraph?",
+   conceptQuiz: [
+    {
+     q: "Concrete writing is more memorable because…",
+     options: [
+      { text: "Specific details are encoded both verbally and visually in memory.", correct: true },
+      { text: "Abstract words are illegal in modern prose.", misconception: "No restriction; the issue is cognitive, not normative." },
+      { text: "Numbers are inherently more truthful than words.", misconception: "Truthfulness is independent of specificity." },
+      { text: "Readers prefer ornamental detail to substance.", misconception: "Useful detail beats ornament, not the other way around." }
+     ],
+     why: "Dual coding doubles the retrieval paths in memory."
+    },
+    {
+     q: "Which sentence is most concrete?",
+     options: [
+      { text: "We hit 50000 users in 11 days; the previous record was 40000 in 60.", correct: true },
+      { text: "We achieved unprecedented growth in our user base.", misconception: "Unprecedented and growth are abstract categories." },
+      { text: "The launch went really well.", misconception: "Really well is the canonical empty modifier." },
+      { text: "Significant momentum was generated.", misconception: "Significant and momentum lack any anchor." }
+     ],
+     why: "Named numbers and time spans produce a picture the reader can hold."
+    }
+   ],
+   conceptTasks: [
+    { level: "basic",    t: "Underline the vague",  d: "In your last paragraph, underline every abstract word and note what concrete fact could replace it.", xp: 10 },
+    { level: "easy",     t: "Swap five",            d: "Replace five abstractions with specific numbers, names, or scenes in a real document and read both versions out loud.", xp: 20 },
+    { level: "advanced", t: "Ship a concrete draft", d: "Edit a real public document to remove every unsupported abstraction, then test memorability with two readers a day later.", xp: 40 }
+   ]
+  },
+  {
+   t: "Story structure, weeknight version",
+   subdomain: "structure",
+   definition: "A compressed four-beat story shape, setup, trouble, choice, and consequence, suitable for ordinary work updates and pitches.",
+   short: "Setup → trouble → choice → consequence. Most updates should follow this shape.",
+   deep: "Joseph Campbell's hero's journey is the heavy-cake version of story, the one with twelve stages and a refusal of the call. The weeknight version, the one you can actually use in a project update or a pitch, is much smaller: \"here's how things were, then something broke, here's the choice we made, here's what happened.\" Almost any work update can be told this way. The brain is genuinely built to remember story-shaped information much better than bullet-shaped information. Try it in your next status email, the same content, told as a tiny story, gets remembered and forwarded. The bulleted version gets archived.",
+   generic: "Imagine telling a friend about your week. Things were fine. Then your laptop died. You bought a refurbished one. Now you are out 30000 rupees but back online. Four beats, no jargon, totally memorable.",
+   expert: "Compresses Campbell's hero's journey (1949) and Freytag's pyramid (1863) into a four-beat scaffold suitable for non-fiction operational communication. Maps to Adams's story spine (setup, disruption, consequence chain, resolution) and to McKee's inciting incident plus turning point structure. Heath and Heath (2007) document the retention advantage of story-shaped information over bullet lists. Failure mode: skipping the choice beat, which is what makes the update feel actionable rather than passive.",
+   status: "framework",
+   reflect: "Take your most recent project update. Could you re-tell it as setup → trouble → choice → consequence in 60 seconds?",
+   conceptQuiz: [
+    {
+     q: "The four beats of the weeknight story shape are…",
+     options: [
+      { text: "Setup, trouble, choice, consequence.", correct: true },
+      { text: "Once upon a time, happily ever after, the end.", misconception: "That is a fairy tale frame, not a four-beat structure." },
+      { text: "Intro, body, conclusion, appendix.", misconception: "Those are essay parts, not story beats." },
+      { text: "Hook, hold, harvest, hand-off.", misconception: "Marketing funnel jargon, not story structure." }
+     ],
+     why: "The four beats compress the hero's journey for ordinary updates."
+    },
+    {
+     q: "The most commonly skipped beat in work updates is…",
+     options: [
+      { text: "The choice, which is what makes the update feel like agency rather than passive reporting.", correct: true },
+      { text: "The setup, which everyone already knows.", misconception: "Setup is often skipped but is rarely the critical missing beat." },
+      { text: "The consequence, which is the punchline.", misconception: "Consequences are usually included; choices are usually missing." },
+      { text: "The trouble, which is too negative.", misconception: "Trouble is the part most updates do include." }
+     ],
+     why: "Without a named choice, the update reads as things happened to us, not we decided."
+    }
+   ],
+   conceptTasks: [
+    { level: "basic",    t: "Beat it out",         d: "Write your last project update in four sentences, one per beat.", xp: 10 },
+    { level: "easy",     t: "Tell it live",         d: "Verbally tell a colleague the same update in 60 seconds using the four beats and ask which beat landed hardest.", xp: 20 },
+    { level: "advanced", t: "Ship a story update", d: "Replace a bulleted status report with a four-beat story for a real audience and track which version gets forwarded.", xp: 40 }
+   ]
+  },
+  {
+   t: "Audience tailoring",
+   subdomain: "audience",
+   definition: "Adapting the framing, depth, and vocabulary of a message to match what a specific audience already knows, cares about, and uses.",
+   short: "Same idea, different audiences, different starting points.",
+   deep: "A board of investors hears the same product update very differently from the engineering team that built it. The board wants the metric, the engineer wants the constraint, the customer wants the benefit, the journalist wants the story. Skilled communicators map who they're talking to and start there, not where their own thinking ended. Beginners write for themselves. Pros write for the specific person on the other side, in language that person already uses. The same idea, told to a CFO and to a designer, should be almost two different paragraphs.",
+   generic: "Imagine explaining your new job to your grandmother and to a friend in the same field. To grandma: I help websites work better. To your friend: I am tuning render performance in a Next.js app. Same job, two paragraphs, neither dumbed down.",
+   expert: "Sits inside Hackos and Redish's (1998) reader analysis matrix and Heath brothers' adapt the message principle. Rhetorical inheritance from Aristotle's enthymeme, which assumes shared premises with the specific audience. Empirical support: comprehension and persuasion both improve when vocabulary and framing match audience priors (Kintsch's construction-integration model). Failure modes: writing for the author's own expertise level, and dumbing down rather than retargeting.",
+   status: "settled",
+   reflect: "Take a recent message you sent. How would you rewrite it if the audience knew half as much? Twice as much?",
+   conceptQuiz: [
+    {
+     q: "Audience tailoring means…",
+     options: [
+      { text: "Adjusting framing and depth to match what the specific audience knows and cares about.", correct: true },
+      { text: "Simplifying every message until anyone can read it.", misconception: "That is dumbing down, not tailoring; experts need depth, not pablum." },
+      { text: "Writing one universal version for all readers.", misconception: "Universal versions usually serve no audience well." },
+      { text: "Hiding key facts from non-experts.", misconception: "Tailoring changes framing, not factual access." }
+     ],
+     why: "Tailoring is starting from where the audience is, not from where the author thinks ended."
+    },
+    {
+     q: "The most common audience-tailoring failure is…",
+     options: [
+      { text: "Writing at the author's own level of expertise, which no real audience shares.", correct: true },
+      { text: "Using too much white space.", misconception: "Format is downstream of audience fit." },
+      { text: "Adding diagrams.", misconception: "Diagrams help across audiences when well chosen." },
+      { text: "Naming the audience explicitly at the top.", misconception: "Naming the audience is a fix, not a failure." }
+     ],
+     why: "Author-as-default-reader is the gravitational pull every writer drifts toward."
+    }
+   ],
+   conceptTasks: [
+    { level: "basic",    t: "Name the audience",   d: "At the top of your next document, write one sentence naming the specific audience you are writing for.", xp: 10 },
+    { level: "easy",     t: "Three versions",      d: "Take one short message and rewrite it for three different audiences in under 30 minutes.", xp: 20 },
+    { level: "advanced", t: "Ship a targeted pair", d: "Send the same news as two genuinely different documents to two different audiences and gather feedback on which questions each version answered.", xp: 40 }
+   ]
+  },
+  {
+   t: "Show, don't tell",
+   subdomain: "structure",
+   definition: "A writing principle that presents observable evidence and lets the reader infer the conclusion, rather than asserting the conclusion directly.",
+   short: "Give them the evidence; let them draw the conclusion.",
+   deep: "\"She was angry\" is telling. \"She slammed the door so hard the photo frame fell off the wall\" is showing. The second sentence does more work because the reader does part of it, and what readers conclude for themselves, they remember and own. Storytellers, journalists, lawyers all live by this rule. Most business writing breaks it constantly, it asserts the conclusion (\"this was a breakthrough product launch\") instead of giving the evidence (\"we hit 50,000 users in 11 days; the previous record was 40,000 in 60\"). Trust the reader to land where the evidence points. They'll trust you more for it.",
+   generic: "Imagine telling someone the soup is too salty. Showing instead: I took a spoonful and reached for water immediately. They reach the same conclusion you would have asserted, but they got there themselves, which is why they remember it.",
+   expert: "Traced to Anton Chekhov's letters on dramatic writing (1886) and later codified by Percy Lubbock in The Craft of Fiction (1921). The cognitive mechanism is inference participation: readers who derive a conclusion encode it more deeply and trust it more (related to the generation effect, Slamecka and Graf, 1978). Applied in journalism, legal advocacy, and screenwriting. Failure mode: showing without sufficient evidence, leaving the inference ambiguous.",
+   status: "framework",
+   reflect: "Find one 'told' sentence in your writing. Show it instead. Read both. Which lands harder?",
+   conceptQuiz: [
+    {
+     q: "Show don't tell means…",
+     options: [
+      { text: "Present observable evidence and let the reader infer the conclusion.", correct: true },
+      { text: "Always include a photograph in every document.", misconception: "The principle is rhetorical, not literal imagery." },
+      { text: "Hide the conclusion entirely.", misconception: "The conclusion is reached, not absent; the reader does the reaching." },
+      { text: "Use more adjectives.", misconception: "Adjectives often tell rather than show." }
+     ],
+     why: "Showing supplies the evidence; telling skips to the conclusion."
+    },
+    {
+     q: "Showing tends to be more persuasive than telling because…",
+     options: [
+      { text: "Conclusions readers derive themselves are encoded more deeply and trusted more.", correct: true },
+      { text: "Readers prefer ambiguity to clarity.", misconception: "Showing aims for derivable clarity, not ambiguity." },
+      { text: "Telling is grammatically incorrect.", misconception: "Both are grammatical; the difference is rhetorical." },
+      { text: "Showing is always shorter.", misconception: "It is often longer; the trade is depth for length." }
+     ],
+     why: "The generation effect makes self-derived conclusions sticky."
+    }
+   ],
+   conceptTasks: [
+    { level: "basic",    t: "Find one tell",       d: "Pick one told sentence in your last document and rewrite it as a showed version with evidence.", xp: 10 },
+    { level: "easy",     t: "Convert a paragraph", d: "Take a paragraph full of asserted conclusions and rewrite it so each conclusion is shown through evidence.", xp: 20 },
+    { level: "advanced", t: "Ship a shown draft",  d: "Edit a real public document so every major claim is shown through evidence, then ask two readers which paragraph stuck.", xp: 40 }
+   ]
+  },
+  {
+   t: "The curse of knowledge",
+   subdomain: "audience",
+   definition: "The cognitive bias whereby people who know something find it nearly impossible to imagine not knowing it, leading to expert explanations that skip foundations.",
+   short: "Once you know something, you almost can't remember not knowing it. This is why experts explain badly.",
+   deep: "The Heath brothers' clearest single observation. The moment you've understood something, the version of you that didn't understand it disappears. So you forget what bits were confusing, you skip the foundation a beginner would need, you use jargon that doesn't feel like jargon to you anymore. Every expert who's ever been told \"can you explain that more simply?\" has been bitten by this. The only honest cure is regular blank-slate feedback, let someone outside the field read or hear your explanation and tell you the first place they got lost. That place is the curse, made visible.",
+   generic: "Imagine teaching a child to tie shoelaces. You feel it is obvious, the bunny goes around the tree. They are completely lost. You forgot what not-knowing felt like. Every explanation suffers from this when expert and beginner meet.",
+   expert: "Demonstrated experimentally by Newton (1990) in the tappers-and-listeners study at Stanford: tappers wildly overestimated how recognisable their tunes were to listeners. Camerer, Loewenstein, and Weber (1989) formalised it in economics. Heath and Heath (Made to Stick, 2007) popularised it for communication. Mitigations: blank-slate feedback from non-experts, explicit jargon audits, and named-reader documents that hold a chosen altitude.",
+   status: "settled",
+   reflect: "Show your last technical explanation to someone outside the field. Where do they trip? That's the curse, in your work.",
+   conceptQuiz: [
+    {
+     q: "The curse of knowledge predicts that…",
+     options: [
+      { text: "Experts systematically underestimate how confusing their explanations are to non-experts.", correct: true },
+      { text: "Knowing more makes everyone explain better.", misconception: "The bias goes the other way; expertise can hurt explanation." },
+      { text: "Non-experts cannot ever understand technical content.", misconception: "They can, with appropriate scaffolding the curse blocks." },
+      { text: "All jargon is essential and unavoidable.", misconception: "Most jargon can be unpacked once the curse is visible." }
+     ],
+     why: "Once you know, you cannot easily imagine not knowing."
+    },
+    {
+     q: "The honest cure for the curse is…",
+     options: [
+      { text: "Regular blank-slate feedback from people outside the field.", correct: true },
+      { text: "Reading more advanced material in your own field.", misconception: "More expertise deepens the curse rather than curing it." },
+      { text: "Using more technical vocabulary.", misconception: "Adds jargon, the symptom of the curse." },
+      { text: "Refusing to explain at all.", misconception: "Avoidance is not a cure." }
+     ],
+     why: "Outside readers make the gap visible, which is the only reliable correction."
+    }
+   ],
+   conceptTasks: [
+    { level: "basic",    t: "Run a jargon audit",   d: "List every term in your last technical document that a smart non-expert would not know.", xp: 10 },
+    { level: "easy",     t: "Test with an outsider", d: "Show a technical explanation to someone outside the field and note the first place they got lost.", xp: 20 },
+    { level: "advanced", t: "Rewrite to clear it",  d: "Take a real technical document, rewrite it to remove the curse, and verify with two non-experts that they can explain the core idea back.", xp: 40 }
+   ]
+  },
+  {
+   t: "Brevity",
+   subdomain: "clarity",
+   definition: "The discipline of cutting every word that does not earn its place, on the principle that most drafts are about thirty percent longer than they need to be.",
+   short: "Cut everything that isn't earning its place. Most drafts are 30% too long.",
+   deep: "Almost every first draft has a quiet 30% of words that aren't doing real work, qualifiers, throat-clearing openers, restatements of what you already said. Strunk and White, Zinsser, Pinker: all of them say roughly the same thing, the second draft is where writing actually happens. The cut isn't about being curt; it's about respecting the reader's time. The same idea, said in fewer words, is also harder to misread. Try this on anything long you wrote recently, cut 30%, no exceptions. Almost always, the shorter version is also the clearer one.",
+   generic: "Imagine a friend telling a story that takes ten minutes when it could take two. You stop listening. Now imagine the two-minute version. You remember every detail. Brevity is not curtness, it is finishing in the time the listener actually has.",
+   expert: "Strunk and White (The Elements of Style, 1918) command omit needless words. Zinsser (On Writing Well, 1976) and Pinker (The Sense of Style, 2014) restate the principle with cognitive science. Empirical support: shorter sentences correlate with higher comprehension and recall in professional readers (Doumont, 2009). Failure modes: cutting that strips necessary context, and cutting that produces telegraphic prose that reads as rude rather than respectful.",
+   status: "settled",
+   reflect: "Cut your last long message by 30%. What was lost? What was gained?",
+   conceptQuiz: [
+    {
+     q: "The brevity discipline asks writers to…",
+     options: [
+      { text: "Cut every word that does not earn its place in the draft.", correct: true },
+      { text: "Write in the shortest sentences possible regardless of meaning.", misconception: "Brevity respects meaning; it does not strip it." },
+      { text: "Use bullet points for everything.", misconception: "Bullets are a format, not the principle." },
+      { text: "Avoid all adjectives forever.", misconception: "Adjectives that earn their place stay." }
+     ],
+     why: "Brevity is selective cutting, not blanket shortening."
+    },
+    {
+     q: "A useful first cut on most drafts is roughly…",
+     options: [
+      { text: "Thirty percent of the words.", correct: true },
+      { text: "Ninety percent of the words.", misconception: "Strips meaning along with padding." },
+      { text: "Zero percent, first drafts are already tight.", misconception: "Almost no first draft is tight." },
+      { text: "Exactly half of every paragraph.", misconception: "Mechanical halving ignores which words actually earn their place." }
+     ],
+     why: "Practitioners report thirty percent as the rule of thumb that usually improves clarity without losing meaning."
+    }
+   ],
+   conceptTasks: [
+    { level: "basic",    t: "Cut a paragraph",     d: "Take one paragraph of yours and cut at least 30 percent of the words without losing meaning.", xp: 10 },
+    { level: "easy",     t: "Cut a whole document", d: "Cut a recent long email or memo by 30 percent and send the trimmed version. Note response time.", xp: 20 },
+    { level: "advanced", t: "Ship a brevity edit", d: "Edit a real public document down by 30 percent across all sections, then ask two readers whether comprehension improved or degraded.", xp: 40 }
+   ]
+  },
   {
    t: "Active listening",
    subdomain: "foundations",

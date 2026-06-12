@@ -121,12 +121,12 @@ export function ConceptDeepPage({ domain, conceptIdx }: { domain: Domain; concep
       <Brain size={16} className="hue" />
       <h2 className="font-display text-lg">Predict first</h2>
      </header>
-     <p className="dim text-sm">In one or two sentences, what do you think this concept means? Wrong is fine; the small struggle is what makes the answer stick.</p>
+     <label htmlFor="concept-prediction" className="dim text-sm block">In one or two sentences, what do you think this concept means? Wrong is fine; the small struggle is what makes the answer stick.</label>
      <textarea
+      id="concept-prediction"
       className="w-full panel p-3 text-sm"
       rows={3}
       placeholder="Your guess..."
-      aria-label="Your prediction"
      />
      <div className="flex gap-2 flex-wrap">
       <button className="btn" onClick={onReveal} style={{ background: "var(--hue)", color: "#0b0d1a", borderColor: "var(--hue)" }}>
@@ -171,14 +171,14 @@ export function ConceptDeepPage({ domain, conceptIdx }: { domain: Domain; concep
        <Brain size={16} className="hue" />
        <h2 className="font-display text-lg">Apply to your life</h2>
       </header>
-      <p className="text-sm mb-2">{concept.reflect}</p>
+      <label htmlFor="concept-reflection" className="text-sm mb-2 block">{concept.reflect}</label>
       <textarea
+       id="concept-reflection"
        className="w-full panel p-3 text-sm"
        rows={3}
        defaultValue={reflection}
        onBlur={(e) => a.saveReflection(domain.id, conceptIdx, e.target.value)}
        placeholder="Your answer saves to your notes"
-       aria-label="Your reflection"
       />
       <p className="dim text-xs mt-2">Saves on blur. Findable later in My List. Use <code>[[domain_id:N]]</code> to cross-link concepts.</p>
      </section>
@@ -218,7 +218,7 @@ export function ConceptDeepPage({ domain, conceptIdx }: { domain: Domain; concep
                <div className="flex-1 min-w-0">
                 <p>{o.text}</p>
                 {submitted && isPicked && !isCorrect && "misconception" in o && (
-                 <p className="text-xs mt-1" style={{ color: "var(--bad)" }}>
+                 <p role="alert" className="text-xs mt-1" style={{ color: "var(--bad)" }}>
                   {(o as Exclude<QuizOption, { correct: true }>).misconception}
                  </p>
                 )}

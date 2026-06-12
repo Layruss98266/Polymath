@@ -35,6 +35,32 @@ export function TopBar() {
  const [more, setMore] = useState(false);
  const [showSave, setShowSave] = useState(false);
  const moreRef = useRef<HTMLDivElement>(null);
+ const drawerRef = useRef<HTMLDivElement>(null);
+ const hamburgerRef = useRef<HTMLButtonElement>(null);
+ const drawerCloseRef = useRef<HTMLButtonElement>(null);
+ useFocusTrap(drawer, drawerRef);
+
+ // When drawer opens, focus the close button. On close, restore focus to hamburger.
+ const prevDrawer = useRef(false);
+ useEffect(() => {
+  if (drawer) {
+   // Defer so focus trap's first-focusable doesn't fight us.
+   const t = setTimeout(() => drawerCloseRef.current?.focus(), 0);
+   prevDrawer.current = true;
+   return () => clearTimeout(t);
+  } else if (prevDrawer.current) {
+   hamburgerRef.current?.focus?.();
+   prevDrawer.current = false;
+  }
+ }, [drawer]);
+
+ // Escape closes the mobile drawer.
+ useEffect(() => {
+  if (!drawer) return;
+  const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setDrawer(false); };
+  document.addEventListener("keydown", onKey);
+  return () => document.removeEventListener("keydown", onKey);
+ }, [drawer]);
 
  useEffect(() => {
   if (!hydrated) return;
@@ -169,18 +195,18 @@ export function TopBar() {
      </Link>
 
      {/* Mobile hamburger */}
-     <button className="btn !p-2 sm:hidden" aria-label="Menu" onClick={() => setDrawer(true)}><Menu size={16} /></button>
+     <button ref={hamburgerRef} className="btn !p-2 sm:hidden" aria-label="Menu" aria-expanded={drawer} aria-haspopup="dialog" onClick={() => setDrawer(true)}><Menu size={16} /></button>
     </div>
    </div>
 
    {/* Mobile drawer */}
    {drawer && (
-    <div className="sm:hidden fixed inset-0 z-40" role="dialog" aria-label="Menu">
+    <div className="sm:hidden fixed inset-0 z-40" role="dialog" aria-modal="true" aria-label="Menu">
      <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.55)" }} onClick={() => setDrawer(false)} />
-     <div className="absolute right-0 top-0 bottom-0 w-[88%] max-w-sm panel rounded-none border-l p-4 overflow-y-auto" style={{ borderColor: "var(--line)" }}>
+     <div ref={drawerRef} className="absolute right-0 top-0 bottom-0 w-[88%] max-w-sm panel rounded-none border-l p-4 overflow-y-auto" style={{ borderColor: "var(--line)" }}>
       <div className="flex items-center justify-between mb-4">
        <span className="font-display text-lg">POLYMATH</span>
-       <button className="btn !p-2" aria-label="Close menu" onClick={() => setDrawer(false)}><X size={16} /></button>
+       <button ref={drawerCloseRef} className="btn !p-2" aria-label="Close menu" onClick={() => setDrawer(false)}><X size={16} /></button>
       </div>
       <div className="panel px-3 py-2 flex items-center gap-3 text-sm mb-4">
        <span className="flex items-center gap-1"><Zap size={12} className="hue" /> {s.xp} XP</span>

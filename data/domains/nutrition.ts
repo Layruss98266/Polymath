@@ -8,7 +8,8 @@ const d: Domain = {
  name: "Nutrition & Food Science",
  tagline: "Eat well without the noise",
 
- basics: "Nutrition is one of the loudest fields in science, and most of that noise is wrong. Every month a new study, a new podcast, a new diet book tells you the opposite of the last one. Eat fat. Don't. Carbs are evil. No they aren't. Cut everything. Eat everything raw. The boring, deeply unsexy truth that survives every shift of fashion is: eat mostly plants you'd recognise as plants (less stuff that came out of a factory), get enough protein, don't drink your sugary calories, don't smoke, and keep alcohol low. That's it. Get the basics right and the specific best-diet arguments matter way less than the internet pretends.",
+ basics: "Nutrition is one of the loudest fields in science, and most of that noise is wrong. Every month a new study, a new podcast, a new diet book tells you the opposite of the last one.",
+ deepBasics: "Eat fat. Don't. Carbs are evil. No they aren't. Cut everything. Eat everything raw. The boring, deeply unsexy truth that survives every shift of fashion is: eat mostly plants you'd recognise as plants (less stuff that came out of a factory), get enough protein, don't drink your sugary calories, don't smoke, and keep alcohol low. That's it. Get the basics right and the specific best-diet arguments matter way less than the internet pretends.",
  whyItMatters: [
   "What you eat shapes your energy, mood, sleep quality, weight, and basically every major disease risk you'll meet.",
   "Most diets \"work\" for a few months and then quietly stop. The durable answer is unsexy because anything sexy can't last decades.",

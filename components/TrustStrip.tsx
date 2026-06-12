@@ -26,14 +26,19 @@ export function TrustStrip() {
   }
  ];
  return (
-  <section aria-label="What this app is" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2">
-   {ITEMS.map(({ Icon, title, body }) => (
-    <article key={title} className="panel p-3">
-     <Icon size={14} className="hue mb-2" />
-     <p className="font-medium text-sm">{title}</p>
-     <p className="dim text-xs mt-1 leading-relaxed">{body}</p>
-    </article>
-   ))}
+  <section aria-label="What this app is" className="space-y-2">
+   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2">
+    {ITEMS.map(({ Icon, title, body }) => (
+     <article key={title} className="panel p-3">
+      <Icon size={14} className="hue mb-2" />
+      <p className="font-medium text-sm">{title}</p>
+      <p className="dim text-xs mt-1 leading-relaxed">{body}</p>
+     </article>
+    ))}
+   </div>
+   <p className="dim text-xs">
+    Open-source, MIT licensed. <a href="https://github.com/Layruss98266/Polymath" target="_blank" rel="noopener noreferrer" className="underline">Verify on GitHub</a>.
+   </p>
   </section>
  );
 }

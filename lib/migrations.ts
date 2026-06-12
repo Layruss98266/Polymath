@@ -39,6 +39,7 @@ export function defaultState(): UserState {
   cards: [],
   achievements: [],
   capabilityLog: [],
-  startedDomains: []
+  startedDomains: [],
+  lastConceptByDomain: {}
  };
 }

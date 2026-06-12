@@ -70,7 +70,7 @@ function QuizCard({ d, idx, q }: { d: Domain; idx: number; q: Domain["quiz"][num
       >
        <p className="text-sm">{o.text}</p>
        {submitted && i === picked && !right && "misconception" in o && (
-        <p className="text-xs mt-1" style={{ color: "var(--bad)" }}>
+        <p role="alert" className="text-xs mt-1" style={{ color: "var(--bad)" }}>
          <strong>Misconception:</strong> {(o as Exclude<QuizOption, { correct: true }>).misconception}
         </p>
        )}

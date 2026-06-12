@@ -9,7 +9,9 @@ const d: Domain = {
  tagline: "Spend less than you earn, invest the rest",
 
  basics:
-  "Here's a secret nobody who sells financial products wants you to know: doing personal finance well is mostly boring, and almost everyone overestimates how clever they need to be. You only have to do a handful of unglamorous things and stick with them. Spend less than you earn. Keep some cash for when life surprises you (it will). Pay off credit cards like your hair's on fire. Set up an automatic monthly transfer into a low-cost index fund. Buy term insurance if anyone depends on you. That's most of it. The rest is patience.",
+  "Here's a secret nobody who sells financial products wants you to know: doing personal finance well is mostly boring, and almost everyone overestimates how clever they need to be. You only have to do a handful of unglamorous things and stick with them.",
+ deepBasics:
+  "Spend less than you earn. Keep some cash for when life surprises you (it will). Pay off credit cards like your hair's on fire. Set up an automatic monthly transfer into a low-cost index fund. Buy term insurance if anyone depends on you. That's most of it. The rest is patience.",
  whyItMatters: [
   "Compounding is the closest thing to magic that's actually real, but it only works if you start.",
   "Most financial stress comes from not having a buffer, not from low income. People earning ₹2 lakh a month panic every month if they spend ₹2 lakh.",

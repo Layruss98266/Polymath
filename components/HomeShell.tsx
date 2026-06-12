@@ -56,6 +56,11 @@ export function HomeShell({
     </div>
    )}
 
+   {/* SessionPicker above the fold for any returning user, not gated on
+       the activity threshold and not buried inside the ritual toggle.
+       A3 fix: the picker is the primary daily entry point. */}
+   {isReturning && sessionPicker}
+
    {/* Returning users: surface their last 4 opened concepts as a one-click
        Pick up where you left off rail. Self-hides if empty. */}
    {isReturning && <RecentActivityRail />}
@@ -100,7 +105,9 @@ export function HomeShell({
      {quote}
      {!isReturning && conceptOfDay}
      {dailyQuest}
-     {isActive && sessionPicker}
+     {/* SessionPicker now lives above the fold for returning users.
+         Surface it here only for first-time visitors who expand rituals. */}
+     {!isReturning && sessionPicker}
      {isActive && focusTimer}
     </div>
    )}

@@ -1,6 +1,8 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { Timer, Play, Pause, RotateCcw } from "lucide-react";
+import { useUserState, useActions } from "@/lib/state";
+import { todayKey } from "@/lib/streak";
 
 // Tiny Pomodoro style focus timer. Optional, sits on the Home page.
 // Logs focused minutes locally; no notifications, no sound, nothing manipulative.
@@ -12,8 +14,10 @@ export function FocusTimer() {
  const [target, setTarget] = useState(25 * 60);
  const [left, setLeft] = useState(25 * 60);
  const [running, setRunning] = useState(false);
- const [totalSecondsToday, setTotalSecondsToday] = useState(0);
  const tick = useRef<ReturnType<typeof setInterval> | null>(null);
+ const s = useUserState();
+ const { logFocusedSeconds } = useActions();
+ const totalSecondsToday = (s.focusedSecondsByDay ?? {})[todayKey()] ?? 0;
 
  useEffect(() => {
   if (!running) return;
@@ -21,14 +25,14 @@ export function FocusTimer() {
    setLeft((l) => {
     if (l <= 1) {
      setRunning(false);
-     setTotalSecondsToday((t) => t + target);
+     logFocusedSeconds(target);
      return target;
     }
     return l - 1;
    });
   }, 1000);
   return () => { if (tick.current) clearInterval(tick.current); };
- }, [running, target]);
+ }, [running, target, logFocusedSeconds]);
 
  const mins = Math.floor(left / 60);
  const secs = (left % 60).toString().padStart(2, "0");

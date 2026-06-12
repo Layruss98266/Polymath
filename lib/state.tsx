@@ -183,8 +183,12 @@ export function useActions() {
 
  const openConcept = useCallback((domainId: string, conceptIndex: number) => {
   store.patch((s) => {
+   // Always update last-viewed pointer so the Continue learning rail can
+   // deep-link to the actual last-viewed concept, even on a revisit. XP
+   // and conceptsOpened still pay out only on the first open.
+   const lastConceptByDomain = { ...(s.lastConceptByDomain ?? {}), [domainId]: conceptIndex };
    const existing = s.conceptProgress.find((c) => c.domainId === domainId && c.conceptIndex === conceptIndex);
-   if (existing?.opened) return s;
+   if (existing?.opened) return { ...s, lastConceptByDomain };
    const conceptProgress = existing
     ? s.conceptProgress.map((c) => (c === existing ? { ...c, opened: true } : c))
     : [...s.conceptProgress, { domainId, conceptIndex, opened: true }];
@@ -192,7 +196,7 @@ export function useActions() {
    const domainProgress = dp
     ? { ...s.domainProgress, [domainId]: { ...dp, conceptsOpened: dp.conceptsOpened + 1 } }
     : s.domainProgress;
-   return { ...s, conceptProgress, domainProgress, xp: s.xp + XP.conceptOpenedFirstTime };
+   return { ...s, conceptProgress, domainProgress, lastConceptByDomain, xp: s.xp + XP.conceptOpenedFirstTime };
   });
  }, [store]);
 
@@ -372,13 +376,26 @@ export function useActions() {
 
  const importState = useCallback((next: UserState) => { store.set(next); }, [store]);
 
+ const logFocusedSeconds = useCallback((seconds: number) => {
+  if (seconds <= 0) return;
+  store.patch((s) => {
+   const day = todayKey();
+   const map = { ...(s.focusedSecondsByDay ?? {}) };
+   map[day] = (map[day] ?? 0) + seconds;
+   // Trim to the last ~400 keys to keep state small. Same policy as xpByDay.
+   const keys = Object.keys(map).sort();
+   while (keys.length > 400) { delete map[keys.shift() as string]; }
+   return { ...s, focusedSecondsByDay: map };
+  });
+ }, [store]);
+
  return useMemo(() => ({
   addXP, startDomain, openConcept, saveReflection, completeMission,
   recordQuizAnswer, upsertCard, completeCapstone, toggleBookmark, setNote,
   setTheme, toggleMute, setFontScale, toggleDyslexicFont, setReducedMotion,
   refreshDailyQuest, completeDailyQuest, importState,
-  completeOnboarding, skipOnboarding
- }), [addXP, startDomain, openConcept, saveReflection, completeMission, recordQuizAnswer, upsertCard, completeCapstone, toggleBookmark, setNote, setTheme, toggleMute, setFontScale, toggleDyslexicFont, setReducedMotion, refreshDailyQuest, completeDailyQuest, importState, completeOnboarding, skipOnboarding]);
+  completeOnboarding, skipOnboarding, logFocusedSeconds
+ }), [addXP, startDomain, openConcept, saveReflection, completeMission, recordQuizAnswer, upsertCard, completeCapstone, toggleBookmark, setNote, setTheme, toggleMute, setFontScale, toggleDyslexicFont, setReducedMotion, refreshDailyQuest, completeDailyQuest, importState, completeOnboarding, skipOnboarding, logFocusedSeconds]);
 }
 
 function clamp(n: number, lo: number, hi: number) { return Math.max(lo, Math.min(hi, n)); }

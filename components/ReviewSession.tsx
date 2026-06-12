@@ -8,7 +8,7 @@ import { dueNow, newCard, grade, type Grade } from "@/lib/fsrs";
 import { DOMAIN_INDEX, loadDomain, findEntry } from "@/data/domains";
 import type { Domain } from "@/lib/types";
 
-// Rough cards per minute. Tuned so the 5/15/45 presets land at ~8/24/60 cards.
+// Rough cards per minute. Tuned so the 5/15 presets land at ~8/24 cards.
 const CARDS_PER_MINUTE = 1.5;
 
 type CardInPlay = { domainId: string; cardKey: string; front: string; back: string; due: number };
@@ -23,7 +23,7 @@ export function ReviewSession() {
  const [i, setI] = useState(0);
  const [startCount, setStartCount] = useState<number | null>(null);
 
- // SessionPicker on the home page links to `/review?minutes=5|15|45`. If
+ // SessionPicker on the home page links to `/review?minutes=5|15`. If
  // the param is present, cap the pool to roughly that many cards so the
  // preset means something. Otherwise show the whole due pool.
  const minutes = Number(sp?.get("minutes") ?? "") || null;
@@ -99,6 +99,57 @@ export function ReviewSession() {
  // eslint-disable-next-line react-hooks/exhaustive-deps
  }, [card?.cardKey, flipped]);
 
+ // 15-min preset advertises "review + one new concept". After the FSRS
+ // pool drains we hand the user a deep-link to the next unseen concept in
+ // their most-touched started domain so the promise actually lands.
+ // Most-touched = highest conceptsOpened count among started domains, with
+ // a tiebreak on most-recently-started (last in the list).
+ const nextNewConcept = useMemo<{ domainId: string; conceptIndex: number; domainName: string } | null>(() => {
+  if (minutes !== 15) return null;
+  if (s.startedDomains.length === 0) return null;
+  const ranked = [...s.startedDomains]
+   .map((id, order) => ({
+    id,
+    opened: s.domainProgress[id]?.conceptsOpened ?? 0,
+    order
+   }))
+   .sort((a, b) => (b.opened - a.opened) || (b.order - a.order));
+  for (const { id } of ranked) {
+   const dom = domains[id];
+   if (!dom) continue;
+   const seen = new Set(
+    s.conceptProgress
+     .filter((c) => c.domainId === id && c.opened)
+     .map((c) => c.conceptIndex)
+   );
+   const nextIdx = dom.concepts.findIndex((_, i) => !seen.has(i));
+   if (nextIdx >= 0) {
+    const entry = DOMAIN_INDEX.find((d) => d.id === id);
+    return { domainId: id, conceptIndex: nextIdx, domainName: entry?.name ?? id };
+   }
+  }
+  return null;
+ }, [minutes, s.startedDomains, s.domainProgress, s.conceptProgress, domains]);
+
+ const NextConceptCard = () => (
+  nextNewConcept ? (
+   <section className="panel p-4 sm:p-5" style={{ borderColor: "var(--hue)" }}>
+    <div className="flex items-center gap-2 mb-2">
+     <Sparkles size={16} className="hue" />
+     <h2 className="font-display text-sm uppercase tracking-widest">Next: a new concept in {nextNewConcept.domainName}</h2>
+    </div>
+    <p className="dim text-sm mb-3">The 15-minute preset pairs reviews with one fresh idea. Reviews are clear, so here is the next concept you have not opened yet.</p>
+    <Link
+     href={`/domain/${nextNewConcept.domainId}/concepts/${nextNewConcept.conceptIndex}`}
+     className="btn"
+     style={{ background: "var(--hue)", color: "#0b0d1a", borderColor: "var(--hue)" }}
+    >
+     Open concept #{nextNewConcept.conceptIndex + 1} <ArrowRight size={14} />
+    </Link>
+   </section>
+  ) : null
+ );
+
  const weakest = useMemo(() => {
   return s.conceptProgress
    .filter((c) => (c.attempts ?? 0) >= 2 && (c.accuracy ?? 0) < 0.6)
@@ -150,6 +201,7 @@ export function ReviewSession() {
   return (
    <div className="space-y-4">
     <PageHero subtitle={nothingStarted ? "Start a domain and your flashcards will land here." : "Nothing due right now. The scheduler is holding the next batch back so the practice actually stretches you."} />
+    <NextConceptCard />
     <WeakBlock />
     <section className="panel hero-glow p-6 sm:p-8 space-y-3">
      <div className="flex items-center gap-2">
@@ -194,6 +246,7 @@ export function ReviewSession() {
       <Link href="/" className="btn">Pick a new domain</Link>
      </div>
     </section>
+    <NextConceptCard />
    </div>
   );
  }

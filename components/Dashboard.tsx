@@ -56,6 +56,7 @@ export function Dashboard() {
  }, [domains, s.domainProgress, s.startedDomains]);
  const cardsReviewed = s.cards.reduce((sum, c) => sum + c.reps, 0);
  const calib = Math.round(((s.calibrationScore ?? 0) + 1) * 50);
+ const quizCount = (s.quizSeen ?? []).length;
 
  // Hide sections that show empty placeholders to a brand new user.
  const hasActivity = s.startedDomains.length > 0 || s.xp > 0;
@@ -189,7 +190,7 @@ export function Dashboard() {
      >
       <div className="h-full" style={{ width: `${calib}%`, background: "var(--hue)", transition: "width .3s" }} />
      </div>
-     <p className="text-xs dim mt-2">Your score, {calib} of 100.</p>
+     <p className="text-xs dim mt-2">Your score, {calib} of 100 (n={quizCount} quizzes).{quizCount < 20 ? " Comes online at n=20." : ""}</p>
      <p className="text-xs dim mt-2">
       <strong>Why this matters.</strong> Confident and wrong is the most expensive failure mode in any field, from medicine to investing to engineering. Building the habit of registering uncertainty before you act is one of the most transferable upgrades on this app.
      </p>

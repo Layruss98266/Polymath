@@ -161,8 +161,8 @@ export function SettingsView() {
     <p className="dim text-sm">Local controls. All preferences live in your browser; nothing is sent anywhere.</p>
 
     <div className="space-y-2">
-     <label className="text-sm font-medium">Text size</label>
-     <div className="flex flex-wrap gap-2">
+     <p id="settings-text-size-label" className="text-sm font-medium">Text size</p>
+     <div role="group" aria-labelledby="settings-text-size-label" className="flex flex-wrap gap-2">
       {([0.9, 1, 1.1, 1.25] as const).map((scale) => (
        <button
         key={scale}
@@ -178,9 +178,9 @@ export function SettingsView() {
     </div>
 
     <div className="space-y-2 pt-2">
-     <label className="text-sm font-medium">Motion</label>
+     <p id="settings-motion-label" className="text-sm font-medium">Motion</p>
      <p className="dim text-xs">By default Polymath honours your system <em>prefers-reduced-motion</em>. Override here.</p>
-     <div className="flex flex-wrap gap-2">
+     <div role="group" aria-labelledby="settings-motion-label" className="flex flex-wrap gap-2">
       <button className={`btn ${s.reducedMotionOverride === undefined ? "ring-1" : ""}`} onClick={() => a.setReducedMotion(undefined)}>System default</button>
       <button className={`btn ${s.reducedMotionOverride === true ? "ring-1" : ""}`} onClick={() => a.setReducedMotion(true)}>Reduce motion</button>
       <button className={`btn ${s.reducedMotionOverride === false ? "ring-1" : ""}`} onClick={() => a.setReducedMotion(false)}>Allow motion</button>
@@ -188,9 +188,9 @@ export function SettingsView() {
     </div>
 
     <div className="space-y-2 pt-2">
-     <label className="text-sm font-medium">Dyslexia-friendly font</label>
+     <p id="settings-dyslexic-label" className="text-sm font-medium">Dyslexia-friendly font</p>
      <p className="dim text-xs">Switches body text to a higher-readability fallback stack (OpenDyslexic when installed, otherwise Comic Sans MS) with looser tracking.</p>
-     <button className="btn" onClick={a.toggleDyslexicFont} aria-pressed={!!s.dyslexicFont}>
+     <button className="btn" onClick={a.toggleDyslexicFont} aria-pressed={!!s.dyslexicFont} aria-labelledby="settings-dyslexic-label">
       {s.dyslexicFont ? "On" : "Off"}
      </button>
     </div>
@@ -211,13 +211,13 @@ export function SettingsView() {
     <p className="dim text-sm">Your progress is stored locally in this browser. Use one of the formats below to move it.</p>
 
     <div className="space-y-2">
-     <label className="text-sm">Compact base64 code (copy paste)</label>
-     <textarea readOnly value={exported} className="w-full h-20 panel p-2 text-xs" aria-label="Save code" />
+     <label htmlFor="settings-save-code" className="text-sm">Compact base64 code (copy paste)</label>
+     <textarea id="settings-save-code" readOnly value={exported} className="w-full h-20 panel p-2 text-xs" />
      <button className="btn" onClick={() => navigator.clipboard.writeText(exported)}>Copy code</button>
     </div>
 
     <div className="space-y-2 pt-2">
-     <label className="text-sm">Public profile share link</label>
+     <p id="settings-share-link-label" className="text-sm">Public profile share link</p>
      <p className="dim text-xs">A read-only snapshot. XP and per-domain rank only, no notes or reflections. Anyone with the link sees only what is shown on the share page.</p>
      <button className="btn" onClick={() => {
       const ri: Record<string, number> = {};
@@ -233,12 +233,12 @@ export function SettingsView() {
       const code = utf8ToBase64(JSON.stringify(payload));
       const url = `${window.location.origin}/share?d=${encodeURIComponent(code)}`;
       navigator.clipboard.writeText(url);
-     }}>Copy public share link</button>
+     }} aria-labelledby="settings-share-link-label">Copy public share link</button>
     </div>
 
     <div className="space-y-2 pt-2">
-     <label className="text-sm">JSON file (download / upload)</label>
-     <div className="flex flex-wrap gap-2">
+     <p id="settings-json-label" className="text-sm">JSON file (download / upload)</p>
+     <div role="group" aria-labelledby="settings-json-label" className="flex flex-wrap gap-2">
       <button className="btn" onClick={downloadJson}><Download size={14} /> Download JSON</button>
       <label className="btn cursor-pointer">
        <Upload size={14} /> Upload JSON
@@ -248,9 +248,9 @@ export function SettingsView() {
     </div>
 
     <div className="space-y-2 pt-2">
-     <label className="text-sm">CSV exports for analysis or notes</label>
+     <p id="settings-csv-label" className="text-sm">CSV exports for analysis or notes</p>
      <p className="dim text-xs">Excel-friendly UTF-8 with BOM.</p>
-     <div className="flex flex-wrap gap-2">
+     <div role="group" aria-labelledby="settings-csv-label" className="flex flex-wrap gap-2">
       <button className="btn" onClick={exportBookmarksCsv}><Download size={14} /> Bookmarks ({s.bookmarks.length})</button>
       <button className="btn" onClick={exportReflectionsCsv}><Download size={14} /> Reflections CSV ({reflectionCount})</button>
       <button className="btn" onClick={exportReflectionsMarkdown}><Download size={14} /> Reflections MD ({reflectionCount})</button>
@@ -261,8 +261,8 @@ export function SettingsView() {
     <ShareCard />
 
     <div className="space-y-2 pt-2">
-     <label className="text-sm">Restore from a code</label>
-     <textarea value={code} onChange={(e) => setCode(e.target.value)} className="w-full h-20 panel p-2 text-xs" aria-label="Paste code" />
+     <label htmlFor="settings-restore-code" className="text-sm">Restore from a code</label>
+     <textarea id="settings-restore-code" value={code} onChange={(e) => setCode(e.target.value)} className="w-full h-20 panel p-2 text-xs" />
      {err && <p role="alert" className="text-sm" style={{ color: "var(--bad)" }}>{err}</p>}
      <button className="btn" onClick={() => { try { a.importState(importCode(code)); setErr(null); setCode(""); } catch (e: any) { setErr(e.message ?? "Invalid code"); } }}>Restore</button>
     </div>

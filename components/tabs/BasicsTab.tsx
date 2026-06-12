@@ -11,6 +11,7 @@ export function BasicsTab({ d }: { d: Domain }) {
    <div className="panel p-5">
     <h2 className="font-display text-xl mb-2">What is {d.name}?</h2>
     <p>{d.basics}</p>
+    <p className="dim text-xs mt-2">Settled = strong evidence. Debated = mixed evidence. Framework = useful lens, not a fact.</p>
     {d.deepBasics && (
      <details className="mt-3">
       <summary className="cursor-pointer text-sm dim">Read more</summary>

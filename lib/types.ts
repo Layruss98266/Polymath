@@ -196,6 +196,9 @@ export type UserState = {
  startedDomains: string[];
  // Per-day XP gained, keyed by YYYY-MM-DD. Only the last 400 days are kept.
  xpByDay?: Record<string, number>;
+ // Per-day focused seconds from the FocusTimer, keyed by YYYY-MM-DD. Same
+ // 400-key trim policy as xpByDay.
+ focusedSecondsByDay?: Record<string, number>;
  // Stable keys of flashcards that have already crossed into FSRS Review.
  // Without this, a learner who fails a graduated card (state 2 -> 3) then
  // passes it again (3 -> 2) is awarded the graduation XP a second time.
@@ -209,4 +212,9 @@ export type UserState = {
  // the system defaults until they touch a toggle.
  fontScale?: 0.9 | 1 | 1.1 | 1.25;
  dyslexicFont?: boolean;
+ // Last viewed concept index per domain id. Updated whenever the user opens
+ // a concept page (ConceptDeepPage or the embedded ConceptsTab card). Lets
+ // the Continue learning rail deep-link straight back to where they left off
+ // instead of dumping them at the domain root.
+ lastConceptByDomain?: Record<string, number>;
 };

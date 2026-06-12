@@ -25,7 +25,7 @@ export function DomainHeader({ domain }: { domain: Domain }) {
     </div>
     <div className="flex-1 min-w-0">
      <p className="dim text-[11px] uppercase tracking-widest">{domain.category}</p>
-     <h1 className="font-display text-2xl sm:text-3xl md:text-4xl leading-tight truncate">{domain.name}</h1>
+     <h2 className="font-display text-2xl sm:text-3xl md:text-4xl leading-tight truncate">{domain.name}</h2>
      <p className="dim text-sm mt-1 line-clamp-2">{domain.tagline}</p>
     </div>
     <div className="text-right shrink-0">

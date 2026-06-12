@@ -21,6 +21,18 @@ export function HubHero({ onSearch }: { onSearch?: (q: string) => void }) {
   .map((id) => DOMAIN_INDEX.find((d) => d.id === id))
   .filter(Boolean) as typeof DOMAIN_INDEX;
 
+ // Four-word sub-taglines for the quick-jump chips. Rendered as native title
+ // tooltips so the chip row layout doesn't change.
+ const SUB_TAGLINES: Record<string, string> = {
+  psychology: "why people act",
+  ai_ml: "what LLMs really do",
+  personal_finance: "save, invest, retire calmly",
+  negotiation: "claim and create value",
+  communication: "be heard, be clear",
+  mental_models: "how smart people think",
+  marketing: "attention, persuasion, distribution"
+ };
+
  return (
   <section className="relative">
    <div className="panel hero-glow p-6 sm:p-10 lg:p-12 relative overflow-hidden">
@@ -82,14 +94,18 @@ export function HubHero({ onSearch }: { onSearch?: (q: string) => void }) {
     <div className="mt-5">
      <p className="dim text-[11px] uppercase tracking-widest mb-2">Quick jump</p>
      <ul className="flex flex-wrap gap-2">
-      {quickJump.map((d) => (
-       <li key={d.id}>
-        <Link href={`/domain/${d.id}`} className="chip" style={{ borderColor: `${d.hue}55` }}>
-         <span aria-hidden="true">{d.icon}</span>
-         <span>{d.name}</span>
-        </Link>
-       </li>
-      ))}
+      {quickJump.map((d) => {
+       const sub = SUB_TAGLINES[d.id];
+       const tip = sub ? `${d.name}: ${sub}` : d.name;
+       return (
+        <li key={d.id}>
+         <Link href={`/domain/${d.id}`} className="chip" style={{ borderColor: `${d.hue}55` }} title={tip}>
+          <span aria-hidden="true">{d.icon}</span>
+          <span>{d.name}</span>
+         </Link>
+        </li>
+       );
+      })}
      </ul>
     </div>
    </div>
