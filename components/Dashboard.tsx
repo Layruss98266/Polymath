@@ -54,21 +54,38 @@ export function Dashboard() {
  const cardsReviewed = s.cards.reduce((sum, c) => sum + c.reps, 0);
  const calib = Math.round(((s.calibrationScore ?? 0) + 1) * 50);
 
+ // Hide sections that show empty placeholders to a brand new user.
+ const hasActivity = s.startedDomains.length > 0 || s.xp > 0;
+ const hasHeatmapData = Object.keys(s.xpByDay ?? {}).length > 0;
+ const hasQuizData = Object.values(s.domainProgress).some((d) => d.quizAnswered > 0);
+
+ if (!hasActivity) {
+  return (
+   <div className="space-y-4 max-w-2xl mx-auto text-center mt-8">
+    <h1 className="font-display text-3xl">Your Dashboard</h1>
+    <p className="dim">Start any domain to populate this page. Once you open a concept, complete a mission, or review a card, your XP, streak, mastery radar, and achievements will live here.</p>
+    <a href="/" className="btn">Browse domains</a>
+   </div>
+  );
+ }
+
  return (
   <div className="space-y-5">
    <h1 className="font-display text-3xl">Mastery Dashboard</h1>
 
    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
     <Stat label="Total XP" value={`${s.xp}`} />
-    <Stat label="Level" value={`L${lp.current} · ${rank.name}`} />
-    <Stat label="Streak" value={`${s.currentStreak}🔥 (best ${s.longestStreak})`} />
+    <Stat label="Level" value={`L${lp.current} . ${rank.name}`} />
+    <Stat label="Streak" value={`${s.currentStreak}🔥 best ${s.longestStreak}`} />
     <Stat label="Cards reviewed" value={`${cardsReviewed} (${due} due)`} />
    </div>
 
-   <section className="panel p-5">
-    <h2 className="font-display text-xl mb-3">Activity (last 365 days)</h2>
-    <StreakHeatmap currentStreak={s.currentStreak} xpByDay={s.xpByDay ?? {}} />
-   </section>
+   {hasHeatmapData && (
+    <section className="panel p-5">
+     <h2 className="font-display text-xl mb-3">Activity, last 365 days</h2>
+     <StreakHeatmap currentStreak={s.currentStreak} xpByDay={s.xpByDay ?? {}} />
+    </section>
+   )}
 
    <section className="panel p-5">
     <h2 className="font-display text-xl mb-3">Per-domain mastery</h2>
@@ -128,23 +145,23 @@ export function Dashboard() {
      )}
    </section>
 
-   <section className="panel p-5">
-    <h2 className="font-display text-xl mb-3">Calibration</h2>
-    <p className="dim text-sm mb-2">
-     Calibration measures how well your confidence on quizzes matches reality.
-     The score sits between 0 and 100. Above 50 means you tend to be sure when right and uncertain when wrong (well calibrated).
-     Below 50 means the opposite (the dangerous mix: sure but wrong).
-    </p>
-    <div className="h-3 rounded-full overflow-hidden" style={{ background: "var(--line)" }}>
-     <div className="h-full" style={{ width: `${calib}%`, background: "var(--hue)", transition: "width .3s" }} />
-    </div>
-    <p className="text-xs dim mt-2">Your score: {calib} of 100.</p>
-    <p className="text-xs dim mt-2">
-     <strong>Why this matters.</strong> Confident and wrong is the most expensive failure mode in any field
-     (medicine, investing, engineering). Building the habit of registering uncertainty before you act
-     is one of the most transferable upgrades on this app.
-    </p>
-   </section>
+   {hasQuizData && (
+    <section className="panel p-5">
+     <h2 className="font-display text-xl mb-3">Calibration</h2>
+     <p className="dim text-sm mb-2">
+      Calibration measures how well your confidence on quizzes matches reality.
+      The score sits between 0 and 100. Above 50 means you tend to be sure when right and uncertain when wrong (well calibrated).
+      Below 50 means the opposite, the dangerous mix of sure but wrong.
+     </p>
+     <div className="h-3 rounded-full overflow-hidden" style={{ background: "var(--line)" }}>
+      <div className="h-full" style={{ width: `${calib}%`, background: "var(--hue)", transition: "width .3s" }} />
+     </div>
+     <p className="text-xs dim mt-2">Your score, {calib} of 100.</p>
+     <p className="text-xs dim mt-2">
+      <strong>Why this matters.</strong> Confident and wrong is the most expensive failure mode in any field, from medicine to investing to engineering. Building the habit of registering uncertainty before you act is one of the most transferable upgrades on this app.
+     </p>
+    </section>
+   )}
   </div>
  );
 }
