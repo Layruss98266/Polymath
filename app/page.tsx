@@ -1,4 +1,5 @@
 import { DailyQuest } from "@/components/DailyQuest";
+import { DailyQuote } from "@/components/DailyQuote";
 import { SessionPicker } from "@/components/SessionPicker";
 import { DomainGrid } from "@/components/DomainGrid";
 import { LevelRing } from "@/components/LevelRing";
@@ -13,13 +14,14 @@ export default function HomePage() {
       Learn anything.<br />Two minutes a day.
      </h1>
      <p className="dim max-w-xl">
-      Real frameworks from the field's best minds, real ranked resources, real-world missions, spaced repetition, and an honest game loop.
+      Real frameworks, real ranked resources, real-world missions, spaced repetition, and an honest game loop.
       <strong className="ink"> No dark patterns.</strong> XP only for genuine learning actions.
      </p>
     </div>
     <LevelRing />
    </section>
 
+   <DailyQuote />
    <DailyQuest />
    <SessionPicker />
    <DomainGrid />
