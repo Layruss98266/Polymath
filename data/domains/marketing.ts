@@ -38,14 +38,166 @@ const d: Domain = {
  ],
 
  synthesis: [
-  { concept: "Social proof",    linksTo: "ai_ml",      note: "Social proof is an applied cognitive bias , same machinery you see in recommendation systems." },
-  { concept: "Anchoring on price", linksTo: "personal_finance", note: "The same bias that helps marketers helps you , flagged before you buy, it loses its grip." }
+  { concept: "Social proof",    linksTo: "ai_ml",      note: "Social proof is an applied cognitive bias, same machinery you see in recommendation systems." },
+  { concept: "Anchoring on price", linksTo: "personal_finance", note: "The same bias that helps marketers helps you. Flagged before you buy, it loses its grip." }
+ ],
+
+ subdomains: [
+  { id: "foundations", name: "Foundations" },
+  { id: "positioning", name: "Positioning & Messaging" },
+  { id: "economics", name: "Marketing Economics" },
+  { id: "behaviour", name: "Buyer Behaviour" }
  ],
 
  concepts: [
-  { t: "The 4 Ps",                   short: "Product · Price · Place · Promotion. The whole business in four words.",                                deep: "Picture our bakery again. The bread (Product), what you charge (Price), where you sell it , your shop, a corner, online (Place), and how you tell people about it (Promotion). When sales are flat, marketers reach for Promotion (more ads!) first. Almost always the wrong move. Look at your worst-performing P. Usually it's the Product (the bread is just okay), the Price (you're charging supermarket prices for hand-made), or the Place (your shop is on a street nobody walks). Brilliant ads for a mediocre product just teach the world your weakness faster.",                                                                                         status: "framework", reflect: "Pick something you sell or want , even yourself in a job hunt. Which of the 4 Ps is weakest right now?" },
-  { t: "Segmentation, Targeting, Positioning (STP)", short: "Pick a small group. Be unmissable to them. Own one word in their head.",                                  deep: "Most beginners try to sell to \"everyone.\" That always fails. \"Everyone\" hears noise. The fix is brutal: pick one group of people you'll obsess over , maybe \"first-time parents who care about ingredients\" , and say no to everyone else. Then, in that group's head, own a single clean idea. Volvo owns \"safe.\" Apple owns \"creative.\" Tata Salt owns \"trusted.\" You don't get to own two. Pick one and protect it.",                                                                                                                                                            status: "framework", reflect: "If your closest friend had to describe what you (or your work) is for in one word, what would they say? Is that the word you want?" },
-  { t: "Features tell, benefits sell",        short: "Don't sell the drill , sell the picture on the wall.",                                           deep: "A feature is something the product has. A benefit is something your life gains. \"6-hour battery\" is a feature. \"A full work day without hunting for a charger\" is a benefit. People buy benefits, but products usually advertise features. So the brain has to do the translation, and most of the time it doesn't bother , it just scrolls past. Do the translation for them. Pick three features of your thing. After each one, write \"…so you can ___.\" That sentence is the ad.",                                                                                                                                 status: "framework", reflect: "Take three features of your work and finish the sentence \"…so you can ___\" for each." },
+  {
+   t: "The 4 Ps",
+   subdomain: "foundations",
+   fullForm: "Product, Price, Place, Promotion",
+   definition: "A four part checklist for any marketing decision: what you make, what you charge, where you sell it, and how you tell people.",
+   short: "Product, Price, Place, Promotion. The whole business in four words.",
+   deep: "Picture our bakery again. The bread (Product), what you charge (Price), where you sell it (Place: your shop, a stall, an online listing), and how you tell people about it (Promotion). When sales are flat, marketers reach for Promotion first, more ads. Almost always the wrong move. Look at your worst performing P. Usually it is the Product (the bread is just okay), the Price (you are charging supermarket prices for hand made), or the Place (your shop is on a street nobody walks). Brilliant ads for a mediocre product just teach the world your weakness faster.",
+   generic: "Think of any small business near your house. They have four buttons to turn. What they sell (Product). What it costs (Price). Where you can get it (Place). How they tell you about it (Promotion). When one of those four buttons is wrong, the business struggles. Most owners only think about Promotion (advertise more) when one of the other three is the real problem.",
+   expert: "Kotler's 4 Ps are a mature operational checklist, not a strategy. They sit downstream of segmentation, targeting and positioning. In digital contexts you will often see 4 Ps extended to 7 Ps (People, Process, Physical evidence) for services. They are best used as a diagnostic when growth has stalled: rank each P against the segment you are targeting, and the weakest is your binding constraint. Spending on Promotion when Product Market fit is broken simply scales the loss.",
+   status: "framework",
+   reflect: "Pick something you sell or want, even yourself in a job hunt. Which of the 4 Ps is weakest right now?",
+   conceptQuiz: [
+    {
+     q: "Your sales are flat. Your first instinct should be to:",
+     options: [
+      { text: "Buy more ads (turn up Promotion).", misconception: "When growth stalls, the binding constraint is usually one of the other three Ps. More Promotion on a weak Product or Price just scales the loss." },
+      { text: "Rank your Product, Price, Place, and Promotion. Find the weakest. Fix that first.", correct: true },
+      { text: "Lower the Price to attract attention.", misconception: "Discounting can be a tactic, but only after you have diagnosed which P is actually broken. Random discounts train customers to wait for them." },
+      { text: "Hire a new ad agency.", misconception: "Same root mistake as the first option, just outsourced. Diagnose first." }
+     ],
+     why: "The 4 Ps are most useful as a diagnostic. Find the weakest, then act."
+    },
+    {
+     q: "Which of these is best described as a Place decision?",
+     options: [
+      { text: "Lowering the listing price by 10 percent.", misconception: "That is a Price decision." },
+      { text: "Posting a reel showing the product in use.", misconception: "That is a Promotion decision." },
+      { text: "Adding distribution through three new retailers.", correct: true },
+      { text: "Adding a new feature to the product.", misconception: "That is a Product decision." }
+     ],
+     why: "Place is about distribution. Where, and through which channel, the product can be bought."
+    },
+    {
+     q: "True or false: a brilliant Promotion can rescue a mediocre Product.",
+     options: [
+      { text: "True. Good ads sell anything for long enough.", misconception: "They sell it once. After the second use, customers churn, and the next campaign starts from zero. Brilliant ads on a bad product accelerate the bad word of mouth too." },
+      { text: "False. It just teaches the world your weakness faster.", correct: true },
+      { text: "True, but only in B2B markets.", misconception: "Not specifically a B2B vs B2C distinction. The principle applies across both." },
+      { text: "False, unless the budget is very large.", misconception: "Larger budget makes the bad word of mouth scale faster, not slower." }
+     ],
+     why: "If the Product is weak, every successful campaign just exposes more people to the weakness."
+    }
+   ],
+   conceptTasks: [
+    { level: "basic",    t: "Diagnose a local shop", d: "Walk past three local businesses on your street. For each, write a one line guess at which of the 4 Ps is weakest.", xp: 10 },
+    { level: "easy",     t: "Rank your own 4 Ps",    d: "For something you sell or are trying to sell (your work, your CV, a side project), rate each P from 1 to 5. Lowest score is your next priority.", xp: 20 },
+    { level: "advanced", t: "Fix the weakest P",     d: "Pick the weakest P from your ranking above. Make one concrete change to it this week, and write a paragraph on what shifted (or did not).", xp: 60 }
+   ]
+  },
+  {
+   t: "Segmentation, Targeting, Positioning (STP)",
+   subdomain: "positioning",
+   fullForm: "Segmentation, Targeting, Positioning",
+   definition: "Pick a slice of the market (Segmentation), choose which slice to obsess over (Targeting), then own one clear idea in that slice's mind (Positioning).",
+   prereqs: ["The 4 Ps"],
+   short: "Pick a small group. Be unmissable to them. Own one word in their head.",
+   deep: "Most beginners try to sell to everyone. That always fails. Everyone hears noise. The fix is brutal: pick one group of people you will obsess over (maybe first time parents who care about ingredients), and say no to everyone else. Then in that group's head, own a single clean idea. Volvo owns safe. Apple owns creative. Tata Salt owns trusted. You do not get to own two. Pick one and protect it.",
+   generic: "Imagine you are starting a tiffin service in a city of three million people. You cannot please all of them. So you pick the smallest group you can genuinely delight (young office workers who skipped breakfast and want hot lunch by 1pm). You build everything around them. Over time, when people in that group think about office lunch, your name shows up. That is positioning. Everyone else can think whatever they want.",
+   expert: "STP is the upstream strategy. Pricing, channel, messaging and even Product roadmap should fall out of it. Useful frames: Christensen's Jobs to be Done sharpens segmentation around situations not demographics. Ries and Trout's Positioning is the canonical reference for owning a single concept. Be careful: a positioning statement that contains the word 'and' is usually two positions, which means none.",
+   status: "framework",
+   reflect: "If your closest friend had to describe what you (or your work) is for in one word, what would they say? Is that the word you want?",
+   conceptQuiz: [
+    {
+     q: "Which positioning statement is strongest?",
+     options: [
+      { text: "Premium quality, affordable price, friendly service, and fast delivery.", misconception: "Trying to own four ideas at once. Customers remember none. The word 'and' between positions is usually a sign of an unfocused position." },
+      { text: "The lunch that arrives at your desk hot at 1pm.", correct: true },
+      { text: "We are the best in our industry.", misconception: "Vague, unfalsifiable, and identical to what every competitor says. It cannot occupy a specific idea in the customer's mind." },
+      { text: "World class solutions for the discerning customer.", misconception: "Pure jargon. Owns no specific idea, names no specific customer, makes no specific promise." }
+     ],
+     why: "A clear position picks one idea, one moment, one promise. Specific and falsifiable."
+    },
+    {
+     q: "The 'S' in STP stands for:",
+     options: [
+      { text: "Segmentation.", correct: true },
+      { text: "Strategy.", misconception: "Different concept. STP is a piece of strategy, not a synonym for it." },
+      { text: "Specification.", misconception: "Not a marketing term in this context." },
+      { text: "Sales.", misconception: "Sales is downstream of STP, not the first step." }
+     ],
+     why: "STP starts with Segmentation: slicing the market into groups with similar needs."
+    },
+    {
+     q: "Tata Salt owns the word 'trusted' in many Indian households. What is the cost of that focus?",
+     options: [
+      { text: "It cannot easily reposition itself as 'exciting' or 'gourmet' without confusing buyers.", correct: true },
+      { text: "It loses money on every packet sold.", misconception: "Has nothing to do with unit economics." },
+      { text: "It cannot advertise on television.", misconception: "Unrelated. Plenty of trusted brands advertise heavily." },
+      { text: "It is required to lower its price every year.", misconception: "Unrelated to positioning." }
+     ],
+     why: "Owning one idea has a cost: you give up the ability to own a different one without re-educating customers."
+    }
+   ],
+   conceptTasks: [
+    { level: "basic",    t: "Spot the position", d: "Pick three brands you use weekly. Write in one word the idea each one owns in your mind.", xp: 10 },
+    { level: "easy",     t: "Position your work", d: "Write one positioning statement for your own work using the template 'For [target] who [need], we are the [category] that [unique benefit].'", xp: 25 },
+    { level: "advanced", t: "Test the position", d: "Show your positioning statement to three people in your target segment. Ask them to repeat it back in their own words a day later. If the words drift, the position is not yet sticky.", xp: 70 }
+   ]
+  },
+  {
+   t: "Features tell, benefits sell",
+   subdomain: "positioning",
+   definition: "A feature is what the product has. A benefit is the change in the buyer's life. Buyers act on benefits.",
+   prereqs: ["The 4 Ps"],
+   short: "Don't sell the drill. Sell the picture on the wall.",
+   deep: "A feature is something the product has. A benefit is something your life gains. '6 hour battery' is a feature. 'A full work day without hunting for a charger' is a benefit. People buy benefits, but products usually advertise features. So the brain has to do the translation, and most of the time it does not bother. It just scrolls past. Do the translation for them. Pick three features of your thing. After each one, write '...so you can ___.' That sentence is the ad.",
+   generic: "Imagine you are buying a drill. The salesman shows you the spec sheet: rotations per minute, voltage, torque. Useless. What you actually want is a hole in the wall, so you can hang a picture, so your living room looks like a home. That is the benefit. Good marketing skips the spec sheet and shows you the picture on the wall.",
+   expert: "Benefits ladder up: feature, functional benefit, emotional benefit, identity benefit. Each rung is harder to copy and more valuable. Apple does identity benefit better than most. Most B2B marketing stops at functional benefit, which is why so much of it is forgettable. Caveat: highly technical buyers (engineers picking a sensor) may genuinely want the spec sheet. Match the depth to the buyer.",
+   status: "framework",
+   reflect: "Take three features of your work and finish the sentence '...so you can ___' for each.",
+   conceptQuiz: [
+    {
+     q: "Which of these is a benefit?",
+     options: [
+      { text: "Stainless steel body.", misconception: "Feature. Describes what the product is made of, not what changes for you." },
+      { text: "8 megapixel camera.", misconception: "Feature. A spec, not a life change." },
+      { text: "Photos sharp enough that your kid's smile is still recognisable on a print.", correct: true },
+      { text: "Wi-Fi enabled.", misconception: "Feature. Capability, not benefit." }
+     ],
+     why: "Benefits describe what changes in the buyer's life."
+    },
+    {
+     q: "Which 'so you can' translation works?",
+     options: [
+      { text: "Lightweight 1.2 kg laptop, so you can have a lightweight laptop.", misconception: "Circular. The translation just repeats the feature. The benefit has to be a different layer." },
+      { text: "Lightweight 1.2 kg laptop, so you can stop wrecking your shoulder on the commute.", correct: true },
+      { text: "Lightweight 1.2 kg laptop, so you can run more programs.", misconception: "Weight has nothing to do with how many programs run. The translation must be honest." },
+      { text: "Lightweight 1.2 kg laptop, so you can sleep at night.", misconception: "Too much of a stretch. The connection has to be plausible." }
+     ],
+     why: "Translation should connect the feature to a real, specific change."
+    },
+    {
+     q: "When does selling features beat selling benefits?",
+     options: [
+      { text: "When the buyer is a domain expert comparing specs.", correct: true },
+      { text: "Never. Features are always weaker.", misconception: "Strong overshoot. Expert buyers often want the spec directly." },
+      { text: "When you are out of marketing budget.", misconception: "Budget unrelated to choice of feature vs benefit." },
+      { text: "When the price is high.", misconception: "Price unrelated to whether features or benefits work." }
+     ],
+     why: "Experts can do the translation themselves and often want the raw spec."
+    }
+   ],
+   conceptTasks: [
+    { level: "basic",    t: "Spot the feature trap", d: "Look at any product homepage. Count how many bullets are features vs benefits. Most are over 80 percent features.", xp: 10 },
+    { level: "easy",     t: "Translate your own",    d: "Take three features of your work and write a 'so you can' translation for each. Read both out loud. Which sounds like a friend?", xp: 25 },
+    { level: "advanced", t: "Rewrite a real page",   d: "Take your homepage. Rewrite every feature bullet as a benefit. Show both versions to two strangers. Ask which makes them more likely to try it.", xp: 70 }
+   ]
+  },
   { t: "Jobs-to-be-Done",               short: "Nobody buys a drill , they buy a hole. Really, they buy a picture on the wall, hung straight, by tonight.",               deep: "Christensen's question: what \"job\" does someone hire your product to do in their life? McDonald's couldn't figure out why their milkshakes sold so well early in the morning. Until they actually watched. Lone commuters bought them: long drive, one hand on the wheel, nothing else to do, breakfast that takes 20 minutes to finish , exactly. Once McDonald's saw the job (\"keep me awake and not bored on a commute\"), they made the shake thicker and added flavour bits , sales went up. Stop asking \"what features should we add?\" Start asking \"what job did they hire us for?\"",                                                                                                 status: "framework", reflect: "When someone uses your work, what's the real job they're hiring it to do? It's often weirder than you'd guess." },
   { t: "Social proof",                short: "We copy people who look like us, especially when we're unsure.",                                      deep: "Standing outside two restaurants, both new, one empty and one half full , which do you walk into? Half full. Every time. That instinct is social proof. It shows up in testimonials, reviews, \"used by 50,000 teams,\" the queue outside the new café. The trick: it has to come from people your buyer recognises themselves in. A glowing quote from a CEO won't help a teenager pick sneakers; a glowing TikTok from someone their age will. Fake reviews work for a quarter, then poison you for years.",                                                                                                                                     status: "settled",  reflect: "Look at your most visible social proof. Are those people the target audience would identify with, or just the most impressive you could find?" },
   { t: "Mental + physical availability (Byron Sharp)", short: "Be easy to remember. Be easy to buy. The rest is mostly noise.",                                     deep: "Byron Sharp spent years digging through brand data and found something uncomfortable: the way most people talk about marketing is wrong. Brands don't grow because customers feel a deep emotional connection. They grow because they're easy to think of (mental availability) and easy to grab (physical availability). Coca-Cola's win isn't your love for the brand , it's that you can name it instantly and buy it on every street corner. Distinctive logos, colours, jingles, characters do the remembering work. Distribution does the grabbing work. Both compound; clever taglines mostly don't.",                                                                                         status: "debated",  reflect: "If a stranger saw your logo for one fifth of a second, would they recognise it? If not, mental availability is leaking." },

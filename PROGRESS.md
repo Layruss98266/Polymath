@@ -10,8 +10,8 @@ Spec: `POLYMATH_claude_code_prompt2.md` v5. Stack: Next.js 15 (App Router) + TS 
 - [x] 5e. RankBadge component: seven distinct gradients, letter glyphs (I to VII), tier colors, auras. Used on DomainCard, DomainView header (lg), Dashboard rank list (sm).
 - [x] 5f. Quote of the day. data/quotes.ts with 120 real attributed quotes (target 500 over time). DailyQuote component on Home picks one per day deterministically.
 - [ ] 5g. Resource rebalance with kind tag (article / video / course / book / podcast / tool) and UI sort
-- [ ] 5h. Sub domain support and concept variety (12 to 16 concepts per domain across 2 to 4 subdomains)
-- [ ] 5i. Task ladder authoring across all 15 domains
+- [~] 5h. Sub domain support and concept variety. Marketing exemplar shipped with 4 subdomains (foundations, positioning, economics, behaviour) and the first 3 concepts (The 4 Ps, STP, Features tell benefits sell) fully populated with all new optional fields: fullForm, definition, prereqs, generic explanation, expert explanation, 3 concept quizzes each with misconception mapping, and a basic / easy / advanced task ladder. Remaining 12 domains queued.
+- [~] 5i. Task ladder authoring. Demonstrated on Marketing's first 3 concepts (9 tasks total across 3 levels). Same template applies to the rest.
 - [ ] 5j. Spec items pending (onboarding, achievements expansion, weakest concepts queue UI, test-out UI, global search, capability log surfaced, calibration explanation, confetti on level up, self-hosted fonts, sounds, single inlined polymath.html, PWA)
 - [ ] 5k. Persona audit (5 personas)
 
