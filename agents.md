@@ -1,68 +1,146 @@
-# Polymath, Agent Notes
+# AGENTS.md
 
-## Project
-Single-page-ish learning app teaching ~75 real-world domains from basics to mastery, wrapped in a daily-habit game loop (XP, ranks, streaks, FSRS spaced-repetition flashcards, mastery dashboard, skill map). Built to spec `POLYMATH_claude_code_prompt2.md` v5.
+Single source of truth for any AI assistant or new contributor working on Polymath. Read this first. (Lowercase `agents.md` is the same content; Windows-safe duplicate.)
+
+## What this is
+
+Static Next.js 15 daily-learning encyclopaedia. 15 curated domains, 202 concepts, 411 daily quotes, FSRS spaced repetition, real missions, India-aware. Fully client-side, no backend, no login, no analytics. Deployed on Vercel at `polymath-virid.vercel.app`.
+
+Spec source of truth: `POLYMATH_claude_code_prompt2.md` (v5).
 
 ## Stack
-- **Framework:** Next.js 15 (App Router) + React 19 + TypeScript strict
-- **Styling:** Tailwind CSS w/ CSS variables (theme-aware light/dark)
-- **Storage:** Dexie (IndexedDB) primary, localStorage fallback, versioned schema migrations
-- **Spaced repetition:** `ts-fsrs` (FSRS, what modern Anki uses)
-- **Validation:** Zod (domain schema validated at load)
-- **Icons:** lucide-react
-- **Confetti:** canvas-confetti (gated on `prefers-reduced-motion`)
-- **Host:** Vercel
 
-## Layout
-- `app/`, routes:
-  - `/`, `/about`, `/search`, `/share`
-  - `/review`, `/dashboard`, `/skill-map`, `/my-list`, `/settings` (all noindex)
-  - `/domain/[id]` (Basics overview)
-  - `/domain/[id]/{concepts,quiz,flashcards,diagram,roadmap,resources,missions,cheatsheet,counter}` (per-tab pages)
-  - `/domain/[id]/concepts/[idx]` (single concept deep page, canonical share URL)
-  - `/domain/[id]/sub/[subdomain]` (subdomain page)
-  - `/domain/[id]/opengraph-image.tsx` (per-domain OG)
-  - `/domains.rss`, `/sitemap.xml`, `/robots.txt`
-- `app/layout.tsx`, root shell w/ centered top bar + footer + bottom nav + scroll-top FAB
-- `app/domain/[id]/layout.tsx`, shared chrome (DomainHeader + safety note + DomainTabBar + SubdomainStrip + TabQueryRedirect)
-- `app/globals.css`, theme tokens (light overrides `--hue` to `#d94a3d` for WCAG AA)
-- `lib/`, engine
-  - `state.tsx`: vanilla `useSyncExternalStore`. Every XP-granting action MUST dedupe against persisted state (see `quizSeen`, `reflectionSeen`).
-  - `tabs.ts`: single source of truth for tab ids, segments, unlock rules, and URL helpers. Use these everywhere; don't hard-code `/concepts`, `/quiz`, etc.
-  - `schema.ts`: Zod, validated at SSG build, fails the build on mismatch.
-  - `streak.ts`: weekly ISO-week grace.
-  - `fsrs.ts`, `xp.ts`, `mastery.ts`: pure functions covered by `tests/*.test.ts`.
-- `components/`, UI pieces
-  - `components/domain/`: route-segment domain chrome (DomainHeader, DomainTabBar, SubdomainStrip, DomainProvider, TabQueryRedirect, ConceptDeepPage, SubdomainPage). Don't reintroduce the old monolithic `DomainView`.
-  - `components/tabs/`: per-tab content components, used by the per-tab page.tsx files.
-  - `Diagram.tsx` exports `DiagramView` (15 generators).
-- `data/domains/`, one TS module per domain (typed, validated at build)
-- `data/paths.ts`, `data/achievements.ts`, `data/quotes.ts`
-- `PROGRESS.md`, phase-by-phase build tracker; `AUDIT.md` for the living issue list; `TODO.md` for the working backlog; `PLAN.md` for the current architecture plan.
+- **Next.js 15** App Router, **React 19**, **TypeScript strict**
+- **Tailwind CSS** with CSS-variable theming (`--bg`, `--panel`, `--ink`, `--dim`, `--line`, `--hue`, `--good`, `--bad`)
+- **Dexie** (IndexedDB) + localStorage fallback, versioned migrations
+- **ts-fsrs** for spaced repetition
+- **Zod** for schema validation at build (every domain validated at SSG)
+- **lucide-react** for icons (named imports only)
+- **canvas-confetti** gated on `prefers-reduced-motion`
+- Vanilla state store via `useSyncExternalStore` in `lib/state.tsx`. No Redux, no Zustand.
+- Service worker at `public/sw.js`. Cache key tied to `NEXT_PUBLIC_BUILD_ID`.
+- `next/og` for OpenGraph image generation (per-domain).
+- **vitest** for unit + schema tests.
 
-## Run
-```
+## Run, build, test
+
+```bash
 npm install
-npm run dev      # localhost:3000
-npm run build
-npm run start
-npm run typecheck
+npm run dev          # http://localhost:3000
+npm run build        # SSG. Zod fails the build on any schema drift.
+npm run typecheck    # tsc --noEmit
+npm run test         # vitest run
+npm run lint         # ESLint + next/core-web-vitals (react-hooks/exhaustive-deps as error)
 ```
 
-## Hard rules (from spec §0)
-1. **No hallucinated facts/resources/links/prices.** Unknown link → `url: ""` + `verify: true`. Better 7 real than 10 w/ 3 fake.
-2. **Depth > breadth.** Author domains one at a time using Appendix C QA checklist. No `// TODO` placeholders in shipped build.
-3. **Sound like the field's best minds (§11A).** Real mentors, accurate quotes (or none), caveats for contested popular claims (Mehrabian 7-38-55, 10,000-hour rule, Love Languages, Ramsey snowball, Walker sleep critiques).
+CI runs `tsc → lint → test → build` on every PR (`.github/workflows/ci.yml`).
 
-## Sensitive-domain rules (§10)
-`HOME_COUNTRY = "India"`. Finance/Investing/Crypto → "education, not financial advice." Law → universal + local-portal pointer. Medical/Nutrition/Fitness/Sleep/First Aid → "educational, not medical advice." Mental Health → de-stigmatising, never list specific crisis methods, prompt professional help. Sexual Health → clinical/respectful, consent-front. Spirituality → comparative & pluralistic. History → multi-perspective.
+## Route map
 
-## What to avoid
-- Don't read the whole `POLYMATH_claude_code_prompt2.md` mid-session unless you need it, work from PROGRESS.md + already-loaded context.
-- Don't add domains without running Appendix C QA checklist.
-- Don't introduce a state framework, vanilla React + Dexie + tiny store is enough.
-- Don't fake URLs to pad resource lists. Mark `verify: true` instead.
-- Don't break the "open & run" promise, no server-only features that block static deploy.
+Public:
+- `/` Home (`HomeShell`: hero → stats → today → continue/concept-of-day → recent activity / "more for you" → featured paths → catalogue gate → trust strip → daily rituals).
+- `/about`, `/search`, `/share?d=<base64>`, `/domains.rss`, `/sitemap.xml`, `/robots.txt`.
 
-## Vercel deploy
-`vercel.json` present. `next build` produces `.next/`, Vercel auto-detects. Static-friendly (no server functions required for MVP). Connect Git repo → Vercel imports.
+Per-domain (every tab is a real route; no `?tab=` query):
+- `/domain/[id]` — Basics overview.
+- `/domain/[id]/concepts` — concepts list.
+- `/domain/[id]/concepts/[idx]` — single concept canonical share URL with JSON-LD `LearningResource`.
+- `/domain/[id]/quiz | flashcards | diagram | roadmap | resources | missions | cheatsheet | counter`.
+- `/domain/[id]/sub/[subdomain]` — subdomain page with intro + capabilities + filtered concepts + tagged resources.
+
+Personal (every one is `robots: noindex` AND listed in `robots.txt` disallow):
+- `/review`, `/dashboard`, `/skill-map`, `/my-list`, `/settings`, `/share`, `/search`.
+
+## Key files
+
+- `lib/state.tsx` — the store. Every XP-granting action MUST dedupe against persisted state. Patterns: `quizSeen`, `reflectionSeen`, `graduatedCards`.
+- `lib/tabs.ts` — single source of truth for tab routing. Use `tabPath()`, `conceptPath()`, `subdomainPath()` everywhere. Never hard-code `/concepts` etc.
+- `lib/schema.ts` — Zod. Enforces the enrichment pair invariant (`conceptQuiz`/`conceptTasks` come together; `generic`/`expert` come together). Build fails on drift.
+- `lib/mastery.ts` — proven-not-opened formula. Opening = 8%; proven (opened + reflected + quiz ≥ 60%) = 22%; capstone = 20%. Mild concave curve.
+- `lib/xp.ts` — rank thresholds raised in round 9. Master = 90%, Grandmaster = 97%.
+- `lib/streak.ts` — weekly ISO-week grace. `todayKey` is local-time YYYY-MM-DD.
+- `lib/jsonLd.ts` — `safeJsonLd` escapes `</script>` for any `dangerouslySetInnerHTML`.
+- `lib/save.ts` — `utf8ToBase64` / `base64ToUtf8` (deprecated `escape`/`unescape` removed).
+- `lib/shareRank.ts` — single shallow-mastery estimator used by SettingsView share link and ShareCard.
+- `lib/focusTrap.ts` — modal focus trap. Applied to Onboarding, CommandPalette, SaveLoadModal.
+- `data/domains/*.ts` — 15 domain content modules. Each default-exports a `Domain`.
+- `data/conceptStats.ts` — total concept count snapshot for HomeStats.
+- `data/quotes.ts` — 411 quotes. Real attribution only.
+
+## Hard rules
+
+These are project laws.
+
+1. **No em-dashes (—) and no en-dashes (–).** Anywhere. Commas or periods.
+2. **No hallucinated URLs.** Unknown → `url: ""`, `verify: true`. Never invent.
+3. **`HOME_COUNTRY` = India.** Finance, law, health, nutrition default to Indian context (SEBI, RBI, IRDAI, BNS, BNSS, BSA, FSSAI, NPS, PPF, ELSS, Sec 80C/80D, ICMR-NIN, DPDPA 2023).
+4. **Theme tokens.** Dark `--hue: #ff6b5e` and `--bg: #0b0d1a`. Light overrides `--hue: #d94a3d` for AA contrast on white. Do not change.
+5. **No backend.** CSP enforces `connect-src 'self'`. No fetch off-origin.
+6. **Privacy is the product.** No analytics, no tracking, no third-party scripts.
+7. **Status badges on every concept.** Settled / debated / framework. Not optional.
+8. **Anti-XP-farm.** Every XP-granting action persists a "seen" set: `quizSeen`, `reflectionSeen`, `graduatedCards`. Local component state is not enough.
+9. **Enrichment pair invariant.** `conceptQuiz` ↔ `conceptTasks` come together. `generic` ↔ `expert` come together. Zod enforces.
+
+## Common gotchas
+
+- `DOMAIN_INDEX` is an **array** of meta entries. Use `.find(d => d.id === ...)` not bracket indexing.
+- Full domain content is dynamic-imported per id via `loadDomain(id)`. Wrapped in React `cache()`.
+- Tabs are real routes. Backward-compat: `/domain/[id]?tab=concepts` redirects via `components/domain/TabQueryRedirect.tsx`.
+- Print mode hides header, footer, BottomNav, FAB. CheatsheetTab is the only print-designed surface.
+- ServiceWorker registers only in production. SW cache key is `polymath-<NEXT_PUBLIC_BUILD_ID>`.
+
+## What NOT to do
+
+- Don't re-introduce `?tab=` style routing.
+- Don't grant XP without the dedupe guard pattern.
+- Don't hard-code paths; use `lib/tabs.ts` helpers.
+- Don't add a backend dependency without rewriting the privacy claim on `/about`.
+- Don't ship a concept with only half the enrichment pair (Zod will fail the build).
+- Don't ship em or en dashes.
+- Don't write to `localStorage` from a non-React-tree module; go through `lib/db.ts`.
+
+## File map
+
+- `app/` — Next.js App Router routes, root layout, sitemap, robots, RSS, icon generators.
+- `components/`
+  - `components/domain/` — route-segment domain chrome (Header, TabBar, SubdomainStrip, Provider, TabQueryRedirect, ConceptDeepPage, SubdomainPage).
+  - `components/tabs/` — per-tab content.
+  - Home strip: `HomeShell`, `HomeStats`, `StartHereBento`, `MoreForYouRow`, `RecentActivityRail`, `FeaturedPaths`, `TrustStrip`, `TodayCard`.
+  - Surfaces: `TopBar`, `BottomNav`, `Footer`, `MegaMenu`, `PracticeMenu`, `CommandPalette`, `SearchView`, `ReviewSession`, `Dashboard`, `MyList`, `SettingsView`, `AboutView`, `ShareView`, `ShareCard`, `Onboarding`, `Coachmarks`, `Toaster`, `RouteAnnouncer`, `OveruseNudge`, `KeyboardShortcuts`, `ScrollTopFab`.
+- `lib/` — engine.
+- `data/` — content modules.
+- `tests/` — vitest (`xp`, `streak`, `mastery`, `save`, `schema`, `quotes`).
+- `public/` — `sw.js`, `manifest.webmanifest`.
+- `.github/workflows/ci.yml` — CI pipeline.
+
+## Where context lives
+
+- `README.md` — public README.
+- `AUDIT.md` — living issue list with status markers.
+- `TODO.md` — working backlog.
+- `PROGRESS.md` — phase-by-phase build notes.
+- `PLAN.md` — current architecture plan.
+- `REVIEW.md` — persona + stack audit (early).
+- `IMPROVEMENTS.md`, `FINDINGS-3.md`, `CODE-REVIEW-A.md`, `CODE-REVIEW-B.md` — audit outputs.
+- `TEST-*.md` — per-domain end-to-end test reports.
+- `PERSONA-*.md` — persona-based UX/strategy reviews (5 personas).
+- `research_notes.md` — Antigravity research deliverables.
+- `POLYMATH_claude_code_prompt2.md` — original spec (v5).
+- `CONTRIBUTING.md`, `SECURITY.md`, `CODE_OF_CONDUCT.md`, `CHANGELOG.md` — project meta.
+
+When you finish a substantive change, update `AUDIT.md` AND `TODO.md` AND this file in the same commit.
+
+## Commit hygiene
+
+- Conventional Commits format. Subject ≤ 50 chars. Body explains why, not just what.
+- Never push without permission. Run `tsc --noEmit` first.
+- Never amend pushed commits. Never force push.
+- No secrets ever. No env vars. Nothing to leak.
+
+## Co-author tag
+
+When AI assistants ship a commit:
+
+```
+Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>
+```
