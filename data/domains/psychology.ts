@@ -653,10 +653,10 @@ const d: Domain = {
    { name: "Mindset, Carol Dweck",              what: "Growth vs fixed. Read the replication caveats alongside.",        url: "https://en.wikipedia.org/wiki/Mindset_(book)",                  price: "verify", weight: "secondary", verify: false, lastVerified: "2026-06" },
    { name: "The Righteous Mind, Jonathan Haidt",       what: "Moral psychology of why decent people disagree.",            url: "https://righteousmind.com/",                           price: "verify", verify: false, lastVerified: "2026-06" },
    { name: "Predictably Irrational, Dan Ariely",       what: "Behavioural-economics intro w/ caveats post-replication.",         url: "https://danariely.com/books/predictably-irrational/",              price: "verify", verify: false, lastVerified: "2026-06" },
-   { name: "Stumbling on Happiness, Daniel Gilbert",     what: "Why we mispredict what'll make us happy.",                url: "",                                        price: "verify", verify: false, lastVerified: "2026-06" },
+   { name: "Stumbling on Happiness, Daniel Gilbert",     what: "Why we mispredict what'll make us happy.",                url: "",                                        price: "verify", verify: true, lastVerified: "2026-06" },
    { name: "The Happiness Hypothesis, Jonathan Haidt",    what: "Ancient wisdom vs modern psychology.",                  url: "https://righteousmind.com/",                           price: "verify", verify: false, lastVerified: "2026-06" },
-   { name: "Thinking in Bets, Annie Duke",          what: "Decision-making under uncertainty, poker-trained.",           url: "",                                        price: "verify", verify: false, lastVerified: "2026-06" },
-   { name: "Noise, Kahneman, Sibony, Sunstein",       what: "Why expert judgment varies wildly, and what to do about it.",      url: "",                                        price: "verify", verify: false, lastVerified: "2026-06" }
+   { name: "Thinking in Bets, Annie Duke",          what: "Decision-making under uncertainty, poker-trained.",           url: "",                                        price: "verify", verify: true, lastVerified: "2026-06" },
+   { name: "Noise, Kahneman, Sibony, Sunstein",       what: "Why expert judgment varies wildly, and what to do about it.",      url: "",                                        price: "verify", verify: true, lastVerified: "2026-06" }
   ]
  },
 

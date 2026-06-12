@@ -23,7 +23,10 @@ export function HomeShell({
  const [expanded, setExpanded] = useState(false);
  // Show all 15 domains only when the user explicitly asks for it. New users
  // see 4 curated picks instead, so the catalogue does not overwhelm.
+ // If the user types in the hero search though, auto-open the catalogue so
+ // the typing has somewhere to land.
  const [showCatalogue, setShowCatalogue] = useState(false);
+ const effectiveShowCatalogue = showCatalogue || q.trim().length > 0;
 
  const started = s.startedDomains.length;
  const xp = s.xp;
@@ -51,7 +54,7 @@ export function HomeShell({
    {isReturning && <MoreForYouRow />}
 
    <div id="all-domains" />
-   {!showCatalogue && (
+   {!effectiveShowCatalogue && (
     <div className="flex flex-col items-center gap-2 py-4">
      <button
       className="btn"
@@ -63,7 +66,7 @@ export function HomeShell({
      <p className="dim text-xs">Or use the Domains menu in the top bar at any time.</p>
     </div>
    )}
-   {showCatalogue && <HubCatalogue q={q} setQ={setQ} />}
+   {effectiveShowCatalogue && <HubCatalogue q={q} setQ={setQ} />}
 
    {/* Optional ritual strip behind a single toggle so the page stays a hub */}
    <div className="flex justify-center pt-2">

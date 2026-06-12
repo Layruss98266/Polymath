@@ -44,12 +44,16 @@ self.addEventListener("fetch", (event) => {
   return;
  }
 
- // Cache first for hashed assets
+ // Cache first for hashed assets. If both cache and network fail we return
+ // a Response.error() — `as any` was invalid JS and broke the whole worker.
  event.respondWith(
-  caches.match(req).then((cached) => cached || fetch(req).then((res) => {
-   const copy = res.clone();
-   caches.open(RUNTIME_CACHE).then((c) => c.put(req, copy)).catch(() => {});
-   return res;
-  }).catch(() => cached as any))
+  caches.match(req).then((cached) => {
+   if (cached) return cached;
+   return fetch(req).then((res) => {
+    const copy = res.clone();
+    caches.open(RUNTIME_CACHE).then((c) => c.put(req, copy)).catch(() => {});
+    return res;
+   }).catch(() => Response.error());
+  })
  );
 });

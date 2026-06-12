@@ -623,15 +623,15 @@ const d: Domain = {
   ],
   paid: [
    { name: "In Defense of Food, Michael Pollan",      what: "\"Eat food, not too much, mostly plants.\" Best general read.",       url: "https://michaelpollan.com/books/in-defense-of-food/",                price: "verify", weight: "primary", verify: false, lastVerified: "2026-06" },
-   { name: "The Diet Myth, Tim Spector",          what: "Microbiome + plant diversity case.",                     url: "",                                          price: "verify", weight: "primary", verify: false, lastVerified: "2026-06" },
+   { name: "The Diet Myth, Tim Spector",          what: "Microbiome + plant diversity case.",                     url: "",                                          price: "verify", weight: "primary", verify: true, lastVerified: "2026-06" },
    { name: "Food Politics, Marion Nestle",         what: "How the food industry shapes what 'healthy' means.",             url: "https://www.foodpolitics.com/",                           price: "verify", weight: "secondary", verify: false, lastVerified: "2026-06" },
    { name: "How Not to Die, Michael Greger",        what: "Plant-forward case w/ extensive citations.",                 url: "https://nutritionfacts.org/book/how-not-to-die/",                  price: "verify", weight: "popular", verify: false, lastVerified: "2026-06" },
    { name: "The Omnivore's Dilemma, Michael Pollan",     what: "Where food comes from, deeply reported.",                  url: "https://michaelpollan.com/books/the-omnivores-dilemma/",               price: "verify", verify: false, lastVerified: "2026-06" },
-   { name: "Salt Sugar Fat, Michael Moss",         what: "How processed-food companies engineer cravings.",              url: "",                                          price: "verify", verify: false, lastVerified: "2026-06" },
-   { name: "Ultra-Processed People, Chris van Tulleken",  what: "Modern accessible take on NOVA Group 4.",                  url: "",                                          price: "verify", weight: "secondary", verify: false, lastVerified: "2026-06" },
-   { name: "Spoon-Fed, Tim Spector",             what: "Twenty myths in nutrition, debunked.",                    url: "",                                          price: "verify", verify: false, lastVerified: "2026-06" },
-   { name: "Why We Get Sick, Bikman / Why We Get Fat, Taubes", what: "Insulin-centric critiques. Read with debate caveats.",         url: "",                                          price: "verify", verify: false, lastVerified: "2026-06" },
-   { name: "The China Study, Campbell",           what: "Influential, controversial. Read alongside its critics.",          url: "",                                          price: "verify", verify: false, lastVerified: "2026-06" }
+   { name: "Salt Sugar Fat, Michael Moss",         what: "How processed-food companies engineer cravings.",              url: "",                                          price: "verify", verify: true, lastVerified: "2026-06" },
+   { name: "Ultra-Processed People, Chris van Tulleken",  what: "Modern accessible take on NOVA Group 4.",                  url: "",                                          price: "verify", weight: "secondary", verify: true, lastVerified: "2026-06" },
+   { name: "Spoon-Fed, Tim Spector",             what: "Twenty myths in nutrition, debunked.",                    url: "",                                          price: "verify", verify: true, lastVerified: "2026-06" },
+   { name: "Why We Get Sick, Bikman / Why We Get Fat, Taubes", what: "Insulin-centric critiques. Read with debate caveats.",         url: "",                                          price: "verify", verify: true, lastVerified: "2026-06" },
+   { name: "The China Study, Campbell",           what: "Influential, controversial. Read alongside its critics.",          url: "",                                          price: "verify", verify: true, lastVerified: "2026-06" }
   ]
  },
 

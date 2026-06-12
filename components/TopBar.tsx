@@ -149,7 +149,7 @@ export function TopBar() {
 
      {/* Primary CTA */}
      <Link
-      href={s.startedDomains.length > 0 ? "/review" : "/#domains"}
+      href={s.startedDomains.length > 0 ? "/review" : "/#all-domains"}
       className="hidden sm:inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm font-medium shrink-0"
       style={{ background: "var(--hue)", color: "#0b0d1a" }}
      >
@@ -225,7 +225,7 @@ export function TopBar() {
        </button>
       </div>
       <Link
-       href={s.startedDomains.length > 0 ? "/review" : "/#domains"}
+       href={s.startedDomains.length > 0 ? "/review" : "/#all-domains"}
        className="mt-4 inline-flex w-full justify-center items-center gap-1 px-3 py-2.5 rounded-lg text-sm font-medium"
        style={{ background: "var(--hue)", color: "#0b0d1a" }}
       >

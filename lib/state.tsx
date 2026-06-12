@@ -268,10 +268,35 @@ export function useActions() {
  const upsertCard = useCallback((card: CardSR) => {
   store.patch((s) => {
    const idx = s.cards.findIndex((c) => c.cardKey === card.cardKey);
+   const prev = idx >= 0 ? s.cards[idx] : undefined;
    const cards = idx >= 0
     ? s.cards.map((c, i) => (i === idx ? card : c))
     : [...s.cards, card];
-   return { ...s, cards };
+
+   // Grade-time XP for any review action, irrespective of where it was
+   // graded (Review screen, Flashcards tab). Dedup guard already lives in
+   // ReviewSession's `busy` lock so this single source of XP is safe.
+   const reviewXp = XP.flashcardReviewed;
+
+   // FSRS state 2 = Review (a card has graduated out of Learning).
+   // Increment flashcardsGraduated once per card the first time it crosses
+   // into Review state. Without this the 22 percent flashcards slice of
+   // masteryPct never increases.
+   const justGraduated = card.state === 2 && (prev?.state ?? 0) !== 2;
+   let domainProgress = s.domainProgress;
+   let graduationXp = 0;
+   if (justGraduated) {
+    const dp = s.domainProgress[card.domainId];
+    if (dp) {
+     domainProgress = {
+      ...s.domainProgress,
+      [card.domainId]: { ...dp, flashcardsGraduated: dp.flashcardsGraduated + 1 }
+     };
+     graduationXp = XP.flashcardGraduated;
+    }
+   }
+
+   return { ...s, cards, domainProgress, xp: s.xp + reviewXp + graduationXp };
   });
  }, [store]);
 

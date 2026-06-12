@@ -32,7 +32,12 @@ function QuizCard({ d, idx, q }: { d: Domain; idx: number; q: Domain["quiz"][num
  function pick(i: number) {
   if (submitted) return;
   setPicked(i);
-  a.recordQuizAnswer(d.id, i === correctIdx, calibrated, undefined, `${d.id}:quiz:${idx}`);
+  // Compute calibration inline from the fresh pick. The render-scope
+  // `calibrated` is stale because it depends on `submitted` which is still
+  // false at this point.
+  const isRight = i === correctIdx;
+  const isCalibrated = (isRight && conf !== "guess") || (!isRight && conf === "guess");
+  a.recordQuizAnswer(d.id, isRight, isCalibrated, undefined, `${d.id}:quiz:${idx}`);
  }
 
  return (

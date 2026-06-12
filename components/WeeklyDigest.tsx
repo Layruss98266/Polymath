@@ -8,8 +8,15 @@ import { todayKey } from "@/lib/streak";
 // a few derived metrics so the reader sees a real, small, weekly delta
 // without paging into the full streak heatmap.
 
+// Local-time YYYY-MM-DD. Must match `todayKey` in `lib/streak.ts` so the
+// 7-day window aligns with the keys used by the rest of the app, which all
+// bucket by local calendar day. Using toISOString here was a real bug that
+// rolled the day before local midnight outside UTC+0.
 function dayKey(d: Date): string {
- return d.toISOString().slice(0, 10);
+ const yy = d.getFullYear();
+ const mm = String(d.getMonth() + 1).padStart(2, "0");
+ const dd = String(d.getDate()).padStart(2, "0");
+ return `${yy}-${mm}-${dd}`;
 }
 
 function lastNDayKeys(n: number): string[] {

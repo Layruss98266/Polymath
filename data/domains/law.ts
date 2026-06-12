@@ -623,15 +623,15 @@ const d: Domain = {
   ],
   paid: [
    { name: "The Concept of Law, H.L.A. Hart",      what: "Foundational jurisprudence. Dense but rewarding.",                  url: "https://en.wikipedia.org/wiki/The_Concept_of_Law",                   price: "verify", weight: "primary", verify: false, lastVerified: "2026-06" },
-   { name: "Constitutional Law, M.P. Jain",       what: "Standard Indian constitutional-law text.",                      url: "",                                           price: "verify", weight: "primary", verify: false, lastVerified: "2026-06" },
+   { name: "Constitutional Law, M.P. Jain",       what: "Standard Indian constitutional-law text.",                      url: "",                                           price: "verify", weight: "primary", verify: true, lastVerified: "2026-06" },
    { name: "Nudge, Thaler & Sunstein",          what: "Behavioural law/economics, choice architecture meets policy.",            url: "https://en.wikipedia.org/wiki/Nudge_(book)",                      price: "verify", weight: "popular", verify: false, lastVerified: "2026-06" },
-   { name: "The Rule of Law, Tom Bingham",        what: "Compact, lucid case for rule-of-law principles.",                   url: "",                                           price: "verify", weight: "secondary", verify: false, lastVerified: "2026-06" },
+   { name: "The Rule of Law, Tom Bingham",        what: "Compact, lucid case for rule-of-law principles.",                   url: "",                                           price: "verify", weight: "secondary", verify: true, lastVerified: "2026-06" },
    { name: "Taking Rights Seriously, Ronald Dworkin",  what: "Rights as trumps; law as interpretation.",                      url: "https://en.wikipedia.org/wiki/Taking_Rights_Seriously",                price: "verify", verify: false, lastVerified: "2026-06" },
    { name: "The Path of the Law, Holmes (essay)",    what: "Foundational realist essay, also free if you search.",                url: "https://en.wikipedia.org/wiki/The_Path_of_the_Law",                  price: "verify", verify: false, lastVerified: "2026-06" },
-   { name: "India After Gandhi, Ramachandra Guha",   what: "Political-history context for Indian constitutional law.",              url: "",                                           price: "verify", verify: false, lastVerified: "2026-06" },
-   { name: "Working a Democratic Constitution, Granville Austin", what: "Definitive study of Indian constitutional working.",              url: "",                                           price: "verify", verify: false, lastVerified: "2026-06" },
-   { name: "The Transformative Constitution, Gautam Bhatia", what: "Modern Indian constitutional theory.",                       url: "",                                           price: "verify", weight: "secondary", verify: false, lastVerified: "2026-06" },
-   { name: "Law's Empire, Ronald Dworkin",        what: "Law as interpretation; deeper Dworkin.",                       url: "",                                           price: "verify", verify: false, lastVerified: "2026-06" }
+   { name: "India After Gandhi, Ramachandra Guha",   what: "Political-history context for Indian constitutional law.",              url: "",                                           price: "verify", verify: true, lastVerified: "2026-06" },
+   { name: "Working a Democratic Constitution, Granville Austin", what: "Definitive study of Indian constitutional working.",              url: "",                                           price: "verify", verify: true, lastVerified: "2026-06" },
+   { name: "The Transformative Constitution, Gautam Bhatia", what: "Modern Indian constitutional theory.",                       url: "",                                           price: "verify", weight: "secondary", verify: true, lastVerified: "2026-06" },
+   { name: "Law's Empire, Ronald Dworkin",        what: "Law as interpretation; deeper Dworkin.",                       url: "",                                           price: "verify", verify: true, lastVerified: "2026-06" }
   ]
  },
 

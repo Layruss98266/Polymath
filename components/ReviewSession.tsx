@@ -59,8 +59,7 @@ export function ReviewSession() {
   setBusy(true);
   const existing = s.cards.find((c) => c.cardKey === card.cardKey) ?? newCard(card.cardKey, card.domainId);
   const next = grade(existing, g);
-  a.upsertCard(next);
-  a.addXP(4, "review");
+  a.upsertCard(next); // upsertCard now awards the per-grade XP itself
   setFlipped(false);
   setI((x) => x + 1);
   // Release the lock on the next tick once the new card is mounted.

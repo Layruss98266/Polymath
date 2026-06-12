@@ -627,11 +627,11 @@ const d: Domain = {
    { name: "On the Origin of Species, Darwin",     what: "Still the clearest exposition of the idea.",                        url: "https://en.wikipedia.org/wiki/On_the_Origin_of_Species",              price: "verify", weight: "primary", verify: false, lastVerified: "2026-06" },
    { name: "A Brief History of Time, Stephen Hawking", what: "The popular-physics classic.",                               url: "https://en.wikipedia.org/wiki/A_Brief_History_of_Time",               price: "verify", weight: "popular", verify: false, lastVerified: "2026-06" },
    { name: "The Selfish Gene, Richard Dawkins",     what: "Evolution from the gene's-eye view.",                            url: "https://en.wikipedia.org/wiki/The_Selfish_Gene",                  price: "verify", weight: "secondary", verify: false, lastVerified: "2026-06" },
-   { name: "The Greatest Show on Earth, Dawkins",    what: "The evidence for evolution, marshalled clearly.",                     url: "",                                         price: "verify", verify: false, lastVerified: "2026-06" },
+   { name: "The Greatest Show on Earth, Dawkins",    what: "The evidence for evolution, marshalled clearly.",                     url: "",                                         price: "verify", verify: true, lastVerified: "2026-06" },
    { name: "QED, Richard Feynman",            what: "Quantum electrodynamics for non-mathematicians.",                     url: "https://en.wikipedia.org/wiki/QED:_The_Strange_Theory_of_Light_and_Matter",     price: "verify", verify: false, lastVerified: "2026-06" },
-   { name: "Seven Brief Lessons on Physics, Rovelli",  what: "Short, lyrical introduction to modern physics.",                      url: "",                                         price: "verify", verify: false, lastVerified: "2026-06" },
-   { name: "The Beginning of Infinity, David Deutsch", what: "Philosophy of science + explanation.",                           url: "",                                         price: "verify", verify: false, lastVerified: "2026-06" },
-   { name: "What is Real?, Adam Becker",        what: "Quantum-foundations history, accessibly written.",                     url: "",                                         price: "verify", verify: false, lastVerified: "2026-06" }
+   { name: "Seven Brief Lessons on Physics, Rovelli",  what: "Short, lyrical introduction to modern physics.",                      url: "",                                         price: "verify", verify: true, lastVerified: "2026-06" },
+   { name: "The Beginning of Infinity, David Deutsch", what: "Philosophy of science + explanation.",                           url: "",                                         price: "verify", verify: true, lastVerified: "2026-06" },
+   { name: "What is Real?, Adam Becker",        what: "Quantum-foundations history, accessibly written.",                     url: "",                                         price: "verify", verify: true, lastVerified: "2026-06" }
   ]
  },
 

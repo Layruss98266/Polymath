@@ -576,9 +576,9 @@ const d: Domain = {
    { name: "Crossing the Chasm, Geoffrey Moore",        what: "Adoption-curve thinking. Still relevant for B2B.",                    url: "https://en.wikipedia.org/wiki/Crossing_the_Chasm",                     price: "verify", verify: false, lastVerified: "2026-06" },
    { name: "High Growth Handbook, Elad Gil",          what: "Scaling-stage operating playbook.",                           url: "https://eladgil.com/high-growth-handbook/",                         price: "verify", verify: false, lastVerified: "2026-06" },
    { name: "Hooked, Nir Eyal",                 what: "Habit-forming product design. Read with ethics in mind.",                url: "https://www.nirandfar.com/hooked/",                             price: "verify", weight: "popular", verify: false, lastVerified: "2026-06" },
-   { name: "Founders at Work, Jessica Livingston",       what: "Interviews with early-stage founders. Pattern-rich.",                  url: "",                                             price: "verify", verify: false, lastVerified: "2026-06" },
+   { name: "Founders at Work, Jessica Livingston",       what: "Interviews with early-stage founders. Pattern-rich.",                  url: "",                                             price: "verify", verify: true, lastVerified: "2026-06" },
    { name: "Disciplined Entrepreneurship, Bill Aulet (MIT)",   what: "24-step playbook from MIT's entrepreneurship program.",                  url: "https://disciplinedentrepreneurship.com/",                         price: "verify", verify: false, lastVerified: "2026-06" },
-   { name: "Working Backwards, Bryar & Carr (Amazon)",     what: "How Amazon turns ideas into products. PR/FAQ method.",                  url: "",                                             price: "verify", verify: false, lastVerified: "2026-06" }
+   { name: "Working Backwards, Bryar & Carr (Amazon)",     what: "How Amazon turns ideas into products. PR/FAQ method.",                  url: "",                                             price: "verify", verify: true, lastVerified: "2026-06" }
   ]
  },
 

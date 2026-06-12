@@ -535,13 +535,13 @@ const d: Domain = {
   paid: [
    { name: "Getting to Yes, Fisher & Ury",            what: "Principled negotiation, BATNA, interests vs positions.",                url: "https://en.wikipedia.org/wiki/Getting_to_Yes",         price: "verify", weight: "primary", verify: false, lastVerified: "2026-06" },
    { name: "Never Split the Difference, Chris Voss",       what: "Tactical empathy + labels + calibrated questions.",                  url: "https://www.blackswanltd.com/",                 price: "verify", weight: "primary", verify: false, lastVerified: "2026-06" },
-   { name: "Getting More, Stuart Diamond",            what: "Emotion-aware, small-steps approach.",                         url: "",                                price: "verify", verify: false, lastVerified: "2026-06" },
+   { name: "Getting More, Stuart Diamond",            what: "Emotion-aware, small-steps approach.",                         url: "",                                price: "verify", verify: true, lastVerified: "2026-06" },
    { name: "Influence, Robert Cialdini",             what: "Six levers used in negotiation contexts.",                       url: "https://www.influenceatwork.com/",                price: "verify", weight: "secondary", verify: false, lastVerified: "2026-06" },
-   { name: "Bargaining for Advantage, G. Richard Shell",     what: "Academic Wharton classic, well-organised.",                      url: "",                                price: "verify", weight: "secondary", verify: false, lastVerified: "2026-06" },
-   { name: "Beyond Reason, Roger Fisher & Daniel Shapiro",    what: "Emotions in negotiation, from the Getting to Yes lineage.",              url: "",                                price: "verify", verify: false, lastVerified: "2026-06" },
+   { name: "Bargaining for Advantage, G. Richard Shell",     what: "Academic Wharton classic, well-organised.",                      url: "",                                price: "verify", weight: "secondary", verify: true, lastVerified: "2026-06" },
+   { name: "Beyond Reason, Roger Fisher & Daniel Shapiro",    what: "Emotions in negotiation, from the Getting to Yes lineage.",              url: "",                                price: "verify", verify: true, lastVerified: "2026-06" },
    { name: "The Power of a Positive No, William Ury",       what: "Saying no without losing the relationship.",                      url: "https://williamury.com/",                    price: "verify", verify: false, lastVerified: "2026-06" },
-   { name: "Negotiation Genius, Malhotra & Bazerman",       what: "Harvard professors; behavioural + practical.",                     url: "",                                price: "verify", verify: false, lastVerified: "2026-06" },
-   { name: "Difficult Conversations, Stone/Patton/Heen",     what: "Adjacent skill, having the hard talk before the negotiation.",             url: "",                                price: "verify", verify: false, lastVerified: "2026-06" },
+   { name: "Negotiation Genius, Malhotra & Bazerman",       what: "Harvard professors; behavioural + practical.",                     url: "",                                price: "verify", verify: true, lastVerified: "2026-06" },
+   { name: "Difficult Conversations, Stone/Patton/Heen",     what: "Adjacent skill, having the hard talk before the negotiation.",             url: "",                                price: "verify", verify: true, lastVerified: "2026-06" },
    { name: "MasterClass, Chris Voss",               what: "Voss's full video course on negotiation.",                       url: "https://www.masterclass.com/classes/chris-voss-teaches-the-art-of-negotiation", price: "verify", verify: false, lastVerified: "2026-06" }
   ]
  },

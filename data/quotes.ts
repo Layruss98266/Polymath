@@ -1,8 +1,8 @@
 // Daily quote rotation. Real, accurately attributed.
 // Spec rule 1: do not invent quotes. Where attribution is uncertain we keep
-// the quote out rather than misattribute it. Currently ~120 entries.
-// The TODO target is up to 500. Adding more here automatically rotates them
-// across the year via the deterministic dailyQuote() picker below.
+// the quote out rather than misattribute it. Currently 411 entries.
+// Adding more here automatically rotates them across the year via the
+// deterministic dailyQuote() picker below.
 
 export type Quote = {
  text: string;
