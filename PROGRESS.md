@@ -52,32 +52,30 @@ All 15 schema-validated, all SSG'd at build, all named-authority mentors verifie
 - [x] Skill Map: category-grouped nodes, started domains glow with their hue
 - [x] My List: 4 curated Paths (Become hard to manipulate · Money from zero · Build and sell a product · Think clearly) w/ live-domain counters + capstones; bookmarks; saved reflections
 
-## Phase 4 — Humanize the writing 🟡
+## Phase 4 — Humanize the writing ✅
 Goal: rewrite from textbook voice to warm, "smart friend at a kitchen table" voice. Concrete scenes, "you" not "one," vivid analogies, smooth transitions between roadmap stages.
 
-Full deep rewrite (basics + realWorldExample + concept.deep + counterView + roadmap):
-- [x] Marketing
-- [x] Personal Finance
-- [x] AI & Machine Learning
+Full deep rewrite (basics + realWorldExample + concept.deep + roadmap; counterView where touched) — **all 15 Core domains done**:
+- [x] Marketing — bakery framing; "Shot on iPhone" billboards; each concept opens with a picturable example
+- [x] Personal Finance — "secret nobody who sells products wants you to know"; same-friends-different-fees story
+- [x] AI & Machine Learning — chef-recipe vs child-watching analogy; "looks at words, guesses next word" frame
+- [x] Human Psychology — slow-music-in-supermarket; jacket-sale anchoring; FBI hostage frame for tactical empathy
+- [x] Learning How to Learn — Riya vs Arjun studying; Ebbinghaus nonsense syllables 1880s; guitar-chord interleaving
+- [x] Communication & Storytelling — TED-talk ethos/pathos/logos walk-through; "she slammed the door" show-don't-tell
+- [x] Negotiation & Persuasion — orange-sisters story; scooter ZOPA; FBI hostage tactical empathy
+- [x] Investing & Markets — 2008→2018 recovery story; two-funds-same-return fee story
+- [x] Entrepreneurship — Airbnb airbed story; "asking your mother" Mom Test framing; Facebook-Harvard / Airbnb bowling pin
+- [x] Tech & Programming — "10-line script that does one useful thing"; organising contacts for data structures; web-request choreography
+- [x] Mental Models & Famous Laws — "what would guarantee a terrible marriage" inversion; scrolling Instagram opportunity cost; concert-tickets-with-a-cold sunk cost
+- [x] Health, Longevity & How the Body Works — Blue-Zones-honest-mess; "75 climbing stairs without thinking" healthspan; cruel-irony-older-adults-avoid-lifting
+- [x] Nutrition & Food Science — NOVA classification story; 500ml cola = 200 invisible calories; "packaging sells you a story, ingredient list tells you what's inside"
+- [x] Famous Scientific Laws — coffee-cooling 2nd-law; "every push gets a push back" Newton; GPS-needs-relativity
+- [x] Law & Legal Basics — flat-purchase "sold as is" trap; ₹3,000/hour lawyer vs lakhs-of-loss asymmetry
 
-Basics + realWorldExample rewritten to the new voice (concepts/roadmap queued for next pass):
-- [x] Human Psychology
-- [x] Learning How to Learn
-- [x] Communication & Storytelling
-- [x] Negotiation & Persuasion
-- [x] Investing & Markets
-- [x] Entrepreneurship & Startups
-- [x] Tech & Programming
-- [x] Mental Models & Famous Laws
-- [x] Health, Longevity & How the Body Works
-- [x] Nutrition & Food Science
-- [x] Famous Scientific Laws
-- [x] Law & Legal Basics
-
-Queued for next pass:
-- [ ] Concept-level `.deep` rewrites for the 12 domains above (currently still textbook-voiced)
-- [ ] Roadmap stage rewrites for the 12 above (smooth transitions)
-- [ ] Voice consistency pass across all `counterView`s
+Done across the board:
+- [x] Concept-level `.deep` rewrites in the new voice
+- [x] Roadmap stage rewrites with smooth transitions (each stage now references what the previous installed)
+- [x] Build verified clean after every batch; 23 routes still pre-render
 
 ## Phase 3 — Security + URLs + responsive ✅
 - [x] Upgraded Next.js 15.0.3 → 15.5.19 (patches CVE-2025-66478) + React 19 stable + types
