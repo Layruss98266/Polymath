@@ -43,10 +43,10 @@ const d: Domain = {
  ],
 
  subdomains: [
-  { id: "foundations", name: "Foundations" },
-  { id: "positioning", name: "Positioning & Messaging" },
-  { id: "economics", name: "Marketing Economics" },
-  { id: "behaviour", name: "Buyer Behaviour" }
+  { id: "foundations", name: "Foundations", intro: "The basic building blocks: product, price, place, promotion, and the customer at the centre. Strip the jargon and marketing is just matching what you sell to who wants it.", capabilities: ["Map any business onto the 4 Ps in under five minutes.", "State a target customer in one sentence a friend could repeat.", "Spot whether a campaign is fixing a product, price, or distribution gap."] },
+  { id: "positioning", name: "Positioning & Messaging", intro: "How you make your product stand for one clear thing in the buyer's head. Confused buyers do not buy.", capabilities: ["Write a positioning statement of the form for X who Y, our product Z.", "Cut a homepage headline to one promise the buyer cares about.", "Pick one category to own instead of being second in three."] },
+  { id: "economics", name: "Marketing Economics", intro: "The numbers behind marketing: customer acquisition cost, lifetime value, payback period. Without these, every campaign is vibes.", capabilities: ["Calculate CAC and LTV for a product before scaling spend.", "Set a target payback period and kill channels that miss it.", "Tell apart a top of funnel and bottom of funnel campaign by intent."] },
+  { id: "behaviour", name: "Buyer Behaviour", intro: "Why people actually buy: jobs to be done, status, emotion, and the moments of decision. The buyer's why is rarely what the brief says.", capabilities: ["Interview five real buyers about the job they hired your product for.", "Identify the emotional trigger underneath a rational-sounding purchase.", "Spot the buying moment and meet the buyer there with the right message."] }
  ],
 
  concepts: [

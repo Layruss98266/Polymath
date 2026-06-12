@@ -38,10 +38,10 @@ const d: Domain = {
  ],
 
  subdomains: [
-  { id: "basics", name: "Macro Basics" },
-  { id: "quality", name: "Food Quality" },
-  { id: "myths", name: "Myths and Marketing" },
-  { id: "habits", name: "Sustainable Habits" },
+  { id: "basics", name: "Macro Basics", intro: "Protein, carbs, fat, calories. The four numbers that decide most body composition outcomes, no matter which diet brand you pick.", capabilities: ["Estimate your daily calorie need from weight, activity, and goal.", "Hit a protein target of roughly 1.2 to 1.6 grams per kg of body weight.", "Spot an unbalanced plate and add the missing macro on the side."] },
+  { id: "quality", name: "Food Quality", intro: "Where the calories come from matters as much as how many. Whole foods, fibre, and minimally processed sources change satiety, blood sugar, and gut health.", capabilities: ["Read an ingredient list and reject products with mystery additives.", "Choose whole grains, dals, and vegetables for most of your carbs.", "Pick cooking oils based on heat and use, not marketing claims."] },
+  { id: "myths", name: "Myths and Marketing", intro: "Most nutrition advice you hear is either outdated, oversold, or sponsored. Knowing the common myths protects your money and your liver.", capabilities: ["Spot a health claim that is not backed by a real study.", "Ignore detoxes, miracle superfoods, and fat-burner supplements.", "Tell apart correlation and causation in a viral nutrition headline."] },
+  { id: "habits", name: "Sustainable Habits", intro: "The diet you can keep for years beats the perfect plan you abandon in six weeks. Boring repeatable meals win.", capabilities: ["Plan a weekly grocery list that defaults to good choices.", "Pre-decide your meals on busy days to dodge takeaway defaults.", "Allow planned flexibility on social occasions without spiralling."] },
  ],
 
  concepts: [

@@ -36,21 +36,317 @@ const d: Domain = {
  ],
 
  subdomains: [
-  { id: "biases", name: "Cognitive Biases" },
-  { id: "thinking", name: "Two Systems Thinking" },
-  { id: "influence", name: "Influence and Social" },
-  { id: "mindset", name: "Self and Mindset" },
+  { id: "biases", name: "Cognitive Biases", intro: "The recurring mental shortcuts your brain uses, and the predictable ways they steer you wrong. Knowing the names lets you spot them in real time.", capabilities: ["Catch your own confirmation bias inside a strong opinion before it costs you.", "Pre-decide your number in writing before any priced negotiation.", "Spot anchoring and loss aversion in everyday ads, news, and meetings."] },
+  { id: "thinking", name: "Two Systems Thinking", intro: "Two mental gears run your day: a fast automatic one and a slow effortful one. Most decisions feel deliberate but were already settled by the fast one.", capabilities: ["Notice when System 1 is dressing up a snap call as careful reasoning.", "Force a System 2 check on any decision worth more than a week of regret.", "Use friction or a written rule to slow yourself down on high-stakes choices."] },
+  { id: "influence", name: "Influence and Social", intro: "How humans push each other toward yes, often without either side realising. The same six levers run ads, sales calls, and family arguments.", capabilities: ["Name the six Cialdini levers as you see them pulled on you in a single day.", "Resist a pressured sales pitch by spotting which lever is being pulled.", "Be the second voice of dissent in a meeting where you know the room is wrong."] },
+  { id: "mindset", name: "Self and Mindset", intro: "How your self-story shapes what you try, quit, or never attempt. Belief about ability quietly decides effort, and effort decides outcomes.", capabilities: ["Praise effort and strategy in others, not raw talent.", "Reframe a setback as a hypothesis you just tested, not a verdict on you.", "Catch a fixed-mindset reaction in yourself the moment you avoid a hard problem."] },
  ],
 
  concepts: [
-  { t: "System 1 vs System 2",        subdomain: "thinking", short: "You have two thinking modes. One's fast and runs the show. The other's slow and shows up late.",                                     deep: "Daniel Kahneman's framing: System 1 is fast, automatic, effortless, it sees a face and knows your friend is angry, before you've decided anything. System 2 is slow, careful, expensive, it's what kicks in when you balance a long bill or learn a new word. You feel like System 2 runs your life because it's the part of you that talks in sentences. It doesn't. System 1 handles 95% of your day; System 2 only gets called in when System 1 hits something it can't pattern-match. Most cognitive biases are System 1 quietly getting away with a wrong answer because System 2 never bothered to check.",                                                                                              status: "framework", reflect: "Name three decisions you made today that felt 'considered.' How much was actually System 1 dressed in a suit?" },
-  { t: "Confirmation bias",          subdomain: "biases", short: "You notice things that fit what you already believe. You barely notice things that don't.",                                        deep: "Pay attention next time you read the news on a topic you have strong opinions about. You'll find yourself nodding at the parts that fit your view, and skipping past or finding clever objections to the parts that don't. That's confirmation bias, and it's running in the background all the time, in how you read people, evaluate ideas, pick stocks, judge politicians. The only real defence is uncomfortable: actively look for the best version of the opposing case (called 'steelmanning'), not just the strawman version that's easy to dismiss.",                                                                                                                                     status: "settled",  reflect: "Pick one strong opinion of yours. What evidence would change it? If your honest answer is 'nothing,' that's a flag." },
-  { t: "Anchoring",              subdomain: "biases", short: "The first number you see drags everything else toward it.",                                                       deep: "If a shop sticks a sign on a jacket saying \"₹8,000, now ₹4,999,\" you feel like you got a deal. Even though the jacket may have been on the rack at ₹4,999 the whole time. The original ₹8,000 number, even when it's fake, quietly drags your sense of what's fair. Anchoring works in salary negotiations, property deals, even in psychology experiments where the anchor is a random number from a wheel. The defence: before you walk into any negotiation, decide your own number in writing. The first number you see is rarely an accident.",                                                                                                                                         status: "settled",  reflect: "In your last big negotiation or purchase, what was the first number on the table? How did it shape what felt 'fair' afterwards?" },
-  { t: "Loss aversion",            subdomain: "biases", short: "Losses hurt about twice as much as the same-sized gains feel good.",                                                   deep: "Imagine you find ₹5,000 on the street. Pleasant. Now imagine you lose ₹5,000 from your wallet. That second feeling is about twice as bad. The maths is symmetric, your wealth changed by the same amount, but your brain isn't. Kahneman and Tversky's prospect theory: losses loom larger than equivalent gains. This one bias drives a huge amount of bad behaviour. People hold on to losing investments hoping to break even (they wouldn't have bought it today). They stay in jobs and relationships too long because leaving feels like a loss, even when staying is the bigger one. Reframing the choice in terms of opportunity cost (\"what am I giving up by not changing?\") helps balance the scale.",                                                                 status: "settled",  reflect: "Where in your life are you avoiding a small clear loss while paying a much bigger hidden one?" },
-  { t: "Cialdini's six levers of influence",  subdomain: "influence", short: "Reciprocity, commitment, social proof, authority, liking, scarcity. Once you know the names, you see them pulled on you every day.",                   deep: "Robert Cialdini spent decades watching salespeople, fundraisers, and cult leaders and found the same six tools come up again and again. Reciprocity (free gift before the ask), commitment (small yes before the big one), social proof (everyone else is doing it), authority (a person in a white coat said so), liking (we say yes to people we like), and scarcity (only three left at this price). None of them are evil on their own, the same tools build trust and run cons. The point isn't to never use them. The point is that once you can name them, the next time a sales pitch makes you feel oddly pressured, you'll spot exactly which lever is being pulled.",                                                                                 status: "framework", reflect: "Pick one ad today and try to name every Cialdini lever in it. How many do you spot?" },
-  { t: "Fundamental attribution error",    subdomain: "biases", short: "When someone else messes up, you blame their character. When you mess up, you blame the situation.",                                   deep: "A stranger cuts you off in traffic and you mutter \"what a rude driver.\" Two hours later you cut someone off and you think \"I had to, I was late.\" Same action, two completely different stories. We extend ourselves situational generosity that we don't extend to other people. Done quietly, over years, it corrodes relationships and teams, every bad behaviour from your colleague becomes evidence of who they are, while every bad behaviour from you is just bad luck. The fix is simple to describe and hard to do: extend the same situational read to the other side that you give yourself.",                                                                                                                 status: "settled",  reflect: "Replay your most recent conflict. What's the most generous situational read of the other person you could write down?" },
-  { t: "Conformity (the Asch experiments)",  subdomain: "influence", short: "Even on obvious questions, most of us will go along with the group rather than stand out.",                                        deep: "Solomon Asch put one volunteer in a room with several actors and showed them two lines, one obviously longer than the other. The actors all confidently said the shorter one was longer. Around three quarters of the real volunteers cracked at least once and agreed, even though the answer was visibly wrong. That was in a small room in the 1950s. Now scale it up to social media, work meetings, family WhatsApp groups, and ask why people don't speak up about things they know. The data is hopeful in one direction though: dissent gets dramatically easier as soon as one other person dissents first. Being the second person to push back is much easier than being the first. Be the first sometimes anyway.",                                                         status: "settled",  reflect: "When did you last stay silent about something you believed, just to fit in? What did that cost, you, or whoever was listening?" },
-  { t: "Growth vs fixed mindset",       subdomain: "mindset", short: "Believing skill can be built changes how you respond to failure.",                                                     deep: "Carol Dweck's research, simplified: kids praised for being \"smart\" later avoided harder problems (failing might mean they aren't smart anymore). Kids praised for effort tried the harder problems and kept improving. The thing being praised determined how they handled future setbacks. Honesty caveat: some of the bigger Dweck claims didn't replicate cleanly when other labs tried them, and the world of pop \"growth mindset\" took it further than the data supports. But the core observation, that praising effort and strategy beats praising trait, in yourself and your kids, has held up well enough to use.",                                                                                                            status: "debated",  reflect: "How do you praise people you mentor, or your own kids, or yourself? Trait (\"you're so smart\") or process (\"I love how you tried X\")?" },
+  {
+   t: "System 1 vs System 2",
+   subdomain: "thinking",
+   definition: "A dual-process model of cognition where System 1 is fast, automatic, and intuitive while System 2 is slow, deliberate, and effortful.",
+   short: "You have two thinking modes. One's fast and runs the show. The other's slow and shows up late.",
+   deep: "Daniel Kahneman's framing: System 1 is fast, automatic, effortless, it sees a face and knows your friend is angry, before you've decided anything. System 2 is slow, careful, expensive, it's what kicks in when you balance a long bill or learn a new word. You feel like System 2 runs your life because it's the part of you that talks in sentences. It doesn't. System 1 handles 95% of your day; System 2 only gets called in when System 1 hits something it can't pattern-match. Most cognitive biases are System 1 quietly getting away with a wrong answer because System 2 never bothered to check.",
+   generic: "Imagine an autopilot and a pilot in the same cockpit. Autopilot flies the routine bits without anyone touching anything. The human pilot only wakes up when a warning light flashes. Most of your day, the autopilot is flying you.",
+   expert: "Kahneman (2011) popularised the System 1 and System 2 distinction synthesising decades of work with Tversky on heuristics and biases, drawing on earlier dual-process models from Stanovich and West (2000). System 1 maps onto associative, parallel, low-effort processing tied to evolutionarily older neural circuitry. System 2 maps onto rule-based, serial, working-memory-dependent processing recruiting the prefrontal cortex. The two-systems framing is a useful metaphor rather than a strict neural taxonomy and Kahneman himself emphasises this. Critics (Keren and Schul, 2009) argue dual-process accounts can be unfalsifiable when systems are defined post hoc.",
+   status: "settled",
+   reflect: "Name three decisions you made today that felt 'considered.' How much was actually System 1 dressed in a suit?",
+   conceptQuiz: [
+    {
+     q: "Which of these is the clearest example of System 1 in action?",
+     options: [
+      { text: "Instantly recognising your mother's face in a crowd.", correct: true },
+      { text: "Doing 17 times 24 in your head.", misconception: "Multi-digit arithmetic recruits working memory, that is System 2." },
+      { text: "Writing a careful pros and cons list before quitting a job.", misconception: "Deliberate written analysis is the textbook System 2 task." },
+      { text: "Translating a sentence into a language you barely speak.", misconception: "Effortful translation in a weak language is slow and serial, that is System 2." }
+     ],
+     why: "Face recognition is automatic, parallel, and effortless, the signature of System 1."
+    },
+    {
+     q: "Kahneman's strongest claim about the two systems is that…",
+     options: [
+      { text: "System 1 runs most of daily cognition while System 2 is recruited mainly for novel or effortful tasks.", correct: true },
+      { text: "System 2 is the dominant driver of everyday behaviour.", misconception: "The narrative of System 2 dominance is exactly the illusion Kahneman pushes back against." },
+      { text: "System 1 and System 2 sit in two anatomically distinct brain regions.", misconception: "Kahneman frames them as metaphorical processes, not strict neural locations." },
+      { text: "System 1 can be turned off through practice.", misconception: "System 1 is always running, expertise reshapes its outputs rather than disabling it." }
+     ],
+     why: "The framing is a metaphor for two modes of processing, not a brain map, and most of life runs on System 1."
+    }
+   ],
+   conceptTasks: [
+    { level: "basic",    t: "Tag a decision",    d: "Write down one decision you made today and label whether it was mostly System 1 or System 2.", xp: 10 },
+    { level: "easy",     t: "Force a handover",  d: "On one important choice this week, deliberately slow down and write the reasoning out before deciding.", xp: 20 },
+    { level: "advanced", t: "Audit a domain",    d: "Pick a domain like spending or scheduling. Log seven decisions over a week, tag each by system, and note where System 1 quietly cost you.", xp: 40 }
+   ]
+  },
+  {
+   t: "Confirmation bias",
+   subdomain: "biases",
+   definition: "The tendency to seek, interpret, and remember information in ways that confirm existing beliefs while discounting evidence that contradicts them.",
+   short: "You notice things that fit what you already believe. You barely notice things that don't.",
+   deep: "Pay attention next time you read the news on a topic you have strong opinions about. You'll find yourself nodding at the parts that fit your view, and skipping past or finding clever objections to the parts that don't. That's confirmation bias, and it's running in the background all the time, in how you read people, evaluate ideas, pick stocks, judge politicians. The only real defence is uncomfortable: actively look for the best version of the opposing case (called 'steelmanning'), not just the strawman version that's easy to dismiss.",
+   generic: "Imagine you decide a new neighbour is unfriendly. From then on, every time they don't wave, you file it as proof. Every time they do wave, you decide they were just being polite. The verdict was in before the evidence.",
+   expert: "Peter Wason's 2-4-6 rule discovery task (1960) and the selection task (1968) provided the first formal demonstrations, showing participants overwhelmingly test hypotheses with confirming rather than disconfirming cases. Nickerson (1998) synthesised the broader literature. Strength varies substantially by domain, motivation, and identity stakes, with politically charged topics producing the largest effects (Taber and Lodge, 2006) and neutral perceptual tasks producing much smaller ones. Some early framings of confirmation bias as a uniform universal pull have been tempered by domain-dependent findings.",
+   status: "debated",
+   reflect: "Pick one strong opinion of yours. What evidence would change it? If your honest answer is 'nothing,' that's a flag.",
+   conceptQuiz: [
+    {
+     q: "Confirmation bias is best described as…",
+     options: [
+      { text: "A pull to seek, interpret, and remember evidence that fits what you already believe.", correct: true },
+      { text: "A logical fallacy used deliberately to win arguments.", misconception: "It is a largely automatic cognitive bias, not a conscious rhetorical move." },
+      { text: "Forgetting evidence at random.", misconception: "The bias is systematic and direction-specific, not random forgetting." },
+      { text: "Refusing to read anything new.", misconception: "Confirmation bias often co-exists with heavy reading, just selectively filtered." }
+     ],
+     why: "The bias is the directional tilt in how evidence is sought, weighted, and recalled."
+    },
+    {
+     q: "Which practice most directly counteracts confirmation bias?",
+     options: [
+      { text: "Steelmanning the strongest version of the opposing argument before deciding.", correct: true },
+      { text: "Reading more sources that already agree with you.", misconception: "More agreeing input reinforces the bias rather than checking it." },
+      { text: "Trusting your first reaction since it feels obvious.", misconception: "First reactions are exactly where the bias operates most strongly." },
+      { text: "Avoiding disagreement to keep your judgement clear.", misconception: "Avoidance shields the bias from challenge instead of correcting it." }
+     ],
+     why: "Constructing the best opposing case forces engagement with disconfirming evidence, the move the bias resists."
+    }
+   ],
+   conceptTasks: [
+    { level: "basic",    t: "Name a belief",        d: "Write one strongly held belief and one piece of evidence you have actively avoided.", xp: 10 },
+    { level: "easy",     t: "Steelman once",        d: "Pick a current opinion and write the strongest one-paragraph case against it that a thoughtful opponent would write.", xp: 20 },
+    { level: "advanced", t: "Falsification plan",   d: "Choose one belief you hold about yourself or your work. Specify what concrete evidence would falsify it, then go look.", xp: 40 }
+   ]
+  },
+  {
+   t: "Anchoring",
+   subdomain: "biases",
+   definition: "A cognitive bias in which an initial numerical reference point disproportionately influences subsequent estimates or judgments.",
+   short: "The first number you see drags everything else toward it.",
+   deep: "If a shop sticks a sign on a jacket saying \"₹8,000, now ₹4,999,\" you feel like you got a deal. Even though the jacket may have been on the rack at ₹4,999 the whole time. The original ₹8,000 number, even when it's fake, quietly drags your sense of what's fair. Anchoring works in salary negotiations, property deals, even in psychology experiments where the anchor is a random number from a wheel. The defence: before you walk into any negotiation, decide your own number in writing. The first number you see is rarely an accident.",
+   generic: "Imagine someone asks if the Mississippi river is longer or shorter than ten thousand kilometres, then asks you to guess its length. Even though ten thousand is silly, your guess slides upward. Throw out the same question with a tiny starting number and the guess slides down. The first number stuck.",
+   expert: "Tversky and Kahneman (1974) demonstrated anchoring with the wheel-of-fortune study, showing that even random numbers influence estimates on unrelated quantitative judgements. Subsequent work by Strack and Mussweiler (1997) refined the mechanism as selective accessibility. The lab effect is highly robust, but the real-world magnitude is genuinely debated. Field studies in negotiation (Galinsky and Mussweiler, 2001) show meaningful effects, while several pre-registered replications (Klein et al, Many Labs 2, 2018) found smaller and more context-dependent effects than the classic literature implied, especially when participants have domain knowledge.",
+   status: "debated",
+   reflect: "In your last big negotiation or purchase, what was the first number on the table? How did it shape what felt 'fair' afterwards?",
+   conceptQuiz: [
+    {
+     q: "Anchoring predicts that an arbitrary number presented before an estimate will…",
+     options: [
+      { text: "Pull subsequent estimates toward itself even when it is clearly irrelevant.", correct: true },
+      { text: "Be ignored if it is obviously random.", misconception: "Tversky and Kahneman's wheel study showed even acknowledged random anchors shift estimates." },
+      { text: "Only affect people without expertise.", misconception: "Experts show reduced but not zero anchoring on numerical judgements in their domain." },
+      { text: "Cancel out when participants think carefully.", misconception: "Slowing down helps somewhat but does not eliminate the effect in most studies." }
+     ],
+     why: "The anchor activates compatible information in memory, biasing the estimate even when the anchor is irrelevant."
+    },
+    {
+     q: "The best practical defence against anchoring in a negotiation is to…",
+     options: [
+      { text: "Pre-decide your own number in writing before any number is offered.", correct: true },
+      { text: "Make sure to let the other side go first.", misconception: "That hands the anchor to the opponent, the opposite of a defence." },
+      { text: "Trust that you will adjust correctly once you hear the number.", misconception: "Adjustment is reliably insufficient, that is the whole point of the bias." },
+      { text: "Refuse to discuss numbers at all.", misconception: "Avoidance is not a strategy in any real negotiation." }
+     ],
+     why: "A pre-committed number gives you a stable internal reference that an opening anchor cannot fully overwrite."
+    }
+   ],
+   conceptTasks: [
+    { level: "basic",    t: "Spot the anchor",   d: "Find a price tag or listing this week with a struck-through original price and write down how the discount changed your feeling about value.", xp: 10 },
+    { level: "easy",     t: "Pre-commit a number", d: "Before your next significant purchase or ask, write your walk-away number in your notes before you see any offer.", xp: 20 },
+    { level: "advanced", t: "Run a counter-anchor", d: "In a real negotiation this month, open with a number you defined in advance and track how the conversation moves compared to your usual approach.", xp: 40 }
+   ]
+  },
+  {
+   t: "Loss aversion",
+   subdomain: "biases",
+   definition: "The tendency for the psychological pain of losing something to exceed the pleasure of gaining an equivalent amount.",
+   short: "Losses hurt about twice as much as the same-sized gains feel good.",
+   deep: "Imagine you find ₹5,000 on the street. Pleasant. Now imagine you lose ₹5,000 from your wallet. That second feeling is about twice as bad. The maths is symmetric, your wealth changed by the same amount, but your brain isn't. Kahneman and Tversky's prospect theory: losses loom larger than equivalent gains. This one bias drives a huge amount of bad behaviour. People hold on to losing investments hoping to break even (they wouldn't have bought it today). They stay in jobs and relationships too long because leaving feels like a loss, even when staying is the bigger one. Reframing the choice in terms of opportunity cost (\"what am I giving up by not changing?\") helps balance the scale.",
+   generic: "Imagine someone hands you a mug as a gift, then offers to buy it back for the same price they paid. You quietly want more. The mug got expensive the moment it was yours. Losing it now feels heavier than getting it felt good.",
+   expert: "Kahneman and Tversky (1979) introduced prospect theory and the loss-aversion coefficient, traditionally cited around 2.0 meaning losses loom roughly twice as large as equivalent gains. Gal and Rucker (2018) published a sustained critique arguing the 2x figure is overstated, that loss aversion is context dependent rather than a fixed psychological constant, and that many classic demonstrations conflate loss aversion with status quo bias or reference-point ambiguity. The phenomenon itself is real and replicates, but its magnitude and universality are now genuinely debated. Endowment effect (Thaler, 1980) is the canonical applied case.",
+   status: "debated",
+   reflect: "Where in your life are you avoiding a small clear loss while paying a much bigger hidden one?",
+   conceptQuiz: [
+    {
+     q: "The traditional loss-aversion coefficient of roughly 2 means that…",
+     options: [
+      { text: "A loss of a given size feels about twice as bad as an equivalent gain feels good.", correct: true },
+      { text: "People will accept twice as many losses if a single big gain is on offer.", misconception: "The coefficient describes felt intensity, not a quota of losses traded for gains." },
+      { text: "Every loss is exactly twice as painful in every context.", misconception: "Gal and Rucker (2018) argue the 2x figure is averaged and varies by context, not a constant." },
+      { text: "Gains and losses are processed symmetrically.", misconception: "Symmetry is what prospect theory rejects." }
+     ],
+     why: "Prospect theory's value function is steeper for losses than gains, with the classic ratio near 2 but with meaningful variation across settings."
+    },
+    {
+     q: "Which behaviour is best explained by loss aversion?",
+     options: [
+      { text: "Holding a losing stock long past the point you would buy it today, hoping to break even.", correct: true },
+      { text: "Refusing free money offered with no strings.", misconception: "Free gains do not trigger the asymmetry, this is not the pattern loss aversion predicts." },
+      { text: "Always choosing the cheapest item available.", misconception: "Frugality alone is not the bias, the bias is asymmetric weighting of losses." },
+      { text: "Buying lottery tickets every week.", misconception: "Lottery behaviour is better explained by probability weighting of small chances, not loss aversion." }
+     ],
+     why: "Realising the loss psychologically hurts more than the future expected loss of holding, so the position is kept too long."
+    }
+   ],
+   conceptTasks: [
+    { level: "basic",    t: "Name a held loss",     d: "Identify one thing you are still holding mainly to avoid the felt sting of selling at a loss.", xp: 10 },
+    { level: "easy",     t: "Reframe to opportunity", d: "For one stuck decision, write what you are giving up by not changing rather than what you would lose by changing.", xp: 20 },
+    { level: "advanced", t: "Cut one position",     d: "Pick one financial, career, or relational position you would not start today. Exit it within the month and journal the actual aftermath.", xp: 40 }
+   ]
+  },
+  {
+   t: "Cialdini's six levers of influence",
+   subdomain: "influence",
+   definition: "A framework of six principles that reliably increase compliance: reciprocity, commitment, social proof, authority, liking, and scarcity.",
+   short: "Reciprocity, commitment, social proof, authority, liking, scarcity. Once you know the names, you see them pulled on you every day.",
+   deep: "Robert Cialdini spent decades watching salespeople, fundraisers, and cult leaders and found the same six tools come up again and again. Reciprocity (free gift before the ask), commitment (small yes before the big one), social proof (everyone else is doing it), authority (a person in a white coat said so), liking (we say yes to people we like), and scarcity (only three left at this price). None of them are evil on their own, the same tools build trust and run cons. The point isn't to never use them. The point is that once you can name them, the next time a sales pitch makes you feel oddly pressured, you'll spot exactly which lever is being pulled.",
+   generic: "Imagine a charity stall that hands you a free flower before asking for a donation. The flower is not really free, it has loaded the reciprocity gun. You feel pressure to give back something. Six different versions of that loaded gun exist, and most asks combine two or three.",
+   expert: "Cialdini (1984, expanded 2006 and 2021) synthesised the six principles from years of participant observation embedded with compliance professionals. Reciprocity is grounded in Gouldner's norm of reciprocity, commitment-consistency draws on Festinger's dissonance theory (1957), social proof on Asch and Sherif, authority on Milgram, liking on similarity-attraction research, scarcity on reactance theory. A seventh principle, unity, was added in the 2016 Pre-Suasion edition. Field experiments by Cialdini and Goldstein on hotel towel reuse and energy conservation show the levers translate from lab to applied settings.",
+   status: "settled",
+   reflect: "Pick one ad today and try to name every Cialdini lever in it. How many do you spot?",
+   conceptQuiz: [
+    {
+     q: "A salesperson offers you a small free sample and then asks if you would like to buy the full version. Which Cialdini lever is being pulled most directly?",
+     options: [
+      { text: "Reciprocity, the felt pressure to return a favour after receiving one.", correct: true },
+      { text: "Scarcity, the pressure of limited availability.", misconception: "Scarcity is about limited supply or time, not about returning favours." },
+      { text: "Authority, the pressure to defer to an expert.", misconception: "No expertise signal is being used in this example." },
+      { text: "Commitment, the pressure to stay consistent with a prior choice.", misconception: "Commitment requires a prior small yes, the free gift route is reciprocity." }
+     ],
+     why: "The free sample triggers the deep social norm to reciprocate, which is exactly the reciprocity lever."
+    },
+    {
+     q: "Which is NOT one of Cialdini's original six principles of influence?",
+     options: [
+      { text: "Novelty.", correct: true },
+      { text: "Social proof.", misconception: "Social proof is one of the six, the pressure to do what others are doing." },
+      { text: "Authority.", misconception: "Authority is one of the six, the pressure to defer to perceived experts." },
+      { text: "Scarcity.", misconception: "Scarcity is one of the six, the pressure of limited supply." }
+     ],
+     why: "Cialdini's six are reciprocity, commitment, social proof, authority, liking, and scarcity. Novelty is not on the list."
+    }
+   ],
+   conceptTasks: [
+    { level: "basic",    t: "Name the levers",  d: "Without looking, list all six Cialdini principles from memory.", xp: 10 },
+    { level: "easy",     t: "Tag five ads",     d: "Look at five ads or sales pages today and label which Cialdini levers each one uses.", xp: 20 },
+    { level: "advanced", t: "Build an ethical ask", d: "Design a real ask you need to make, for a job, a favour, a donation, that combines two levers without crossing into manipulation. Run it and review.", xp: 40 }
+   ]
+  },
+  {
+   t: "Fundamental attribution error",
+   subdomain: "biases",
+   definition: "The tendency to over-attribute other people's behaviour to stable character traits while attributing one's own behaviour to situational factors.",
+   short: "When someone else messes up, you blame their character. When you mess up, you blame the situation.",
+   deep: "A stranger cuts you off in traffic and you mutter \"what a rude driver.\" Two hours later you cut someone off and you think \"I had to, I was late.\" Same action, two completely different stories. We extend ourselves situational generosity that we don't extend to other people. Done quietly, over years, it corrodes relationships and teams, every bad behaviour from your colleague becomes evidence of who they are, while every bad behaviour from you is just bad luck. The fix is simple to describe and hard to do: extend the same situational read to the other side that you give yourself.",
+   generic: "Imagine a coworker is late to a meeting and you decide they are unreliable. The next week you are late and you decide the traffic was terrible. Same event, two completely different stories, one cruel and one kind, depending only on who the actor was.",
+   expert: "Lee Ross (1977) coined the term fundamental attribution error, building on Jones and Harris (1967) who showed observers attribute essay positions to writers' beliefs even when told the position was assigned. The actor-observer asymmetry was formalised by Jones and Nisbett (1971). Replication across cultures is uneven. Miller (1984) and Choi, Nisbett, and Norenzayan (1999) showed East Asian samples make far more situational attributions than WEIRD samples, and Malle's 2006 meta-analysis found the actor-observer effect is much weaker than the canonical narrative implies once controls are added. The bias is real but its strength and universality are debated.",
+   status: "debated",
+   reflect: "Replay your most recent conflict. What's the most generous situational read of the other person you could write down?",
+   conceptQuiz: [
+    {
+     q: "The fundamental attribution error predicts that when explaining someone else's bad behaviour you will tend to…",
+     options: [
+      { text: "Over-attribute it to their character while under-weighting their situation.", correct: true },
+      { text: "Over-attribute it to their situation while under-weighting their character.", misconception: "That is closer to the pattern you apply to yourself, not to others." },
+      { text: "Weigh character and situation equally.", misconception: "Equal weighting is the unbiased baseline the error departs from." },
+      { text: "Refuse to make any attribution.", misconception: "People make attributions constantly, the bias is in the direction, not in avoidance." }
+     ],
+     why: "Observers default to dispositional explanations for others, situational explanations for themselves."
+    },
+    {
+     q: "Cross-cultural research on the fundamental attribution error has shown that…",
+     options: [
+      { text: "It is weaker in East Asian samples than in WEIRD Western samples, suggesting cultural moderation.", correct: true },
+      { text: "It is identical in strength across all cultures studied.", misconception: "Choi, Nisbett, and Norenzayan (1999) and others found substantial cross-cultural variation." },
+      { text: "It only exists in Western university students.", misconception: "Some version of the bias appears across cultures, but the strength varies." },
+      { text: "It reverses entirely outside the West.", misconception: "Non-Western samples weight situations more but do not fully reverse the bias." }
+     ],
+     why: "The error replicates inconsistently across cultures, with East Asian samples more attuned to situational context."
+    }
+   ],
+   conceptTasks: [
+    { level: "basic",    t: "Catch one judgement", d: "Note one moment today when you explained someone's behaviour by their character and ask what situation might explain it.", xp: 10 },
+    { level: "easy",     t: "Write the kind read",  d: "Pick a recent conflict and write the most generous situational read of the other person in a paragraph.", xp: 20 },
+    { level: "advanced", t: "Symmetry audit",       d: "For one week, log every negative judgement you make about others and check whether you would extend the same situational generosity you give yourself.", xp: 40 }
+   ]
+  },
+  {
+   t: "Conformity (the Asch experiments)",
+   subdomain: "influence",
+   definition: "The tendency to adjust one's stated beliefs or behaviour to match a group's, even when the group is visibly wrong, demonstrated in Asch's line-judgement studies.",
+   short: "Even on obvious questions, most of us will go along with the group rather than stand out.",
+   deep: "Solomon Asch put one volunteer in a room with several actors and showed them two lines, one obviously longer than the other. The actors all confidently said the shorter one was longer. Around three quarters of the real volunteers cracked at least once and agreed, even though the answer was visibly wrong. That was in a small room in the 1950s. Now scale it up to social media, work meetings, family WhatsApp groups, and ask why people don't speak up about things they know. The data is hopeful in one direction though: dissent gets dramatically easier as soon as one other person dissents first. Being the second person to push back is much easier than being the first. Be the first sometimes anyway.",
+   generic: "Imagine standing in an elevator where everyone has, for some reason, turned to face the back wall. After a few seconds you will probably turn too. You will not even know why. The pull to match the group is older than language.",
+   expert: "Asch (1951, 1955, 1956) ran the canonical line-judgement studies, finding that about 75 percent of naive participants conformed to the unanimous incorrect majority at least once across 12 critical trials, with roughly 37 percent of all critical responses conforming. Conformity dropped sharply when even one confederate broke unanimity. Bond and Smith's 1996 meta-analysis across 17 countries confirmed the effect is robust but moderated by individualism-collectivism and by historical period. Neuroimaging (Berns et al, 2005) shows conformity recruits perceptual regions rather than purely prefrontal control, suggesting some private acceptance not just public compliance.",
+   status: "settled",
+   reflect: "When did you last stay silent about something you believed, just to fit in? What did that cost, you, or whoever was listening?",
+   conceptQuiz: [
+    {
+     q: "In Asch's classic line-judgement studies, roughly what fraction of participants conformed to the wrong group answer on at least one critical trial?",
+     options: [
+      { text: "About three quarters.", correct: true },
+      { text: "About one tenth.", misconception: "Conformity rates were far higher than one in ten, the effect is substantial." },
+      { text: "Essentially none, since the answer was obvious.", misconception: "Obviousness did not protect participants, that is the central finding." },
+      { text: "Exactly half.", misconception: "The figure is closer to three quarters cracking at least once." }
+     ],
+     why: "Roughly 75 percent of participants conformed at least once across the 12 critical trials in Asch's studies."
+    },
+    {
+     q: "Which manipulation most reliably reduced conformity in Asch's follow-up experiments?",
+     options: [
+      { text: "Introducing a single dissenting confederate who broke the unanimous majority.", correct: true },
+      { text: "Increasing the majority from three to fifteen confederates.", misconception: "Conformity plateaus around three to four confederates, larger majorities did not further increase it." },
+      { text: "Making the lines harder to distinguish.", misconception: "That increases conformity, since the task gets ambiguous." },
+      { text: "Telling participants their answers would be public.", misconception: "Public answering increases conformity, it does not reduce it." }
+     ],
+     why: "A single ally breaking unanimity dramatically reduced conformity, which is why being the second dissenter is so much easier than being the first."
+    }
+   ],
+   conceptTasks: [
+    { level: "basic",    t: "Spot a silence",       d: "Recall one meeting or conversation this week where you stayed quiet about a disagreement and note why.", xp: 10 },
+    { level: "easy",     t: "Be the ally",          d: "Find one meeting this month where you back a quiet dissenter, even if you are not sure they are right, so they are not alone.", xp: 20 },
+    { level: "advanced", t: "Be the first",         d: "In a situation where you sense the room is wrong, be the first to say so. Note the reactions and the result for the decision.", xp: 40 }
+   ]
+  },
+  {
+   t: "Growth vs fixed mindset",
+   subdomain: "mindset",
+   definition: "Carol Dweck's distinction between believing abilities are malleable through effort (growth) versus fixed traits people are simply born with (fixed).",
+   short: "Believing skill can be built changes how you respond to failure.",
+   deep: "Carol Dweck's research, simplified: kids praised for being \"smart\" later avoided harder problems (failing might mean they aren't smart anymore). Kids praised for effort tried the harder problems and kept improving. The thing being praised determined how they handled future setbacks. Honesty caveat: some of the bigger Dweck claims didn't replicate cleanly when other labs tried them, and the world of pop \"growth mindset\" took it further than the data supports. But the core observation, that praising effort and strategy beats praising trait, in yourself and your kids, has held up well enough to use.",
+   generic: "Imagine two kids learning to ride a bike. One has been told they are a natural athlete and falls once, then quits before anyone sees. The other has been told they get better by trying, falls ten times, and is wobbling down the lane by sunset. Same legs, different story about what falling means.",
+   expert: "Dweck (2006) formalised the implicit theories framework in her book Mindset, building on Mueller and Dweck (1998) which compared trait versus process praise in children. A 2018 meta-analysis by Sisk et al found very small average effects of growth mindset on academic achievement, and large pre-registered interventions (Yeager et al, 2019) found modest effects concentrated in lower-achieving students. The strong pop-psychology claims that growth mindset reliably transforms outcomes have not held up. The narrower claim that process praise outperforms trait praise in shaping persistence after failure has fared better but is also more limited than the popular framing suggests.",
+   status: "debated",
+   reflect: "How do you praise people you mentor, or your own kids, or yourself? Trait (\"you're so smart\") or process (\"I love how you tried X\")?",
+   conceptQuiz: [
+    {
+     q: "In Mueller and Dweck's 1998 study, children praised for being smart later, compared to children praised for effort…",
+     options: [
+      { text: "Avoided harder problems and gave up sooner after failure.", correct: true },
+      { text: "Sought out harder problems more enthusiastically.", misconception: "That was the pattern for effort-praised children, not trait-praised ones." },
+      { text: "Showed no differences in subsequent behaviour.", misconception: "The study's whole point was a measurable behavioural divergence." },
+      { text: "Outperformed effort-praised children on every later task.", misconception: "Trait-praised children showed reduced persistence and poorer recovery from failure." }
+     ],
+     why: "Trait praise links success to a fixed identity, so future failure threatens the identity and is avoided."
+    },
+    {
+     q: "Which statement best reflects the current evidence on growth mindset interventions?",
+     options: [
+      { text: "Average effects are small, with modest benefits concentrated in lower-achieving or disadvantaged students.", correct: true },
+      { text: "Growth mindset reliably produces large achievement gains for all students.", misconception: "Recent meta-analyses (Sisk et al, 2018) found small average effects, far from the popular claim." },
+      { text: "Growth mindset has no measurable effect on anyone.", misconception: "Pre-registered trials find modest effects in specific subgroups, not nothing." },
+      { text: "Mindset is purely genetic and cannot be shifted by intervention.", misconception: "Some malleability of belief about ability is well supported even if the downstream effect is small." }
+     ],
+     why: "Large-scale replication has tempered the original story to a smaller, targeted effect rather than a universal cure."
+    }
+   ],
+   conceptTasks: [
+    { level: "basic",    t: "Audit your praise",  d: "Note the next three times you praise someone or yourself and tag each as trait praise or process praise.", xp: 10 },
+    { level: "easy",     t: "Swap one phrase",    d: "Replace one habitual trait compliment in your week with a specific process compliment and observe the response.", xp: 20 },
+    { level: "advanced", t: "Reframe one setback", d: "Pick a recent failure you treated as evidence of fixed inability. Rewrite the story as a strategy problem and design the next concrete attempt.", xp: 40 }
+   ]
+  },
   {
    t: "Dunning-Kruger effect",
    subdomain: "biases",
@@ -653,10 +949,10 @@ const d: Domain = {
    { name: "Mindset, Carol Dweck",              what: "Growth vs fixed. Read the replication caveats alongside.",        url: "https://en.wikipedia.org/wiki/Mindset_(book)",                  price: "verify", weight: "secondary", verify: false, lastVerified: "2026-06" },
    { name: "The Righteous Mind, Jonathan Haidt",       what: "Moral psychology of why decent people disagree.",            url: "https://righteousmind.com/",                           price: "verify", verify: false, lastVerified: "2026-06" },
    { name: "Predictably Irrational, Dan Ariely",       what: "Behavioural-economics intro w/ caveats post-replication.",         url: "https://danariely.com/books/predictably-irrational/",              price: "verify", verify: false, lastVerified: "2026-06" },
-   { name: "Stumbling on Happiness, Daniel Gilbert",     what: "Why we mispredict what'll make us happy.",                url: "",                                        price: "verify", verify: true, lastVerified: "2026-06" },
+   { name: "Stumbling on Happiness, Daniel Gilbert",     what: "Why we mispredict what'll make us happy.",                url: "https://www.danielgilbert.com/",                       price: "verify", verify: true, lastVerified: "2026-06" },
    { name: "The Happiness Hypothesis, Jonathan Haidt",    what: "Ancient wisdom vs modern psychology.",                  url: "https://righteousmind.com/",                           price: "verify", verify: false, lastVerified: "2026-06" },
-   { name: "Thinking in Bets, Annie Duke",          what: "Decision-making under uncertainty, poker-trained.",           url: "",                                        price: "verify", verify: true, lastVerified: "2026-06" },
-   { name: "Noise, Kahneman, Sibony, Sunstein",       what: "Why expert judgment varies wildly, and what to do about it.",      url: "",                                        price: "verify", verify: true, lastVerified: "2026-06" }
+   { name: "Thinking in Bets, Annie Duke",          what: "Decision-making under uncertainty, poker-trained.",           url: "https://www.annieduke.com/books/",                       price: "verify", verify: true, lastVerified: "2026-06" },
+   { name: "Noise, Kahneman, Sibony, Sunstein",       what: "Why expert judgment varies wildly, and what to do about it.",      url: "https://en.wikipedia.org/wiki/Noise:_A_Flaw_in_Human_Judgment", price: "verify", verify: true, lastVerified: "2026-06" }
   ]
  },
 

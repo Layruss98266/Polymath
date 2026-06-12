@@ -49,10 +49,10 @@ const d: Domain = {
  ],
 
  subdomains: [
-  { id: "compounding", name: "Compounding and Time" },
-  { id: "fund_basics", name: "Funds and Fees" },
-  { id: "risk", name: "Risk and Allocation" },
-  { id: "behaviour", name: "Behaviour and Cycles" },
+  { id: "compounding", name: "Compounding and Time", intro: "The single biggest force in investing is time multiplied by a reasonable return. Start early, stay invested, and let the maths do the heavy lifting.", capabilities: ["Project the cost of delaying your SIP by even 3 years using a simple calculator.", "Reinvest dividends and gains by default instead of cashing them out.", "Refuse to time the market; commit to monthly investing through cycles."] },
+  { id: "fund_basics", name: "Funds and Fees", intro: "Most investors are better off owning broad, low-cost index funds. In India that means Nifty 50, Nifty Next 50, and a global index, not stock picking.", capabilities: ["Compare expense ratios of two funds before picking either.", "Tell apart direct and regular plans and always choose direct.", "Walk away from any fund with a 1 percent plus annual fee unless it earns it."] },
+  { id: "risk", name: "Risk and Allocation", intro: "Risk is not just volatility; it is the chance of needing money during a drawdown. Allocation across equity, debt, and cash decides how you sleep at night.", capabilities: ["Set an equity to debt split based on time horizon, not market mood.", "Rebalance once a year back to your target allocation.", "Keep money you need within 3 years out of equity entirely."] },
+  { id: "behaviour", name: "Behaviour and Cycles", intro: "Most investing returns are lost to your own behaviour during cycles. Panic in crashes and greed in bull runs do more damage than fees ever will.", capabilities: ["Write a one-page investing policy and follow it during a market crash.", "Add to your SIP during the months it feels worst to invest.", "Ignore daily portfolio checks; review quarterly at most."] },
  ],
 
  concepts: [

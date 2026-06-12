@@ -48,10 +48,10 @@ const d: Domain = {
  ],
 
  subdomains: [
-  { id: "fundamentals", name: "Fundamentals" },
-  { id: "debt",         name: "Debt and Buffer" },
-  { id: "automation",   name: "Automation and Habits" },
-  { id: "products",     name: "Products and Protection" }
+  { id: "fundamentals", name: "Fundamentals", intro: "The non-negotiable basics: spend less than you earn, track where it goes, and build savings before lifestyle. Everything else is decoration.", capabilities: ["Run your last three months through a simple needs, wants, savings split.", "Set a savings rate as a percent of income, not a leftover at month end.", "Resist lifestyle creep when your salary or freelance income jumps."] },
+  { id: "debt",         name: "Debt and Buffer", intro: "Killing high-cost debt and building an emergency fund of 3 to 6 months of expenses. In India that means credit cards and personal loans first, EMIs second.", capabilities: ["List every debt by interest rate and attack the highest one first.", "Park 6 months of expenses in a liquid fund or sweep FD before investing more.", "Refuse a credit card EMI on anything that depreciates."] },
+  { id: "automation",   name: "Automation and Habits", intro: "Set-and-forget systems that move money before you can touch it. SIPs, sweep accounts, and standing instructions beat willpower every month.", capabilities: ["Set up a salary-day SIP into an index fund before any spending happens.", "Split income across separate accounts for spending, bills, and savings.", "Review your money once a month, not once a day."] },
+  { id: "products",     name: "Products and Protection", intro: "The financial instruments you actually need in India: term insurance, health cover, EPF, PPF, and index funds. Most other products are sold, not bought.", capabilities: ["Buy pure term life cover of 10 to 15 times your annual income.", "Carry a family floater health policy of at least 10 lakh in a metro.", "Reject any product that mixes insurance and investment under one premium."] }
  ],
 
  concepts: [
@@ -154,12 +154,234 @@ const d: Domain = {
    ],
    diagram: { kind: "bars", title: "Buffer target by income type", caption: "Months of essential expenses to hold in liquid cash.", data: { items: [{ label: "Salaried, dual income", value: 3 }, { label: "Salaried, single income", value: 4 }, { label: "Freelancer / variable", value: 6 }, { label: "Single income + dependents", value: 9 }], unit: "months" } }
   },
-  { t: "Kill high-interest debt first",             short: "Credit cards and payday loans first, always. Nothing else competes.",                                                                             deep: "An Indian credit card typically charges 30 to 45% a year on whatever you don't pay off in the cycle. No legal investment beats that reliably. So paying down a credit card balance is basically a risk-free 30% return, better than any stock, bond, or fund you'll be pitched. There are two playbooks. The avalanche method says: pay the highest interest rate first (mathematically optimal). The snowball method says: pay the smallest balance first (motivationally easier, you knock one debt out fast, feel a win, keep going). Pick the one you'll actually finish, not the one that looks smarter on paper.",                                                                                 status: "debated",  reflect: "Write down every debt you have with its interest rate. The biggest rate gets attacked first, unless you know you'd quit without an early small win." },
-  { t: "Pay yourself first (automate it)",            short: "Move money to savings the day your salary lands. Live on what's left, not the other way around.",                                                               deep: "Willpower runs out. Automation doesn't. People with identical incomes save wildly different amounts depending on one thing: whether the saving happens automatically before they see the money. Set up a standing instruction, the day after salary credits, ₹X gets pulled into a savings account or an investment SIP. You'll adjust your spending to the leftover. If you wait until the end of the month to save \"whatever's left,\" you'll find there's nothing left. There is always nothing left.",                                                                                                                                            status: "settled",  reflect: "What percentage of your last salary moved into savings or investments within two days of it landing? If \"none,\" that's the next 30-minute fix." },
-  { t: "Index funds beat picking",                short: "Over long horizons, a cheap fund that tracks the whole market beats most clever ones.",                                                                    deep: "Every year, regulators publish a report (called SPIVA) that compares actively managed mutual funds against simple index funds. The same boring result keeps showing up: over 10 or 20 years, most active funds lose to the index after their fees are taken out. That doesn't mean active managers are stupid. It means the market is hard, fees are high, and \"average\" sounds boring but in practice means \"top quartile.\" For most of your equity allocation, just buy a broad Indian index fund (Nifty 50 or Total Market), keep buying it automatically, and don't touch it. You can have a small portion for active picks if you want the entertainment. The boring part is where the money is made.",                                            status: "settled",  reflect: "Pull up your largest actively managed mutual fund. Compare its 10-year return, after fees, against the Nifty 50 over the same period. Honestly." },
-  { t: "Compounding",                      short: "Time × return × consistency. Time matters more than the other two.",                                                                             deep: "A 25-year-old investing ₹5,000 a month at a 10% average return ends up around ₹1.6 crore at 60. A 35-year-old doing the exact same thing ends up around ₹65 lakh, less than half. Same amount, same fund, same returns. Just ten extra years on the front end. The first decade looks tiny on the chart; the last decade is where the curve goes vertical. The single biggest favour you can do your future self is to start now, even if \"now\" means ₹500 a month. Increase the amount later. You can't make up the years.",                                                                                                                             status: "settled",  reflect: "If you'd started investing five years earlier than you did, what would change about today? Don't dwell on it, start now." },
-  { t: "Inflation",                       short: "Cash quietly loses 5-7% of its buying power every year in India.",                                                                              deep: "Your grandparents could buy a kilo of arhar dal for a few rupees. Today it's around ₹150. Same dal, way more rupees, that's inflation in everyday clothes. Cash sitting in a low-interest account is shrinking in real terms every year. That's why your emergency fund goes in something liquid that at least keeps pace (a high-interest savings account or a liquid fund), and your long-term savings have to grow faster than inflation, which mostly means equities. \"Safe\" cash that loses 5% of its buying power every year is not actually safe.",                                                                                                               status: "settled",  reflect: "What did a litre of milk cost when you were a kid? What does it cost now? That gap is your real-world inflation lesson." },
-  { t: "Insurance: term + health, full stop",          short: "Pure term life (if anyone depends on you) and proper health insurance. Avoid anything that mixes insurance with investment.",                                                 deep: "Real insurance is simple and cheap: a term policy pays your family a chunk of money if you die during a set number of years. If you survive, you get nothing, which sounds bad, but that's exactly what insurance is for. The bundled products (ULIPs, endowment plans, \"return of premium\" policies) take what should be a ₹1,000-a-month problem and turn it into a ₹15,000-a-month one, because they're hiding an expensive investment inside. The agent earns a big commission. You earn a low return. Just buy term life if anyone depends on your income, and a real indemnity health policy. Invest the difference in an index fund.",                                                                         status: "framework", reflect: "Is anyone financially dependent on you? If yes, do you have term life cover worth roughly 10-15 times your annual income?" },
+  {
+   t: "Kill high-interest debt first",
+   subdomain: "debt",
+   definition: "A rule that says any debt above roughly 15 percent annual interest must be cleared before serious investing begins, because paying it down is a guaranteed return at that rate.",
+   short: "Credit cards and payday loans first, always. Nothing else competes.",
+   deep: "An Indian credit card typically charges 30 to 45% a year on whatever you don't pay off in the cycle. No legal investment beats that reliably. So paying down a credit card balance is basically a risk-free 30% return, better than any stock, bond, or fund you'll be pitched. There are two playbooks. The avalanche method says: pay the highest interest rate first (mathematically optimal). The snowball method says: pay the smallest balance first (motivationally easier, you knock one debt out fast, feel a win, keep going). Pick the one you'll actually finish, not the one that looks smarter on paper.",
+   generic: "Imagine a bucket with one big hole and three small holes. Patching the big hole first slows the leak the most. High interest debt is the big hole; investing alongside it is filling the bucket while the hole keeps draining.",
+   expert: "RBI data shows Indian credit card APRs cluster between 36 and 48 percent, with monthly rates of 3 to 4 percent compounding to effective annualised rates above 50 percent. No retail asset class (Nifty 50, gold, debt funds) has delivered a comparable risk free return historically. Section 80C deductions cannot offset card interest, and credit card interest is not tax deductible in India. The avalanche method is mathematically optimal because it minimises total interest paid; Gal and McShane (2012) showed snowball drives higher completion rates due to the goal gradient effect. For balances above 1 lakh, evaluate a personal loan at 12 to 16 percent or an EMI conversion (read processing fees) as a refinance route.",
+   status: "debated",
+   reflect: "Write down every debt you have with its interest rate. The biggest rate gets attacked first, unless you know you'd quit without an early small win.",
+   conceptQuiz: [
+    {
+     q: "Why is paying down a 40 percent APR credit card often the best use of spare cash?",
+     options: [
+      { text: "It is a guaranteed risk free return at 40 percent that no legal investment reliably beats.", correct: true },
+      { text: "Credit card debt is tax deductible.", misconception: "Credit card interest carries no tax deduction in India." },
+      { text: "Banks waive the balance after one year.", misconception: "Banks pursue defaulters; balances do not vanish." },
+      { text: "Investing always returns more than 40 percent.", misconception: "No reliable retail asset class clears 40 percent post tax over the long run." }
+     ],
+     why: "Eliminating a 40 percent compounding cost is mathematically equivalent to earning a 40 percent risk free return, an opportunity no normal investment offers."
+    },
+    {
+     q: "When should the snowball method be preferred over the avalanche method?",
+     options: [
+      { text: "When past financial plans show a pattern of quitting before completion, so visible early wins matter.", correct: true },
+      { text: "When the highest interest debt is also the smallest.", misconception: "In that case avalanche and snowball coincide; the question is irrelevant." },
+      { text: "When you have no debts at all.", misconception: "Neither method applies without debts." },
+      { text: "When all debts have identical interest rates.", misconception: "If rates are identical, balance size is the only differentiator anyway." }
+     ],
+     why: "Snowball trades a small amount of optimality for behavioural completion. For self admitted plan quitters, that trade is often worth it."
+    }
+   ],
+   conceptTasks: [
+    { level: "basic",    t: "List every debt",     d: "Write down every debt with lender, balance, APR, and minimum payment. No editing, just the list.", xp: 10 },
+    { level: "easy",     t: "Choose a method",     d: "Pick avalanche (highest rate first) or snowball (smallest balance first) based on your honest track record, and commit it in writing.", xp: 20 },
+    { level: "advanced", t: "Refinance the worst", d: "If any debt is above 30 percent APR, evaluate a personal loan at 12 to 16 percent or an EMI conversion, and execute the cheapest legal route to lower the cost.", xp: 40 }
+   ]
+  },
+  {
+   t: "Pay yourself first (automate it)",
+   subdomain: "automation",
+   definition: "A budgeting discipline that routes a fixed percentage of income into savings and investments automatically on or just after payday, before any discretionary spending decisions are made.",
+   short: "Move money to savings the day your salary lands. Live on what's left, not the other way around.",
+   deep: "Willpower runs out. Automation doesn't. People with identical incomes save wildly different amounts depending on one thing: whether the saving happens automatically before they see the money. Set up a standing instruction, the day after salary credits, ₹X gets pulled into a savings account or an investment SIP. You'll adjust your spending to the leftover. If you wait until the end of the month to save \"whatever's left,\" you'll find there's nothing left. There is always nothing left.",
+   generic: "Like packing your lunch the night before. If you wait until the morning rush, you skip it. If it is ready in the fridge, you grab it without thinking. Automation moves the decision to a calmer moment.",
+   expert: "Behavioural economics calls this commitment device design (Thaler and Benartzi, Save More Tomorrow, 2004). The default option dominates: when saving is opt out rather than opt in, participation and savings rates rise sharply. In India, SEBI registered SIPs, NACH mandates, and bank standing instructions provide the infrastructure. Pair with the new tax regime under Budget 2025-26 where the rebate threshold is ₹12 lakh and the standard deduction is ₹75,000, so additional 80C linked products are less load bearing and a plain SIP into a low cost index or ELSS fund often dominates. Lock the percent of gross, not a rupee amount, so the percentage holds as income rises.",
+   status: "settled",
+   reflect: "What percentage of your last salary moved into savings or investments within two days of it landing? If \"none,\" that's the next 30-minute fix.",
+   conceptQuiz: [
+    {
+     q: "Why does paying yourself first beat saving whatever is left at month end?",
+     options: [
+      { text: "Willpower decays through the month; automating before discretionary spending starts removes the decision.", correct: true },
+      { text: "Banks pay higher interest on payday transfers.", misconception: "Interest rates do not depend on transfer timing." },
+      { text: "Saving at month end is illegal in India.", misconception: "There is no such regulation." },
+      { text: "Salary credits earn bonus interest if untouched.", misconception: "No such bonus exists in standard Indian banking." }
+     ],
+     why: "The mechanism, automation before discretion, is what holds. Intent at the end of the month rarely survives the month."
+    },
+    {
+     q: "Two friends with the same salary commit to save 20 percent. One sets a standing instruction on payday, the other plans to save what is left. After one year:",
+     options: [
+      { text: "The automated saver almost always ends up closer to the 20 percent target.", correct: true },
+      { text: "Both end up saving exactly 20 percent because intent is equal.", misconception: "Intent is equal; execution is not. Behavioural data consistently shows the gap." },
+      { text: "The manual saver does better because they think about money more.", misconception: "More thinking does not produce more saving; structure does." },
+      { text: "Neither saves because salaries always vanish.", misconception: "Automation breaks exactly this pattern." }
+     ],
+     why: "Save More Tomorrow and decades of default option research confirm that automation drives a structural advantage over intent based saving."
+    }
+   ],
+   conceptTasks: [
+    { level: "basic",    t: "Pick the percent",        d: "Decide what percent of your gross salary should automatically move to savings or investments. Start with 10 percent if unsure. Write it down.", xp: 10 },
+    { level: "easy",     t: "Set the standing instruction", d: "Set up a bank standing instruction or SIP mandate that fires on or one day after your payday, for the chosen percent.", xp: 20 },
+    { level: "advanced", t: "Raise it with every raise",  d: "Write a personal rule: every salary increment raises the automated transfer by the same percentage of the raise, the same week the raise lands. Pre-commit it.", xp: 40 }
+   ]
+  },
+  {
+   t: "Index funds beat picking",
+   subdomain: "products",
+   definition: "An investment approach where a passive low cost fund replicates a market index (such as the Nifty 50) rather than trying to pick winning stocks, on the basis that after fees most active managers lose to the index over long horizons.",
+   short: "Over long horizons, a cheap fund that tracks the whole market beats most clever ones.",
+   deep: "Every year, regulators publish a report (called SPIVA) that compares actively managed mutual funds against simple index funds. The same boring result keeps showing up: over 10 or 20 years, most active funds lose to the index after their fees are taken out. That doesn't mean active managers are stupid. It means the market is hard, fees are high, and \"average\" sounds boring but in practice means \"top quartile.\" For most of your equity allocation, just buy a broad Indian index fund (Nifty 50 or Total Market), keep buying it automatically, and don't touch it. You can have a small portion for active picks if you want the entertainment. The boring part is where the money is made.",
+   generic: "Imagine a race with 100 runners. Instead of betting on which one will win, you buy a tiny slice of every runner. You will not get the gold medal payout, but you will not be wiped out either, and historically the average of all runners beats most expert picks after the bookmaker's cut.",
+   expert: "S&P SPIVA India Scorecard 2023 shows over 80 percent of large cap active funds underperform the S&P BSE 100 over 10 years after fees. Bogle's cost matters hypothesis: in a zero sum market before costs, the average active investor must underperform the index by the cost differential. SEBI regulates Indian index funds and ETFs; total expense ratios on Nifty 50 index funds run 0.05 to 0.20 percent versus 1.0 to 2.25 percent on active equity funds. Under Budget 2025-26 the new regime taxes equity LTCG at 12.5 percent above 1.25 lakh per year and STCG at 20 percent, applying equally to index and active funds, so the fee gap is the cleanest edge.",
+   status: "settled",
+   reflect: "Pull up your largest actively managed mutual fund. Compare its 10-year return, after fees, against the Nifty 50 over the same period. Honestly.",
+   conceptQuiz: [
+    {
+     q: "What is the strongest evidence based reason to prefer index funds over active equity funds in India?",
+     options: [
+      { text: "SPIVA India data shows most active large cap funds underperform the index over 10 years after fees.", correct: true },
+      { text: "Index funds are guaranteed by the government.", misconception: "No equity product is government guaranteed; index funds rise and fall with the market." },
+      { text: "Active funds are illegal in India.", misconception: "Active funds are legal and widely sold; the issue is cost net performance, not legality." },
+      { text: "Index funds pay no tax.", misconception: "Equity LTCG above 1.25 lakh per year is taxed at 12.5 percent regardless of active or index." }
+     ],
+     why: "The fee gap of 1 to 2 percent per year compounds into a 20 to 30 percent shortfall over 20 to 30 years for the average active investor."
+    },
+    {
+     q: "An active fund returned 12 percent versus the Nifty 50's 11 percent last year. Is that proof active beats index?",
+     options: [
+      { text: "No. One year tells you almost nothing; survivorship and luck dominate short horizons.", correct: true },
+      { text: "Yes, definitively.", misconception: "A single year of outperformance is statistically meaningless against the cost drag over time." },
+      { text: "Yes, because fees are recovered in one year.", misconception: "Fees compound year after year; one year of alpha does not lock in lifetime outperformance." },
+      { text: "No, because active funds are illegal.", misconception: "They are legal; the issue is statistical, not legal." }
+     ],
+     why: "The honest comparison is 10 to 20 year rolling returns net of fees, where the index wins for the majority of funds."
+    }
+   ],
+   conceptTasks: [
+    { level: "basic",    t: "Find one expense ratio", d: "Pull up your largest equity mutual fund and write down its total expense ratio (TER). Anything above 1 percent needs a why.", xp: 10 },
+    { level: "easy",     t: "Open one index fund SIP", d: "Start a small SIP into a Nifty 50 or Nifty Total Market index fund with a TER below 0.25 percent. The mechanism is the win, not the amount.", xp: 20 },
+    { level: "advanced", t: "Run the SPIVA check",  d: "Look up the latest S&P SPIVA India Scorecard, find your category, and write down the 10 year underperformance rate. Decide whether to migrate your active holdings.", xp: 40 }
+   ]
+  },
+  {
+   t: "Compounding",
+   subdomain: "fundamentals",
+   definition: "The process by which returns earned in earlier periods themselves earn returns in later periods, so that a portfolio's growth curve accelerates over time rather than rising in a straight line.",
+   short: "Time × return × consistency. Time matters more than the other two.",
+   deep: "A 25-year-old investing ₹5,000 a month at a 10% average return ends up around ₹1.6 crore at 60. A 35-year-old doing the exact same thing ends up around ₹65 lakh, less than half. Same amount, same fund, same returns. Just ten extra years on the front end. The first decade looks tiny on the chart; the last decade is where the curve goes vertical. The single biggest favour you can do your future self is to start now, even if \"now\" means ₹500 a month. Increase the amount later. You can't make up the years.",
+   generic: "Imagine a snowball at the top of a long hill. The first few rolls add almost nothing. Halfway down it is the size of a football. Near the bottom it is the size of a car. Same hill, same snow, the speed comes from how many rolls have already happened.",
+   expert: "Mathematically, future value equals principal times (1 plus r) to the n, where small changes in n (years) dominate when r is in the 8 to 12 percent range typical of Indian equity. Einstein attribution aside, Bernoulli formalised continuous compounding. The Rule of 72 approximates doubling time: at 12 percent, money doubles roughly every 6 years. SEBI mandated standardised CAGR disclosures help investors compare on a compounded basis. In India, ELSS and index fund SIPs benefit from equity LTCG taxation of 12.5 percent above 1.25 lakh per year under Budget 2025-26, keeping more of the compounded gain. The single largest lever for retail investors is not return optimisation but time in market.",
+   status: "settled",
+   reflect: "If you'd started investing five years earlier than you did, what would change about today? Don't dwell on it, start now.",
+   conceptQuiz: [
+    {
+     q: "Which lever has the largest effect on long term wealth for a typical retail investor?",
+     options: [
+      { text: "Time in market, because compounding rewards extra years exponentially.", correct: true },
+      { text: "Picking the single best stock each year.", misconception: "Almost no retail investor sustains stock selection edge over decades; time in market dominates." },
+      { text: "Timing the market perfectly.", misconception: "Missing even a handful of the best market days drastically lowers long term returns; reliable timing is not achievable." },
+      { text: "Switching banks every year.", misconception: "Bank choice has marginal effect; compounding inside investments is where growth happens." }
+     ],
+     why: "Compounding is exponential in n (years); doubling time at 12 percent is roughly 6 years (Rule of 72), so an extra decade often doubles the final corpus."
+    },
+    {
+     q: "A 25 year old and a 35 year old both invest 5,000 per month at 10 percent until age 60. Roughly how does the 25 year old's final corpus compare?",
+     options: [
+      { text: "Roughly 2 to 2.5 times the 35 year old's corpus.", correct: true },
+      { text: "Slightly larger, maybe 10 percent more.", misconception: "Ten extra years of compounding produces a far larger gap than 10 percent." },
+      { text: "About the same; the 35 year old catches up.", misconception: "The 35 year old cannot catch up at equal contributions; the years cannot be replayed." },
+      { text: "Smaller, because the older investor has more career income.", misconception: "The question fixes contributions; income outside is irrelevant to the math." }
+     ],
+     why: "The last decade of a long horizon is where the curve goes vertical; the 25 year old captures it, the 35 year old does not."
+    }
+   ],
+   conceptTasks: [
+    { level: "basic",    t: "Apply the Rule of 72",  d: "Pick an expected annual return (say 10 percent), divide 72 by it, and write down the rough years for money to double. Repeat for 8 and 14 percent.", xp: 10 },
+    { level: "easy",     t: "Model two start dates", d: "Use any SIP calculator. Model 5,000 per month at 10 percent starting today versus starting 5 years from now, both ending at age 60. Note the gap.", xp: 20 },
+    { level: "advanced", t: "Start the engine now",  d: "Set up the smallest viable SIP into a low cost index fund today, even 500 per month counts. The point is to begin compounding the n in the equation immediately.", xp: 40 }
+   ]
+  },
+  {
+   t: "Inflation",
+   subdomain: "fundamentals",
+   definition: "The sustained rise in the general price level of goods and services over time, which reduces the purchasing power of a unit of currency.",
+   short: "Cash quietly loses 5-7% of its buying power every year in India.",
+   deep: "Your grandparents could buy a kilo of arhar dal for a few rupees. Today it's around ₹150. Same dal, way more rupees, that's inflation in everyday clothes. Cash sitting in a low-interest account is shrinking in real terms every year. That's why your emergency fund goes in something liquid that at least keeps pace (a high-interest savings account or a liquid fund), and your long-term savings have to grow faster than inflation, which mostly means equities. \"Safe\" cash that loses 5% of its buying power every year is not actually safe.",
+   generic: "Imagine the ruler you measure prices with quietly shrinking every year. A loaf of bread is the same loaf; it just takes more rupee marks to cover it. The bread did not get richer; your rupee got smaller.",
+   expert: "RBI targets CPI inflation at 4 percent within a 2 to 6 percent tolerance band under the flexible inflation targeting framework (Monetary Policy Framework Agreement, 2015). India's average CPI inflation has run 5 to 7 percent over the last decade with food and fuel as primary drivers. Real return equals (1 plus nominal return) divided by (1 plus inflation) minus 1, so a savings account paying 3.5 percent against 6 percent CPI delivers a negative real return of around minus 2.4 percent. Equity historically delivers a positive real return of 6 to 8 percent in India; debt funds and FDs hover near zero real return post tax for higher slab investors. Under Budget 2025-26, debt fund LTCG indexation was removed, so post tax real returns on debt are even tighter.",
+   status: "settled",
+   reflect: "What did a litre of milk cost when you were a kid? What does it cost now? That gap is your real-world inflation lesson.",
+   conceptQuiz: [
+    {
+     q: "Your savings account pays 3.5 percent and CPI inflation is 6 percent. What is the rough real return?",
+     options: [
+      { text: "Negative, roughly minus 2.4 percent.", correct: true },
+      { text: "Positive 3.5 percent because the bank pays interest.", misconception: "Nominal interest ignores the falling purchasing power; real return is net of inflation." },
+      { text: "Zero, because both numbers cancel.", misconception: "They do not cancel; 3.5 minus 6 is minus 2.5, and the compounding formulation is slightly worse." },
+      { text: "Positive 6 percent.", misconception: "6 percent is the inflation rate, not the return." }
+     ],
+     why: "Real return = (1+nominal)/(1+inflation) - 1. At 3.5 percent nominal and 6 percent inflation, that is about minus 2.4 percent."
+    },
+    {
+     q: "Why are equities usually preferred over FDs for goals more than 10 years away?",
+     options: [
+      { text: "Indian equities have historically delivered a positive real return after inflation; FDs and savings accounts often deliver near zero or negative real returns.", correct: true },
+      { text: "Equities are guaranteed by SEBI.", misconception: "SEBI regulates, it does not guarantee returns. Equities can fall in any short period." },
+      { text: "FDs do not pay interest.", misconception: "FDs pay interest; the issue is post inflation and post tax real return." },
+      { text: "Inflation does not affect equities.", misconception: "Inflation affects every asset; equities historically outpace it, FDs often do not." }
+     ],
+     why: "Over long horizons, equity returns of 10 to 13 percent nominal substantially outpace 5 to 7 percent inflation, while FD returns of 6 to 7 percent barely match it pre tax."
+    }
+   ],
+   conceptTasks: [
+    { level: "basic",    t: "Find current CPI",     d: "Look up the latest RBI CPI inflation print and write it down. Note how it compares to your savings account rate.", xp: 10 },
+    { level: "easy",     t: "Compute one real return", d: "Pick your largest non equity holding (FD, savings account, debt fund). Compute its post tax post inflation real return for your slab.", xp: 20 },
+    { level: "advanced", t: "Restructure long term cash", d: "For any cash earmarked for goals more than 7 years away, move a meaningful share into an index fund SIP. Document the rationale and the expected real return gap.", xp: 40 }
+   ]
+  },
+  {
+   t: "Insurance: term + health, full stop",
+   subdomain: "products",
+   definition: "A protection strategy that uses pure term life insurance to replace lost income for dependants and a separate indemnity health policy for medical costs, deliberately avoiding bundled products that mix protection with investment.",
+   short: "Pure term life (if anyone depends on you) and proper health insurance. Avoid anything that mixes insurance with investment.",
+   deep: "Real insurance is simple and cheap: a term policy pays your family a chunk of money if you die during a set number of years. If you survive, you get nothing, which sounds bad, but that's exactly what insurance is for. The bundled products (ULIPs, endowment plans, \"return of premium\" policies) take what should be a ₹1,000-a-month problem and turn it into a ₹15,000-a-month one, because they're hiding an expensive investment inside. The agent earns a big commission. You earn a low return. Just buy term life if anyone depends on your income, and a real indemnity health policy. Invest the difference in an index fund.",
+   generic: "Like an umbrella. It does one job, keep the rain off, and it does it cheaply. A combined umbrella plus suitcase plus chair sounds clever in the shop, but in actual rain you would rather just have a good umbrella and a separate suitcase.",
+   expert: "IRDAI regulates Indian life and health insurance. Pure term cover for a healthy non smoker aged 30 is typically priced at 10,000 to 15,000 INR per year for 1 crore sum assured, compared to 80,000 to 1,20,000 for the same effective cover bundled inside a ULIP. ULIP charges include premium allocation (up to 6 percent year 1), policy admin, fund management (up to 1.35 percent), and mortality deductions. Health insurance: a 30 year old can get 10 to 25 lakh family floater cover for roughly 18,000 to 30,000 per year, with critical exclusions including room rent caps, pre existing disease waiting (2 to 4 years), and co pay clauses. Section 80D allows 25,000 deduction for self and family plus 50,000 for senior parents, available under the old regime; the new regime under Budget 2025-26 with the ₹12 lakh rebate threshold and ₹75,000 standard deduction makes 80D less load bearing for many earners. Death benefit is tax free under Section 10(10D).",
+   status: "framework",
+   reflect: "Is anyone financially dependent on you? If yes, do you have term life cover worth roughly 10-15 times your annual income?",
+   conceptQuiz: [
+    {
+     q: "Why is pure term insurance plus a separate index fund usually preferred over a ULIP?",
+     options: [
+      { text: "Term gives much higher cover per rupee of premium, and a separate index fund avoids the ULIP's stacked allocation and mortality charges.", correct: true },
+      { text: "ULIPs are illegal in India.", misconception: "ULIPs are legal and regulated by IRDAI; the issue is cost transparency, not legality." },
+      { text: "Term insurance pays a maturity bonus.", misconception: "Pure term pays nothing on survival; that absence of maturity is precisely what makes premium so low." },
+      { text: "Index funds carry no fees.", misconception: "Index funds have low TER (0.05 to 0.25 percent), still non zero, but far below ULIP charges." }
+     ],
+     why: "The bundled charges inside a ULIP eat returns. Unbundling typically leaves the investor 30 to 50 percent richer after 20 years with the same effective cover."
+    },
+    {
+     q: "Who does NOT strictly need term life insurance?",
+     options: [
+      { text: "A single adult with no financial dependants and no co signed loans.", correct: true },
+      { text: "A parent with a working spouse and two young children.", misconception: "Dependants need income replacement if the earner dies; term cover provides it cheaply." },
+      { text: "Anyone earning above 12 lakh.", misconception: "Income level is unrelated to whether dependants exist." },
+      { text: "Everyone above age 30.", misconception: "Age does not create the need; financial dependence does." }
+     ],
+     why: "Insurance is for dependants, not the insured. Without dependants or co signed liabilities, the lump sum death benefit serves no one."
+    }
+   ],
+   conceptTasks: [
+    { level: "basic",    t: "Map your dependants",   d: "Write down who is financially dependent on your income today, and roughly how many years of income they would need replaced.", xp: 10 },
+    { level: "easy",     t: "Quote pure term",       d: "Get online quotes from three IRDAI registered insurers (claim settlement ratio above 95 percent) for term cover of 10 to 15 times your annual income.", xp: 20 },
+    { level: "advanced", t: "Buy and unbundle",      d: "Buy the term policy, get a 10 to 25 lakh family floater health policy, and if you hold any ULIP or endowment, run the surrender or paid up math and redirect the difference to a low cost index or ELSS SIP. Document the decision in writing.", xp: 40 }
+   ]
+  },
   {
    t: "Lifestyle inflation",
    subdomain: "fundamentals",

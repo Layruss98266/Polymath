@@ -7,6 +7,10 @@ import { HubCatalogue } from "./HubCatalogue";
 import { TodayCard } from "./TodayCard";
 import { StartHereBento } from "./StartHereBento";
 import { MoreForYouRow } from "./MoreForYouRow";
+import { HomeStats } from "./HomeStats";
+import { FeaturedPaths } from "./FeaturedPaths";
+import { TrustStrip } from "./TrustStrip";
+import { RecentActivityRail } from "./RecentActivityRail";
 import { DOMAIN_INDEX } from "@/data/domains";
 
 // Hub-style home. Hero, catalogue, optional rituals strip. No long marketing
@@ -37,6 +41,10 @@ export function HomeShell({
   <div className="space-y-6">
    <HubHero onSearch={setQ} />
 
+   {/* Tiny stats strip immediately under the hero so a first-time visitor sees
+       the scale of the catalogue without being asked to click anywhere. */}
+   {!isReturning && <HomeStats />}
+
    {/* Today-at-a-glance numbers. Self-hides for absolute first-time visitors. */}
    <TodayCard />
 
@@ -48,10 +56,19 @@ export function HomeShell({
     </div>
    )}
 
+   {/* Returning users: surface their last 4 opened concepts as a one-click
+       Pick up where you left off rail. Self-hides if empty. */}
+   {isReturning && <RecentActivityRail />}
+
    {/* Progressive disclosure: new users see 4 curated picks; returning users
        see a related-to-you row. The full catalogue stays one click away. */}
    {!isReturning && <StartHereBento />}
    {isReturning && <MoreForYouRow />}
+
+   {/* Curated paths surface multi-domain learning bundles. Visible to
+       everyone. The new user picks a goal; the returning user gets a nudge
+       toward a new bundle they haven't started. */}
+   <FeaturedPaths />
 
    <div id="all-domains" />
    {!effectiveShowCatalogue && (
@@ -67,6 +84,10 @@ export function HomeShell({
     </div>
    )}
    {effectiveShowCatalogue && <HubCatalogue q={q} setQ={setQ} />}
+
+   {/* Trust strip: what this app is and is not. Sets expectations near the
+       bottom of the page so the reader doesn't have to dig into /about. */}
+   {!isReturning && <TrustStrip />}
 
    {/* Optional ritual strip behind a single toggle so the page stays a hub */}
    <div className="flex justify-center pt-2">

@@ -109,7 +109,9 @@ html[data-dyslexic="1"] body {
 
 /* Print: cheat-sheet looks like a printable handout */
 @media print {
-  header, footer, .no-print { display: none !important; }
+  /* BottomNav is a <nav aria-label="Primary"> rather than a <header>, so it
+     was leaking onto small-viewport prints. Include it in the hide rule. */
+  header, footer, nav[aria-label="Primary"], .no-print { display: none !important; }
   body { background: white !important; color: black !important; }
   .panel { border: 1px solid #ccc !important; background: white !important; box-shadow: none !important; }
 }

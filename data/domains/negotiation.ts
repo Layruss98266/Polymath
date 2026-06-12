@@ -35,10 +35,10 @@ const d: Domain = {
  ],
 
  subdomains: [
-  { id: "foundations", name: "Foundations" },
-  { id: "tactics", name: "Tactics" },
-  { id: "emotion", name: "Emotion and Empathy" },
-  { id: "ethics", name: "Win-Win and Ethics" },
+  { id: "foundations", name: "Foundations", intro: "The mental setup before any negotiation: knowing your BATNA, your number, and what the other side actually wants. Most deals are won or lost before they begin.", capabilities: ["Define your walkaway number in writing before the conversation starts.", "Identify your BATNA and the other side's BATNA, honestly.", "Separate your real interests from the position you opened with."] },
+  { id: "tactics", name: "Tactics", intro: "The moves that shift outcomes at the table: anchoring, silence, calibrated questions, trades. Small craft choices compound into big swings.", capabilities: ["Anchor first when you have good information and let them open when you do not.", "Use silence after an offer instead of rushing to fill it.", "Ask open how and what questions instead of yes or no questions."] },
+  { id: "emotion", name: "Emotion and Empathy", intro: "Negotiation is mostly emotional. Reading the other side, naming what they feel, and lowering tension does more than any clever line.", capabilities: ["Label the other side's emotion out loud to drain its heat.", "Mirror the last few words they said to draw out more information.", "Stay calm when the other side gets loud; the louder one usually loses."] },
+  { id: "ethics", name: "Win-Win and Ethics", intro: "The best long-term negotiators leave the other side glad they made the deal. Short-term wins by deception cost you the next ten deals.", capabilities: ["Find a trade where both sides give up something they value less.", "Refuse a tactic you would not want used on you tomorrow.", "Walk away from a deal you would have to lie to close."] },
  ],
 
  concepts: [

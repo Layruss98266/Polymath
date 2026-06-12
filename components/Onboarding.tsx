@@ -1,5 +1,5 @@
 "use client";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Sparkles, X } from "lucide-react";
@@ -42,6 +42,15 @@ export function Onboarding() {
  const dialogRef = useRef<HTMLDivElement>(null);
  const dialogOpen = hydrated && !s.onboarded && !done && pathname === "/";
  useFocusTrap(dialogOpen, dialogRef);
+
+ // Escape skips onboarding. CommandPalette + SaveLoadModal already close on
+ // Escape; without this Onboarding was the odd one out.
+ useEffect(() => {
+  if (!dialogOpen) return;
+  const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") a.skipOnboarding(); };
+  document.addEventListener("keydown", onKey);
+  return () => document.removeEventListener("keydown", onKey);
+ }, [dialogOpen, a]);
 
  if (!hydrated) return null;
  if (s.onboarded) return null;

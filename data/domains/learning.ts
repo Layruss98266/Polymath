@@ -42,10 +42,10 @@ const d: Domain = {
  ],
 
  subdomains: [
-  { id: "mechanics", name: "Mechanics of Memory" },
-  { id: "practice", name: "Practice Methods" },
-  { id: "transfer", name: "Transfer and Application" },
-  { id: "habits", name: "Habits and Sleep" },
+  { id: "mechanics", name: "Mechanics of Memory", intro: "How memory actually forms, fades, and gets retrieved. Once you know the curve, you stop relying on the most useless study method: rereading.", capabilities: ["Recall a fact actively before checking the source, every time.", "Schedule reviews along a spaced curve instead of cramming.", "Encode new ideas by linking them to something you already know."] },
+  { id: "practice", name: "Practice Methods", intro: "The training reps that actually build skill: hard, deliberate, focused on what you can't yet do. Pleasant practice usually means no learning.", capabilities: ["Design a 30-minute session aimed at the edge of your current ability.", "Use retrieval practice and self-quizzing instead of passive review.", "Get feedback on each rep, not just at the end of the week."] },
+  { id: "transfer", name: "Transfer and Application", intro: "Moving a skill from the classroom to the real world. Knowledge that can't transfer is trivia in disguise.", capabilities: ["Apply a concept to a fresh problem the same day you learn it.", "Teach a new idea to someone else within a week of meeting it.", "Spot the same underlying pattern across two unrelated fields."] },
+  { id: "habits", name: "Habits and Sleep", intro: "The unglamorous infrastructure under any serious learning: consistent sessions, real sleep, and recovery. Skip these and the rest collapses.", capabilities: ["Protect a fixed daily window for deep work, defended like a meeting.", "Treat 7 to 9 hours of sleep as a non-negotiable training input.", "Replace willpower with a cue, routine, reward loop you can repeat."] },
  ],
 
  concepts: [

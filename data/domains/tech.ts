@@ -41,10 +41,10 @@ const d: Domain = {
  ],
 
  subdomains: [
-  { id: "basics", name: "Language Basics" },
-  { id: "structures", name: "Data Structures" },
-  { id: "workflow", name: "Workflow and Git" },
-  { id: "mindset", name: "Engineering Mindset" },
+  { id: "basics", name: "Language Basics", intro: "Variables, types, functions, control flow. The grammar every language reuses, so once you've got it in one, the next one is mostly vocabulary.", capabilities: ["Read unfamiliar code and predict what it does before running it.", "Write a small script end to end without copy-pasting from a tutorial.", "Pick the right loop, conditional, or function shape for the job."] },
+  { id: "structures", name: "Data Structures", intro: "How you arrange data decides how fast and how cleanly your code runs. Arrays, hashmaps, trees, and queues each have a job they do best.", capabilities: ["Reach for a hashmap the moment you need O(1) lookup by key.", "Spot when a nested loop is hiding an O(n^2) bug on big inputs.", "Pick the right structure before writing the algorithm on top."] },
+  { id: "workflow", name: "Workflow and Git", intro: "Version control, branches, reviews, and the discipline that keeps a team's code from melting into chaos. Boring on day one, lifesaving by month six.", capabilities: ["Recover from a botched merge or accidental commit without panic.", "Write a commit message a teammate can read six months later.", "Keep a feature branch short-lived and reviewable in under 400 lines."] },
+  { id: "mindset", name: "Engineering Mindset", intro: "How senior engineers actually think: smaller iterations, clearer naming, fewer clever tricks. Boring code that ships beats clever code that breaks.", capabilities: ["Debug by forming a hypothesis and testing it, not by random edits.", "Choose the simpler design when two solutions are equally correct.", "Leave a codebase a little cleaner than you found it on every PR."] },
  ],
 
  concepts: [

@@ -42,10 +42,10 @@ const d: Domain = {
  ],
 
  subdomains: [
-  { id: "foundations", name: "Foundations" },
-  { id: "contracts", name: "Contracts and Civil" },
-  { id: "rights", name: "Rights and Constitution" },
-  { id: "practical", name: "Practical Action" },
+  { id: "foundations", name: "Foundations", intro: "How law actually works: statutes, courts, precedent, and the difference between civil and criminal cases. The mental map before any specific topic makes sense.", capabilities: ["Tell apart civil, criminal, and regulatory matters at a glance.", "Trace where a law comes from, the legislature, court, or executive.", "Know when a problem needs a lawyer and when it does not."] },
+  { id: "contracts", name: "Contracts and Civil", intro: "Most adult disputes are contracts in disguise: rent, jobs, services, sales. Read the boring fine print before signing, not after a fight.", capabilities: ["Spot the termination, penalty, and jurisdiction clauses in any contract.", "Refuse to sign a contract you have not read end to end.", "Send a formal notice before going to court for a civil dispute."] },
+  { id: "rights", name: "Rights and Constitution", intro: "The basic rights every citizen holds and the limits the state must respect. Knowing them lets you push back when an authority oversteps.", capabilities: ["Name the fundamental rights that protect you in a police interaction.", "Ask for and verify the legal basis whenever an official demands something.", "File or support a writ when a state body crosses a clear line."] },
+  { id: "practical", name: "Practical Action", intro: "How to actually use the legal system: FIRs, RTIs, consumer forums, small claims. Knowing the right door beats knowing the most law.", capabilities: ["File an FIR or zero FIR confidently when a real crime has occurred.", "Use an RTI to get information a government body is dodging.", "Take a small consumer dispute to the right forum without a lawyer."] },
  ],
 
  concepts: [

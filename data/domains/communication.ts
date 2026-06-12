@@ -36,10 +36,10 @@ const d: Domain = {
  ],
 
  subdomains: [
-  { id: "foundations", name: "Foundations" },
-  { id: "structure", name: "Structure and Story" },
-  { id: "audience", name: "Audience and Tailoring" },
-  { id: "clarity", name: "Clarity and Brevity" },
+  { id: "foundations", name: "Foundations", intro: "The basic mechanics of getting an idea from your head into someone else's intact. Most miscommunication starts at this layer, not in the words.", capabilities: ["State the one thing you want the reader to do after they finish.", "Listen long enough to repeat back the other person's point in their words.", "Drop jargon when the audience isn't already inside your field."] },
+  { id: "structure", name: "Structure and Story", intro: "How you order information so the listener stays with you. Lead with the answer, then back it up; humans follow stories better than lists.", capabilities: ["Open any update with the bottom line, then the supporting detail.", "Frame a proposal as a short before-and-after story.", "Cut any paragraph that doesn't move the reader toward your point."] },
+  { id: "audience", name: "Audience and Tailoring", intro: "Shaping the same message differently for an exec, a peer, or a beginner. The content stays true; the angle and depth change.", capabilities: ["Rewrite the same one-pager for three audiences in under 30 minutes.", "Predict the first question your reader will ask and answer it upfront.", "Match formality, length, and channel to what the audience actually uses."] },
+  { id: "clarity", name: "Clarity and Brevity", intro: "Saying more with fewer words, in plain language. Short sentences, concrete nouns, and active verbs do most of the work.", capabilities: ["Cut a draft by 30 percent without losing meaning.", "Replace any abstract noun with a verb whenever possible.", "Read your draft aloud and fix every sentence you stumble on."] },
  ],
 
  concepts: [

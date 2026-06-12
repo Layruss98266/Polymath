@@ -11,7 +11,9 @@ const FEATURED_POOL = ["psychology", "personal_finance", "ai_ml", "negotiation",
 
 function pickFeatured() {
  if (typeof window === "undefined") return FEATURED_POOL[0];
- const day = new Date().toISOString().slice(0, 10);
+ // Local-time day so the rotation flips at the user's midnight, not UTC.
+ const d = new Date();
+ const day = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
  let h = 0; for (let i = 0; i < day.length; i++) h = ((h << 5) - h + day.charCodeAt(i)) | 0;
  return FEATURED_POOL[Math.abs(h) % FEATURED_POOL.length];
 }

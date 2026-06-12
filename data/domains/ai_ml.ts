@@ -44,10 +44,10 @@ const d: Domain = {
  ],
 
  subdomains: [
-  { id: "foundations", name: "Foundations" },
-  { id: "usage",       name: "Using AI Well" },
-  { id: "math",        name: "The Maths Intuition" },
-  { id: "ethics",      name: "Safety and Ethics" }
+  { id: "foundations", name: "Foundations", intro: "What an AI model actually is: training, tokens, inference, and why predictions are statistical guesses. The mental picture that makes everything else click.", capabilities: ["Explain in one minute why a model can be confidently wrong.", "Tell apart training time, fine-tuning, and inference in a real product.", "Spot when a problem isn't a good fit for an LLM at all."] },
+  { id: "usage", name: "Using AI Well", intro: "How to get useful, reliable output from today's models. Most quality issues are prompt issues, not model issues.", capabilities: ["Write a prompt that includes role, context, examples, and the output shape.", "Verify any AI output against a source before acting on it.", "Chain a small workflow of prompts instead of asking for one big answer."] },
+  { id: "math", name: "The Maths Intuition", intro: "The shapes behind models: vectors, gradients, probability, and loss. You don't need the proofs, just the right mental pictures.", capabilities: ["Picture an embedding as a point in space with neighbours and distance.", "Read a loss curve and tell training is working from overfitting.", "Sketch why gradient descent walks downhill on a bumpy surface."] },
+  { id: "ethics", name: "Safety and Ethics", intro: "Where AI quietly causes harm: bias, hallucination, privacy leaks, and misuse. The questions to ask before you ship a model into someone's life.", capabilities: ["Spot a dataset bias before it turns into a product bias.", "Add a human-in-the-loop check on any decision that affects a person.", "Walk away from a use case where the failure cost outweighs the benefit."] }
  ],
 
  concepts: [

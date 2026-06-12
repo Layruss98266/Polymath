@@ -36,10 +36,10 @@ const d: Domain = {
  ],
 
  subdomains: [
-  { id: "discovery", name: "Customer Discovery" },
-  { id: "shipping", name: "Shipping and PMF" },
-  { id: "strategy", name: "Strategy and Niche" },
-  { id: "distribution", name: "Distribution" },
+  { id: "discovery", name: "Customer Discovery", intro: "Finding out whether a real person will pay for your idea before you build it. Most startups die because nobody asked.", capabilities: ["Run a 20-minute problem interview without pitching your solution.", "Tell apart polite enthusiasm from a real signed-up user.", "Kill an idea early when the evidence says no, instead of building anyway."] },
+  { id: "shipping", name: "Shipping and PMF", intro: "The unglamorous loop of build, ship, learn, repeat until something fits the market. The signal you want is users pulling the product, not you pushing it.", capabilities: ["Cut a feature list down to one risky assumption you can test this week.", "Spot product-market fit by retention and word of mouth, not vanity metrics.", "Ship an embarrassingly small v1 in days, not months."] },
+  { id: "strategy", name: "Strategy and Niche", intro: "Where you choose to play and how you choose to win. Picking the wrong market beats most execution mistakes you can make later.", capabilities: ["Define a niche tight enough that one sentence tells the customer it's for them.", "Identify an unfair advantage you actually hold, not one you wish you had.", "Walk away from a market that looks big but has no profitable wedge."] },
+  { id: "distribution", name: "Distribution", intro: "How your product reaches the people who would buy it. A mediocre product with a strong channel beats a great product nobody finds.", capabilities: ["Pick one distribution channel and double down before testing a second.", "Build a content or community loop that brings users without paid ads.", "Calculate payback period on a paid channel before scaling spend."] },
  ],
 
  concepts: [

@@ -41,10 +41,10 @@ const d: Domain = {
  ],
 
  subdomains: [
-  { id: "decision", name: "Decision Tools" },
-  { id: "reasoning", name: "Reasoning Tools" },
-  { id: "systems", name: "Systems and Cycles" },
-  { id: "thinking_traps", name: "Thinking Traps" },
+  { id: "decision", name: "Decision Tools", intro: "Lightweight frameworks for choosing well under uncertainty: expected value, inversion, second-order effects. Pull them out before the choice, not after.", capabilities: ["Run a 30-second pre-mortem on any plan you make.", "Use inversion: ask what would guarantee failure, then avoid it.", "Trade gut alone for gut plus a one-page expected value check."] },
+  { id: "reasoning", name: "Reasoning Tools", intro: "Ways to think more clearly: first principles, Occam's razor, Bayes. They cut through stories and back to what the evidence supports.", capabilities: ["Strip a problem down to first principles before copying a solution.", "Update your belief by a noticeable amount when new evidence arrives.", "Pick the simpler explanation when both fit the same facts."] },
+  { id: "systems", name: "Systems and Cycles", intro: "Most outcomes come from feedback loops and stocks, not lone events. Seeing the system makes intervention smarter and less heroic.", capabilities: ["Map a problem as stocks, flows, and feedback loops on one page.", "Spot a reinforcing loop quietly running away from you.", "Find the leverage point where a small change moves the whole system."] },
+  { id: "thinking_traps", name: "Thinking Traps", intro: "The recurring failures of thought: survivorship bias, narrative fallacy, sunk cost. Easier to dodge once you can name them.", capabilities: ["Notice survivorship bias inside any success story you read.", "Ignore sunk cost when deciding whether to continue a project.", "Catch yourself building a tidy narrative around a noisy outcome."] },
  ],
 
  concepts: [

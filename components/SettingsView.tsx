@@ -114,7 +114,17 @@ export function SettingsView() {
  };
 
  const doReset = () => {
-  a.importState({ ...defaultState(), theme: s.theme, muteSound: s.muteSound, onboarded: s.onboarded });
+  // Preserve every preference, not just three. Accessibility prefs were
+  // silently wiped before, which is hostile to users who need them most.
+  a.importState({
+   ...defaultState(),
+   theme: s.theme,
+   muteSound: s.muteSound,
+   onboarded: s.onboarded,
+   fontScale: s.fontScale,
+   dyslexicFont: s.dyslexicFont,
+   reducedMotionOverride: s.reducedMotionOverride
+  });
   setConfirmReset(false);
  };
 

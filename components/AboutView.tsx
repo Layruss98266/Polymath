@@ -225,7 +225,7 @@ export function AboutView() {
      <li>Your XP, streaks, reflections, bookmarks, and flashcard schedules all live locally.</li>
      <li>The Save / Load and Settings pages let you export a portable JSON file or a base64 code, both 100% client-side.</li>
      <li>Wipe in Settings clears the local store. Uninstalling the browser or clearing site data removes everything.</li>
-     <li>The PWA manifest is shipped so you can install the app, but no service worker is currently registered. Once one is, it will only cache the build assets for offline use.</li>
+     <li>A service worker is registered in production. It only caches build assets and the pages you have already visited so the app keeps working offline. It does not upload anything anywhere.</li>
     </ul>
    </section>
 

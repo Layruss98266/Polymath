@@ -48,10 +48,10 @@ const d: Domain = {
  ],
 
  subdomains: [
-  { id: "movement", name: "Movement and Strength" },
-  { id: "rest", name: "Sleep and Stress" },
-  { id: "food_health", name: "Food Patterns" },
-  { id: "mindset", name: "Healthspan Mindset" },
+  { id: "movement", name: "Movement and Strength", intro: "Regular movement and resistance training are the single biggest levers for healthspan. Muscle and aerobic capacity protect almost every system you care about.", capabilities: ["Hit 150 minutes a week of moderate cardio without burning out.", "Train every major muscle group twice a week with progressive load.", "Sit less by breaking long desk blocks with short movement breaks."] },
+  { id: "rest", name: "Sleep and Stress", intro: "Sleep is when your body and brain actually repair. Chronic stress without recovery quietly damages metabolism, mood, and immune function.", capabilities: ["Hold a consistent sleep and wake time within a 30-minute window.", "Cut caffeine after 2 pm and screens an hour before bed.", "Use a daily 10-minute downshift, walk, breath work, or meditation."] },
+  { id: "food_health", name: "Food Patterns", intro: "The eating patterns that predict long-term health: mostly plants, enough protein, minimally processed. Specific diets matter less than the overall pattern.", capabilities: ["Build most meals around protein, vegetables, and whole carbs.", "Cap ultra-processed foods to a small share of your weekly intake.", "Hit a daily protein target of roughly 1.2 to 1.6 grams per kg of body weight."] },
+  { id: "mindset", name: "Healthspan Mindset", intro: "Playing the long game: aiming for decades of good function, not a six-week transformation. Boring consistency beats heroic effort.", capabilities: ["Track one health metric monthly, not daily, to see trends not noise.", "Treat one bad week as data, not a reason to quit.", "Pick habits you can keep at 80 percent for years, not 100 percent for weeks."] },
  ],
 
  concepts: [
@@ -109,7 +109,7 @@ const d: Domain = {
    deep: "A night of sleep is built from repeating cycles of about 90 minutes each, moving through light sleep, deep slow wave sleep, and REM sleep. Deep sleep, mostly in the first half of the night, handles physical recovery and memory consolidation. REM sleep, mostly in the second half, handles emotional processing and creative pattern matching. Going to bed at 2 am and waking at 7 am does not just give you fewer hours, it preferentially cuts the REM sleep clustered near morning. In India where late dinners and early office commutes are common, this asymmetry hits hard. Consistent timing protects the architecture more than total hours do, within reason.",
    generic: "Like a four course meal. If you skip the soup and the main course you did not just eat less, you missed entirely different things your body was expecting. Sleep works the same way, each stage feeds something different.",
    expert: "Stages N1, N2, N3 (slow wave sleep) and REM, classified by EEG, EOG, EMG patterns (AASM scoring). N3 dominates the first third of the night, REM lengthens in later cycles. Cutting sleep short truncates REM disproportionately. Walker, Why We Sleep, summarises the core science; specific extrapolations have been critiqued (Guzey, 2019).",
-   status: "settled",
+   status: "debated",
    reflect: "What does your typical bedtime to wake time window look like? Is it long enough and consistent enough for a full set of cycles?",
    conceptQuiz: [
     {
@@ -327,7 +327,7 @@ const d: Domain = {
    deep: "A normal resting heart rate (RHR) for adults sits between 60 and 100 beats per minute. Trained endurance athletes often run 40 to 50. The number reflects how much blood your heart moves per beat (stroke volume): a fitter heart pushes more blood per stroke and needs fewer beats. RHR also responds to stress, sleep debt, caffeine, alcohol, illness, and overtraining. A steadily rising RHR over weeks despite the same training load often signals accumulated stress, poor sleep, or imminent illness. Most modern wearables measure RHR continuously. The most useful approach is to track your own baseline over months and treat sustained elevations of 5 to 10 beats above your norm as a flag to back off training and sleep more, not push harder. A persistent RHR above 80 in a sedentary adult correlates with higher cardiovascular risk.",
    generic: "Like the idle RPM of a well tuned car. Smooth engines idle low; engines under strain idle high or rough. The number tells you something about overall condition without flooring the pedal.",
    expert: "Large prospective cohorts (Copenhagen Male Study, NHANES) link RHR above 80 with elevated all cause and cardiovascular mortality, independent of fitness. Each 10 bpm increase in RHR raises CV mortality risk by roughly 10 to 15 percent. Mechanisms include sympathetic dominance, vagal withdrawal, and reduced HRV. Indian guidelines from the Cardiological Society of India highlight RHR as a low cost screening marker, especially relevant given the high prevalence of premature CAD in South Asians.",
-   status: "settled",
+   status: "debated",
    reflect: "Do you know your average resting heart rate over the past month, and has it trended in a particular direction?",
    conceptQuiz: [
     {

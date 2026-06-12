@@ -41,10 +41,10 @@ const d: Domain = {
  ],
 
  subdomains: [
-  { id: "mechanics", name: "Classical Mechanics" },
-  { id: "thermo", name: "Thermodynamics" },
-  { id: "em_relativity", name: "EM and Relativity" },
-  { id: "bio_stats", name: "Biology and Statistics" },
+  { id: "mechanics", name: "Classical Mechanics", intro: "Newton's laws and the everyday physics of forces, motion, and gravity. The first set of equations that ever made the world feel predictable.", capabilities: ["Explain why a seatbelt matters using F equals ma.", "Predict roughly how a falling object behaves under gravity.", "Spot Newton's third law inside any push, kick, or rocket thrust."] },
+  { id: "thermo", name: "Thermodynamics", intro: "The laws of energy, heat, and entropy. They explain everything from engines to why your room never tidies itself.", capabilities: ["Explain entropy in one plain sentence using a real example.", "Tell apart energy conservation and energy quality in a system.", "Spot a perpetual motion claim and explain why it cannot work."] },
+  { id: "em_relativity", name: "EM and Relativity", intro: "Maxwell's electromagnetism and Einstein's relativity. The shift from forces in a fixed stage to fields and curved spacetime.", capabilities: ["Explain why electricity and magnetism are two sides of one thing.", "Describe time dilation with a simple thought experiment.", "Use the speed of light as the cosmic speed limit when reasoning about scale."] },
+  { id: "bio_stats", name: "Biology and Statistics", intro: "The rules that govern living systems and how we measure noisy data. Evolution, genetics, and the laws of large numbers behind every honest study.", capabilities: ["Explain natural selection without invoking purpose or planning.", "Read a basic confidence interval and what it actually claims.", "Spot when a small sample is being passed off as proof."] },
  ],
 
  concepts: [
@@ -102,7 +102,7 @@ const d: Domain = {
    deep: "Many real-world quantities do not follow the familiar bell curve. City populations, book sales, earthquake magnitudes, website traffic, wealth, and citation counts all follow power laws, where the biggest item is wildly bigger than the median, and a long tail of small items still matters in total. The practical upshot, averages and standard deviations can mislead. Median, percentile, and log-scale views tell the truth. The same shape powers Pareto's 80/20 rule, Zipf's law for word frequency, and the heavy tails that crash financial models built on normal-distribution assumptions.",
    generic: "Look at any city. A handful of streets carry most of the traffic, a handful of restaurants get most of the dinners, and a few influencers get most of the attention. That lopsidedness is a power law.",
    expert: "PDF roughly p(x) proportional to x to the negative alpha. See Zipf's law, Pareto distribution, and Taleb's The Black Swan on the dangers of treating heavy-tailed phenomena as Gaussian.",
-   status: "settled",
+   status: "framework",
    reflect: "In your work or hobby, what fraction of your output comes from the top 20 percent of your effort? Likely more than you think.",
    conceptQuiz: [
     {
@@ -319,7 +319,7 @@ const d: Domain = {
    deep: "Newton treated gravity as a force pulling masses across empty space. Einstein, in November 1915, replaced that picture: mass and energy bend spacetime, and free-falling objects simply travel along the straightest available paths through that curved geometry. A planet orbits the sun because the sun has dimpled spacetime, not because an invisible string is pulling it. The theory predicted, and observations confirmed, the bending of starlight near the sun (Eddington 1919), the precession of Mercury's perihelion, gravitational time dilation, the existence of black holes, gravitational lensing, and gravitational waves directly detected by LIGO in 2015. GPS satellites must correct for both special and general relativistic clock effects every day; without those corrections, your phone's location would drift by kilometres within hours.",
    generic: "Picture a trampoline with a heavy bowling ball in the middle. Roll a marble nearby and it curves toward the ball, not because the ball pulls it but because the surface is bent. Spacetime works like that, in four dimensions.",
    expert: "Einstein field equations: G_munu plus Lambda g_munu equals 8 pi G over c to the fourth times T_munu. See Misner, Thorne, and Wheeler's Gravitation for the canonical text, and Sean Carroll's Spacetime and Geometry for a modern course treatment. Experimental confirmations include the 1919 eclipse expedition, Pound-Rebka (1959), Hulse-Taylor binary pulsar (1974), and LIGO's 2015 detection of GW150914.",
-   status: "settled",
+   status: "debated",
    reflect: "If gravity is geometry rather than force, what is actually holding you in your chair right now, and how would you explain that to a curious ten-year-old in one sentence?",
    conceptQuiz: [
     {

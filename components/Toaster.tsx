@@ -61,7 +61,8 @@ export function Toaster() {
    aria-live="polite"
    aria-atomic="false"
    aria-label="Notifications"
-   className="fixed bottom-4 left-1/2 -translate-x-1/2 sm:left-auto sm:right-4 sm:translate-x-0 z-30 flex flex-col gap-2 pointer-events-none"
+   style={{ bottom: "calc(env(safe-area-inset-bottom, 0px) + 72px)" }}
+   className="fixed left-1/2 -translate-x-1/2 sm:bottom-4 sm:left-auto sm:right-4 sm:translate-x-0 z-40 flex flex-col gap-2 pointer-events-none"
   >
    {toasts.map((t) => (
     <div key={t.id} className="panel px-3 py-2 flex items-center gap-2 text-sm" style={{ borderColor: "var(--hue)", minWidth: 200 }}>

@@ -18,7 +18,9 @@ export function StreakHeatmap({
   for (let i = days - 1; i >= 0; i--) {
    const d = new Date(today);
    d.setDate(today.getDate() - i);
-   const key = d.toISOString().slice(0, 10);
+   // Local-time YYYY-MM-DD to match `xpByDay` and `todayKey`. toISOString
+   // shifted the cell by one in tz like Asia/Kolkata around UTC midnight.
+   const key = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
    const xp = xpByDay[key] ?? 0;
    let level: 0 | 1 | 2 | 3 | 4 = 0;
    if (xp > 0) {

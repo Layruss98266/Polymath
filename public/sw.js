@@ -7,9 +7,12 @@
 const VERSION = "polymath-" + (new URL(self.location.href).searchParams.get("v") || "v1");
 const STATIC_CACHE = `${VERSION}-static`;
 const RUNTIME_CACHE = `${VERSION}-runtime`;
+// Public surfaces only. Icons removed because the PNG files are not in
+// `public/` and `addAll` rejects atomically on any 404 — that was killing
+// the whole install. Add icon paths back once the images exist on disk.
 const APP_SHELL = [
- "/", "/about", "/search", "/review", "/dashboard", "/skill-map", "/my-list", "/settings",
- "/manifest.webmanifest", "/icon-192.png", "/icon-512.png"
+ "/", "/about",
+ "/manifest.webmanifest"
 ];
 
 self.addEventListener("install", (event) => {

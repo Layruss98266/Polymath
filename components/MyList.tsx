@@ -97,7 +97,7 @@ export function MyList() {
        const e = findEntry(domainId);
        return (
         <li key={b} className="panel p-3 flex items-center justify-between gap-2">
-         <Link href={`/domain/${domainId}`} className="flex items-center gap-2 min-w-0 flex-1 hover:underline">
+         <Link href={conceptPath(domainId, Number(idx))} className="flex items-center gap-2 min-w-0 flex-1 hover:underline">
           <span className="text-lg" aria-hidden="true">{e?.icon ?? "📌"}</span>
           <span className="min-w-0">
            <span className="block text-sm font-medium truncate" style={{ color: e?.hue ?? "var(--ink)" }}>{e?.name ?? domainId}</span>
@@ -143,7 +143,7 @@ export function MyList() {
           <p className="text-xs uppercase tracking-widest dim">
            {e?.name ?? domainId} · concept #{Number(idx) + 1}
           </p>
-          <Link href={`/domain/${domainId}`} className="dim text-xs hover:underline inline-flex items-center gap-1">Open <ArrowRight size={11} /></Link>
+          <Link href={conceptPath(domainId, Number(idx))} className="dim text-xs hover:underline inline-flex items-center gap-1">Open <ArrowRight size={11} /></Link>
          </div>
          <p className="text-sm leading-relaxed">{renderLinkedNote(v ?? "")}</p>
         </li>

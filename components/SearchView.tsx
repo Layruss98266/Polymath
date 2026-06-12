@@ -52,6 +52,16 @@ export function SearchView() {
   return () => clearTimeout(t);
  }, [q]);
 
+ // Escape clears the query. The visible `esc` kbd chip implied this; before,
+ // it was decoration.
+ useEffect(() => {
+  const onKey = (e: KeyboardEvent) => {
+   if (e.key === "Escape" && q) setQ("");
+  };
+  document.addEventListener("keydown", onKey);
+  return () => document.removeEventListener("keydown", onKey);
+ }, [q]);
+
  // Persist any query worth remembering. 3+ chars, dedupe, most-recent first.
  useEffect(() => {
   const v = debouncedQ.trim();
@@ -87,7 +97,8 @@ export function SearchView() {
 
  const hits = useMemo<Hit[]>(() => {
   const ql = debouncedQ.trim().toLowerCase();
-  if (!ql) return [];
+  // 3-char floor: shorter inputs match too aggressively against domain names.
+  if (ql.length < 3) return [];
   const out: Hit[] = [];
   for (const e of DOMAIN_INDEX) {
    if (e.name.toLowerCase().includes(ql) || e.tagline.toLowerCase().includes(ql) || e.category.toLowerCase().includes(ql)) {
