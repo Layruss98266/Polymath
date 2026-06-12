@@ -27,12 +27,16 @@ const d: Domain = {
 
  diagrams: [
   { kind: "flow", title: "System 1 vs System 2 (Kahneman)", caption: "Two modes of thinking, constantly handing off.", data: { steps: ["Input", "System 1 (fast, automatic)", "Anomaly?", "System 2 (slow, effortful)", "Decision"] } },
-  { kind: "cycle", title: "Habit loop (Duhigg + Clear)", caption: "Duhigg's 3-step cue, routine, reward extended by James Clear's 4-step cue, craving, response, reward.", data: { nodes: ["Cue", "Craving", "Routine", "Reward"] } }
+  { kind: "cycle", title: "Habit loop (Duhigg + Clear)", caption: "Duhigg's 3-step cue, routine, reward extended by James Clear's 4-step cue, craving, response, reward.", data: { nodes: ["Cue", "Craving", "Response", "Reward"] } }
  ],
 
  synthesis: [
   { concept: "Social proof", linksTo: "marketing", note: "The same machinery a marketer uses on you is the one you've used on yourself a thousand times today." },
-  { concept: "Anchoring", linksTo: "personal_finance", note: "Why the first price you see decides what feels expensive." }
+  { concept: "Anchoring", linksTo: "personal_finance", note: "Why the first price you see decides what feels expensive." },
+  { concept: "Loss aversion", linksTo: "investing", note: "The same kink that makes losses sting drives selling at the bottom and holding losers too long." },
+  { concept: "Growth vs fixed mindset", linksTo: "learning", note: "Praise the process, not the trait. Hardest on yourself, then on the kids you raise." },
+  { concept: "Status games", linksTo: "negotiation", note: "Every negotiation is a status game in disguise. Knowing which type (prestige vs dominance) tells you which moves work." },
+  { concept: "Confirmation bias", linksTo: "ai_ml", note: "RAG and retrieval pipelines inherit your bias unless you actively retrieve disconfirming evidence." }
  ],
 
  subdomains: [
@@ -937,7 +941,7 @@ const d: Domain = {
    { name: "Daniel Kahneman, Nobel lecture (free PDF)",   what: "Direct from the source: prospect theory + heuristics.",         url: "https://www.nobelprize.org/prizes/economic-sciences/2002/kahneman/lecture/",   weight: "primary", verify: false, lastVerified: "2026-06" },
    { name: "PsyArXiv, preprint archive",           what: "Read primary preprints before they reach pop articles.",         url: "https://psyarxiv.com/",                             verify: false, lastVerified: "2026-06" },
    { name: "Wikipedia, List of cognitive biases",      what: "Comprehensive index with citations to source studies.",         url: "https://en.wikipedia.org/wiki/List_of_cognitive_biases",             weight: "secondary", verify: false, lastVerified: "2026-06" },
-   { name: "Robert Sapolsky, public lectures (YouTube)",   what: "More accessible single-talk format.",                  url: "https://www.youtube.com/results?search_query=Robert+Sapolsky",          verify: true, lastVerified: "2026-06" },
+   { name: "Robert Sapolsky, public lectures (YouTube)",   what: "More accessible single-talk format.",                  url: "https://www.youtube.com/playlist?list=PL848F2368C90DDC3D",          verify: false, lastVerified: "2026-06" },
    { name: "Big Think, psychology channel",         what: "Short, expert-driven explainers.",                    url: "https://bigthink.com/psychology/",                        verify: false, lastVerified: "2026-06" },
    { name: "BPS Research Digest",               what: "British Psychological Society blog summarising new psychology research.", url: "https://digest.bps.org.uk/",                           weight: "secondary", verify: false, lastVerified: "2026-06" },
    { name: "Thinking, Fast and Slow, Kahneman (library)",   what: "The best general-audience book on biases.",               url: "https://en.wikipedia.org/wiki/Thinking,_Fast_and_Slow",             weight: "popular", verify: false, lastVerified: "2026-06" }

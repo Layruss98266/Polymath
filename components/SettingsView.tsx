@@ -4,6 +4,7 @@ import { useUserState, useActions } from "@/lib/state";
 import { exportCode, importCode } from "@/lib/save";
 import { defaultState } from "@/lib/migrations";
 import { clearState } from "@/lib/db";
+import { rankIndexFromProgress } from "@/lib/shareRank";
 import { Download, Upload, Trash2, RotateCcw, MoonStar, Sun, Volume2, VolumeX } from "lucide-react";
 import { ShareCard } from "./ShareCard";
 
@@ -223,9 +224,10 @@ export function SettingsView() {
       for (const id of s.startedDomains) {
        const dp = s.domainProgress[id];
        if (!dp) continue;
-       const m = (dp.conceptsOpened + dp.missionsDone.length + dp.flashcardsGraduated) / 30;
-       const rankIdx = m >= 0.95 ? 6 : m >= 0.82 ? 5 : m >= 0.68 ? 4 : m >= 0.52 ? 3 : m >= 0.34 ? 2 : m >= 0.15 ? 1 : 0;
-       ri[id] = rankIdx;
+       // The actual domain payloads aren't loaded here; pass a generous
+       // default of 10 per surface (matches the typical 8-14 actuals).
+       // The same helper is used by ShareCard so both surfaces agree.
+       ri[id] = rankIndexFromProgress(dp, { concepts: 10, missions: 5, quiz: 5, flashcards: 8 });
       }
       const payload = { xp: s.xp, r: ri };
       const code = typeof window === "undefined"

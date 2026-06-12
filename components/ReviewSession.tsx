@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useMemo, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { Brain, RefreshCw, AlertTriangle, ArrowRight, Sparkles, RotateCw } from "lucide-react";
 import Link from "next/link";
 import { useActions, useUserState, useHydrated } from "@/lib/state";
@@ -7,16 +8,26 @@ import { dueNow, newCard, grade, type Grade } from "@/lib/fsrs";
 import { DOMAIN_INDEX, loadDomain, findEntry } from "@/data/domains";
 import type { Domain } from "@/lib/types";
 
+// Rough cards per minute. Tuned so the 5/15/45 presets land at ~8/24/60 cards.
+const CARDS_PER_MINUTE = 1.5;
+
 type CardInPlay = { domainId: string; cardKey: string; front: string; back: string; due: number };
 
 export function ReviewSession() {
  const s = useUserState();
  const hydrated = useHydrated();
  const a = useActions();
+ const sp = useSearchParams();
  const [domains, setDomains] = useState<Record<string, Domain>>({});
  const [flipped, setFlipped] = useState(false);
  const [i, setI] = useState(0);
  const [startCount, setStartCount] = useState<number | null>(null);
+
+ // SessionPicker on the home page links to `/review?minutes=5|15|45`. If
+ // the param is present, cap the pool to roughly that many cards so the
+ // preset means something. Otherwise show the whole due pool.
+ const minutes = Number(sp?.get("minutes") ?? "") || null;
+ const cardCap = minutes ? Math.max(5, Math.round(minutes * CARDS_PER_MINUTE)) : null;
 
  useEffect(() => {
   if (!hydrated) return;
@@ -44,8 +55,9 @@ export function ReviewSession() {
     if (sr.due <= now) items.push({ domainId: dom.id, cardKey: key, front: fc.front, back: fc.back, due: sr.due });
    });
   }
-  return items.sort((a, b) => a.due - b.due);
- }, [domains, s.cards]);
+  const sorted = items.sort((a, b) => a.due - b.due);
+  return cardCap ? sorted.slice(0, cardCap) : sorted;
+ }, [domains, s.cards, cardCap]);
 
  useEffect(() => {
   if (startCount === null && pool.length > 0) setStartCount(pool.length);

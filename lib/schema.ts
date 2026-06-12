@@ -58,6 +58,27 @@ const Concept = z.object({
  conceptQuiz: z.array(QuizQuestion).optional(),
  conceptTasks: z.array(ConceptTask).optional(),
  diagram: Diagram.optional()
+}).superRefine((c, ctx) => {
+ // Enriched concept pair invariant: conceptQuiz and conceptTasks must come together.
+ const hasQuiz = c.conceptQuiz !== undefined;
+ const hasTasks = c.conceptTasks !== undefined;
+ if (hasQuiz !== hasTasks) {
+  ctx.addIssue({
+   code: z.ZodIssueCode.custom,
+   path: [hasQuiz ? "conceptTasks" : "conceptQuiz"],
+   message: `concept "${c.t}" has half-enriched quiz/tasks pair: conceptQuiz=${hasQuiz}, conceptTasks=${hasTasks}. Both or neither.`
+  });
+ }
+ // generic and expert explanations must also come together.
+ const hasGeneric = c.generic !== undefined;
+ const hasExpert = c.expert !== undefined;
+ if (hasGeneric !== hasExpert) {
+  ctx.addIssue({
+   code: z.ZodIssueCode.custom,
+   path: [hasGeneric ? "expert" : "generic"],
+   message: `concept "${c.t}" has half-enriched generic/expert pair: generic=${hasGeneric}, expert=${hasExpert}. Both or neither.`
+  });
+ }
 });
 
 const RoadmapStage = z.object({

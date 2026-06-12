@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
-import { useMemo } from "react";
+import { useEffect, useMemo, useRef } from "react";
+import { useSearchParams } from "next/navigation";
 import { Bookmark, Compass, NotebookPen, ArrowRight, Sparkles } from "lucide-react";
 import { useActions, useUserState } from "@/lib/state";
 import { findEntry } from "@/data/domains";
@@ -10,6 +11,19 @@ import { conceptPath } from "@/lib/tabs";
 export function MyList() {
  const s = useUserState();
  const a = useActions();
+ const sp = useSearchParams();
+ const highlight = sp?.get("highlight") ?? null;
+ const highlightRef = useRef<HTMLLIElement>(null);
+
+ // Scroll the highlighted path into view on first paint. Used by Onboarding's
+ // "See the curated Path" button, which now passes ?highlight=<pathId>.
+ useEffect(() => {
+  if (!highlight) return;
+  const t = setTimeout(() => {
+   highlightRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+  }, 200);
+  return () => clearTimeout(t);
+ }, [highlight]);
 
  const reflections = useMemo(() =>
   Object.entries(s.notes).filter(([k]) => k.endsWith(":reflect") && s.notes[k]?.trim().length > 0),
@@ -43,8 +57,14 @@ export function MyList() {
      {PATHS.map((p) => {
       const live = p.domains.filter((id) => findEntry(id));
       const liveCount = live.length;
+      const isHighlighted = p.id === highlight;
       return (
-       <li key={p.id} className="panel lift p-5 relative overflow-hidden" style={{ borderColor: p.hue }}>
+       <li
+        key={p.id}
+        ref={isHighlighted ? highlightRef : undefined}
+        className={`panel lift p-5 relative overflow-hidden ${isHighlighted ? "ring-2" : ""}`}
+        style={{ borderColor: p.hue, ...(isHighlighted ? { boxShadow: `0 0 0 2px ${p.hue}aa` } : {}) }}
+       >
         <div className="absolute inset-x-0 top-0 h-1" style={{ background: p.hue }} />
         <p className="font-display text-lg mt-1">{p.name}</p>
         <p className="dim text-sm mt-1">{p.tagline}</p>

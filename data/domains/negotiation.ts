@@ -522,8 +522,8 @@ const d: Domain = {
  resources: {
   free: [
    { name: "Harvard Program on Negotiation (PON), blog",     what: "PON publishes rigorous, free articles + research summaries.",             url: "https://www.pon.harvard.edu/category/daily/",         weight: "primary", verify: false, lastVerified: "2026-06" },
-   { name: "Chris Voss, public talks (YouTube)",         what: "Free way to absorb the core moves.",                          url: "https://www.youtube.com/results?search_query=Chris+Voss+negotiation", weight: "primary", verify: true, lastVerified: "2026-06" },
-   { name: "MasterClass, Chris Voss preview clips (YouTube)",   what: "Free trailers + select clips from the paid course.",                 url: "https://www.youtube.com/@MasterClass",             verify: true, lastVerified: "2026-06" },
+   { name: "Chris Voss, public talks (YouTube)",         what: "Free way to absorb the core moves.",                          url: "https://www.youtube.com/@blackswanltd", weight: "primary", verify: false, lastVerified: "2026-06" },
+   { name: "MasterClass, Chris Voss preview clips (YouTube)",   what: "Free trailers + select clips from the paid course.",                 url: "https://www.masterclass.com/classes/chris-voss-teaches-the-art-of-negotiation",             verify: false, lastVerified: "2026-06" },
    { name: "Wikipedia, BATNA",                  what: "Compact reference + sources for the core concept.",                  url: "https://en.wikipedia.org/wiki/Best_alternative_to_a_negotiated_agreement", verify: false, lastVerified: "2026-06" },
    { name: "Stanford Online, Negotiation samplers",        what: "Some free sampler lessons; full courses paid.",                    url: "https://online.stanford.edu/",                 verify: false, lastVerified: "2026-06" },
    { name: "FBI Crisis Negotiation Unit articles",         what: "Public articles + Behavioral Change Stairway Model.",                 url: "https://leb.fbi.gov/topics/crisis-negotiation",         weight: "secondary", verify: false, lastVerified: "2026-06" },

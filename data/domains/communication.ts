@@ -529,11 +529,14 @@ const d: Domain = {
  },
 
  missions: [
-  { t: "BLUF every email", d: "For one week, start every work email with the conclusion in line 1. Note responses.", xp: 30 },
-  { t: "Specific-ify", d: "Take a paragraph of yours. Replace 5 abstractions with specifics. Show before/after.", xp: 30 },
-  { t: "60-second story", d: "Tell a colleague a recent project as setup → trouble → choice → consequence. Time yourself.", xp: 40 },
-  { t: "Cut 30%", d: "Pick a long thing you wrote. Cut 30%. Compare clarity.", xp: 30 },
-  { t: "Blank-slate test", d: "Ask a non-expert to explain back what you just wrote/said. Note the gaps.", xp: 40 }
+  { t: "BLUF every email", d: "For one week, start every work email with the conclusion in line 1. Note responses.", xp: 50 },
+  { t: "Specific-ify", d: "Take a paragraph of yours. Replace 5 abstractions with specifics. Show before/after.", xp: 15 },
+  { t: "60-second story", d: "Tell a colleague a recent project as setup → trouble → choice → consequence. Time yourself.", xp: 25 },
+  { t: "Cut 30%", d: "Pick a long thing you wrote. Cut 30%. Compare clarity.", xp: 25 },
+  { t: "Blank-slate test", d: "Ask a non-expert to explain back what you just wrote/said. Note the gaps.", xp: 40 },
+  { t: "Rewrite last week's email", d: "Pick one email you sent last week. Rewrite it BLUF style with the conclusion in line 1 and post both versions side by side in a doc.", xp: 15 },
+  { t: "Halve a LinkedIn post", d: "Take one of your last LinkedIn posts and cut its word count in half without losing the core point. Publish or save the new version.", xp: 25 },
+  { t: "Memo instead of meeting", d: "This week, replace one meeting you would have scheduled with a written summary memo. Send it and track what decisions actually got made.", xp: 60 }
  ],
  capstone: { t: "Give a real talk", d: "Give a 10-minute talk on something you know. Record it. Watch it. Note one structural thing to fix next time.", xp: 200 },
 

@@ -23,7 +23,7 @@ export function ConceptOfTheDay() {
 
  useEffect(() => {
   if (!hydrated || !day) return;
-  const pool = s.startedDomains.length > 0 ? s.startedDomains : DOMAIN_INDEX.slice(0, 15).map((d) => d.id);
+  const pool = s.startedDomains.length > 0 ? s.startedDomains : DOMAIN_INDEX.map((d) => d.id);
   const di = pickIndex(day, pool.length);
   const domainId = pool[di];
   const entry = DOMAIN_INDEX.find((d) => d.id === domainId);
@@ -37,7 +37,8 @@ export function ConceptOfTheDay() {
    setData({ domainId, conceptIndex: ci, domainName: entry.name, hue: entry.hue, title: c.t, one: oneLine });
   }).catch(() => {});
   return () => { cancelled = true; };
- }, [hydrated, day, s.startedDomains.join(",")]);
+ // eslint-disable-next-line react-hooks/exhaustive-deps
+ }, [hydrated, day, s.startedDomains]);
 
  if (!data) return null;
  return (

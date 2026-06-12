@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { ReviewSession } from "@/components/ReviewSession";
 
 export const metadata = {
@@ -7,4 +8,10 @@ export const metadata = {
  robots: { index: false, follow: false }
 };
 
-export default function ReviewPage() { return <ReviewSession />; }
+export default function ReviewPage() {
+ return (
+  <Suspense fallback={null}>
+   <ReviewSession />
+  </Suspense>
+ );
+}

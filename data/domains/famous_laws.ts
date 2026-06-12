@@ -636,11 +636,14 @@ const d: Domain = {
  },
 
  missions: [
-  { t: "5 everyday-object Newton", d: "Identify Newton's laws operating in 5 ordinary objects. Write a sentence each.", xp: 30 },
-  { t: "Entropy walk", d: "Spend 10 minutes walking through your home and noting where you're paying entropy's bill daily.", xp: 30 },
+  { t: "5 everyday-object Newton", d: "Identify Newton's laws operating in 5 ordinary objects. Write a sentence each.", xp: 15 },
+  { t: "Entropy walk", d: "Spend 10 minutes walking through your home and noting where you're paying entropy's bill daily.", xp: 10 },
   { t: "Headline scepticism", d: "Read 3 science headlines. For each, find the actual paper. Note effect size + sample.", xp: 50 },
-  { t: "Kitchen-science test", d: "Do one safe kitchen experiment that demonstrates a famous law (cooling, density, pressure).", xp: 40 },
-  { t: "Maxwell device hunt", d: "Identify 5 devices in your house that wouldn't exist without Maxwell-era discoveries.", xp: 30 }
+  { t: "Kitchen-science test", d: "Do one safe kitchen experiment that demonstrates a famous law (cooling, density, pressure).", xp: 30 },
+  { t: "Maxwell device hunt", d: "Identify 5 devices in your house that wouldn't exist without Maxwell-era discoveries.", xp: 10 },
+  { t: "Pendulum period check", d: "Compute the period of a 1 m pendulum using T = 2 pi sqrt(L/g), then time a real one on your phone for 10 swings and compare.", xp: 25 },
+  { t: "Thunderstorm distance", d: "Next storm, time the gap between a lightning flash and its thunder. Use the speed of sound to estimate distance, then check against a weather radar.", xp: 15 },
+  { t: "Cooling curve fit", d: "Heat water to 80 C, let it cool to 40 C, log temperature every minute, then fit Newton's law of cooling to the data and report the time constant.", xp: 45 }
  ],
  capstone: { t: "Explain a law cold", d: "Pick one law. Write a 1-page explanation for a curious 12-year-old, with a real-world example. Test on a non-physicist.", xp: 200 },
 

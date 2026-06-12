@@ -637,10 +637,13 @@ const d: Domain = {
 
  missions: [
   { t: "Drop liquid sugar", d: "For 2 weeks, no sugary drinks (incl. juices). Water/tea/coffee unsweetened.", xp: 50 },
-  { t: "Protein target", d: "Hit ~1.2 g/kg protein daily for one week. Note satiety vs your normal week.", xp: 50 },
-  { t: "30 plants/week", d: "Aim for 30 different plants in one week. (Spices, herbs count.) Track them.", xp: 50 },
-  { t: "Cook 3 meals", d: "Cook 3 meals from minimally processed ingredients this week. Repeat them.", xp: 50 },
-  { t: "Label literacy", d: "Pick 3 packaged foods you eat. Read each ingredient list. Note any surprises.", xp: 30 }
+  { t: "Protein target", d: "Hit ~1.2 g/kg protein daily for one week. Note satiety vs your normal week.", xp: 40 },
+  { t: "30 plants/week", d: "Aim for 30 different plants in one week. (Spices, herbs count.) Track them.", xp: 30 },
+  { t: "Cook 3 meals", d: "Cook 3 meals from minimally processed ingredients this week. Repeat them.", xp: 30 },
+  { t: "Label literacy", d: "Pick 3 packaged foods you eat. Read each ingredient list. Note any surprises.", xp: 10 },
+  { t: "Read every label one shop", d: "On your next grocery run, read the ingredient list on every packaged item before it goes in the trolley. Photograph the three worst offenders.", xp: 15 },
+  { t: "Hit 30 g fibre in a day", d: "Plan and eat a single day that totals at least 30 g of fibre using whole foods. Log the meals and the running fibre count.", xp: 25 },
+  { t: "Swap one ultra-processed snack", d: "Pick one daily ultra-processed snack and replace it with a whole-food version for 7 days straight. Note hunger and energy each evening.", xp: 60 }
  ],
  capstone: { t: "Sustainable eating plan", d: "Write a 1-page sustainable eating plan: how you eat on a normal day + a busy day + a social one. Reread it monthly. Adjust without dieting.", xp: 200 },
 

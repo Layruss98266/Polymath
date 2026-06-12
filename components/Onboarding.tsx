@@ -125,7 +125,7 @@ export function Onboarding() {
          <p className="dim text-xs uppercase tracking-widest">{r.label}</p>
          <div className="flex flex-wrap gap-2 mt-2">
           <Link href={`/domain/${r.recDomainId}`} onClick={finish} className="btn">Open domain</Link>
-          {r.recPath && <Link href={`/my-list`} onClick={finish} className="btn">See the curated Path</Link>}
+          {r.recPath && <Link href={`/my-list?highlight=${r.recPath}`} onClick={finish} className="btn">See the curated Path</Link>}
          </div>
         </li>
        ))}

@@ -4,6 +4,7 @@ import { Share2, Download } from "lucide-react";
 import { useUserState } from "@/lib/state";
 import { levelOf, levelProgress, globalRank, domainRank } from "@/lib/xp";
 import { DOMAIN_INDEX } from "@/data/domains";
+import { shallowMasteryPct } from "@/lib/shareRank";
 
 // Render a shareable PNG of the user's progress using an offscreen canvas.
 // Lazy: only constructs the canvas on demand. Lives in Settings.
@@ -69,12 +70,13 @@ export function ShareCard() {
     ctx.fillText(st.label, x, y + 32);
    });
 
-   // Top 3 domains by mastery
+   // Top 3 domains by mastery. Uses the shared shallow estimator so the
+   // ShareCard, the Settings share link, and the Dashboard all agree on rank.
    const ranks = DOMAIN_INDEX
     .filter((d) => s.startedDomains.includes(d.id))
     .map((d) => {
      const dp = s.domainProgress[d.id];
-     const m = dp ? Math.min(1, dp.conceptsOpened * 0.1 + dp.missionsDone.length * 0.1 + dp.quizAnswered * 0.05 + dp.flashcardsGraduated * 0.05) : 0;
+     const m = shallowMasteryPct(dp, { concepts: 10, missions: 5, quiz: 5, flashcards: 8 });
      return { d, m, rank: domainRank(m) };
     })
     .sort((a, b) => b.m - a.m)

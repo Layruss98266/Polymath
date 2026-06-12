@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { MyList } from "@/components/MyList";
 
 export const metadata = {
@@ -7,4 +8,10 @@ export const metadata = {
  robots: { index: false, follow: false }
 };
 
-export default function MyListPage() { return <MyList />; }
+export default function MyListPage() {
+ return (
+  <Suspense fallback={null}>
+   <MyList />
+  </Suspense>
+ );
+}
