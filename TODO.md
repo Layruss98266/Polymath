@@ -1,96 +1,131 @@
 # POLYMATH TODO
 
-Consolidated backlog from user feedback after Phase 4. Worked top to bottom, pushed at each milestone. See `PROGRESS.md` for what has shipped.
+Consolidated backlog. Audited against `POLYMATH_claude_code_prompt2.md` v5 plus user feedback. Worked top to bottom, pushed at each phase.
 
-## Phase 5a. Mechanical sweep (no content rewrites)
-1. Strip every em dash and en dash from data files. Replace with comma or period. Keep regular hyphens in compound words like low-cost, ultra-processed.
-2. Same sweep on components and pages.
-3. Verify build still green; push.
+## Already shipped (cross referenced with spec)
+See `PROGRESS.md` for the full list. Spec sections covered:
+- §0 to §4 schema, voice, build order
+- §5 diagram component library (15 generators)
+- §6 XP, levels, ranks, streak, daily quest, FSRS review, dashboard, skill map, achievements (starter set), search (domain grid level), notes, bookmarks, random domain, save and load, theme toggle
+- §7 all six screens
+- §9 IndexedDB primary, localStorage fallback, versioned saves, lazy domain loading, Zod validation at build
+- §9A Next.js + Tailwind + Dexie + ts-fsrs + Zod + canvas-confetti + lucide-react
+- §10 safety notes on finance, investing, AI, health, nutrition, law, India localised
+- §11A canonical authorities woven into content (now optionally hidden from UI per user request)
+- §11B paths (4 live), capstones per domain, mentor wisdom feed (deferred), onboarding (queued)
+- §11C status badges, steelman counter view, lastVerified dates, 5 or 15 or 45 minute session picker, anti overuse nudge, streak grace day, ethical XP rules
+- §12 acceptance checklist mostly green; remaining items called out below
 
-## Phase 5b. Schema and engine for new concept format
-1. Extend `Concept` type and Zod schema with optional fields:
-   - `definition` (one line, dictionary style)
-   - `fullForm` (expansion of any acronym in the concept name)
-   - `prereqs` (list of prior concept ids the learner should ideally see first)
-   - `generic` (explanation for someone with zero background)
-   - `expert` (explanation for someone with prior domain knowledge)
-   - `quiz` (3 to 5 questions tied to this single concept, separate from the domain wide quiz)
-   - `tasks` (basic, easy, advanced; small actions tied to this concept)
-   - `subdomain` (optional grouping label inside the domain)
-2. Add a `domainQuiz` field on the domain for the cross concept quiz that already exists.
-3. Bump schemaVersion and add a migration so old saves keep working.
-4. Push.
+## Phase 5a. Dash sweep. SHIPPED
+- [x] All em dashes and en dashes removed across data, components, app, lib.
+- [x] Build clean. Pushed.
 
-## Phase 5c. Concepts UX. One concept at a time with quiz gate
-1. Rebuild `ConceptsTab` so only one concept is visible at a time.
-2. Order concepts by sub domain, then by prereqs, then by author order.
-3. Inside the concept view:
-   - Definition box on top
-   - Full form (if any)
-   - Prereqs (linked, one click to jump)
-   - Toggle: Generic explanation vs Domain expert explanation
-   - Test first prediction prompt
-   - Reveal explanation
-   - Reflect prompt
-   - 3 to 5 concept quiz, scored
-   - Tasks (basic, easy, advanced)
-   - Next button unlocks when at least 60 percent of concept quiz is correct
-4. Progress bar across the top of the tab showing position in the concept sequence.
-5. Domain wide quiz remains under the Quiz tab.
-6. Push.
+## Phase 5b. Author removal. SHIPPED in this batch
+- [x] MentorStrip component hidden from the Domain detail page.
+- [x] `mentors` made optional in Zod schema so future domains do not need to provide one.
+- [x] Data files keep their `mentors` array for now; can be stripped later if user wants total removal.
 
-## Phase 5d. Mastery tier visuals
-1. Each of the seven ranks (Novice through Grandmaster) gets a distinct color, icon, and gradient.
+## Phase 5c. Concept format upgrade. NEXT
+1. Extend Concept type with optional fields:
+   - `definition` one line dictionary style
+   - `fullForm` expansion of acronyms in the concept title
+   - `prereqs` list of prior concept ids in this domain
+   - `generic` plain English explanation for someone with zero background
+   - `expert` denser explanation for someone with domain knowledge
+   - `conceptQuiz` 3 to 5 multiple choice items per concept
+   - `conceptTasks` basic plus easy plus advanced tasks per concept
+   - `subdomain` optional grouping label inside the domain
+2. Bump schemaVersion and add migration so existing saves keep working.
+3. Push.
+
+## Phase 5d. One concept at a time UX
+1. Rebuild `ConceptsTab` so only one concept shows at a time.
+2. Inside that view, in order:
+   - Subdomain breadcrumb when present
+   - Title plus full form when present
+   - Definition box
+   - Prereq chips that scroll to those earlier concepts
+   - Toggle between Beginner explanation and Expert explanation
+   - Prediction prompt before reveal
+   - Reflect prompt with save
+   - Concept quiz (3 to 5 items, scored, must reach ~60% to advance)
+   - Tasks (basic visible right away, easy visible after reading, advanced visible after passing the quiz)
+   - Previous and Next navigation
+3. Top of tab shows position in the concept sequence with a progress bar.
+4. Domain wide quiz remains in the Quiz tab.
+5. Push.
+
+## Phase 5e. Mastery tier visuals
+1. Each of the seven ranks gets its own colour, icon, gradient.
 2. Apply across DomainCard, DomainView header, Dashboard rank list, Skill Map.
-3. Add subtle visual differentiation that survives both light and dark themes.
+3. Survives both light and dark themes.
 4. Push.
 
-## Phase 5e. Daily famous quote rotation
-1. `data/quotes.ts` with up to 500 real, accurately attributed quotes, grouped loosely by domain.
-2. `DailyQuote` component on Home that shows one per day deterministically (date hash), with attribution.
-3. Reduced motion friendly. No external fetch.
+## Phase 5f. Daily quote rotation
+1. `data/quotes.ts` with as many real, accurately attributed quotes as budget allows (target up to 500 over time).
+2. `DailyQuote` component on Home showing one per day deterministically.
+3. Reduced motion friendly. No fetch.
 4. Push.
 
-## Phase 5f. Resources rebalanced toward video
-1. Re audit every domain resource list.
-2. Target ratio per domain: about 4 to 5 articles or text resources, rest videos, courses, books.
-3. Add a `kind` field (`article` | `video` | `course` | `book` | `podcast` | `tool`) so the UI can sort.
-4. Push.
+## Phase 5g. Resources rebalance
+1. Per domain target ratio. About 4 to 5 articles or text resources. Rest videos, courses, books, podcasts.
+2. Add a `kind` field (`article` | `video` | `course` | `book` | `podcast` | `tool`) so the UI can sort and badge.
+3. Push.
 
-## Phase 5g. Sub domain support and concept variety
-1. For each Core 15 domain, introduce 2 to 4 sub domains.
-2. Author 4 to 6 new concepts per domain across those sub domains, using the new schema (definition, full form, prereqs, generic, expert, quiz, tasks).
-3. Target ending state: 12 to 16 concepts per domain, grouped by sub domain.
+## Phase 5h. Sub domain support and concept variety
+1. For each Core 15 domain introduce 2 to 4 sub domains.
+2. Author 4 to 6 new concepts per domain across those sub domains, using the new schema.
+3. Target ending state 12 to 16 concepts per domain, grouped by sub domain.
 4. Push after every 2 to 3 domains.
 
-## Phase 5h. Task ladder
-1. Each concept gets 3 tasks: basic (could do today), easy (could do this week), advanced (real project).
-2. Each domain gets a final boss capstone (already exists, polish wording).
-3. Tasks unlock progressively. Basic visible from start; advanced visible after passing concept quiz.
+## Phase 5i. Task ladder
+1. Each concept gets three tasks. Basic could do today. Easy could do this week. Advanced is a small real project.
+2. Domain capstone stays as the final boss.
+3. Tasks unlock progressively. Basic visible from start. Advanced visible after passing the concept quiz.
 4. Push.
 
-## Phase 5i. Persona audit (manual review)
-Run through the app as five users:
-1. Absolute beginner. Just opened the app, never heard of any of these topics.
-2. Curious learner. Comfortable with one domain, wants to see how the others connect.
-3. Reference seeker. Just wants to look up a definition fast.
-4. Returner. Reviewing for retention, mostly uses the spaced repetition.
-5. Skeptic. Pushes back, wants to see counter views and sources.
-Fix the friction points each persona hits. Push.
+## Phase 5j. Spec items still pending (audited from §6, §7, §11B, §11C, §12)
+Sorted by priority then complexity.
 
-## Phase 5j. Anything still left from the spec
-Cross check against `POLYMATH_claude_code_prompt2.md`:
-- Connections cross domain graph (Phase 3 polish, optional in spec)
-- PWA manifest and service worker (Phase 3 polish, optional in spec)
-- Self hosted fonts via `@fontsource` (offline first)
-- Test out pre assessment is wired into quiz but UI could surface it more
-- Weakest concepts queue surfaced in Review (engine has the data already)
-- Capability log surfaced on Dashboard
-- Calibration score gets more visible explanation
-Implement the high value remaining items, defer or document the rest.
+High priority, ship soon
+- [ ] Onboarding (skippable, 20 seconds, pick 2 to 3 goals, recommend a domain or a Path) §11B
+- [ ] Achievements expanded: First Blood, Streak x7, Polyglot of Domains (touched 10), Quiz Slayer (perfect quiz), 100 Cards. Trophy shelf UI on Dashboard §6
+- [ ] Weakest concepts surfaced as a queue on Review §11C
+- [ ] Test out / pre assessment UI surface (data already supports it) §11C
+- [ ] Global search across domain names, concepts, glossary (currently only domain grid level) §6
+- [ ] Capability log surfaced clearly on Dashboard §11C
+- [ ] Calibration score with an explanation block, not just a bar §11C
+- [ ] Confetti tied to level up and capstone completion (canvas-confetti is already a dependency) §6
 
-## Open notes
-- No em or en dashes anywhere in content from Phase 5 onwards. Use commas, semicolons, parentheses, or full stops.
-- Real URLs only for resources. Unknown stays `verify: true`, `url: ""`.
-- Honest about uncertainty. Status badges (settled, debated, framework) are not optional.
-- Single source of truth for XP table and mastery formula stays in `lib/xp.ts` and `lib/mastery.ts`.
+Medium priority
+- [ ] Mentor wisdom feed on Home rotating one quote per day with attribution §11B (deferred from §11A removal, keep author free if needed)
+- [ ] Adaptive quiz that resurfaces missed concepts more often by tying into FSRS §11B
+- [ ] Focus timer (Pomodoro) that logs focused minutes and can kick off a Review session §11B
+- [ ] Connections cross domain graph (Phase 3 polish, optional in spec) §11B
+- [ ] Shareable rank card PNG (Phase 3 polish, optional in spec) §11B
+
+Polish and platform
+- [ ] Self host fonts via `@fontsource/*` for true offline first §9A
+- [ ] Optional sounds on XP gain and level up with global mute §6
+- [ ] Single self contained `polymath.html` bundle as a second artefact §9
+- [ ] PWA manifest plus minimal service worker (Phase 3 optional) §11B
+- [ ] Per domain content changelog visible §11C
+- [ ] Onboarding stores chosen goals so Dashboard and Home can use them later
+- [ ] Per concept mini diagrams (Concept may carry its own diagram per §4) §4
+
+## Phase 5k. Persona audit
+Run through the app as five users.
+1. Absolute beginner. Just opened the app.
+2. Curious learner. Comfortable with one domain.
+3. Reference seeker. Wants to look up a definition fast.
+4. Returner. Reviewing for retention.
+5. Skeptic. Wants to see counter views and sources.
+Fix the friction each persona hits. Push.
+
+## Voice rules locked in
+- No em dashes or en dashes anywhere in content
+- Two register format per concept: Beginner and Expert
+- Concept first definition, then beginner explanation, then expert, then prediction, then reveal, then reflect, then quiz, then tasks
+- No hallucinated URLs. Unknown stays `url: ""` and `verify: true`
+- Status badges (settled, debated, framework) are not optional
+- HOME_COUNTRY remains India for finance and law and health localisation hooks

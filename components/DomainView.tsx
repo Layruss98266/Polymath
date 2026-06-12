@@ -14,7 +14,7 @@ import { QuizTab } from "./tabs/QuizTab";
 import { FlashcardsTab } from "./tabs/FlashcardsTab";
 import { CheatsheetTab } from "./tabs/CheatsheetTab";
 import { CounterViewTab } from "./tabs/CounterViewTab";
-import { MentorStrip } from "./MentorStrip";
+// MentorStrip removed per user request. Schema makes mentors optional.
 
 const TABS = [
  "Basics", "Diagram", "Concepts", "Zero→Grandmaster",
@@ -52,8 +52,6 @@ export function DomainView({ domain }: { domain: Domain }) {
      <p className="text-xs dim">{Math.round(m * 100)}% mastery</p>
     </div>
    </header>
-
-   <MentorStrip mentors={domain.mentors} />
 
    {domain.safetyNote && (
     <div className="panel p-3 text-sm" style={{ borderColor: "var(--hue)" }}>

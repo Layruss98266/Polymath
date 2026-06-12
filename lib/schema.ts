@@ -78,7 +78,7 @@ export const DomainSchema = z.object({
  whyItMatters: z.array(z.string()).min(2),
  realWorldExample: z.string(),
 
- mentors: z.array(Mentor).min(3),
+ mentors: z.array(Mentor).optional(),
  diagrams: z.array(Diagram).min(2),
  synthesis: z.array(Synthesis).min(2),
 
