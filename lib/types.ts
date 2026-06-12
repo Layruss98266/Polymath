@@ -1,163 +1,163 @@
-// Canonical types — mirrored 1:1 by Zod schema in ./schema.ts.
+// Canonical types , mirrored 1:1 by Zod schema in ./schema.ts.
 
 export type EpistemicStatus = "settled" | "debated" | "framework";
 
 export type Mentor = {
-  name: string;
-  for: string;
-  work: string;
-  quote?: string;
+ name: string;
+ for: string;
+ work: string;
+ quote?: string;
 };
 
 export type DiagramKind =
-  | "funnel" | "pyramid" | "cycle" | "flow" | "curve" | "quadrant"
-  | "spectrum" | "venn" | "tree" | "network" | "bars" | "timeline"
-  | "sequence" | "gauge" | "labelled";
+ | "funnel" | "pyramid" | "cycle" | "flow" | "curve" | "quadrant"
+ | "spectrum" | "venn" | "tree" | "network" | "bars" | "timeline"
+ | "sequence" | "gauge" | "labelled";
 
 export type Diagram = {
-  kind: DiagramKind;
-  title: string;
-  caption: string;
-  data: Record<string, unknown>;
+ kind: DiagramKind;
+ title: string;
+ caption: string;
+ data: Record<string, unknown>;
 };
 
 export type Synthesis = { concept: string; linksTo: string; note: string };
 
 export type Concept = {
-  t: string;
-  short: string;
-  deep: string;
-  status: EpistemicStatus;
-  reflect: string;
+ t: string;
+ short: string;
+ deep: string;
+ status: EpistemicStatus;
+ reflect: string;
 };
 
 export type RoadmapStage = {
-  rank: "Novice" | "Apprentice" | "Practitioner" | "Specialist" | "Expert" | "Master" | "Grandmaster";
-  focus: string;
-  do: string;
-  milestone: string;
-  time: string;
+ rank: "Novice" | "Apprentice" | "Practitioner" | "Specialist" | "Expert" | "Master" | "Grandmaster";
+ focus: string;
+ do: string;
+ milestone: string;
+ time: string;
 };
 
 export type Resource = {
-  name: string;
-  what: string;
-  url: string;
-  price?: string;
-  verify?: boolean;
-  lastVerified?: string;
+ name: string;
+ what: string;
+ url: string;
+ price?: string;
+ verify?: boolean;
+ lastVerified?: string;
 };
 
 export type Mission = { t: string; d: string; xp: number };
 
 export type QuizOption =
-  | { text: string; correct: true }
-  | { text: string; correct?: false; misconception: string };
+ | { text: string; correct: true }
+ | { text: string; correct?: false; misconception: string };
 
 export type QuizQuestion = {
-  q: string;
-  options: QuizOption[];
-  why: string;
-  testOut?: boolean;
+ q: string;
+ options: QuizOption[];
+ why: string;
+ testOut?: boolean;
 };
 
 export type Flashcard = { front: string; back: string };
 export type GlossaryItem = { term: string; def: string };
 
 export type Domain = {
-  id: string;
-  icon: string;
-  hue: string;
-  category: string;
-  name: string;
-  tagline: string;
+ id: string;
+ icon: string;
+ hue: string;
+ category: string;
+ name: string;
+ tagline: string;
 
-  basics: string;
-  whyItMatters: string[];
-  realWorldExample: string;
+ basics: string;
+ whyItMatters: string[];
+ realWorldExample: string;
 
-  mentors: Mentor[];
-  diagrams: Diagram[];
-  synthesis: Synthesis[];
+ mentors: Mentor[];
+ diagrams: Diagram[];
+ synthesis: Synthesis[];
 
-  concepts: Concept[];
-  counterView: string;
-  capabilities: string[];
-  cheatsheet: string[];
+ concepts: Concept[];
+ counterView: string;
+ capabilities: string[];
+ cheatsheet: string[];
 
-  roadmap: RoadmapStage[];
-  resources: { free: Resource[]; paid: Resource[] };
-  missions: Mission[];
-  quiz: QuizQuestion[];
-  flashcards: Flashcard[];
-  glossary: GlossaryItem[];
+ roadmap: RoadmapStage[];
+ resources: { free: Resource[]; paid: Resource[] };
+ missions: Mission[];
+ quiz: QuizQuestion[];
+ flashcards: Flashcard[];
+ glossary: GlossaryItem[];
 
-  capstone?: { t: string; d: string; xp: number };
-  safetyNote?: string;
+ capstone?: { t: string; d: string; xp: number };
+ safetyNote?: string;
 };
 
 // -------- Persisted user state --------
 
 export type CardSR = {
-  cardKey: string;        // `${domainId}:${index}`
-  domainId: string;
-  due: number;            // epoch ms
-  stability: number;
-  difficulty: number;
-  elapsedDays: number;
-  scheduledDays: number;
-  reps: number;
-  lapses: number;
-  state: 0 | 1 | 2 | 3;   // FSRS State: New | Learning | Review | Relearning
-  lastReview?: number;
+ cardKey: string;    // `${domainId}:${index}`
+ domainId: string;
+ due: number;      // epoch ms
+ stability: number;
+ difficulty: number;
+ elapsedDays: number;
+ scheduledDays: number;
+ reps: number;
+ lapses: number;
+ state: 0 | 1 | 2 | 3;  // FSRS State: New | Learning | Review | Relearning
+ lastReview?: number;
 };
 
 export type ConceptProgress = {
-  domainId: string;
-  conceptIndex: number;
-  opened: boolean;
-  reflectAnswer?: string;
-  testOutProven?: boolean;
-  accuracy?: number;      // 0..1 — for weakest-concepts queue
-  attempts?: number;
+ domainId: string;
+ conceptIndex: number;
+ opened: boolean;
+ reflectAnswer?: string;
+ testOutProven?: boolean;
+ accuracy?: number;   // 0..1 , for weakest-concepts queue
+ attempts?: number;
 };
 
 export type DomainProgress = {
-  domainId: string;
-  conceptsOpened: number;
-  missionsDone: number[];
-  quizAnswered: number;
-  quizCorrect: number;
-  capstoneDone: boolean;
-  flashcardsGraduated: number;
-  unlockedRank: RoadmapStage["rank"];
+ domainId: string;
+ conceptsOpened: number;
+ missionsDone: number[];
+ quizAnswered: number;
+ quizCorrect: number;
+ capstoneDone: boolean;
+ flashcardsGraduated: number;
+ unlockedRank: RoadmapStage["rank"];
 };
 
 export type Achievement = {
-  id: string;
-  name: string;
-  desc: string;
-  unlockedAt?: number;
+ id: string;
+ name: string;
+ desc: string;
+ unlockedAt?: number;
 };
 
 export type UserState = {
-  schemaVersion: number;
-  xp: number;
-  longestStreak: number;
-  currentStreak: number;
-  lastActiveDay: string;          // YYYY-MM-DD
-  graceUsedOn?: string;           // YYYY-MM-DD
-  theme: "dark" | "light";
-  muteSound: boolean;
-  reducedMotionOverride?: boolean;
-  bookmarks: string[];            // concept refs `${domainId}:${index}` or `${domainId}:res:${i}`
-  notes: Record<string, string>;  // same key shape
-  dailyQuest?: { day: string; domainId: string; kind: "read" | "mission" | "quiz" | "review"; done: boolean };
-  calibrationScore?: number;      // -1..1
-  domainProgress: Record<string, DomainProgress>;
-  conceptProgress: ConceptProgress[];
-  cards: CardSR[];
-  achievements: Achievement[];
-  capabilityLog: { domainId: string; statement: string; at: number }[];
-  startedDomains: string[];
+ schemaVersion: number;
+ xp: number;
+ longestStreak: number;
+ currentStreak: number;
+ lastActiveDay: string;     // YYYY-MM-DD
+ graceUsedOn?: string;      // YYYY-MM-DD
+ theme: "dark" | "light";
+ muteSound: boolean;
+ reducedMotionOverride?: boolean;
+ bookmarks: string[];      // concept refs `${domainId}:${index}` or `${domainId}:res:${i}`
+ notes: Record<string, string>; // same key shape
+ dailyQuest?: { day: string; domainId: string; kind: "read" | "mission" | "quiz" | "review"; done: boolean };
+ calibrationScore?: number;   // -1..1
+ domainProgress: Record<string, DomainProgress>;
+ conceptProgress: ConceptProgress[];
+ cards: CardSR[];
+ achievements: Achievement[];
+ capabilityLog: { domainId: string; statement: string; at: number }[];
+ startedDomains: string[];
 };
