@@ -1,7 +1,6 @@
 import { DailyQuest } from "@/components/DailyQuest";
 import { DailyQuote } from "@/components/DailyQuote";
 import { SessionPicker } from "@/components/SessionPicker";
-import { DomainGrid } from "@/components/DomainGrid";
 import { FocusTimer } from "@/components/FocusTimer";
 import { ContinueLearning } from "@/components/ContinueLearning";
 import { ConceptOfTheDay } from "@/components/ConceptOfTheDay";
@@ -16,7 +15,6 @@ export default function HomePage() {
    dailyQuest={<DailyQuest />}
    sessionPicker={<SessionPicker />}
    focusTimer={<FocusTimer />}
-   domainGrid={<DomainGrid />}
   />
  );
 }
