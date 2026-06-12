@@ -170,6 +170,8 @@ export type UserState = {
  theme: "dark" | "light";
  muteSound: boolean;
  reducedMotionOverride?: boolean;
+ onboarded?: boolean;
+ goals?: string[];
  bookmarks: string[];      // concept refs `${domainId}:${index}` or `${domainId}:res:${i}`
  notes: Record<string, string>; // same key shape
  dailyQuest?: { day: string; domainId: string; kind: "read" | "mission" | "quiz" | "review"; done: boolean };

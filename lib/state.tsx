@@ -264,6 +264,14 @@ export function useActions() {
   store.patch((s) => ({ ...s, notes: { ...s.notes, [key]: value } }));
  }, [store]);
 
+ const completeOnboarding = useCallback((goals: string[]) => {
+  store.patch((s) => ({ ...s, onboarded: true, goals }));
+ }, [store]);
+
+ const skipOnboarding = useCallback(() => {
+  store.patch((s) => ({ ...s, onboarded: true }));
+ }, [store]);
+
  const setTheme = useCallback((theme: "dark" | "light") => {
   store.patch((s) => ({ ...s, theme }));
  }, [store]);
@@ -288,8 +296,9 @@ export function useActions() {
  return useMemo(() => ({
   addXP, startDomain, openConcept, saveReflection, completeMission,
   recordQuizAnswer, upsertCard, completeCapstone, toggleBookmark, setNote,
-  setTheme, toggleMute, refreshDailyQuest, completeDailyQuest, importState
- }), [addXP, startDomain, openConcept, saveReflection, completeMission, recordQuizAnswer, upsertCard, completeCapstone, toggleBookmark, setNote, setTheme, toggleMute, refreshDailyQuest, completeDailyQuest, importState]);
+  setTheme, toggleMute, refreshDailyQuest, completeDailyQuest, importState,
+  completeOnboarding, skipOnboarding
+ }), [addXP, startDomain, openConcept, saveReflection, completeMission, recordQuizAnswer, upsertCard, completeCapstone, toggleBookmark, setNote, setTheme, toggleMute, refreshDailyQuest, completeDailyQuest, importState, completeOnboarding, skipOnboarding]);
 }
 
 function clamp(n: number, lo: number, hi: number) { return Math.max(lo, Math.min(hi, n)); }
