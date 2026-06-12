@@ -9,10 +9,21 @@ Spec: `POLYMATH_claude_code_prompt2.md` v5. Stack: Next.js 15 (App Router) + TS 
 - [x] 5d. ConceptsTab rewritten as one concept at a time: position chip, status badge, bookmark, progress bar, title plus full form, definition box, prereq chips, prediction prompt, reveal, Beginner or Expert toggle, reflection autosave, inline 3 to 5 concept quiz, task ladder (basic now, easy after reveal, advanced after passing quiz), Previous / Next gated by quiz pass at 60%.
 - [x] 5e. RankBadge component: seven distinct gradients, letter glyphs (I to VII), tier colors, auras. Used on DomainCard, DomainView header (lg), Dashboard rank list (sm).
 - [x] 5f. Quote of the day. data/quotes.ts with 120 real attributed quotes (target 500 over time). DailyQuote component on Home picks one per day deterministically.
-- [ ] 5g. Resource rebalance with kind tag (article / video / course / book / podcast / tool) and UI sort
-- [~] 5h. Sub domain support and concept variety. Marketing exemplar shipped with 4 subdomains (foundations, positioning, economics, behaviour) and the first 3 concepts (The 4 Ps, STP, Features tell benefits sell) fully populated with all new optional fields: fullForm, definition, prereqs, generic explanation, expert explanation, 3 concept quizzes each with misconception mapping, and a basic / easy / advanced task ladder. Remaining 12 domains queued.
-- [~] 5i. Task ladder authoring. Demonstrated on Marketing's first 3 concepts (9 tasks total across 3 levels). Same template applies to the rest.
-- [ ] 5j. Spec items pending (onboarding, achievements expansion, weakest concepts queue UI, test-out UI, global search, capability log surfaced, calibration explanation, confetti on level up, self-hosted fonts, sounds, single inlined polymath.html, PWA)
+- [x] 5g. Resource rebalance + kind tag. Schema gained Resource.kind (article / video / course / book / podcast / tool). Domain ResourcesTab now shows colored kind chips with counts, filter chips by kind, kind heuristic from name when no explicit field is set.
+- [~] 5h. Sub domain support shipped. Marketing exemplar with 4 subdomains and the first 3 concepts (4 Ps, STP, Features tell benefits sell) fully populated with all new optional fields: fullForm, definition, prereqs, generic, expert, 3 concept quizzes with misconceptions, basic / easy / advanced task ladder. Remaining 12 domains queued for the same upgrade pattern.
+- [~] 5i. Task ladder demonstrated on Marketing's first 3 concepts (9 tasks across 3 levels). Same template applies to the rest.
+- [x] 5j. Spec items shipped this turn:
+  - Onboarding (skippable 20s, 12 goals, recommends domain + curated Path on submit)
+  - Achievements expanded (21 definitions including First Blood, First Concept, First Reflection, First Mission, streaks 3/7/30/100, polyglot 5/10/15, cards 50/100/500, Quiz Slayer, Boss Beaten, Three Bosses Down, Thoughtful, Real World, Well Calibrated, Double Digits) with auto-evaluation and trophy shelf
+  - Weakest concepts queue surfaced at the top of Review with accuracy percent and link back
+  - Test-out quiz items now show a colored chip and a short explainer
+  - Global search across domain names, concepts, glossary at /search, linked from top bar
+  - Capability log on Dashboard (You can now ...) with mastery-based reveal
+  - Calibration explanation block on Dashboard with score and Why this matters
+  - Confetti on level up, gated on prefers-reduced-motion
+  - Daily quote rotation now seeded with 411 real attributed quotes (target was up to 500)
+  - Focus timer on Home (5 / 15 / 25 / 45 min) with focused-minutes counter
+- [ ] 5j. Still pending: self-hosted fonts, optional sounds, single inlined polymath.html bundle, PWA manifest + service worker, per-concept mini diagrams, content changelog UI
 - [ ] 5k. Persona audit (5 personas)
 
 ## Phase 0, Scaffold ✅

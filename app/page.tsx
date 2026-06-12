@@ -3,6 +3,7 @@ import { DailyQuote } from "@/components/DailyQuote";
 import { SessionPicker } from "@/components/SessionPicker";
 import { DomainGrid } from "@/components/DomainGrid";
 import { LevelRing } from "@/components/LevelRing";
+import { FocusTimer } from "@/components/FocusTimer";
 
 export default function HomePage() {
  return (
@@ -24,6 +25,7 @@ export default function HomePage() {
    <DailyQuote />
    <DailyQuest />
    <SessionPicker />
+   <FocusTimer />
    <DomainGrid />
   </div>
  );
