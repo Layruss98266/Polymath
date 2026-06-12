@@ -68,7 +68,7 @@ export function Footer() {
 
     {(Object.entries(NAV) as [string, { href: string; label: string }[]][]).map(([heading, items]) => (
      <div key={heading}>
-      <p className="dim text-[11px] uppercase tracking-widest mb-3 font-medium">{heading}</p>
+      <p className="section-eyebrow mb-3">{heading}</p>
       <ul className="space-y-2">
        {items.map((it) => (
         <li key={it.href}>
@@ -82,14 +82,26 @@ export function Footer() {
     ))}
    </section>
 
-   {/* Bottom strip */}
-   <section className="max-w-6xl mx-auto pt-6 border-t flex flex-wrap items-center gap-3 text-xs dim" style={{ borderColor: "var(--line)" }}>
-    <span>Resource names are real. Editions, prices, and links change. Verify before buying.</span>
-    <span className="ml-auto inline-flex items-center gap-3">
-     <span>Education, not advice. See each domain's safety note.</span>
-     <span>·</span>
-     <span className="inline-flex items-center gap-1">Built with <Heart size={11} className="hue" /> · MIT</span>
+   {/* Bottom strip. Minimal: project link, version note, license, a11y. */}
+   <section className="max-w-6xl mx-auto pt-6 border-t flex flex-wrap items-center gap-x-4 gap-y-2 text-xs dim" style={{ borderColor: "var(--line)" }}>
+    <span className="inline-flex items-center gap-1.5">
+     <Heart size={11} className="hue" /> Built with care, MIT licensed.
     </span>
+    <span className="inline-flex items-center gap-2">
+     <span>v1.0</span>
+     <span aria-hidden="true">·</span>
+     <Link href="/about#accessibility" className="hover:underline">Accessibility statement</Link>
+     <span aria-hidden="true">·</span>
+     <span>Education, not advice.</span>
+    </span>
+    <a
+     href="https://github.com/Layruss98266/Polymath"
+     target="_blank"
+     rel="noreferrer"
+     className="ml-auto inline-flex items-center gap-1 hover:underline"
+    >
+     <Github size={11} /> Source <ArrowUpRight size={10} />
+    </a>
    </section>
   </footer>
  );

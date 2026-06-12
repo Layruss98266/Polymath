@@ -5,6 +5,7 @@ import type { Domain, QuizOption } from "@/lib/types";
 import { useActions, useUserState } from "@/lib/state";
 import { DiagramView } from "@/components/Diagram";
 import { conceptPath } from "@/lib/tabs";
+import { StatusBadge } from "@/components/StatusBadge";
 import {
  ChevronLeft, ChevronRight, Bookmark, BookOpen, Brain, ListTree,
  Lightbulb, Layers, Target, CheckCircle2, X, AlertCircle
@@ -18,16 +19,6 @@ import {
 // - Concept quiz uses radio-style options with calmer feedback
 // - Tasks rendered with level badges and unlock states
 // - Progress bar reflects stages-of-this-concept, not just position
-
-function StatusBadge({ status }: { status: "settled" | "debated" | "framework" }) {
- const m = {
-  settled:   { label: "settled",       bg: "rgba(102,224,163,0.15)", col: "var(--good)" },
-  debated:   { label: "debated",       bg: "rgba(255,115,115,0.15)", col: "var(--bad)" },
-  framework: { label: "one framework", bg: "rgba(255,255,255,0.08)", col: "var(--ink)" }
- } as const;
- const s = m[status];
- return <span className="chip" style={{ background: s.bg, color: s.col }}>{s.label}</span>;
-}
 
 type Stage = "predict" | "reveal" | "reflect" | "check" | "apply";
 
@@ -300,9 +291,9 @@ export function ConceptsTab({ d }: { d: Domain }) {
        </div>
       )}
 
-      {/* Explanation */}
-      <article className="panel p-5 sm:p-6 space-y-3 leading-relaxed">
-       <p className="text-base">{explanation}</p>
+      {/* Explanation. Cap line length at ~65ch so it reads like prose. */}
+      <article className="panel p-6 sm:p-7">
+       <p className="text-base sm:text-lg leading-relaxed max-w-[65ch]">{explanation}</p>
       </article>
 
       {/* Optional inline mini-diagram tied to this concept. Reuses the same
@@ -377,9 +368,20 @@ export function ConceptsTab({ d }: { d: Domain }) {
                  <span>{o.text}</span>
                 </div>
                 {state && oi === state.picked && !state.correct && "misconception" in o && (
-                 <p className="text-xs mt-2 ml-6" style={{ color: "var(--bad)" }}>
-                  <strong>Why people pick this:</strong> {(o as Exclude<QuizOption, { correct: true }>).misconception}
-                 </p>
+                 <div
+                  role="alert"
+                  className="text-xs mt-3 ml-6 p-2.5 rounded-md leading-relaxed"
+                  style={{
+                   color: "var(--ink)",
+                   background: "color-mix(in oklab, var(--bad) 8%, transparent)",
+                   borderLeft: "3px solid var(--bad)"
+                  }}
+                 >
+                  <span className="font-semibold uppercase tracking-wider text-[10px] block mb-1" style={{ color: "var(--bad)" }}>
+                   Why people pick this
+                  </span>
+                  {(o as Exclude<QuizOption, { correct: true }>).misconception}
+                 </div>
                 )}
                </button>
               </li>

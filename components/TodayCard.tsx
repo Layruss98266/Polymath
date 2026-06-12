@@ -6,10 +6,9 @@ import { useUserState, useHydrated } from "@/lib/state";
 import { dueNow } from "@/lib/fsrs";
 import { todayKey } from "@/lib/streak";
 
-// A glanceable "today" card for the home page. Pulls four numbers from the
-// store: due-now review count, XP earned today, current streak, and whether
-// today's daily quest is done. Renders zero chrome when the user is brand
-// new so it doesn't drown out onboarding.
+// Glanceable Today strip for returning users. One outer panel, no nested
+// panels. Each stat is a flat cell separated by dividers so the eye reads
+// it as a single band, not four floating cards.
 
 export function TodayCard() {
  const s = useUserState();
@@ -21,17 +20,18 @@ export function TodayCard() {
  const questDone = s.dailyQuest?.day === today && s.dailyQuest?.done;
 
  if (!hydrated) return null;
- // Skip the card for absolute first-time visitors. The Onboarding panel does
- // the talking before they have any state worth summarising.
  if (s.startedDomains.length === 0 && s.xp === 0) return null;
 
  return (
   <section className="panel p-4 sm:p-5" aria-label="Today at a glance">
-   <header className="flex items-center gap-2 mb-3">
-    <Calendar size={14} className="dim" />
-    <p className="dim text-xs uppercase tracking-widest">Today</p>
+   <header className="flex items-center gap-2 mb-4">
+    <Calendar size={14} className="dim" aria-hidden="true" />
+    <p className="dim text-[11px] uppercase tracking-widest">Today</p>
    </header>
-   <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+   <div
+    className="grid grid-cols-2 sm:grid-cols-4 gap-px overflow-hidden rounded-lg"
+    style={{ background: "var(--line)" }}
+   >
     <Stat
      icon={<Brain size={14} />}
      label="Due to review"
@@ -71,19 +71,22 @@ function Stat({ icon, label, value, accent, href, hrefLabel }: {
  href?: string;
  hrefLabel?: string;
 }) {
- const body = (
-  <div className="panel p-3 flex flex-col gap-1.5" style={{ borderColor: "var(--line)" }}>
-   <div className="flex items-center gap-2 dim text-[11px] uppercase tracking-widest">
-    <span style={{ color: accent }}>{icon}</span>
+ return (
+  <div className="p-3 flex flex-col gap-1.5" style={{ background: "var(--panel)" }}>
+   <div className="flex items-center gap-2 dim text-[10px] uppercase tracking-widest">
+    <span style={{ color: accent }} aria-hidden="true">{icon}</span>
     {label}
    </div>
    <div className="font-display text-2xl leading-none" style={{ color: accent }}>{value}</div>
    {href && hrefLabel && (
-    <Link href={href} className="text-xs inline-flex items-center gap-1 mt-auto" style={{ color: accent }}>
-     {hrefLabel} <ArrowRight size={11} />
+    <Link
+     href={href}
+     className="text-xs inline-flex items-center gap-1 mt-auto min-h-[20px]"
+     style={{ color: accent }}
+    >
+     {hrefLabel} <ArrowRight size={11} aria-hidden="true" />
     </Link>
    )}
   </div>
  );
- return body;
 }

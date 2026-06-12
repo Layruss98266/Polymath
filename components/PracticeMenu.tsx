@@ -91,34 +91,42 @@ export function PracticeMenu() {
      aria-label="Practice options"
      onMouseEnter={cancelClose}
      onMouseLeave={scheduleClose}
-     className="absolute left-0 top-full mt-2 z-40 panel shadow-2xl rounded-2xl min-w-[300px]"
+     className="absolute left-0 top-full mt-2 z-40 surface min-w-[320px] anim-slide-up"
     >
-     <ul className="p-1.5">
-      {ITEMS.map(({ href, label, desc, Icon }) => (
+     <ul className="p-2">
+      {ITEMS.map(({ href, label, desc, Icon }, idx) => (
        <li key={href}>
         <Link
          role="menuitem"
          href={href}
          onClick={() => setOpen(false)}
-         className="flex items-start gap-3 px-3 py-2.5 rounded-lg group hover:bg-[color-mix(in_oklab,var(--ink)_4%,transparent)]"
+         className="flex items-start gap-3 px-3 py-2.5 rounded-xl group relative transition-colors"
+         style={idx === 0 ? { background: "var(--hue-softer)" } : {}}
+         onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "var(--ink-soft)"; }}
+         onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = idx === 0 ? "var(--hue-softer)" : "transparent"; }}
         >
-         <span className="grid place-items-center w-8 h-8 rounded-lg shrink-0" style={{ background: "color-mix(in oklab, var(--hue) 14%, transparent)", color: "var(--hue)" }}>
-          <Icon size={14} />
+         <span className="grid place-items-center w-9 h-9 rounded-lg shrink-0 bg-hue-soft" style={{ color: "var(--hue)" }}>
+          <Icon size={15} />
          </span>
          <span className="flex-1 min-w-0">
           <span className="flex items-center gap-2">
            <span className="text-sm font-medium">{label}</span>
            {href === "/review" && due > 0 && (
-            <span className="text-[10px] px-1.5 py-0.5 rounded-full" style={{ background: "var(--hue)", color: "#0b0d1a" }}>{due} due</span>
+            <span className="text-[10px] font-bold px-1.5 py-0.5 rounded-full btn-primary border">{due} due</span>
            )}
           </span>
-          <span className="block dim text-xs">{desc}</span>
+          <span className="block dim text-xs mt-0.5 leading-snug">{desc}</span>
          </span>
-         <ArrowRight size={12} className="dim mt-2 opacity-0 group-hover:opacity-100 transition-opacity" />
+         <ArrowRight size={13} className="dim mt-2.5 opacity-0 group-hover:opacity-100 transition-opacity" />
         </Link>
        </li>
       ))}
      </ul>
+     <div className="px-3 py-2 border-t section-eyebrow flex items-center gap-2" style={{ borderColor: "var(--line)" }}>
+      <span>Use arrow keys</span>
+      <span className="kbd ml-auto">↑</span>
+      <span className="kbd">↓</span>
+     </div>
     </div>
    )}
   </div>

@@ -7,7 +7,7 @@ import { DOMAIN_INDEX, loadDomain } from "@/data/domains";
 
 // Picks a single concept across the user's started domains, deterministically
 // rotating by date. Falls back to a random Core domain if no domain has been
-// started yet. Tiny, single panel, designed to be a daily ritual.
+// started yet. Pairs visually with ContinueLearning in HomeShell.
 
 function pickIndex(seed: string, n: number) {
  let h = 0;
@@ -42,17 +42,30 @@ export function ConceptOfTheDay() {
 
  if (!data) return null;
  return (
-  <section className="panel p-4 sm:p-5" style={{ borderColor: data.hue }}>
+  <section
+   className="panel p-4 sm:p-5 h-full relative overflow-hidden"
+   style={{ borderColor: `${data.hue}66` }}
+   aria-label="Concept of the day"
+  >
+   <span aria-hidden="true" className="absolute inset-x-0 top-0 h-1" style={{ background: data.hue }} />
+   <header className="flex items-center gap-2 mb-3">
+    <Lightbulb size={14} className="hue" aria-hidden="true" />
+    <p className="text-[11px] uppercase tracking-widest dim">Concept of the day · {data.domainName}</p>
+   </header>
    <div className="flex items-start gap-3">
-    <Lightbulb size={20} className="hue mt-1 shrink-0" />
     <div className="flex-1 min-w-0">
-     <p className="text-xs uppercase tracking-widest dim">Concept of the day · {data.domainName}</p>
-     <p className="font-display text-lg sm:text-xl mt-1">{data.title}</p>
-     <p className="dim text-sm mt-1">{data.one}</p>
+     <p className="font-display text-lg sm:text-xl leading-tight">{data.title}</p>
+     <p className="dim text-sm mt-2 leading-relaxed line-clamp-3">{data.one}</p>
     </div>
-    <Link href={`/domain/${data.domainId}/concepts/${data.conceptIndex}`} className="btn shrink-0 hidden sm:inline-flex">Open <ArrowRight size={14} /></Link>
+    <Link
+     href={`/domain/${data.domainId}/concepts/${data.conceptIndex}`}
+     className="btn shrink-0 hidden sm:inline-flex min-h-[40px]"
+    >Open <ArrowRight size={14} aria-hidden="true" /></Link>
    </div>
-   <Link href={`/domain/${data.domainId}/concepts/${data.conceptIndex}`} className="btn sm:hidden mt-3 w-full justify-center">Open</Link>
+   <Link
+    href={`/domain/${data.domainId}/concepts/${data.conceptIndex}`}
+    className="btn sm:hidden mt-3 w-full justify-center min-h-[44px]"
+   >Open <ArrowRight size={14} aria-hidden="true" /></Link>
   </section>
  );
 }

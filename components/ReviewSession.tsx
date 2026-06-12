@@ -256,12 +256,13 @@ export function ReviewSession() {
  const progress = total > 0 ? ((i) / total) * 100 : 0;
  const domHue = domain?.hue ?? "#ff6b5e";
 
- // Color tokens per grade button. Theme-aware.
+ // Color tokens per grade button. Theme-aware. Matches FlashcardsTab so the
+ // grade interaction reads the same wherever the user encounters it.
  const gradeStyles = {
-  again: { color: "var(--bad)",  bg: "rgba(255,115,115,0.12)", label: "Again", sub: "less than 1 min" },
-  hard:  { color: "#fbbf24",     bg: "rgba(251,191,36,0.12)",  label: "Hard",  sub: "minutes" },
-  good:  { color: "var(--good)", bg: "rgba(102,224,163,0.14)", label: "Good",  sub: "days" },
-  easy:  { color: "#60a5fa",     bg: "rgba(96,165,250,0.14)",  label: "Easy",  sub: "weeks" }
+  again: { color: "var(--bad)",  label: "Again", sub: "< 1 min" },
+  hard:  { color: "#fbbf24",     label: "Hard",  sub: "minutes" },
+  good:  { color: "var(--good)", label: "Good",  sub: "days" },
+  easy:  { color: "#60a5fa",     label: "Easy",  sub: "weeks" }
  } as const;
 
  return (
@@ -316,11 +317,14 @@ export function ReviewSession() {
         key={g}
         onClick={() => onGrade(g)}
         disabled={busy}
-        className="panel p-3 text-left transition-transform hover:translate-y-[-1px] disabled:opacity-60"
-        style={{ borderColor: st.color, background: st.bg }}
+        className="p-3 rounded-xl border text-left transition-transform hover:translate-y-[-1px] disabled:opacity-60 min-h-[64px]"
+        style={{
+         borderColor: st.color,
+         background: `color-mix(in oklab, ${st.color} 8%, transparent)`
+        }}
        >
         <div className="font-display text-base" style={{ color: st.color }}>{st.label}</div>
-        <div className="dim text-[11px] mt-0.5">{st.sub}</div>
+        <div className="text-[11px] tabular-nums mt-0.5" style={{ color: "var(--dim)" }}>{st.sub}</div>
        </button>
       );
      })}

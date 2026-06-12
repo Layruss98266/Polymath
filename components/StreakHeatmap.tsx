@@ -18,15 +18,12 @@ export function StreakHeatmap({
   for (let i = days - 1; i >= 0; i--) {
    const d = new Date(today);
    d.setDate(today.getDate() - i);
-   // Local-time YYYY-MM-DD to match `xpByDay` and `todayKey`. toISOString
-   // shifted the cell by one in tz like Asia/Kolkata around UTC midnight.
    const key = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
    const xp = xpByDay[key] ?? 0;
    let level: 0 | 1 | 2 | 3 | 4 = 0;
    if (xp > 0) {
     level = xp >= 80 ? 4 : xp >= 40 ? 3 : xp >= 15 ? 2 : 1;
    } else if (i < currentStreak && Object.keys(xpByDay).length === 0) {
-    // No history yet, fall back to current-streak coloring
     level = 2;
    }
    out.push({ date: key, level, xp });
@@ -34,12 +31,14 @@ export function StreakHeatmap({
   return out;
  }, [currentStreak, xpByDay]);
 
+ // Color ramp: transparent base -> hue. Uses color-mix so it tracks --hue
+ // automatically across themes. Dark + light theme parity.
  const colors = {
-  0: "var(--line)",
-  1: "rgba(255,107,94,0.22)",
-  2: "rgba(255,107,94,0.42)",
-  3: "rgba(255,107,94,0.65)",
-  4: "rgba(255,107,94,0.90)"
+  0: "color-mix(in oklab, var(--ink) 7%, transparent)",
+  1: "color-mix(in oklab, var(--hue) 22%, transparent)",
+  2: "color-mix(in oklab, var(--hue) 45%, transparent)",
+  3: "color-mix(in oklab, var(--hue) 70%, transparent)",
+  4: "var(--hue)"
  } as const;
 
  const startOfWeek = new Date(cells[0].date).getDay();
@@ -49,8 +48,6 @@ export function StreakHeatmap({
   cols.push(padded.slice(i, i + 7));
  }
 
- // Month labels. Show the abbreviated month name above the first column of
- // each calendar month so readers can place where they are in the year.
  const MONTH_NAMES = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
  const monthLabels = cols.map((col, ci) => {
   const first = col.find((c) => c !== null);
@@ -65,34 +62,58 @@ export function StreakHeatmap({
  const total = Object.values(xpByDay).reduce((sum, v) => sum + v, 0);
  const active = Object.values(xpByDay).filter((v) => v > 0).length;
 
+ // Weekday labels: Mon / Wed / Fri at rows 1, 3, 5 (Sun=0).
+ const WEEKDAY: Record<number, string> = { 1: "Mon", 3: "Wed", 5: "Fri" };
+
+ const CELL = 11;
+ const GAP = 3;
+
  return (
-  <div className="overflow-x-auto no-scrollbar" role="img" aria-label={`Activity heatmap: ${active} active days, ${total} XP earned`}>
-   <div className="inline-grid gap-[3px] mb-1" style={{ gridAutoFlow: "column", gridTemplateColumns: `repeat(${cols.length}, 10px)` }} aria-hidden="true">
-    {monthLabels.map((m, ci) => (
-     <span key={ci} className="dim text-[9px] uppercase tracking-widest" style={{ minWidth: 10, height: 10, whiteSpace: "nowrap" }}>{m ?? ""}</span>
-    ))}
+  <div className="overflow-x-auto no-scrollbar" role="img" aria-label={`Activity heatmap: ${active} active days, ${total} XP earned in the last 365 days`}>
+   <div className="inline-flex gap-2 items-start">
+    {/* Weekday letter column */}
+    <div className="inline-grid pt-[14px]" style={{ gridTemplateRows: `repeat(7, ${CELL}px)`, rowGap: GAP }} aria-hidden="true">
+     {[0, 1, 2, 3, 4, 5, 6].map((row) => (
+      <span key={row} className="dim text-[9px] tracking-widest" style={{ lineHeight: `${CELL}px`, height: CELL, minWidth: 18 }}>
+       {WEEKDAY[row] ?? ""}
+      </span>
+     ))}
+    </div>
+
+    <div>
+     {/* Month labels */}
+     <div className="inline-grid mb-1" style={{ gridAutoFlow: "column", gridTemplateColumns: `repeat(${cols.length}, ${CELL}px)`, columnGap: GAP }} aria-hidden="true">
+      {monthLabels.map((m, ci) => (
+       <span key={ci} className="dim text-[9px] uppercase tracking-widest" style={{ minWidth: CELL, height: 11, whiteSpace: "nowrap" }}>{m ?? ""}</span>
+      ))}
+     </div>
+
+     {/* Cells */}
+     <div className="inline-grid" style={{ gridAutoFlow: "column", gridTemplateRows: `repeat(7, ${CELL}px)`, gap: GAP }}>
+      {cols.flatMap((col, ci) =>
+       col.map((cell, ri) => (
+        <span
+         key={`${ci}-${ri}`}
+         title={cell ? `${cell.date}: ${cell.xp} XP` : ""}
+         aria-hidden="true"
+         style={{
+          width: CELL, height: CELL, borderRadius: 3,
+          background: cell ? colors[cell.level] : "transparent",
+          border: cell ? "1px solid color-mix(in oklab, var(--ink) 4%, transparent)" : "none"
+         }}
+        />
+       ))
+      )}
+     </div>
+    </div>
    </div>
-   <div className="inline-grid gap-[3px]" style={{ gridAutoFlow: "column", gridTemplateRows: "repeat(7, 10px)" }}>
-    {cols.flatMap((col, ci) =>
-     col.map((cell, ri) => (
-      <span
-       key={`${ci}-${ri}`}
-       title={cell ? `${cell.date}: ${cell.xp} XP` : ""}
-       aria-hidden="true"
-       style={{
-        width: 10, height: 10, borderRadius: 2,
-        background: cell ? colors[cell.level] : "transparent"
-       }}
-      />
-     ))
-    )}
-   </div>
-   <div className="flex items-center justify-between mt-2 text-xs dim flex-wrap gap-2">
+
+   <div className="flex items-center justify-between mt-3 text-xs dim flex-wrap gap-2">
     <span>{active} active days in the last 365. {total} XP logged.</span>
     <span className="flex items-center gap-1">
      Less
      {([0, 1, 2, 3, 4] as const).map((l) => (
-      <span key={l} style={{ width: 10, height: 10, borderRadius: 2, display: "inline-block", background: colors[l] }} />
+      <span key={l} style={{ width: CELL, height: CELL, borderRadius: 3, display: "inline-block", background: colors[l], border: "1px solid color-mix(in oklab, var(--ink) 4%, transparent)" }} />
      ))}
      More
     </span>

@@ -82,15 +82,18 @@ export function Onboarding() {
  };
 
  return (
-  <div className="fixed inset-0 z-40 grid place-items-center p-4" style={{ background: "rgba(0,0,0,0.65)" }}>
-   <div className="panel p-6 max-w-2xl w-full space-y-4" role="dialog" aria-label="Welcome" aria-modal="true" ref={dialogRef}>
+  <div className="fixed inset-0 z-40 grid place-items-center p-4 anim-fade-in" style={{ background: "rgba(0,0,0,0.65)", backdropFilter: "blur(4px)" }}>
+   <div className="surface p-6 sm:p-8 max-w-2xl w-full space-y-5 anim-slide-up" role="dialog" aria-label="Welcome" aria-modal="true" ref={dialogRef}>
     <div className="flex items-start gap-3">
-     <Sparkles size={24} className="hue mt-1 shrink-0" />
+     <span className="grid place-items-center w-11 h-11 rounded-xl shrink-0 bg-hue-soft" style={{ color: "var(--hue)" }}>
+      <Sparkles size={20} />
+     </span>
      <div className="flex-1">
-      <h2 className="font-display text-2xl">Welcome to Polymath</h2>
-      <p className="dim text-sm">Twenty seconds. Pick the things you'd like to actually change. We'll point you to where to start.</p>
+      <p className="section-eyebrow">Welcome</p>
+      <h2 className="font-display text-2xl mt-1">Polymath</h2>
+      <p className="dim text-sm mt-1 leading-relaxed">Twenty seconds. Pick the things you would actually like to change. We will point you to where to start.</p>
      </div>
-     <button className="btn" aria-label="Skip" onClick={a.skipOnboarding}><X size={14} /></button>
+     <button className="btn !p-2" aria-label="Skip" onClick={a.skipOnboarding}><X size={14} /></button>
     </div>
 
     {!done ? (
@@ -104,8 +107,8 @@ export function Onboarding() {
           <button
            onClick={() => toggle(g.id)}
            aria-pressed={on}
-           className="w-full text-left panel p-3 text-sm"
-           style={on ? { borderColor: "var(--hue)", background: "rgba(255,107,94,0.08)" } : {}}
+           className="w-full text-left panel p-3 text-sm transition-colors"
+           style={on ? { borderColor: "var(--hue)", background: "var(--hue-soft)", color: "var(--hue)" } : {}}
           >
            {g.label}
           </button>
@@ -113,29 +116,29 @@ export function Onboarding() {
         );
        })}
       </ul>
-      <div className="flex flex-wrap items-center gap-2">
-       <button className="btn" onClick={() => setDone(true)} disabled={picked.length === 0}>See where to start</button>
-       <button className="btn" onClick={a.skipOnboarding}>Skip for now</button>
-       <span className="dim text-xs ml-auto">{picked.length} / 3 picked</span>
+      <div className="flex flex-wrap items-center gap-2 pt-2">
+       <button className="btn btn-primary" onClick={() => setDone(true)} disabled={picked.length === 0}>See where to start</button>
+       <button className="btn btn-ghost" onClick={a.skipOnboarding}>Skip for now</button>
+       <span className="dim text-xs ml-auto">{picked.length} of 3 picked</span>
       </div>
      </>
     ) : (
      <>
-      <p className="text-sm">Here's where to start, given what you picked.</p>
+      <p className="text-sm">Here is where to start, given what you picked.</p>
       <ul className="space-y-2">
        {recommendations.map((r) => (
         <li key={r.id} className="panel p-3">
-         <p className="dim text-xs uppercase tracking-widest">{r.label}</p>
+         <p className="section-eyebrow">{r.label}</p>
          <div className="flex flex-wrap gap-2 mt-2">
-          <Link href={`/domain/${r.recDomainId}`} onClick={finish} className="btn">Open domain</Link>
+          <Link href={`/domain/${r.recDomainId}`} onClick={finish} className="btn btn-primary">Open domain</Link>
           {r.recPath && <Link href={`/my-list?highlight=${r.recPath}`} onClick={finish} className="btn">See the curated Path</Link>}
          </div>
         </li>
        ))}
       </ul>
-      <div className="flex gap-2">
-       <button className="btn" onClick={finish}>Done</button>
-       <button className="btn" onClick={() => setDone(false)}>Back</button>
+      <div className="flex gap-2 pt-2">
+       <button className="btn btn-primary" onClick={finish}>Done</button>
+       <button className="btn btn-ghost" onClick={() => setDone(false)}>Back</button>
       </div>
      </>
     )}

@@ -13,8 +13,13 @@ import { TrustStrip } from "./TrustStrip";
 import { RecentActivityRail } from "./RecentActivityRail";
 import { DOMAIN_INDEX } from "@/data/domains";
 
-// Hub-style home. Hero, catalogue, optional rituals strip. No long marketing
-// landing here, that lives on /about.
+// Hub-style home. Visual hierarchy:
+//   1. Hero (brand promise + search)
+//   2. Returning-user context strip (Today + Recent) OR new-user stats
+//   3. The catalogue (the product, given the most vertical real-estate)
+//   4. Secondary surfaces (paths, recommendations, trust)
+// Vertical rhythm uses two spacings: 40px between primary sections
+// (space-y-10) and 24px between tight intra-section groupings.
 
 export function HomeShell({
  quote, conceptOfDay, continueLearning, dailyQuest, sessionPicker, focusTimer
@@ -25,10 +30,9 @@ export function HomeShell({
  const s = useUserState();
  const [q, setQ] = useState("");
  const [expanded, setExpanded] = useState(false);
- // The catalogue is the product. A learning-directory hub that hides its 15
- // domains behind a Browse button reads as a marketing site, not a catalogue.
- // We default it ON now; persona-1 (Priya) flagged the gate as a P0 and
- // persona-2 (Rohit) agreed. The 4 curated picks still sit above.
+ // The catalogue is the product. Always-on. Persona-1 (Priya) flagged the
+ // gate as a P0 and persona-2 (Rohit) agreed. The curated picks still sit
+ // above as orientation, not a wall.
  const [showCatalogue, setShowCatalogue] = useState(true);
  const effectiveShowCatalogue = showCatalogue || q.trim().length > 0;
 
@@ -38,75 +42,71 @@ export function HomeShell({
  const isActive = started >= 3 || xp >= 100;
 
  return (
-  <div className="space-y-6">
+  <div className="space-y-10">
    <HubHero onSearch={setQ} />
 
-   {/* Tiny stats strip immediately under the hero so a first-time visitor sees
-       the scale of the catalogue without being asked to click anywhere. */}
+   {/* First-time visitor: quiet scale line. Returning user: today numbers
+       + the resume rail folded into a single context band. */}
    {!isReturning && <HomeStats />}
 
-   {/* Today-at-a-glance numbers. Self-hides for absolute first-time visitors. */}
-   <TodayCard />
-
-   {/* Light rituals appear automatically for returning users */}
    {isReturning && (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-     {continueLearning}
-     {conceptOfDay}
+    <div className="space-y-6">
+     <TodayCard />
+     {/* Combined resume context: one ritual pair, no duplicate
+         "continue" + "recent" surfaces. */}
+     <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-3">
+      {continueLearning}
+      {conceptOfDay}
+     </div>
+     {sessionPicker}
+     <RecentActivityRail />
     </div>
    )}
 
-   {/* SessionPicker above the fold for any returning user, not gated on
-       the activity threshold and not buried inside the ritual toggle.
-       A3 fix: the picker is the primary daily entry point. */}
-   {isReturning && sessionPicker}
-
-   {/* Returning users: surface their last 4 opened concepts as a one-click
-       Pick up where you left off rail. Self-hides if empty. */}
-   {isReturning && <RecentActivityRail />}
-
-   {/* Progressive disclosure: new users see 4 curated picks; returning users
-       see a related-to-you row. The full catalogue stays one click away. */}
+   {/* Curated orientation row. New users get the bento; returning users
+       get the related-to-you recommendation. */}
    {!isReturning && <StartHereBento />}
    {isReturning && <MoreForYouRow />}
 
-   {/* Curated paths surface multi-domain learning bundles. Visible to
-       everyone. The new user picks a goal; the returning user gets a nudge
-       toward a new bundle they haven't started. */}
-   <FeaturedPaths />
-
+   {/* The product. Catalogue is the most-visited surface, so it sits
+       directly under orientation with no extra section above it. */}
    <div id="all-domains" />
    {!effectiveShowCatalogue && (
     <div className="flex flex-col items-center gap-2 py-4">
      <button
-      className="btn"
+      className="btn min-h-[44px] px-5"
       onClick={() => setShowCatalogue(true)}
-      style={{ background: "var(--hue)", color: "#0b0d1a", borderColor: "var(--hue)" }}
+      style={{ background: "var(--hue)", color: "var(--bg)", borderColor: "var(--hue)" }}
      >
-      <Layers size={14} /> Browse all {DOMAIN_INDEX.length} domains
+      <Layers size={16} /> Browse all {DOMAIN_INDEX.length} domains
      </button>
      <p className="dim text-xs">Or use the Domains menu in the top bar at any time.</p>
     </div>
    )}
    {effectiveShowCatalogue && <HubCatalogue q={q} setQ={setQ} />}
 
-   {/* Trust strip: what this app is and is not. Sets expectations near the
-       bottom of the page so the reader doesn't have to dig into /about. */}
+   {/* Secondary surfaces below the catalogue. Curated paths first because
+       they connect the catalogue to a goal. Trust strip sits last as quiet
+       footer-adjacent context. */}
+   <FeaturedPaths />
+
    {!isReturning && <TrustStrip />}
 
    {/* Optional ritual strip behind a single toggle so the page stays a hub */}
    <div className="flex justify-center pt-2">
-    <button className="chip" onClick={() => setExpanded((v) => !v)}>
+    <button
+     className="chip min-h-[36px] px-3"
+     onClick={() => setExpanded((v) => !v)}
+     aria-expanded={expanded}
+    >
      {expanded ? <><ChevronUp size={12} /> Hide daily rituals</> : <><ChevronDown size={12} /> Show daily rituals</>}
     </button>
    </div>
    {expanded && (
-    <div className="space-y-4">
+    <div className="space-y-6">
      {quote}
      {!isReturning && conceptOfDay}
      {dailyQuest}
-     {/* SessionPicker now lives above the fold for returning users.
-         Surface it here only for first-time visitors who expand rituals. */}
      {!isReturning && sessionPicker}
      {isActive && focusTimer}
     </div>

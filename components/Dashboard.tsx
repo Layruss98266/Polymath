@@ -10,8 +10,9 @@ import { dueNow } from "@/lib/fsrs";
 import { ACHIEVEMENTS } from "@/data/achievements";
 import { StreakHeatmap } from "./StreakHeatmap";
 import { WeeklyDigest } from "./WeeklyDigest";
-import { BarChart3, Sparkles, ArrowRight } from "lucide-react";
+import { BarChart3, Sparkles, ArrowRight, Flame, Zap, Target, BookOpen } from "lucide-react";
 import Link from "next/link";
+import { todayKey } from "@/lib/streak";
 
 export function Dashboard() {
  const s = useUserState();
@@ -38,9 +39,8 @@ export function Dashboard() {
  const lp = levelProgress(s.xp);
  const rank = globalRank(s.xp);
  const due = dueNow(s.cards).length;
+ const xpToday = (s.xpByDay ?? {})[todayKey()] ?? 0;
 
- // Surface capabilities for domains the user has actually touched. Cap based
- // on mastery so beginners do not get a wall of unearned statements.
  const capabilityLines = useMemo(() => {
   const lines: string[] = [];
   for (const e of DOMAIN_INDEX) {
@@ -53,12 +53,11 @@ export function Dashboard() {
    dom.capabilities.slice(0, allowed).forEach((c) => lines.push(c));
   }
   return lines.slice(0, 12);
- }, [domains, s.domainProgress, s.startedDomains]);
+ }, [domains, s.domainProgress, s.startedDomains, s.conceptProgress]);
  const cardsReviewed = s.cards.reduce((sum, c) => sum + c.reps, 0);
  const calib = Math.round(((s.calibrationScore ?? 0) + 1) * 50);
  const quizCount = (s.quizSeen ?? []).length;
 
- // Hide sections that show empty placeholders to a brand new user.
  const hasActivity = s.startedDomains.length > 0 || s.xp > 0;
  const hasHeatmapData = Object.keys(s.xpByDay ?? {}).length > 0;
  const hasQuizData = Object.values(s.domainProgress).some((d) => d.quizAnswered > 0);
@@ -78,7 +77,7 @@ export function Dashboard() {
 
  if (!hasActivity) {
   return (
-   <div className="space-y-4">
+   <div className="space-y-6">
     <PageHero subtitle="Start a domain to populate this page." />
     <section className="panel hero-glow p-6 sm:p-10 text-center space-y-3">
      <Sparkles size={28} className="hue mx-auto" />
@@ -93,94 +92,94 @@ export function Dashboard() {
   );
  }
 
- return (
-  <div className="space-y-5">
-   <PageHero subtitle={`L${lp.current} · ${rank.name}. ${s.startedDomains.length} domain${s.startedDomains.length === 1 ? "" : "s"} touched. ${due} card${due === 1 ? "" : "s"} due now.`} />
+ const lvlPct = Math.round((lp.pct ?? 0) * 100);
 
-   <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-    <Stat label="Total XP" value={`${s.xp}`} />
-    <Stat label="Level" value={`L${lp.current} . ${rank.name}`} />
-    <Stat label="Streak" value={`${s.currentStreak}🔥 best ${s.longestStreak}`} />
-    <Stat label="Cards reviewed" value={`${cardsReviewed} (${due} due)`} />
-   </div>
+ return (
+  <div className="space-y-6">
+   <PageHero subtitle={`L${lp.current}, ${rank.name}. ${s.startedDomains.length} domain${s.startedDomains.length === 1 ? "" : "s"} touched. ${due} card${due === 1 ? "" : "s"} due now.`} />
+
+   {/* Hero band: today's XP + streak get prominence */}
+   <section className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+    <div className="panel hero-glow p-6 lg:col-span-2 relative overflow-hidden">
+     <div className="flex items-start justify-between gap-4 flex-wrap">
+      <div>
+       <p className="dim text-xs uppercase tracking-widest flex items-center gap-2"><Zap size={12} className="hue" /> Today</p>
+       <p className="font-display text-5xl sm:text-6xl mt-2 leading-none">+{xpToday}<span className="dim text-xl ml-2">XP</span></p>
+       <p className="dim text-sm mt-2">Total {s.xp} XP, L{lp.current}, {rank.name}.</p>
+      </div>
+      <div className="text-right">
+       <p className="dim text-xs uppercase tracking-widest flex items-center gap-2 justify-end"><Flame size={12} className="hue" /> Streak</p>
+       <p className="font-display text-4xl sm:text-5xl mt-2 leading-none">{s.currentStreak}<span className="dim text-base ml-1">d</span></p>
+       <p className="dim text-sm mt-2">best {s.longestStreak}d</p>
+      </div>
+     </div>
+     {/* Level progress */}
+     {Number.isFinite(lvlPct) && (
+      <div className="mt-5">
+       <div className="flex items-center justify-between text-xs dim mb-1.5">
+        <span>L{lp.current}</span>
+        <span>{lvlPct}% to L{(lp.current ?? 0) + 1}</span>
+       </div>
+       <div className="h-1.5 rounded-full overflow-hidden" style={{ background: "var(--line)" }}>
+        <div className="h-full" style={{ width: `${lvlPct}%`, background: "var(--hue)", transition: "width .3s" }} />
+       </div>
+      </div>
+     )}
+    </div>
+    <div className="grid grid-cols-2 lg:grid-cols-1 gap-4">
+     <MiniStat icon={<Target size={14} />} label="Due now" value={`${due}`} hint={due > 0 ? "ready to review" : "nothing pending"} href="/review" />
+     <MiniStat icon={<BookOpen size={14} />} label="Cards reviewed" value={`${cardsReviewed}`} hint={`${s.cards.length} in deck`} />
+    </div>
+   </section>
 
    <WeeklyDigest />
 
+   {/* Mastery + heatmap as a balanced pair on wide screens */}
+   <section className="grid grid-cols-1 lg:grid-cols-5 gap-4">
+    <div className="panel p-5 lg:col-span-3">
+     <div className="flex items-center justify-between mb-3 gap-2">
+      <h2 className="font-display text-xl">Mastery radar</h2>
+      <span className="dim text-xs">{masteries.filter((m) => m.m > 0).length} of {masteries.length} active</span>
+     </div>
+     <Radar values={masteries.map((m) => ({ label: m.name, value: m.m, hue: m.hue }))} />
+    </div>
+    <div className="panel p-5 lg:col-span-2 flex flex-col">
+     <h2 className="font-display text-xl mb-3">Ranks</h2>
+     <ul className="space-y-2 flex-1">
+      {masteries.map((m) => (
+       <li key={m.id} className="flex items-center justify-between gap-2 p-2.5 rounded-lg" style={{ background: m.m > 0 ? "color-mix(in oklab, " + m.hue + " 6%, transparent)" : "transparent" }}>
+        <span className="font-medium text-sm truncate" style={{ color: m.m > 0 ? m.hue : "var(--ink)" }}>{m.name}</span>
+        <span className="inline-flex items-center gap-2 shrink-0">
+         <RankBadge rank={domainRank(m.m)} size="sm" />
+         <span className="dim text-xs tabular-nums">{Math.round(m.m * 100)}%</span>
+        </span>
+       </li>
+      ))}
+     </ul>
+    </div>
+   </section>
+
    {hasHeatmapData && (
     <section className="panel p-5">
-     <h2 className="font-display text-xl mb-3">Activity, last 365 days</h2>
+     <div className="flex items-center justify-between mb-3 gap-2 flex-wrap">
+      <h2 className="font-display text-xl">Activity, last 365 days</h2>
+      <span className="dim text-xs">Each square is a day. Brighter is more XP.</span>
+     </div>
      <StreakHeatmap currentStreak={s.currentStreak} xpByDay={s.xpByDay ?? {}} />
     </section>
    )}
 
-   <section className="panel p-5">
-    <h2 className="font-display text-xl mb-3">Per-domain mastery</h2>
-    <Radar values={masteries.map((m) => ({ label: m.name, value: m.m, hue: m.hue }))} />
-   </section>
-
-   <section className="panel p-5">
-    <h2 className="font-display text-xl mb-3">Ranks</h2>
-    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-     {masteries.map((m) => (
-      <li key={m.id} className="flex items-center justify-between border border-[color:var(--line)] rounded-xl p-3">
-       <span className="font-medium">{m.name}</span>
-       <span className="inline-flex items-center gap-2"><RankBadge rank={domainRank(m.m)} size="sm" /><span className="dim text-xs">{Math.round(m.m * 100)}%</span></span>
-      </li>
-     ))}
-    </ul>
-   </section>
-
-   <section className="panel p-5">
-    <h2 className="font-display text-xl mb-3">Achievements</h2>
-    {s.achievements.length === 0
-     ? <p className="dim text-sm">No achievements yet. Open a domain to earn your first.</p>
-     : (
-      <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
-       {s.achievements.map((a) => {
-        const def = ACHIEVEMENTS.find((d) => d.id === a.id);
-        return (
-         <li key={a.id} className="panel p-3 flex items-start gap-3">
-          <div className="text-2xl">{def?.icon ?? "🏅"}</div>
-          <div className="flex-1 min-w-0">
-           <p className="font-medium">{a.name}</p>
-           <p className="dim text-sm">{a.desc}</p>
-          </div>
-         </li>
-        );
-       })}
-      </ul>
-     )}
-    {s.achievements.length > 0 && s.achievements.length < ACHIEVEMENTS.length && (
-     <p className="dim text-xs mt-3">{s.achievements.length} of {ACHIEVEMENTS.length} earned. Keep going.</p>
-    )}
-   </section>
-
-   <section className="panel p-5">
-    <h2 className="font-display text-xl mb-3">You can now</h2>
-    {capabilityLines.length === 0
-     ? <p className="dim text-sm">As you progress concepts, the things you can now explain or do show up here.</p>
-     : (
-      <ul className="space-y-1">
-       {capabilityLines.map((c, i) => (
-        <li key={i} className="text-sm flex items-start gap-2">
-         <span className="hue mt-1">✓</span>
-         <span>{c}</span>
-        </li>
-       ))}
-      </ul>
-     )}
-   </section>
-
    {hasQuizData && (
     <section className="panel p-5">
-     <h2 className="font-display text-xl mb-3">Calibration</h2>
-     <p className="dim text-sm mb-2">
-      Calibration measures how well your confidence on quizzes matches reality.
-      The score sits between 0 and 100. Above 50 means you tend to be sure when right and uncertain when wrong (well calibrated).
-      Below 50 means the opposite, the dangerous mix of sure but wrong.
+     <div className="flex items-center justify-between mb-2 gap-2 flex-wrap">
+      <h2 className="font-display text-xl">Calibration</h2>
+      <span className="chip tabular-nums">{calib} of 100</span>
+     </div>
+     <p className="dim text-sm mb-3">
+      Calibration measures how well your confidence on quizzes matches reality. Above 50 means you tend to be sure when right and uncertain when wrong (well calibrated). Below 50 means the dangerous mix of sure but wrong.
      </p>
      <div
-      className="h-3 rounded-full overflow-hidden"
+      className="h-3 rounded-full overflow-hidden relative"
       style={{ background: "var(--line)" }}
       role="progressbar"
       aria-valuenow={calib}
@@ -189,6 +188,8 @@ export function Dashboard() {
       aria-label="Calibration score"
      >
       <div className="h-full" style={{ width: `${calib}%`, background: "var(--hue)", transition: "width .3s" }} />
+      {/* 50 marker */}
+      <div className="absolute top-0 bottom-0" style={{ left: "50%", width: 1, background: "color-mix(in oklab, var(--ink) 40%, transparent)" }} aria-hidden="true" />
      </div>
      <p className="text-xs dim mt-2">Your score, {calib} of 100 (n={quizCount} quizzes).{quizCount < 20 ? " Comes online at n=20." : ""}</p>
      <p className="text-xs dim mt-2">
@@ -196,17 +197,67 @@ export function Dashboard() {
      </p>
     </section>
    )}
+
+   <section className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+    <div className="panel p-5">
+     <div className="flex items-center justify-between mb-3 gap-2">
+      <h2 className="font-display text-xl">Achievements</h2>
+      <span className="dim text-xs tabular-nums">{s.achievements.length} of {ACHIEVEMENTS.length}</span>
+     </div>
+     {s.achievements.length === 0
+      ? <p className="dim text-sm">No achievements yet. Open a domain to earn your first.</p>
+      : (
+       <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+        {s.achievements.map((a) => {
+         const def = ACHIEVEMENTS.find((d) => d.id === a.id);
+         return (
+          <li key={a.id} className="flex items-start gap-3 p-3 rounded-xl" style={{ background: "color-mix(in oklab, var(--hue) 5%, transparent)", border: "1px solid var(--line)" }}>
+           <div className="text-2xl shrink-0" aria-hidden="true">{def?.icon ?? "🏅"}</div>
+           <div className="flex-1 min-w-0">
+            <p className="font-medium text-sm">{a.name}</p>
+            <p className="dim text-xs">{a.desc}</p>
+           </div>
+          </li>
+         );
+        })}
+       </ul>
+      )}
+    </div>
+
+    <div className="panel p-5">
+     <h2 className="font-display text-xl mb-3">You can now</h2>
+     {capabilityLines.length === 0
+      ? <p className="dim text-sm">As you progress concepts, the things you can now explain or do show up here.</p>
+      : (
+       <ul className="space-y-1.5">
+        {capabilityLines.map((c, i) => (
+         <li key={i} className="text-sm flex items-start gap-2">
+          <span className="hue mt-0.5 shrink-0" aria-hidden="true">✓</span>
+          <span>{c}</span>
+         </li>
+        ))}
+       </ul>
+      )}
+    </div>
+   </section>
   </div>
  );
 }
 
-function Stat({ label, value }: { label: string; value: string }) {
- return (
-  <div className="panel p-4">
-   <p className="text-xs uppercase tracking-widest dim">{label}</p>
-   <p className="font-display text-xl mt-1">{value}</p>
+function MiniStat({ icon, label, value, hint, href }: { icon: React.ReactNode; label: string; value: string; hint?: string; href?: string }) {
+ const body = (
+  <div className="panel p-4 h-full flex flex-col justify-between">
+   <div className="flex items-center gap-2 dim text-[10px] uppercase tracking-widest">
+    <span className="hue">{icon}</span>
+    {label}
+   </div>
+   <div>
+    <p className="font-display text-3xl leading-none mt-2 tabular-nums">{value}</p>
+    {hint && <p className="dim text-xs mt-1">{hint}</p>}
+   </div>
   </div>
  );
+ return href ? <Link href={href} className="block focus:outline-none">{body}</Link> : body;
 }
 
 function Radar({ values }: { values: { label: string; value: number; hue: string }[] }) {
@@ -229,7 +280,7 @@ function Radar({ values }: { values: { label: string; value: number; hue: string
    {angles.map((a, i) => (
     <line key={i} x1={cx} y1={cy} x2={cx + R * Math.cos(a)} y2={cy + R * Math.sin(a)} stroke="var(--line)" />
    ))}
-   <path d={polygon} fill="var(--hue)" fillOpacity="0.25" stroke="var(--hue)" />
+   <path d={polygon} fill="var(--hue)" fillOpacity="0.22" stroke="var(--hue)" strokeWidth={1.5} />
    {pts.map((p, i) => (
     <g key={i} aria-label={`${p.label}: ${Math.round(values[i].value * 100)} percent`}>
      <circle cx={p.x} cy={p.y} r={4} fill={p.hue} />

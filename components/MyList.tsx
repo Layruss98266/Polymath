@@ -116,15 +116,18 @@ export function MyList() {
        const [domainId, idx] = b.split(":");
        const e = findEntry(domainId);
        return (
-        <li key={b} className="panel p-3 flex items-center justify-between gap-2">
-         <Link href={conceptPath(domainId, Number(idx))} className="flex items-center gap-2 min-w-0 flex-1 hover:underline">
-          <span className="text-lg" aria-hidden="true">{e?.icon ?? "📌"}</span>
+        <li key={b} className="group panel lift p-3 flex items-center gap-3 relative" style={{ borderLeft: `3px solid ${e?.hue ?? "var(--line)"}` }}>
+         <Link href={conceptPath(domainId, Number(idx))} className="flex items-center gap-3 min-w-0 flex-1">
+          <span className="text-xl shrink-0" aria-hidden="true">{e?.icon ?? "📌"}</span>
           <span className="min-w-0">
            <span className="block text-sm font-medium truncate" style={{ color: e?.hue ?? "var(--ink)" }}>{e?.name ?? domainId}</span>
-           <span className="dim text-xs">concept #{Number(idx) + 1}</span>
+           <span className="dim text-xs">Concept #{Number(idx) + 1}</span>
           </span>
          </Link>
-         <button className="chip" onClick={() => a.toggleBookmark(b)}>Remove</button>
+         <div className="flex items-center gap-1 shrink-0 opacity-70 sm:opacity-0 sm:group-hover:opacity-100 sm:group-focus-within:opacity-100 transition-opacity">
+          <Link href={conceptPath(domainId, Number(idx))} className="chip" aria-label={`Open ${e?.name ?? domainId} concept ${Number(idx) + 1}`}>Open <ArrowRight size={11} /></Link>
+          <button className="chip" onClick={() => a.toggleBookmark(b)} aria-label={`Remove bookmark ${e?.name ?? domainId} concept ${Number(idx) + 1}`}>Remove</button>
+         </div>
         </li>
        );
       })}

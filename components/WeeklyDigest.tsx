@@ -70,7 +70,7 @@ export function WeeklyDigest() {
    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
     <Stat icon={<Zap size={14} />}      label="XP this week" value={`+${stats.xpThis}`} hint={stats.delta === null ? null : `${stats.delta >= 0 ? "+" : ""}${stats.delta}% vs last`} />
     <Stat icon={<Flame size={14} />}    label="Active days"  value={`${stats.activeThis} of 7`} hint={null} />
-    <Stat icon={<BookOpen size={14} />} label="Best day"     value={stats.bestDay?.xp ? `+${stats.bestDay.xp}` : "—"} hint={bestLabel} />
+    <Stat icon={<BookOpen size={14} />} label="Best day"     value={stats.bestDay?.xp ? `+${stats.bestDay.xp}` : "0"} hint={bestLabel} />
     <Stat icon={<TrendingUp size={14} />} label="Streak"     value={`${s.currentStreak}d`} hint={s.longestStreak > s.currentStreak ? `best ${s.longestStreak}d` : null} />
    </div>
   </section>

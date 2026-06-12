@@ -78,9 +78,15 @@ export function DomainTabBar({ domain }: { domain: Domain }) {
  );
  const lockedHidden = TABS.filter((t) => !unlocked.has(t.id));
 
+ // Active state: subtle hue underline + filled text. Inactive: muted text.
+ // This is more obvious than a ring outline and reads as a real tab strip
+ // rather than a row of chips. 44px tap target via py-2.5 + line-height.
+ const tabClass = "shrink-0 inline-flex items-center gap-1.5 px-3 py-2.5 text-sm rounded-lg transition-colors min-h-[44px]";
+
  return (
   <nav
-   className="flex gap-2 overflow-x-auto no-scrollbar -mx-3 px-3 sm:mx-0 sm:px-0 sm:flex-wrap items-center"
+   className="flex gap-1 overflow-x-auto no-scrollbar -mx-3 px-3 sm:mx-0 sm:px-0 sm:flex-wrap items-center border-b sm:border-b-0"
+   style={{ borderColor: "var(--line)" }}
    aria-label="Domain sections"
   >
    {primary.map((t) => {
@@ -91,10 +97,18 @@ export function DomainTabBar({ domain }: { domain: Domain }) {
       href={tabPath(domain.id, t.id)}
       aria-current={isActive ? "page" : undefined}
       onClick={() => setOverflowOpen(false)}
-      className={`chip shrink-0 ${isActive ? "ring-1" : ""}`}
-      style={isActive ? { borderColor: "var(--hue)", color: "var(--hue)" } : {}}
+      className={tabClass}
+      style={
+       isActive
+        ? {
+           color: "var(--hue)",
+           background: "var(--hue-soft)",
+           boxShadow: "inset 0 -2px 0 var(--hue)"
+          }
+        : { color: "var(--dim)" }
+      }
      >
-      <GroupIcon g={t.group} /> {t.label}
+      <GroupIcon g={t.group} /> <span>{t.label}</span>
      </Link>
     );
    })}
@@ -102,7 +116,8 @@ export function DomainTabBar({ domain }: { domain: Domain }) {
    {overflow.length > 0 && (
     <div ref={overflowRef} className="relative shrink-0">
      <button
-      className="chip"
+      className={tabClass}
+      style={{ color: "var(--dim)" }}
       onClick={() => setOverflowOpen((v) => !v)}
       aria-expanded={overflowOpen}
       aria-haspopup="menu"
@@ -138,7 +153,8 @@ export function DomainTabBar({ domain }: { domain: Domain }) {
 
    {lockedHidden.length > 0 && !showAll && (
     <button
-     className="chip dim shrink-0 ml-auto"
+     className="chip shrink-0 ml-auto"
+     style={{ color: "var(--dim)" }}
      title="Some tabs unlock as you progress. Click to show all."
      onClick={() => setShowAll(true)}
     >
@@ -146,7 +162,7 @@ export function DomainTabBar({ domain }: { domain: Domain }) {
     </button>
    )}
    {showAll && (
-    <button className="chip dim shrink-0 ml-auto" onClick={() => setShowAll(false)}>Hide advanced</button>
+    <button className="chip shrink-0 ml-auto" style={{ color: "var(--dim)" }} onClick={() => setShowAll(false)}>Hide advanced</button>
    )}
   </nav>
  );

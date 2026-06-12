@@ -26,6 +26,42 @@
   --bad: #c52b2b;
 }
 
+/* Additive chrome tokens. These augment the palette without replacing any
+   existing token value. Spacing rhythm picks 16, 24, 40. Motion picks fast
+   (120ms) for hover and base (180ms) for menus. */
+:root {
+  --hue-soft: color-mix(in oklab, var(--hue) 14%, transparent);
+  --hue-softer: color-mix(in oklab, var(--hue) 8%, transparent);
+  --hue-ink: #0b0d1a;
+  --ink-soft: color-mix(in oklab, var(--ink) 4%, transparent);
+  --ink-softer: color-mix(in oklab, var(--ink) 8%, transparent);
+  --shadow-lift: 0 6px 24px rgba(0,0,0,0.18);
+  --shadow-pop: 0 12px 40px rgba(0,0,0,0.28);
+  --radius-sm: .5rem;
+  --radius-md: .75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.25rem;
+  --space-1: 16px;
+  --space-2: 24px;
+  --space-3: 40px;
+  --motion-fast: 120ms;
+  --motion-base: 180ms;
+  --motion-slow: 260ms;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+@supports not (background: color-mix(in oklab, red, red)) {
+  :root {
+    --hue-soft: rgba(255,107,94,0.14);
+    --hue-softer: rgba(255,107,94,0.08);
+    --ink-soft: rgba(255,255,255,0.04);
+    --ink-softer: rgba(255,255,255,0.08);
+  }
+}
+[data-theme="light"] {
+  --shadow-lift: 0 6px 24px rgba(15, 18, 40, 0.10);
+  --shadow-pop: 0 12px 40px rgba(15, 18, 40, 0.14);
+}
+
 html, body { background: var(--bg); color: var(--ink); }
 body { font-family: var(--font-ui); }
 
@@ -118,6 +154,81 @@ html[data-dyslexic="1"] body {
   .panel { border-radius: 1rem; }
   h1.font-display { line-height: 1.1; }
 }
+
+/* Raised surface: panel with a very subtle top-down sheen and stronger ring.
+   Use for floating chrome (menus, palettes, drawers). Falls back to .panel
+   look where color-mix is not available. */
+.surface {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xl);
+  background-image: linear-gradient(180deg, var(--ink-soft) 0%, transparent 40%);
+  box-shadow: var(--shadow-lift);
+}
+[data-theme="light"] .surface {
+  background-image: linear-gradient(180deg, rgba(0,0,0,0.02) 0%, transparent 40%);
+}
+
+/* Uppercase tracking eyebrow label. Used for section headers and group titles. */
+.section-eyebrow {
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--dim);
+  font-weight: 500;
+}
+
+/* Hue tint utilities, additive on top of existing .hue color helper. */
+.bg-hue-soft { background: var(--hue-soft); }
+.ring-hue { box-shadow: 0 0 0 1px var(--hue) inset; }
+
+/* Primary CTA button variant. Uses hue background and the ink-dark token
+   so contrast holds in both themes. */
+.btn-primary {
+  background: var(--hue);
+  color: var(--hue-ink);
+  border-color: var(--hue);
+}
+.btn-primary:hover { filter: brightness(1.04); }
+[data-theme="light"] .btn-primary { color: #ffffff; }
+
+/* Ghost button variant. Transparent until hover. */
+.btn-ghost {
+  background: transparent;
+  border-color: transparent;
+}
+.btn-ghost:hover { background: var(--ink-soft); }
+
+/* Subtle keyboard hint chip. Smaller and more refined than .chip. */
+.kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 5px;
+  border: 1px solid var(--line);
+  background: var(--ink-soft);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 10px;
+  line-height: 1;
+  color: var(--dim);
+}
+
+/* Slide-up entrance for toaster cards. Suppressed under reduced motion via
+   the existing global rule. */
+@keyframes polymath-slide-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.anim-slide-up { animation: polymath-slide-up var(--motion-base) var(--ease-out) both; }
+@keyframes polymath-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.anim-fade-in { animation: polymath-fade-in var(--motion-base) var(--ease-out) both; }
 
 /* Print: cheat-sheet looks like a printable handout */
 @media print {

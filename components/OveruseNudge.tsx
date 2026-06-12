@@ -18,15 +18,17 @@ export function OveruseNudge() {
 
  if (!show) return null;
  return (
-  <div className="fixed bottom-4 right-4 panel p-4 max-w-sm z-30" style={{ borderColor: "var(--hue)" }} role="status">
+  <div className="fixed bottom-4 right-4 left-4 sm:left-auto surface p-4 sm:max-w-sm z-30 anim-slide-up" style={{ borderColor: "var(--hue)" }} role="status">
    <div className="flex items-start gap-3">
-    <Coffee size={18} className="hue mt-0.5" />
-    <div className="flex-1 text-sm">
-     <p className="font-medium">You've been at this ~45 minutes.</p>
-     <p className="dim mt-1">Breaks help memory consolidate, your next review will probably be sharper after one.</p>
-     <div className="flex gap-2 mt-2">
-      <button className="btn" onClick={() => setShow(false)}>Five more minutes</button>
-      <button className="btn" onClick={() => setShow(false)}>Got it</button>
+    <span className="grid place-items-center w-9 h-9 rounded-xl shrink-0 bg-hue-soft" style={{ color: "var(--hue)" }}>
+     <Coffee size={16} />
+    </span>
+    <div className="flex-1 text-sm min-w-0">
+     <p className="font-medium">You have been at this about 45 minutes.</p>
+     <p className="dim mt-1 leading-relaxed">Breaks help memory consolidate. Your next review will probably feel sharper after one.</p>
+     <div className="flex gap-2 mt-3">
+      <button className="btn" onClick={() => setShow(false)}>Five more</button>
+      <button className="btn btn-primary" onClick={() => setShow(false)}>Got it</button>
      </div>
     </div>
    </div>

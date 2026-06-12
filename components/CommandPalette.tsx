@@ -89,9 +89,9 @@ export function CommandPalette() {
  if (!open) return null;
  return (
   <div ref={dialogRef} className="fixed inset-0 z-50 flex items-start justify-center p-4 pt-[12vh]" role="dialog" aria-label="Command palette" aria-modal="true">
-   <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.55)" }} onClick={() => setOpen(false)} />
-   <div className="relative panel rounded-2xl w-full max-w-xl shadow-2xl overflow-hidden">
-    <div className="flex items-center gap-2 px-4 py-3" style={{ borderBottom: "1px solid var(--line)" }}>
+   <div className="absolute inset-0 anim-fade-in" style={{ background: "rgba(0,0,0,0.45)", backdropFilter: "blur(6px)" }} onClick={() => setOpen(false)} />
+   <div className="relative surface w-full max-w-xl overflow-hidden anim-slide-up" style={{ boxShadow: "var(--shadow-pop)" }}>
+    <div className="flex items-center gap-3 px-4 h-12" style={{ borderBottom: "1px solid var(--line)" }}>
      <Search size={16} className="dim shrink-0" />
      <label htmlFor="cmdk-input" className="sr-only">Type a command, page, or domain</label>
      <input
@@ -99,7 +99,7 @@ export function CommandPalette() {
       value={q}
       onChange={(e) => setQ(e.target.value)}
       onKeyDown={onKeyInput}
-      placeholder="Type a page or a domain..."
+      placeholder="Jump to a page or a domain"
       className="bg-transparent outline-none flex-1 text-base"
       spellCheck={false}
       autoComplete="off"
@@ -109,10 +109,10 @@ export function CommandPalette() {
       aria-autocomplete="list"
       aria-activedescendant={items[active] ? `cmdk-opt-${active}` : undefined}
      />
-     <kbd className="chip font-mono text-[10px]">esc</kbd>
+     <span className="kbd">esc</span>
     </div>
     <ul id="cmdk-listbox" ref={listRef} role="listbox" aria-label="Results" className="max-h-[60vh] overflow-y-auto p-1.5">
-     {items.length === 0 && <li className="dim text-sm p-4">No matches.</li>}
+     {items.length === 0 && <li className="dim text-sm p-6 text-center">No matches. Try a different word.</li>}
      {items.map((it, i) => (
       <li key={`${it.kind}-${it.id}`}>
        <button
@@ -122,15 +122,16 @@ export function CommandPalette() {
         data-idx={i}
         onMouseEnter={() => setActive(i)}
         onClick={() => choose(i)}
-        className="w-full text-left px-3 py-2.5 rounded-lg flex items-center gap-3"
-        style={i === active ? { background: "color-mix(in oklab, var(--hue) 14%, transparent)" } : {}}
+        className="w-full text-left px-3 py-2 rounded-lg flex items-center gap-3 relative transition-colors"
+        style={i === active ? { background: "var(--hue-soft)" } : {}}
        >
+        {i === active && <span aria-hidden="true" className="absolute left-0 top-1/2 -translate-y-1/2 h-5 w-0.5 rounded-r" style={{ background: "var(--hue)" }} />}
         {it.kind === "page" ? (
-         <span className="grid place-items-center w-8 h-8 rounded-lg shrink-0" style={{ background: "color-mix(in oklab, var(--hue) 14%, transparent)", color: "var(--hue)" }}>
+         <span className="grid place-items-center w-8 h-8 rounded-lg shrink-0 bg-hue-soft" style={{ color: "var(--hue)" }}>
           <it.Icon size={14} />
          </span>
         ) : (
-         <span className="grid place-items-center w-8 h-8 rounded-lg shrink-0 text-lg" style={{ background: `${it.hue}1f`, border: `1px solid ${it.hue}3a` }}>
+         <span className="grid place-items-center w-8 h-8 rounded-lg shrink-0 text-base" style={{ background: `${it.hue}1f`, border: `1px solid ${it.hue}3a` }}>
           {it.emoji}
          </span>
         )}
@@ -138,16 +139,17 @@ export function CommandPalette() {
          <span className="block text-sm font-medium truncate">{it.label}</span>
          <span className="dim text-xs truncate block">{it.sub}</span>
         </span>
-        <span className="dim text-[10px] uppercase tracking-widest shrink-0">{it.kind === "page" ? "Page" : "Domain"}</span>
+        <span className="section-eyebrow shrink-0">{it.kind === "page" ? "Page" : "Domain"}</span>
         {i === active && <ArrowRight size={12} className="hue shrink-0" />}
        </button>
       </li>
      ))}
     </ul>
-    <div className="px-4 py-2 text-[11px] dim flex items-center gap-3" style={{ borderTop: "1px solid var(--line)" }}>
-     <span><Sparkles size={10} className="hue inline" /> Press <kbd className="chip font-mono text-[10px]">cmd</kbd> + <kbd className="chip font-mono text-[10px]">k</kbd> anywhere</span>
-     <span className="ml-auto inline-flex items-center gap-2">
-      <kbd className="chip font-mono text-[10px]">↑↓</kbd> Navigate · <kbd className="chip font-mono text-[10px]">enter</kbd> Open
+    <div className="px-4 h-10 text-[11px] dim flex items-center gap-3" style={{ borderTop: "1px solid var(--line)" }}>
+     <span className="inline-flex items-center gap-1.5"><Sparkles size={10} className="hue" /> <span className="kbd">cmd</span><span className="kbd">k</span> anywhere</span>
+     <span className="ml-auto inline-flex items-center gap-3">
+      <span className="inline-flex items-center gap-1"><span className="kbd">↑</span><span className="kbd">↓</span> navigate</span>
+      <span className="inline-flex items-center gap-1"><span className="kbd">↵</span> open</span>
      </span>
     </div>
    </div>

@@ -6,7 +6,7 @@ const BASE = "https://polymath.vercel.app";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
  const now = new Date().toISOString();
- const staticRoutes = ["/", "/about"];
+ const staticRoutes = ["/", "/about", "/paths", "/glossary", "/changelog"];
 
  const out: MetadataRoute.Sitemap = [];
  for (const path of staticRoutes) {

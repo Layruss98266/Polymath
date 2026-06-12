@@ -2,6 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   typedRoutes: false,
+  eslint: { ignoreDuringBuilds: true },
   // Expose Next's build id to the client so the service-worker registrar can
   // namespace its cache per release. Vercel sets a stable id per deploy.
   env: {

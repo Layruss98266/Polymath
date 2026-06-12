@@ -32,7 +32,12 @@ export function BottomNav() {
   <nav
    aria-label="Mobile primary navigation"
    className="sm:hidden fixed bottom-0 left-0 right-0 z-30 border-t backdrop-blur-md"
-   style={{ background: "color-mix(in oklab, var(--bg) 88%, transparent)", borderColor: "var(--line)", ...(domainHue ? ({ ["--hue" as any]: domainHue } as any) : {}) }}
+   style={{
+    background: "color-mix(in oklab, var(--bg) 88%, transparent)",
+    borderColor: "var(--line)",
+    paddingBottom: "env(safe-area-inset-bottom, 0px)",
+    ...(domainHue ? ({ ["--hue" as any]: domainHue } as any) : {})
+   }}
   >
    <ul className="grid grid-cols-5">
     {ITEMS.map(({ href, label, Icon }) => {
@@ -42,19 +47,24 @@ export function BottomNav() {
        <Link
         href={href}
         aria-current={active ? "page" : undefined}
-        className="flex flex-col items-center gap-0.5 py-2 text-[10px]"
+        className="flex flex-col items-center gap-1 pt-2 pb-1.5 text-[10px] relative"
         style={{ color: active ? "var(--hue)" : "var(--dim)" }}
        >
         <span className="relative">
-         <Icon size={18} />
+         <Icon size={20} strokeWidth={active ? 2.25 : 1.75} />
          {href === "/review" && due > 0 && (
           <span
            className="absolute -top-1 -right-2 min-w-[14px] h-[14px] text-[8px] font-bold rounded-full px-1 flex items-center justify-center"
-           style={{ background: "var(--hue)", color: "#0b0d1a" }}
+           style={{ background: "var(--hue)", color: "var(--hue-ink)" }}
           >{due}</span>
          )}
         </span>
-        <span>{label}</span>
+        <span style={{ fontWeight: active ? 600 : 400 }}>{label}</span>
+        <span
+         aria-hidden="true"
+         className="absolute bottom-0 h-[3px] w-7 rounded-full transition-opacity"
+         style={{ background: "var(--hue)", opacity: active ? 1 : 0 }}
+        />
        </Link>
       </li>
      );

@@ -65,10 +65,14 @@ export function Toaster() {
    className="fixed left-1/2 -translate-x-1/2 sm:bottom-4 sm:left-auto sm:right-4 sm:translate-x-0 z-40 flex flex-col gap-2 pointer-events-none"
   >
    {toasts.map((t) => (
-    <div key={t.id} className="panel px-3 py-2 flex items-center gap-2 text-sm" style={{ borderColor: "var(--hue)", minWidth: 200 }}>
-     <span className="hue"><Icon k={t.icon} /></span>
+    <div
+     key={t.id}
+     className="surface px-3.5 py-2.5 flex items-center gap-2.5 text-sm anim-slide-up pointer-events-auto"
+     style={{ borderColor: "var(--hue)", minWidth: 220, boxShadow: "var(--shadow-lift)" }}
+    >
+     <span className="grid place-items-center w-7 h-7 rounded-lg bg-hue-soft shrink-0" style={{ color: "var(--hue)" }}><Icon k={t.icon} /></span>
      <span className="font-medium">{t.text}</span>
-     {t.sub && <span className="dim text-xs ml-1">{t.sub}</span>}
+     {t.sub && <span className="dim text-xs ml-1 truncate">{t.sub}</span>}
     </div>
    ))}
   </div>

@@ -68,21 +68,23 @@ export function KeyboardShortcuts() {
 
  if (!open) return null;
  return (
-  <div className="fixed inset-0 z-40 grid place-items-center p-4" style={{ background: "rgba(0,0,0,0.55)" }} onClick={() => setOpen(false)}>
-   <div className="panel p-5 max-w-md w-full" role="dialog" aria-label="Keyboard shortcuts" onClick={(e) => e.stopPropagation()}>
-    <div className="flex items-start gap-2 mb-3">
-     <Keyboard size={20} className="hue mt-1 shrink-0" />
+  <div className="fixed inset-0 z-40 grid place-items-center p-4 anim-fade-in" style={{ background: "rgba(0,0,0,0.55)", backdropFilter: "blur(4px)" }} onClick={() => setOpen(false)}>
+   <div className="surface p-6 max-w-md w-full anim-slide-up" role="dialog" aria-label="Keyboard shortcuts" onClick={(e) => e.stopPropagation()}>
+    <div className="flex items-start gap-3 mb-4">
+     <span className="grid place-items-center w-10 h-10 rounded-xl shrink-0 bg-hue-soft" style={{ color: "var(--hue)" }}>
+      <Keyboard size={18} />
+     </span>
      <div className="flex-1">
       <h2 className="font-display text-xl">Keyboard shortcuts</h2>
-      <p className="dim text-xs">Tap any key while not typing in a field.</p>
+      <p className="dim text-xs mt-0.5">Tap any key while not typing in a field.</p>
      </div>
      <button className="btn !p-2" aria-label="Close" onClick={() => setOpen(false)}><X size={14} /></button>
     </div>
-    <ul className="space-y-2 text-sm">
+    <ul className="space-y-2.5 text-sm">
      {ROUTES.map((r, i) => (
       <li key={i} className="flex items-center justify-between gap-3">
        <span>{r.label}</span>
-       <kbd className="chip font-mono text-[11px]">{r.keys}</kbd>
+       <span className="kbd" style={{ fontSize: 11, height: 22, padding: "0 8px" }}>{r.keys}</span>
       </li>
      ))}
     </ul>

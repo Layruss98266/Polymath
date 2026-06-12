@@ -110,8 +110,8 @@ export function MegaMenu() {
     <>
      {/* Backdrop dimmer */}
      <div
-      className="fixed inset-0 z-30"
-      style={{ background: "rgba(0,0,0,0.5)", animation: "polymath-fade .15s ease-out" }}
+      className="fixed inset-0 z-30 anim-fade-in"
+      style={{ background: "rgba(0,0,0,0.5)", backdropFilter: "blur(2px)" }}
       onClick={() => setOpen(false)}
       aria-hidden="true"
      />
@@ -124,12 +124,12 @@ export function MegaMenu() {
       aria-label="All domains"
       onMouseEnter={cancelClose}
       onMouseLeave={scheduleClose}
-      className="fixed z-40 panel shadow-2xl rounded-2xl"
+      className="fixed z-40 surface anim-slide-up"
       style={{
        top: "60px",
        left: "50%",
        transform: "translateX(-50%)",
-       width: "min(94vw, 880px)",
+       width: "min(94vw, 920px)",
        maxHeight: "min(78vh, 640px)",
        overflow: "hidden",
        display: "flex",
@@ -166,7 +166,7 @@ export function MegaMenu() {
       {/* Popular row (hidden when filtering) */}
       {!q && (
        <div className="px-4 pb-3">
-        <p className="dim text-[11px] uppercase tracking-widest mb-2 inline-flex items-center gap-1">
+        <p className="section-eyebrow mb-2 inline-flex items-center gap-1.5">
          <Sparkles size={11} className="hue" /> Popular starting points
         </p>
         <div className="flex flex-wrap gap-2">
@@ -189,11 +189,11 @@ export function MegaMenu() {
       {/* Scrollable groups */}
       <div className="px-4 pb-4 overflow-auto flex-1">
        {groups.length === 0 && <p className="dim text-sm p-3">No matches. Try a different word.</p>}
-       <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-3">
+       <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4">
         {groups.map(([cat, list]) => (
          <section key={cat}>
-          <p className="dim text-[11px] uppercase tracking-widest px-2 mb-1">{cat}</p>
-          <ul className="space-y-1">
+          <p className="section-eyebrow px-2 mb-2">{cat}</p>
+          <ul className="space-y-0.5">
            {list.map((d) => {
             const touched = s.startedDomains.includes(d.id);
             return (
@@ -202,13 +202,21 @@ export function MegaMenu() {
                role="menuitem"
                href={`/domain/${d.id}`}
                onClick={() => setOpen(false)}
-               className="flex items-start gap-2.5 px-2 py-2 rounded-lg group"
-               style={{ borderLeft: `3px solid ${touched ? d.hue : "transparent"}` }}
+               className="flex items-start gap-3 px-2.5 py-2 rounded-lg group relative transition-colors"
+               style={{
+                borderLeft: `3px solid ${touched ? d.hue : "transparent"}`
+               }}
+               onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "var(--ink-soft)"; }}
+               onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = "transparent"; }}
               >
-               <span className="text-xl mt-0.5 shrink-0" aria-hidden="true">{d.icon}</span>
+               <span
+                className="grid place-items-center w-9 h-9 rounded-lg shrink-0 text-lg"
+                aria-hidden="true"
+                style={{ background: `${d.hue}1a`, border: `1px solid ${d.hue}33` }}
+               >{d.icon}</span>
                <span className="flex-1 min-w-0">
-                <span className="block text-sm font-medium group-hover:underline" style={{ color: touched ? d.hue : "var(--ink)" }}>{d.name}</span>
-                <span className="block dim text-[11px] truncate">{d.tagline}</span>
+                <span className="block text-sm font-medium" style={{ color: touched ? d.hue : "var(--ink)" }}>{d.name}</span>
+                <span className="block dim text-[11px] truncate mt-0.5">{d.tagline}</span>
                </span>
               </Link>
              </li>

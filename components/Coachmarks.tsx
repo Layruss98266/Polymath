@@ -48,22 +48,27 @@ export function Coachmarks() {
  const step = STEPS[i];
  const Icon = step.Icon;
  return (
-  <div role="region" aria-label="Quick tour" className="fixed bottom-4 right-4 z-30 panel p-4 max-w-sm" style={{ borderColor: "var(--hue)" }}>
+  <div
+   role="region"
+   aria-label="Quick tour"
+   className="fixed bottom-4 right-4 left-4 sm:left-auto z-30 surface p-4 sm:max-w-sm anim-slide-up"
+   style={{ borderColor: "var(--hue)" }}
+  >
    <div className="flex items-start gap-3">
-    <span className="grid place-items-center w-9 h-9 rounded-xl shrink-0" style={{ background: "color-mix(in oklab, var(--hue) 14%, transparent)", color: "var(--hue)" }}>
+    <span className="grid place-items-center w-9 h-9 rounded-xl shrink-0 bg-hue-soft" style={{ color: "var(--hue)" }}>
      <Icon size={16} />
     </span>
     <div className="flex-1 min-w-0">
-     <p className="dim text-[10px] uppercase tracking-widest">Tour {i + 1} of {STEPS.length}</p>
-     <p className="font-display text-base mt-0.5">{step.title}</p>
+     <p className="section-eyebrow">Tour {i + 1} of {STEPS.length}</p>
+     <p className="font-display text-base mt-1">{step.title}</p>
      <p className="dim text-sm mt-1 leading-relaxed">{step.body}</p>
     </div>
     <button className="btn !p-1.5" aria-label="Skip tour" onClick={finish}><X size={12} /></button>
    </div>
-   <div className="flex items-center justify-between gap-2 mt-3">
-    <div className="flex gap-1">
+   <div className="flex items-center justify-between gap-2 mt-4">
+    <div className="flex gap-1.5" aria-hidden="true">
      {STEPS.map((_, k) => (
-      <span key={k} className="h-1 w-4 rounded-full" style={{ background: k <= i ? "var(--hue)" : "var(--line)" }} aria-hidden="true" />
+      <span key={k} className="h-1 w-6 rounded-full transition-colors" style={{ background: k <= i ? "var(--hue)" : "var(--line)" }} />
      ))}
     </div>
     <div className="flex gap-1.5">
@@ -71,7 +76,7 @@ export function Coachmarks() {
      {i < STEPS.length - 1 ? (
       <button className="btn" onClick={() => setI((v) => v + 1)}>Next <ArrowRight size={12} /></button>
      ) : (
-      <button className="btn" style={{ background: "var(--hue)", color: "#0b0d1a", borderColor: "var(--hue)" }} onClick={finish}>Got it</button>
+      <button className="btn btn-primary" onClick={finish}>Got it</button>
      )}
     </div>
    </div>

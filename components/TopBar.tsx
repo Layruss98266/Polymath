@@ -145,8 +145,18 @@ export function TopBar() {
     <div className="flex items-center gap-2 justify-self-end">
      <StatsPill />
 
-     {/* Search shortcut */}
-     <Link href="/search" className="btn !p-2" aria-label="Search"><Search size={14} /></Link>
+     {/* Search shortcut. Compact pill on desktop with slash-key hint, icon on mobile. */}
+     <Link
+      href="/search"
+      aria-label="Search, press slash to jump from anywhere"
+      className="hidden md:inline-flex items-center gap-2 h-9 pl-3 pr-1.5 rounded-lg text-sm transition-colors"
+      style={{ background: "var(--ink-soft)", border: "1px solid var(--line)", color: "var(--dim)" }}
+     >
+      <Search size={13} />
+      <span>Search</span>
+      <span className="kbd ml-1">/</span>
+     </Link>
+     <Link href="/search" className="btn !p-2 md:hidden" aria-label="Search"><Search size={14} /></Link>
 
      {/* More dropdown for utilities */}
      <div ref={moreRef} className="relative">
@@ -161,7 +171,7 @@ export function TopBar() {
        <Settings size={14} />
       </button>
       {more && (
-       <div role="menu" className="absolute right-0 mt-2 panel shadow-2xl z-40 min-w-[220px] py-2">
+       <div role="menu" className="absolute right-0 mt-2 surface z-40 min-w-[240px] py-2 anim-fade-in">
         <button role="menuitem" className="w-full text-left px-4 py-2 text-sm inline-flex items-center gap-2 hover:opacity-80" onClick={() => { a.setTheme(s.theme === "dark" ? "light" : "dark"); }}>
          {s.theme === "dark" ? <Sun size={14} /> : <MoonStar size={14} />} {s.theme === "dark" ? "Light theme" : "Dark theme"}
         </button>
@@ -188,8 +198,7 @@ export function TopBar() {
      {/* Primary CTA */}
      <Link
       href={s.startedDomains.length > 0 ? "/review" : "/#all-domains"}
-      className="hidden sm:inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm font-medium shrink-0"
-      style={{ background: "var(--hue)", color: "#0b0d1a" }}
+      className="hidden sm:inline-flex items-center gap-1 h-9 px-3 rounded-lg text-sm font-medium shrink-0 btn-primary"
      >
       {s.startedDomains.length > 0 ? <>Review <ArrowRight size={14} /></> : <>Start learning <ArrowRight size={14} /></>}
      </Link>
@@ -202,59 +211,36 @@ export function TopBar() {
    {/* Mobile drawer */}
    {drawer && (
     <div className="sm:hidden fixed inset-0 z-40" role="dialog" aria-modal="true" aria-label="Menu">
-     <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.55)" }} onClick={() => setDrawer(false)} />
-     <div ref={drawerRef} className="absolute right-0 top-0 bottom-0 w-[88%] max-w-sm panel rounded-none border-l p-4 overflow-y-auto" style={{ borderColor: "var(--line)" }}>
-      <div className="flex items-center justify-between mb-4">
-       <span className="font-display text-lg">POLYMATH</span>
+     <div className="absolute inset-0 anim-fade-in" style={{ background: "rgba(0,0,0,0.55)" }} onClick={() => setDrawer(false)} />
+     <div
+      ref={drawerRef}
+      className="absolute right-0 top-0 bottom-0 w-[88%] max-w-sm panel rounded-none border-l p-4 overflow-y-auto anim-slide-up"
+      style={{ borderColor: "var(--line)", backgroundImage: "linear-gradient(180deg, var(--hue-softer) 0%, transparent 30%)" }}
+     >
+      <div className="flex items-center justify-between mb-6">
+       <span className="font-display text-lg tracking-wide">POLYMATH</span>
        <button ref={drawerCloseRef} className="btn !p-2" aria-label="Close menu" onClick={() => setDrawer(false)}><X size={16} /></button>
       </div>
-      <div className="panel px-3 py-2 flex items-center gap-3 text-sm mb-4">
-       <span className="flex items-center gap-1"><Zap size={12} className="hue" /> {s.xp} XP</span>
-       <span className="flex items-center gap-1"><Flame size={12} className="hue" /> {s.currentStreak}</span>
+      <div className="surface px-4 py-3 flex items-center gap-4 text-sm mb-6">
+       <span className="flex items-center gap-1.5"><Zap size={13} className="hue" /> {s.xp} XP</span>
+       <span className="flex items-center gap-1.5"><Flame size={13} className="hue" /> {s.currentStreak}</span>
        <span className="dim ml-auto">L{lp.current}</span>
       </div>
-      <nav className="space-y-1">
-       <Link href="/" className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm" style={isActive("/") ? { background: "rgba(255,255,255,0.05)", color: "var(--hue)" } : {}}>
-        <Layers size={14} /> Home
-       </Link>
+      <nav className="space-y-0.5">
+       <DrawerLink href="/" active={isActive("/")} Icon={Layers}>Home</DrawerLink>
        {NAV.map(({ href, label, Icon }) => (
-        <Link
-         key={href}
-         href={href}
-         className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm"
-         style={isActive(href) ? { background: "rgba(255,255,255,0.05)", color: "var(--hue)" } : {}}
-        >
-         <Icon size={14} /> {label}
-         {href === "/review" && due > 0 && (
-          <span className="ml-auto inline-flex items-center justify-center min-w-[18px] h-[18px] text-[10px] font-bold rounded-full px-1" style={{ background: "var(--hue)", color: "#0b0d1a" }}>{due}</span>
-         )}
-        </Link>
+        <DrawerLink key={href} href={href} active={isActive(href)} Icon={Icon}>{label}</DrawerLink>
        ))}
-       <div className="pt-3 mt-2 border-t" style={{ borderColor: "var(--line)" }}>
-        <p className="dim text-[10px] uppercase tracking-widest px-3 mb-1">Practice</p>
-        <Link href="/review" className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm" style={isActive("/review") ? { background: "rgba(255,255,255,0.05)", color: "var(--hue)" } : {}}>
-         <GraduationCap size={14} /> Review
-         {due > 0 && (
-          <span className="ml-auto inline-flex items-center justify-center min-w-[18px] h-[18px] text-[10px] font-bold rounded-full px-1" style={{ background: "var(--hue)", color: "#0b0d1a" }}>{due}</span>
-         )}
-        </Link>
-        <Link href="/dashboard" className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm" style={isActive("/dashboard") ? { background: "rgba(255,255,255,0.05)", color: "var(--hue)" } : {}}>
-         <BarChart3 size={14} /> Dashboard
-        </Link>
-        <Link href="/skill-map" className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm" style={isActive("/skill-map") ? { background: "rgba(255,255,255,0.05)", color: "var(--hue)" } : {}}>
-         <Map size={14} /> Skill map
-        </Link>
-        <Link href="/my-list" className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm" style={isActive("/my-list") ? { background: "rgba(255,255,255,0.05)", color: "var(--hue)" } : {}}>
-         <Bookmark size={14} /> My list
-        </Link>
-       </div>
-       <div className="pt-3 mt-2 border-t" style={{ borderColor: "var(--line)" }}>
-        <p className="dim text-[10px] uppercase tracking-widest px-3 mb-1">More</p>
-        <Link href="/search"   className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm"><Search size={14} /> Search</Link>
-        <Link href="/settings" className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm"><Settings size={14} /> Settings</Link>
-       </div>
+       <p className="section-eyebrow px-3 pt-5 pb-2">Practice</p>
+       <DrawerLink href="/review" active={isActive("/review")} Icon={GraduationCap} badge={due}>Review</DrawerLink>
+       <DrawerLink href="/dashboard" active={isActive("/dashboard")} Icon={BarChart3}>Dashboard</DrawerLink>
+       <DrawerLink href="/skill-map" active={isActive("/skill-map")} Icon={Map}>Skill map</DrawerLink>
+       <DrawerLink href="/my-list" active={isActive("/my-list")} Icon={Bookmark}>My list</DrawerLink>
+       <p className="section-eyebrow px-3 pt-5 pb-2">More</p>
+       <DrawerLink href="/search" active={isActive("/search")} Icon={Search}>Search</DrawerLink>
+       <DrawerLink href="/settings" active={isActive("/settings")} Icon={Settings}>Settings</DrawerLink>
       </nav>
-      <div className="mt-4 pt-4 border-t flex flex-wrap gap-2" style={{ borderColor: "var(--line)" }}>
+      <div className="mt-6 pt-5 border-t flex gap-2" style={{ borderColor: "var(--line)" }}>
        <button className="btn flex-1 justify-center" onClick={() => a.setTheme(s.theme === "dark" ? "light" : "dark")}>
         {s.theme === "dark" ? <><Sun size={14} /> Light</> : <><MoonStar size={14} /> Dark</>}
        </button>
@@ -264,8 +250,7 @@ export function TopBar() {
       </div>
       <Link
        href={s.startedDomains.length > 0 ? "/review" : "/#all-domains"}
-       className="mt-4 inline-flex w-full justify-center items-center gap-1 px-3 py-2.5 rounded-lg text-sm font-medium"
-       style={{ background: "var(--hue)", color: "#0b0d1a" }}
+       className="mt-4 btn-primary inline-flex w-full justify-center items-center gap-1 px-3 py-2.5 rounded-lg text-sm font-medium border"
       >
        {s.startedDomains.length > 0 ? <>Continue learning <ArrowRight size={14} /></> : <>Start learning <ArrowRight size={14} /></>}
       </Link>
@@ -275,6 +260,32 @@ export function TopBar() {
 
    {showSave && <SaveLoadModal onClose={() => setShowSave(false)} />}
   </header>
+ );
+}
+
+function DrawerLink({
+ href, active, Icon, children, badge
+}: {
+ href: string;
+ active: boolean | undefined;
+ Icon: typeof Brain;
+ children: React.ReactNode;
+ badge?: number;
+}) {
+ return (
+  <Link
+   href={href}
+   aria-current={active ? "page" : undefined}
+   className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm relative"
+   style={active ? { background: "var(--hue-soft)", color: "var(--hue)" } : {}}
+  >
+   {active && <span aria-hidden="true" className="absolute left-0 top-1/2 -translate-y-1/2 h-5 w-0.5 rounded-r" style={{ background: "var(--hue)" }} />}
+   <Icon size={15} className={active ? "hue" : "dim"} />
+   <span>{children}</span>
+   {badge !== undefined && badge > 0 && (
+    <span className="ml-auto inline-flex items-center justify-center min-w-[20px] h-[20px] text-[10px] font-bold rounded-full px-1.5 btn-primary border" >{badge}</span>
+   )}
+  </Link>
  );
 }
 
@@ -292,8 +303,8 @@ function SaveLoadModal({ onClose }: { onClose: () => void }) {
   return () => document.removeEventListener("keydown", onKey);
  }, [onClose]);
  return (
-  <div className="fixed inset-0 z-40 grid place-items-center p-4" role="dialog" aria-label="Save / Load progress" aria-modal="true" style={{ background: "rgba(0,0,0,0.5)" }} onClick={onClose}>
-   <div ref={dialogRef} className="panel p-5 max-w-xl w-full space-y-3" onClick={(e) => e.stopPropagation()}>
+  <div className="fixed inset-0 z-40 grid place-items-center p-4 anim-fade-in" role="dialog" aria-label="Save / Load progress" aria-modal="true" style={{ background: "rgba(0,0,0,0.5)", backdropFilter: "blur(4px)" }} onClick={onClose}>
+   <div ref={dialogRef} className="surface p-6 max-w-xl w-full space-y-3 anim-slide-up" onClick={(e) => e.stopPropagation()}>
     <h3 className="font-display text-xl">Save / Load progress</h3>
     <p className="dim text-sm">Your progress is auto-saved locally. To move it to another device or browser, copy this code and paste it on the other side.</p>
     <label className="text-sm">Your save code</label>

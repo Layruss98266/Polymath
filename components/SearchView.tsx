@@ -144,14 +144,14 @@ export function SearchView() {
    </header>
 
    {/* Big search input */}
-   <div className="panel flex items-center gap-3 px-4 py-3" style={{ borderColor: q ? "var(--hue)" : "var(--line)" }}>
-    <Search size={18} className="dim" />
+   <div className="panel flex items-center gap-3 px-4 py-4 sticky top-2 z-10 transition-colors" style={{ borderColor: q ? "var(--hue)" : "var(--line)", boxShadow: q ? "0 0 0 4px color-mix(in oklab, var(--hue) 12%, transparent)" : undefined, background: "color-mix(in oklab, var(--panel) 94%, transparent)", backdropFilter: "blur(8px)" }}>
+    <Search size={18} style={{ color: q ? "var(--hue)" : "var(--dim)" }} />
     <input
      autoFocus
      value={q}
      onChange={(e) => setQ(e.target.value)}
      placeholder="Try compounding, anchoring, hallucination, BATNA..."
-     className="bg-transparent outline-none flex-1 text-base"
+     className="bg-transparent outline-none flex-1 text-base sm:text-lg"
      aria-label="Search query"
     />
     {q && (
@@ -159,6 +159,11 @@ export function SearchView() {
     )}
     <kbd className="hidden sm:inline-flex chip font-mono text-[10px]">esc</kbd>
    </div>
+
+   {/* Results count summary */}
+   {q.trim() && hits.length > 0 && (
+    <p className="dim text-xs">{hits.length} match{hits.length === 1 ? "" : "es"} for &quot;{q.trim()}&quot;</p>
+   )}
 
    {/* Empty state */}
    {!q.trim() && (
