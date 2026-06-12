@@ -52,6 +52,33 @@ All 15 schema-validated, all SSG'd at build, all named-authority mentors verifie
 - [x] Skill Map: category-grouped nodes, started domains glow with their hue
 - [x] My List: 4 curated Paths (Become hard to manipulate · Money from zero · Build and sell a product · Think clearly) w/ live-domain counters + capstones; bookmarks; saved reflections
 
+## Phase 4 — Humanize the writing 🟡
+Goal: rewrite from textbook voice to warm, "smart friend at a kitchen table" voice. Concrete scenes, "you" not "one," vivid analogies, smooth transitions between roadmap stages.
+
+Full deep rewrite (basics + realWorldExample + concept.deep + counterView + roadmap):
+- [x] Marketing
+- [x] Personal Finance
+- [x] AI & Machine Learning
+
+Basics + realWorldExample rewritten to the new voice (concepts/roadmap queued for next pass):
+- [x] Human Psychology
+- [x] Learning How to Learn
+- [x] Communication & Storytelling
+- [x] Negotiation & Persuasion
+- [x] Investing & Markets
+- [x] Entrepreneurship & Startups
+- [x] Tech & Programming
+- [x] Mental Models & Famous Laws
+- [x] Health, Longevity & How the Body Works
+- [x] Nutrition & Food Science
+- [x] Famous Scientific Laws
+- [x] Law & Legal Basics
+
+Queued for next pass:
+- [ ] Concept-level `.deep` rewrites for the 12 domains above (currently still textbook-voiced)
+- [ ] Roadmap stage rewrites for the 12 above (smooth transitions)
+- [ ] Voice consistency pass across all `counterView`s
+
 ## Phase 3 — Security + URLs + responsive ✅
 - [x] Upgraded Next.js 15.0.3 → 15.5.19 (patches CVE-2025-66478) + React 19 stable + types
 - [x] Real, verified live URLs added across all 15 domains' resources — bumped to ~10 free + ~10 paid each

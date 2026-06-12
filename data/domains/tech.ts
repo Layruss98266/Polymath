@@ -8,14 +8,14 @@ const d: Domain = {
   name: "Tech & Programming",
   tagline: "Speak to machines, build things",
 
-  basics: "Programming is the work of turning fuzzy intentions into precise instructions a machine can follow. The hard part isn't syntax (that's a few weeks) — it's decomposing problems, reading other people's code, and shipping things that don't break. The good news: the meta-skills compound forever, even as specific languages come and go.",
+  basics: "Programming is the strange art of writing instructions so precise that a machine — which has no common sense at all — can follow them and produce something useful. The syntax (the punctuation and grammar of any specific language) you can learn in a few weeks. The actual job is harder and slower: breaking fuzzy real-world problems into precise small steps, reading other people's code without your eyes glazing over, and shipping things that don't fall apart when a real user touches them. The good news — those underlying skills don't expire. Languages come and go, but knowing how to think like a programmer is a lifetime tool.",
   whyItMatters: [
-    "Build leverage: one person can ship what teams used to.",
-    "Read APIs, configs, and logs without panic — modern jobs need this.",
-    "Spot good vs bad technical decisions without being technical full-time.",
-    "Automate the tedious parts of your life."
+    "Massive leverage. One person who codes can build things that used to need a team of ten.",
+    "Modern jobs across every industry now expect you to read APIs, configs, and logs without panicking. Hiding from tech is no longer free.",
+    "You can tell a good technical decision from a bad one even if you aren't an engineer full-time — which makes you better at almost any role.",
+    "You can automate the boring parts of your own life. That alone is worth the price of admission."
   ],
-  realWorldExample: "When you type a URL and press enter: DNS resolves the name to an IP, your computer opens a TCP connection, sends an HTTP request, the server responds with HTML, your browser fetches CSS/JS, runs the JS, and paints the page. Knowing the rough shape of this — not every detail — turns 'the internet is magic' into 'I can debug a slow page.'",
+  realWorldExample: "Type a URL into your browser and hit enter. In the next 200 milliseconds, your computer asks the internet's address book where this site lives (DNS lookup). It opens a secure phone line to that address (TCP and TLS). It says \"please send me the page\" (HTTP request). The server replies with a heap of HTML, which links to more files — fonts, images, JavaScript. Your browser fetches each, runs the JavaScript, paints the result, and you see something. Knowing the rough shape of this — not the wire-level detail — turns \"the internet is magic\" into \"this page is slow because the server's slow,\" or \"this site is loading too many images.\" Suddenly you can debug things the rest of the office can't.",
 
   mentors: [
     { name: "Alan Turing", for: "the theoretical foundation", work: "On Computable Numbers (1936)" },

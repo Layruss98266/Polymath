@@ -8,14 +8,14 @@ const d: Domain = {
   name: "Famous Scientific Laws",
   tagline: "The rules of reality, in plain words",
 
-  basics: "Scientific laws are compressed truths that survived a lot of trying to break them. You don't need the math to think with them — knowing F=ma in your gut changes how you push a stuck cart; knowing entropy in your gut changes how you treat a system left alone. This is the lens-collection that makes physics + biology + math feel like one project instead of separate trivia.",
+  basics: "Scientific laws are short sentences that survived hundreds of years of clever people trying to break them. You don't need the maths to use them — you need the feel. Knowing F=ma in your gut changes how you push a stuck shopping trolley. Knowing entropy in your gut changes how you treat any system left alone (it gets messier, never tidier, without effort). Once you've collected maybe a dozen of these, physics and biology and chemistry stop feeling like separate school subjects and start feeling like one project — humans trying to write down how reality actually works, in the smallest possible number of words.",
   whyItMatters: [
-    "Build intuition that survives across fields.",
-    "Spot when someone is using science to dress up a non-science claim.",
-    "Read a science headline without panicking.",
-    "Connect physics, biology, economics, and computation as one project."
+    "You build intuition that travels across fields. The same idea (energy conserved, disorder grows, populations selected) keeps showing up.",
+    "You can tell when someone's using science-sounding words to dress up a claim that isn't really science.",
+    "You can read a headline about a discovery without panicking or believing it whole.",
+    "Physics, biology, economics, and computation all start to feel like different chapters of the same book."
   ],
-  realWorldExample: "When a cup of coffee cools, that's the second law of thermodynamics in everyday life — heat flows from hot to cold spontaneously; the reverse needs work. The same law tells you why batteries are imperfect, why your messy desk doesn't self-clean, and why the universe has an arrow of time.",
+  realWorldExample: "Pour yourself a hot coffee and forget about it for an hour. The coffee cools to room temperature. The room doesn't get noticeably warmer. Heat flowed one direction, from hot to cold, by itself — and never reverses on its own. That tiny everyday observation is the second law of thermodynamics. The same law tells you why batteries always waste some energy, why your desk doesn't tidy itself, and why time only moves one direction. One idea, working everywhere, in plain sight. Once you start seeing famous laws in everyday objects, the world stops being a bunch of disconnected facts and starts being a system you can read.",
 
   mentors: [
     { name: "Isaac Newton", for: "the foundation of classical mechanics", work: "Principia (1687)" },

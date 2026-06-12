@@ -8,14 +8,14 @@ const d: Domain = {
   name: "Mental Models & Famous Laws",
   tagline: "A latticework for clearer thinking",
 
-  basics: "A mental model is a compact, transferable way of thinking — a lens that helps you make better decisions in unfamiliar territory. You don't need 1,000. You need a small lattice of strong ones from different disciplines (economics, biology, math, physics, psychology) and the habit of asking 'which model fits this problem?'",
+  basics: "A mental model is a compact, transferable way of thinking — a lens you can pull out and apply to a brand new problem. Charlie Munger (Warren Buffett's partner) called it \"a latticework\" — a small set of strong ideas borrowed from different fields, sitting in your head ready to use. You don't need a thousand. You need maybe twenty really good ones — from physics, biology, economics, maths, psychology — and the habit of asking, when you're stuck, \"which model fits this problem?\" People who think with a latticework consistently make better calls than people who only know their own field, even when the second group knows more facts.",
   whyItMatters: [
-    "Better decisions with less information.",
-    "Spot patterns that one-discipline thinkers miss.",
-    "Avoid expensive mistakes (sunk cost, regret aversion, second-order effects).",
-    "Communicate complex ideas with shared shorthand."
+    "Better decisions, faster, with less information than the other person has.",
+    "You spot patterns that single-discipline thinkers miss — because the same idea (selection pressure, compounding, equilibrium) shows up under different names in different fields.",
+    "You avoid the expensive classics: sunk-cost reasoning, second-order surprises, confidently misreading a system.",
+    "You can communicate complex ideas in shorthand to anyone else who shares the vocabulary."
   ],
-  realWorldExample: "Inversion — instead of asking 'how do I succeed?', ask 'what would guarantee failure?' Avoiding those is often easier and clearer than chasing wins. Stoics, Munger, and engineers all use this. It's a one-sentence mental model that consistently changes choices.",
+  realWorldExample: "There's a tiny mental model called inversion. Instead of asking \"how do I succeed at this?\", you ask \"what would absolutely guarantee failure?\" Most of the time, the second question is shockingly easy to answer — and avoiding those things does more for you than chasing brilliance. The Stoics used it. Engineers use it (failure-mode analysis). Charlie Munger built a career on it. One sentence, repeatable forever, used right it changes real decisions every week. That's what a good mental model looks like — small, portable, and quietly doing work in the background of your life.",
 
   mentors: [
     { name: "Charlie Munger", for: "the latticework of mental models", work: "Poor Charlie's Almanack" },

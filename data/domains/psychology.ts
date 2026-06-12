@@ -8,14 +8,14 @@ const d: Domain = {
   name: "Human Psychology",
   tagline: "Why people do what they do",
 
-  basics: "Psychology is the systematic study of mind and behaviour. Almost everything you think is a deliberate choice is mostly a fast, automatic process that you noticed late. The interesting question isn't whether you have biases — you do — it's which ones, when, and how to compensate.",
+  basics: "Most of what you think of as \"deciding\" already happened before you noticed. Some part of your brain handled it in a tenth of a second, and the part of you that talks to itself in words showed up afterwards to take credit. Psychology is the careful study of this gap — between what we actually do and the stories we tell about why we did it. You can't think your way out of having biases. You can learn to spot them, especially the ones that are quietly costing you money, relationships, or sleep.",
   whyItMatters: [
-    "Understand your own decisions before judging others'.",
-    "Spot manipulation tactics — in ads, news, conversations.",
-    "Build relationships, teams, and habits that don't fight human nature.",
-    "Avoid expensive mistakes that come from confidently misreading other people."
+    "You'll understand your own bad decisions before you start judging other people's.",
+    "You'll spot manipulation — in ads, news, sales calls, family arguments — instead of just feeling sold.",
+    "You'll build relationships, teams, and habits that work with human nature instead of fighting it.",
+    "You'll stop misreading people so confidently. A lot of expensive mistakes start there."
   ],
-  realWorldExample: "When supermarkets play slow music, shoppers walk slower and spend more — without noticing. The decision feels fully conscious; the cause isn't. That gap between felt and actual control is most of psychology in one example.",
+  realWorldExample: "Supermarkets play slow music in the evening. Shoppers move slower, spend longer per aisle, and walk out with more in the trolley. Almost nobody notices the music while they're shopping. Almost everyone, if asked, would say \"I bought what I needed.\" The whole decision felt like choice from the inside, but a music director somewhere had already shifted the dial. That's psychology in one paragraph — the gap between what runs you and what you think is running you.",
 
   mentors: [
     { name: "Daniel Kahneman", for: "fast vs slow thinking, prospect theory", work: "Thinking, Fast and Slow (2011)" },

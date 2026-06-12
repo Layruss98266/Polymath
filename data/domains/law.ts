@@ -8,14 +8,14 @@ const d: Domain = {
   name: "Law & Legal Basics",
   tagline: "How rules work, so they don't surprise you",
 
-  basics: "Law is the formalised set of rules a society uses to allocate rights, resolve disputes, and channel power. You don't need to be a lawyer to live well — but everyone benefits from knowing the basic shape of contracts, criminal vs civil systems, basic rights, and when to call a real lawyer. Most disasters are people not knowing what they signed or what they were entitled to.",
+  basics: "Law is the official rulebook a society uses to decide who has which rights, how disputes get sorted out, and how power gets channelled. You don't need a law degree to live well — but you do need a rough map. Most everyday legal disasters happen to people who didn't know what they were signing, or didn't know what they were entitled to. The shape of contracts, the difference between criminal and civil cases, your basic rights, when to suck it up and when to pay a real lawyer — that's the literacy. With it, most contracts you sign in your life stop being scary. Without it, you're trusting that everyone you deal with has your interests at heart, which is a brave assumption.",
   whyItMatters: [
-    "Read contracts and tenancy agreements without being trapped.",
-    "Know your basic rights in stops, arrests, and consumer disputes.",
-    "Spot when 'I'll just handle it myself' is genuinely OK vs when to pay a lawyer.",
-    "Vote, advocate, and reason about policy with the actual structure in mind."
+    "You can read a rental agreement, a job offer, an insurance policy without being quietly trapped by it.",
+    "You know roughly what your rights are when stopped, when arrested, when a service company refuses a refund.",
+    "You spot the moments when \"I'll just handle it myself\" is fine — and the moments when paying for one hour of a lawyer's time is the cheapest insurance you'll ever buy.",
+    "You vote, you read the news, you debate policy with actual structure in mind, not vibes."
   ],
-  realWorldExample: "In India, signing 'as is' in a property deal can transfer hidden liabilities you didn't notice — for years. A 30-minute conversation with a real estate lawyer often saves lakhs and months of disputes. The cost asymmetry of 'check before signing' vs 'fix after the fact' is the recurring lesson of practical law.",
+  realWorldExample: "A friend was buying a flat in India. The deal had \"sold as is\" buried in the small print. He signed because the broker was friendly and he wanted to move in next month. Six months later, he discovered the building had unresolved municipal issues that became his problem, legally and financially. Years of dispute, lakhs of rupees, hundreds of hours of stress — all to save what would have been a one-hour conversation with a property lawyer before signing. That asymmetry — small cost to check, huge cost to fix — is the recurring lesson of practical law. Most legal pain comes from skipping the boring check.",
 
   mentors: [
     { name: "Oliver Wendell Holmes Jr.", for: "the realist tradition — law as prediction of what courts will do", work: "The Path of the Law (1897)" },

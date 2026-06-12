@@ -8,14 +8,14 @@ const d: Domain = {
   name: "Entrepreneurship & Startups",
   tagline: "Find a real problem and solve it",
 
-  basics: "Entrepreneurship is the work of building something people pay for. The usual mistake isn't a lack of ideas — it's solving made-up problems for imaginary customers. The discipline is talking to actual buyers, shipping a small version fast, and letting reality (not your pitch deck) decide what to build next.",
+  basics: "Entrepreneurship is the work of building something other people pay you to use. Most people who fail at it don't fail from a shortage of ideas — they fail by solving problems nobody asked them to solve, for customers who exist mostly in their pitch deck. The actual discipline is small and uncomfortable: talk to real potential buyers about their actual lives, ship the smallest possible version of your idea before you feel ready, and let reality vote on what's next. The plan is wrong. The customer is the teacher. Your job is to listen, ship, learn, repeat.",
   whyItMatters: [
-    "Even if you never start a company, the skills (problem discovery, scrappy shipping, talking to users) compound everywhere.",
-    "Most jobs are getting more entrepreneurial — outcomes over hours.",
-    "The fastest path to real income for a lot of people without a corporate ladder.",
-    "Spot bad-business-model traps before you put time/money in."
+    "Even if you never start a company, the underlying skills — talking to users, scrappy shipping, killing your darlings — compound everywhere.",
+    "Most jobs are getting more entrepreneurial. \"Hours at desk\" is being replaced by \"outcomes shipped.\"",
+    "For a lot of people without a corporate ladder, it's the fastest honest path to real income.",
+    "You'll see business-model traps from a mile away — and stop putting your savings into ones friends are excited about."
   ],
-  realWorldExample: "Airbnb's founders couldn't pay rent. They put an air mattress in their living room and rented it to designers in town for a conference. Three guests. That was the MVP — no platform, no Series A, just enough of the thing to learn whether anyone would pay. The product was the test.",
+  realWorldExample: "Two friends couldn't make rent on their San Francisco apartment in 2007. A design conference was coming to town and all the hotels were booked out. They blew up three airbeds in their living room, took photos, made a one-page website, and rented those spots to designers who couldn't find a hotel. Three guests showed up. That was Airbnb's first version — no platform, no funding, no app, just an airbed in a living room and someone willing to pay for it. They didn't sit in cafes whiteboarding a marketplace strategy. They tested the smallest version of the idea on real strangers, in a real city, in a real weekend. Everything they built later came from what those three guests taught them.",
 
   mentors: [
     { name: "Paul Graham", for: "the YC playbook + clear thinking on startups", work: "essays at paulgraham.com" },

@@ -8,14 +8,14 @@ const d: Domain = {
   name: "Investing & Markets",
   tagline: "Own assets that compound",
 
-  basics: "Investing is owning a piece of something that pays you over time — a business, a bond, real estate. The single most repeatable winning strategy for ordinary people is dull on purpose: buy a broad, low-cost index fund, hold it for decades, ignore the news, automate. Almost everything more exciting is either gambling in disguise or only beats this after the costs of trying really hard.",
+  basics: "Investing is buying a piece of something that pays you over time — a business, a bond, a property. The single boring strategy that actually works for ordinary people, in basically every long enough window: buy a low-cost index fund, hold it for decades, ignore the news, keep adding. That's it. It feels too simple. Almost every more exciting alternative is either gambling in disguise, or beats the boring version only after a level of effort and luck most people never reach. The job isn't to be a genius. The job is to be patient and not interrupt the compounding.",
   whyItMatters: [
-    "Compounding is the only force that turns a salary into freedom.",
-    "Most active funds underperform a cheap index after fees.",
-    "Knowing the basics defends you from confident-but-selling people.",
-    "Risk management decides whether you survive the bad years."
+    "Compounding is the only known force that turns a regular salary into actual freedom over time.",
+    "Most active fund managers — even the famous ones — lose to a cheap index fund over 10–20 years, after their fees.",
+    "Knowing the basics is a defence: a confident-and-selling relationship manager can't push you into a bad product if you can read the expense ratio.",
+    "Markets fall sometimes. Whether you survive the falls is mostly about behaviour, not returns."
   ],
-  realWorldExample: "The S&P 500's worst single year (2008, ~−37%) was followed by a decade where it more than tripled. Investors who panicked and sold locked in losses; investors who kept buying captured the recovery. The hardest part of investing isn't returns — it's behaviour during drawdowns.",
+  realWorldExample: "In 2008 the US stock market fell about 37% in a single year. The financial news called it the end of everything. Many people sold what was left of their portfolios in panic, locking in the loss. Then over the next ten years, the same market more than tripled. The investors who didn't sell — who just kept buying their boring monthly amount through the panic — ended up far ahead. The hardest part of investing isn't picking the right thing. It's sitting still when the news is screaming at you to do something.",
 
   mentors: [
     { name: "John Bogle", for: "the case for low-cost index funds", work: "founded Vanguard; Common Sense on Mutual Funds" },

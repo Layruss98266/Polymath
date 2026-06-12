@@ -8,14 +8,14 @@ const d: Domain = {
   name: "Negotiation & Persuasion",
   tagline: "Reach agreement without losing yourself",
 
-  basics: "Negotiation isn't manipulation or charm — it's the systematic work of finding a deal that's better for both sides than not-dealing. The single biggest mistake people make is conflating positions ('I want $X') with interests (why they want $X). Once you separate them, the trades become visible.",
+  basics: "Negotiation isn't smooth talking or sneaky tricks. It's the boring, careful work of finding a deal that's better for both sides than walking away with nothing. The single biggest mistake people make is fighting about positions (\"I want ₹X\") instead of asking about interests (why each side actually wants what they're asking for). Once you separate those two things, deals that looked impossible start to feel obvious. You're not trying to win. You're trying to find the version of the deal where both of you walk out lighter than you walked in.",
   whyItMatters: [
-    "Salaries, prices, deadlines, relationship boundaries — all negotiations.",
-    "Most people massively under-negotiate, leaving years of value on the table.",
-    "Better outcomes without burning relationships.",
-    "Spot bad-faith tactics aimed at you."
+    "Your salary, your rent, your deadline, your boundary with a difficult relative — all negotiations, all the time.",
+    "Most people massively under-negotiate. A 10% higher starting salary, compounded across a career, is more money than most lottery winners take home.",
+    "You get better outcomes without setting the relationship on fire — because long-term trust is part of the win.",
+    "You spot bad-faith tactics when they're aimed at you, instead of feeling weirdly cornered after the meeting."
   ],
-  realWorldExample: "Two sisters fight over an orange. They split it. One uses her half for juice and throws the peel away; the other uses her peel for baking and throws the juice away. Positions: each wanted 'the orange.' Interests: one wanted juice, the other peel. Asking 'why' once would've doubled both their outcomes.",
+  realWorldExample: "Two sisters are fighting over the last orange in the fruit bowl. They both want it. They settle for the classic compromise — cut it in half. One sister squeezes her half for juice and throws away the peel. The other grates her half for the peel to bake a cake, and throws away the fruit. They both got half of what they wanted. If either of them had asked the other \"why do you want the orange?\", they'd both have walked away with twice as much. That's the entire trick: positions are what people say they want; interests are why. Trade on interests and almost every deal gets bigger.",
 
   mentors: [
     { name: "Fisher & Ury", for: "principled negotiation, BATNA", work: "Getting to Yes (1981)" },

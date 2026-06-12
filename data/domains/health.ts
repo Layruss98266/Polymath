@@ -8,14 +8,14 @@ const d: Domain = {
   name: "Health, Longevity & How the Body Works",
   tagline: "Live longer, feel better — what's actually solid",
 
-  basics: "Most of health is a small set of unglamorous habits — movement, sleep, food, social connection, not smoking, not abusing alcohol — that collectively change every disease risk that matters. Modern medicine is excellent at acute crises and surprisingly weak at chronic prevention; the gap is bridged by what you do daily. The science is noisier than influencer hot takes suggest, but the basics are robust.",
+  basics: "Almost everything you need to do to live well into old age is unglamorous and free. Move your body, sleep enough, eat mostly plants, have people you can call at 3 am, don't smoke, don't drink much. Do those, and basically every chronic disease that matters — heart, diabetes, cancer, dementia — shifts in your favour. Modern medicine is fantastic at pulling you back from the brink and surprisingly bad at keeping you off it; that gap is bridged by what you do daily. The internet is full of confident influencers selling protocols and supplements, and the science is honestly noisier than they pretend. But the basics are rock solid. Start there.",
   whyItMatters: [
-    "Almost every chronic disease (heart, diabetes, cancer, dementia) is shifted by the basics.",
-    "You're a literate patient when you talk to doctors.",
-    "You spot bad-science health claims (single studies, mouse models, supplement hype).",
-    "Healthspan, not just lifespan — feeling well in your 70s is the actual goal."
+    "Almost every chronic disease that wrecks late life shifts in your favour from the basics alone.",
+    "You become a literate patient — you can ask doctors better questions and catch wishful prescriptions.",
+    "You stop falling for confident health claims (single studies, mouse models, expensive supplements with one trial behind them).",
+    "The goal isn't just to live longer. It's to feel like yourself in your 70s. That's a different game."
   ],
-  realWorldExample: "The 'Blue Zones' framing (areas with high centenarian rates) has been used to sell every food and lifestyle pitch under the sun. The honest picture is messier — diet matters, but so do strong social ties, low chronic stress, daily movement, and (in some Blue Zones) under-recorded ages. Pull the big robust lessons (move daily, eat mostly plants, sleep, belong to a community) and skip the diet-specific salesmanship.",
+  realWorldExample: "There's a popular idea you'll see everywhere called the \"Blue Zones\" — five places (Okinawa, Sardinia, Ikaria, Nicoya, Loma Linda) where people supposedly live to 100 at extraordinary rates, and the books explain it with whichever diet the author is selling. The honest picture is messier. Diet matters, but so do strong social ties, daily walking, gardens to tend, faith communities, and (awkwardly) in some Blue Zones, sloppy record-keeping that overstated how old the centenarians actually were. The boring lessons survived the scrutiny — move every day, eat mostly plants, sleep, belong to a community. The exciting diet-of-the-month parts didn't. Pull the boring lessons out and ignore the rest.",
 
   mentors: [
     { name: "Peter Attia", for: "longevity medicine, evidence-based", work: "Outlive (2023)" },

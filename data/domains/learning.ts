@@ -8,14 +8,14 @@ const d: Domain = {
   name: "Learning How to Learn",
   tagline: "The meta-skill that compounds across every other domain",
 
-  basics: "Most of what you remember from school you remember badly — because it was taught by re-reading and highlighting, which feel productive and don't work. The actually-effective methods are uncomfortable: retrieval, spacing, interleaving, and active processing. This is the meta-skill that makes every other domain cheaper.",
+  basics: "Almost everything school taught you about studying is wrong — not by accident, but because the wrong things feel productive. Re-reading a chapter, highlighting half the page, watching the lecture twice — they all feel like learning while you do them. Then a week later you've forgotten everything. The methods that actually work feel worse in the moment: closing the book and trying to remember, taking a test before you feel ready, mixing topics together, struggling. The uncomfortable feeling is the work happening. Once you get this, learning anything new gets a lot cheaper for the rest of your life.",
   whyItMatters: [
-    "Learn anything faster — every domain on this app gets multiplied.",
-    "Stop wasting time on study techniques that feel good and don't stick.",
-    "Pass exams, interviews and certifications with less suffering.",
-    "Become a credible self-teacher in adulthood — most of working life now."
+    "Every other domain on this app gets multiplied. Better study methods are leverage.",
+    "Stop wasting your evenings on highlighters and feeling busy without remembering anything.",
+    "Pass the exam, the interview, the certification — with less time and less suffering.",
+    "Adult life is now mostly self-teaching. Whoever's good at it has a massive unfair advantage."
   ],
-  realWorldExample: "Two students study the same chapter for the same time. One re-reads and highlights. The other closes the book and tries to write down everything she remembers, then checks. A week later, the second student remembers far more. Same content, very different result — because retrieval, not exposure, is what builds memory.",
+  realWorldExample: "Two students study the same chapter for the same 30 minutes. Riya re-reads it twice, highlighting things. Arjun reads it once, closes the book, and tries to write down everything he remembers — gets some right, gets some wrong, checks. They take the same test a week later. Arjun crushes it. He spent the same time and remembered far more, because the act of trying to pull the information out of his head is what stamped it in. Riya felt more confident at the time. Arjun did more learning. That gap — feeling like learning versus actually learning — is the entire game.",
 
   mentors: [
     { name: "Hermann Ebbinghaus", for: "the forgetting curve + spacing", work: "Memory (1885)" },

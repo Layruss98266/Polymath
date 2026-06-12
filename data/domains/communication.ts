@@ -8,14 +8,14 @@ const d: Domain = {
   name: "Communication & Storytelling",
   tagline: "Make ideas land — and stick",
 
-  basics: "Communication is the work of installing an idea — accurately and durably — into another person's head. Most ideas die not because they're wrong but because they're forgettable: too long, too abstract, no story. The cure is structure, specifics, and stakes.",
+  basics: "Communication is the quiet work of getting an idea out of your head, accurately and durably, into someone else's. The hard part isn't being right. The hard part is being remembered. Most good ideas die not because they were wrong, but because they were too long, too abstract, told with no story, or buried somewhere on slide 47. Fix three things — structure, specifics, and stakes — and you'll suddenly notice your ideas getting picked up, agreed to, and repeated back to you by people who heard them once.",
   whyItMatters: [
-    "Get your ideas chosen instead of someone else's.",
-    "Lead teams and projects with less repeating yourself.",
-    "Write emails / docs / decks people actually act on.",
-    "Tell the story of your work in a way that survives the hallway."
+    "Your ideas get chosen over someone else's, even when theirs are technically equal.",
+    "You stop having to repeat yourself in every meeting because what you said the first time actually landed.",
+    "The emails, docs, and decks you send get acted on instead of skimmed and forgotten.",
+    "Your work survives the hallway — meaning people can describe it to someone else without you in the room."
   ],
-  realWorldExample: "Aristotle wrote three modes of persuasion: ethos (credibility), pathos (emotion), logos (logic). 2400 years later, every TED talk that lands does some version of all three — credibility in the bio, emotion in the story, logic in the slide.",
+  realWorldExample: "Aristotle, 2,400 years ago, said all persuasion comes down to three things: ethos (who you are), pathos (what they feel), and logos (what's true). Every TED talk that's gone viral in the last decade does the same thing. The host introduces the speaker (ethos — \"and tonight, the woman who…\"). The speaker opens with a story that makes you feel something (pathos). Then somewhere in the middle, the actual point arrives, clean and short, with one piece of evidence (logos). 18 minutes later, the audience can repeat the point to a friend. That's what \"landing\" looks like. The technology changed; the structure didn't.",
 
   mentors: [
     { name: "Aristotle", for: "ethos/pathos/logos", work: "Rhetoric" },

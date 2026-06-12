@@ -8,14 +8,14 @@ const d: Domain = {
   name: "Nutrition & Food Science",
   tagline: "Eat well without the noise",
 
-  basics: "Nutrition is one of the noisiest fields — single studies, mouse models, and influencer hot takes get more attention than the boring robust picture. The boring picture: eat mostly minimally-processed plants, get enough protein, don't drink your calories, avoid smoking, alcohol minimal. Specific 'best diet' debates matter less than these.",
+  basics: "Nutrition is one of the loudest fields in science, and most of that noise is wrong. Every month a new study, a new podcast, a new diet book tells you the opposite of the last one. Eat fat. Don't. Carbs are evil. No they aren't. Cut everything. Eat everything raw. The boring, deeply unsexy truth that survives every shift of fashion is: eat mostly plants you'd recognise as plants (less stuff that came out of a factory), get enough protein, don't drink your sugary calories, don't smoke, and keep alcohol low. That's it. Get the basics right and the specific best-diet arguments matter way less than the internet pretends.",
   whyItMatters: [
-    "What you eat affects energy, mood, sleep, weight, every major disease risk.",
-    "Most weight-loss diets work briefly; the durable answer is unsexy.",
-    "Spot supplement / superfood / diet marketing — most of it is bad science.",
-    "Make food choices without exhausting your willpower."
+    "What you eat shapes your energy, mood, sleep quality, weight, and basically every major disease risk you'll meet.",
+    "Most diets \"work\" for a few months and then quietly stop. The durable answer is unsexy because anything sexy can't last decades.",
+    "You start spotting the supplement and superfood marketing — most of which is one study, one mouse, and a lot of profit margin.",
+    "You stop spending your willpower on food. The right defaults make most decisions for you, automatically."
   ],
-  realWorldExample: "Brazil's NOVA classification asked a simple question: how processed is this food? Across many large studies, ultra-processed food intake correlates with weight gain, worse cardiometabolic markers, and higher mortality — independent of macros. The lesson isn't 'eat clean'; it's 'the more a food was assembled in a factory, the more cautious you should be.'",
+  realWorldExample: "In 2009, Brazilian researchers asked a deceptively simple question: how processed is this food? They built a four-level scale called NOVA. Level 1 is fruit, rice, eggs — basically untouched. Level 4 is the stuff with ingredient lists like a chemistry exam — most cereals, sodas, packaged snacks, instant noodles. Across many large studies, the more level-4 \"ultra-processed\" food a population eats, the worse the outcomes — weight gain, heart disease, mortality — even when calories and macros match. The lesson isn't \"eat clean.\" The lesson is: the more your food was assembled in a factory, the more careful you should be. Cook more. The rest mostly takes care of itself.",
 
   mentors: [
     { name: "Walter Willett", for: "decades of nutritional epidemiology", work: "Nurses' Health Study leadership" },
