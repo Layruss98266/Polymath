@@ -55,8 +55,20 @@ class Store {
 
  set(next: UserState) {
   const prevLevel = levelOf(this.state.xp);
+  const prevXp = this.state.xp;
+  // Log per-day XP delta. Bookkeeping for the streak heatmap.
+  let xpLogged: UserState = next;
+  if (next.xp > prevXp && this.hydrated) {
+   const day = todayKey();
+   const xpByDay = { ...(next.xpByDay ?? {}) };
+   xpByDay[day] = (xpByDay[day] ?? 0) + (next.xp - prevXp);
+   // Trim to the last ~400 keys to keep state small.
+   const keys = Object.keys(xpByDay).sort();
+   while (keys.length > 400) { delete xpByDay[keys.shift() as string]; }
+   xpLogged = { ...next, xpByDay };
+  }
   // Auto award any achievements that now satisfy their condition.
-  const enriched = applyAchievements(next);
+  const enriched = applyAchievements(xpLogged);
   const nextLevel = levelOf(enriched.xp);
   this.state = enriched;
   this.emit();

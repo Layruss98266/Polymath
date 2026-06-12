@@ -67,8 +67,7 @@ export function Dashboard() {
 
    <section className="panel p-5">
     <h2 className="font-display text-xl mb-3">Activity (last 365 days)</h2>
-    <StreakHeatmap currentStreak={s.currentStreak} xpToday={Math.min(60, s.xp % 250)} />
-    <p className="text-xs dim mt-2">Current streak fills back from today. We do not yet log per-day XP, so the depth of older cells is approximate.</p>
+    <StreakHeatmap currentStreak={s.currentStreak} xpByDay={s.xpByDay ?? {}} />
    </section>
 
    <section className="panel p-5">

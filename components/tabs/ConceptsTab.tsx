@@ -66,6 +66,7 @@ export function ConceptsTab({ d }: { d: Domain }) {
    {/* Header strip with position and bookmark */}
    <div className="flex items-center gap-3 flex-wrap">
     <span className="chip">Concept {idx + 1} of {concepts.length}</span>
+    {(() => { const words = explanation.split(/\s+/).length; const mins = Math.max(1, Math.round(words / 220)); return <span className="chip dim" title="Approximate reading time">{mins} min read</span>; })()}
     {concept.subdomain && <span className="chip dim">{concept.subdomain}</span>}
     <StatusBadge status={concept.status} />
     <div className="ml-auto flex gap-2">

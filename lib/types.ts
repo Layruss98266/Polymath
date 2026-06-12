@@ -182,4 +182,6 @@ export type UserState = {
  achievements: Achievement[];
  capabilityLog: { domainId: string; statement: string; at: number }[];
  startedDomains: string[];
+ // Per-day XP gained, keyed by YYYY-MM-DD. Only the last 400 days are kept.
+ xpByDay?: Record<string, number>;
 };

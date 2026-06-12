@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useMemo } from "react";
 import { useUserState } from "@/lib/state";
 import { DOMAIN_INDEX } from "@/data/domains";
+import { ConnectionsGraph } from "./ConnectionsGraph";
 
 export function SkillMap() {
  const s = useUserState();
@@ -15,7 +16,8 @@ export function SkillMap() {
  return (
   <div className="space-y-5">
    <h1 className="font-display text-3xl">Skill Map</h1>
-   <p className="dim text-sm">Domains grouped by category. Touched domains glow, the goal isn't to cover them all, but to build a useful lattice across categories.</p>
+   <p className="dim text-sm">Domains grouped by category. Touched domains glow. The goal isn't to cover them all, but to build a useful lattice across categories.</p>
+   <ConnectionsGraph />
    {byCat.map(([cat, ds]) => (
     <section key={cat} className="panel p-5">
      <h2 className="font-display text-lg mb-3">{cat}</h2>
