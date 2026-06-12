@@ -54,7 +54,7 @@ export function DomainGrid() {
 
    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
     {list.map((d) => <DomainCard key={d.id} d={d} />)}
-    {list.length === 0 && <p className="dim">No matches , try a different filter.</p>}
+    {list.length === 0 && <p className="dim">No matches, try a different filter.</p>}
    </div>
 
    <p className="dim text-xs">

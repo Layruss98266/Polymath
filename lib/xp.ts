@@ -1,10 +1,10 @@
 // XP, levels, ranks. Single source of truth.
-// Ethical-XP rule (spec §11C): XP for *real learning actions only* , recall, missions, reflections, calibrated answers.
+// Ethical-XP rule (spec §11C): XP for *real learning actions only*, recall, missions, reflections, calibrated answers.
 
 export const XP_PER_LEVEL = 250;
 
 export const XP = {
- conceptOpenedFirstTime: 5,    // tiny , opening != learning
+ conceptOpenedFirstTime: 5,    // tiny, opening != learning
  reflectionWritten: 15,      // applied recall
  quizCorrectFirstTry: 20,
  quizCorrectCalibrated: 8,     // bonus for calibrated confidence (right + sure, or wrong + unsure)

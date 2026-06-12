@@ -1,5 +1,5 @@
 // Theme-aware SVG diagram component library.
-// Every generator: uses currentColor / CSS vars only , no hard-coded colors.
+// Every generator: uses currentColor / CSS vars only, no hard-coded colors.
 // role="img" + <title>/<desc>, focusable groups for keyboard a11y.
 import type { Diagram as D, DiagramKind } from "@/lib/types";
 
@@ -289,7 +289,7 @@ const timeline: Generator = (data: { events: { when: string; what: string }[] })
     const x = padL + (i / Math.max(1, n - 1)) * (W - padL - padR);
     const above = i % 2 === 0;
     return (
-     <g key={i} tabIndex={0} aria-label={`${e.when} , ${e.what}`}>
+     <g key={i} tabIndex={0} aria-label={`${e.when}, ${e.what}`}>
       <circle cx={x} cy={H / 2} r={6} fill="var(--hue)" />
       <line x1={x} y1={H / 2} x2={x} y2={above ? 40 : H - 40} stroke="var(--line)" />
       <text x={x} y={above ? 30 : H - 24} textAnchor="middle" fontSize={12} fill="var(--ink)">{e.what}</text>
@@ -406,7 +406,7 @@ export function DiagramView({ diagram }: { diagram: D }) {
     {G(diagram.data)}
    </div>
    <figcaption className="text-sm dim">
-    <span className="hue font-medium">{diagram.title}</span> , {diagram.caption}
+    <span className="hue font-medium">{diagram.title}</span>, {diagram.caption}
    </figcaption>
   </figure>
  );

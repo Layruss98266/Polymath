@@ -1,4 +1,4 @@
-// Canonical types , mirrored 1:1 by Zod schema in ./schema.ts.
+// Canonical types, mirrored 1:1 by Zod schema in ./schema.ts.
 
 export type EpistemicStatus = "settled" | "debated" | "framework";
 
@@ -138,7 +138,7 @@ export type ConceptProgress = {
  opened: boolean;
  reflectAnswer?: string;
  testOutProven?: boolean;
- accuracy?: number;   // 0..1 , for weakest-concepts queue
+ accuracy?: number;   // 0..1, for weakest-concepts queue
  attempts?: number;
 };
 

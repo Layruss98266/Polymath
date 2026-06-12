@@ -46,7 +46,7 @@ export function FlashcardsTab({ d }: { d: Domain }) {
     <span>{due} due now in this domain</span>
    </div>
    <article className="panel p-6 min-h-[180px]" onClick={() => setFlipped((f) => !f)} role="button" tabIndex={0}>
-    <p className="text-xs uppercase tracking-widest dim mb-2">{flipped ? "Back" : "Front , tap to flip"}</p>
+    <p className="text-xs uppercase tracking-widest dim mb-2">{flipped ? "Back" : "Front, tap to flip"}</p>
     <p className="text-lg font-medium">{flipped ? card.back : card.front}</p>
    </article>
    {flipped && (

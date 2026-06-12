@@ -118,7 +118,7 @@ export function ReviewSession() {
   return (
    <div className="panel p-6 space-y-3">
     <h1 className="font-display text-2xl">Session complete 🎉</h1>
-    <p>You reviewed {pool.length} card{pool.length === 1 ? "" : "s"}. Come back tomorrow , that's how spacing earns its keep.</p>
+    <p>You reviewed {pool.length} card{pool.length === 1 ? "" : "s"}. Come back tomorrow, that's how spacing earns its keep.</p>
     <div className="flex gap-2">
      <button className="btn" onClick={() => { setI(0); setFlipped(false); }}><RefreshCw size={14} /> Review again</button>
      <Link href="/dashboard" className="btn">See dashboard</Link>
@@ -144,7 +144,7 @@ export function ReviewSession() {
     onClick={() => setFlipped((f) => !f)}
     onKeyDown={(e) => { if (e.key === " " || e.key === "Enter") { e.preventDefault(); setFlipped((f) => !f); } }}
    >
-    <p className="text-xs uppercase tracking-widest dim mb-2">{flipped ? "Back" : "Front , click or press space to flip"}</p>
+    <p className="text-xs uppercase tracking-widest dim mb-2">{flipped ? "Back" : "Front, click or press space to flip"}</p>
     <p className="text-lg font-medium">{flipped ? card.back : card.front}</p>
    </article>
    {flipped && (
@@ -156,7 +156,7 @@ export function ReviewSession() {
     </div>
    )}
    <p className="text-xs dim">
-    FSRS schedules each card based on how easily you recalled it. Cards you rate <em>Again</em> resurface quickly; <em>Easy</em> ones wait days or weeks. That's not stinginess , it's spacing.
+    FSRS schedules each card based on how easily you recalled it. Cards you rate <em>Again</em> resurface quickly; <em>Easy</em> ones wait days or weeks. That's not stinginess, it's spacing.
    </p>
   </div>
  );

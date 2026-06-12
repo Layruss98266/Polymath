@@ -6,7 +6,7 @@ export function CheatsheetTab({ d }: { d: Domain }) {
  return (
   <div className="space-y-4">
    <div className="flex items-center gap-2">
-    <h2 className="font-display text-xl flex-1">{d.name} , one-screen cheat-sheet</h2>
+    <h2 className="font-display text-xl flex-1">{d.name}, one-screen cheat-sheet</h2>
     <button className="btn" onClick={() => window.print()}><Printer size={14} /> Print</button>
    </div>
    <ul className="panel p-5 space-y-2 list-disc pl-7">

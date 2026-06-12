@@ -31,7 +31,7 @@ export async function loadState(): Promise<UserState> {
   if (row?.value) return migrate(row.value);
  } catch (e) {
   _useIDB = false;
-  console.warn("[db] IndexedDB unavailable , falling back to localStorage", e);
+  console.warn("[db] IndexedDB unavailable, falling back to localStorage", e);
  }
  try {
   const raw = localStorage.getItem(LS_KEY);
@@ -50,7 +50,7 @@ export async function saveState(s: UserState): Promise<void> {
    return;
   } catch (e) {
    _useIDB = false;
-   console.warn("[db] IDB write failed , falling back", e);
+   console.warn("[db] IDB write failed, falling back", e);
   }
  }
  try { localStorage.setItem(LS_KEY, JSON.stringify(s)); } catch {}

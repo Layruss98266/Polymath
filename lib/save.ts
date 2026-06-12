@@ -1,4 +1,4 @@
-// Export / import base64 save code , survives across devices/browsers.
+// Export / import base64 save code, survives across devices/browsers.
 import type { UserState } from "./types";
 import { migrate } from "./migrations";
 

@@ -1,4 +1,4 @@
-// FSRS scheduler , wraps ts-fsrs. Maps our compact CardSR <-> ts-fsrs Card.
+// FSRS scheduler, wraps ts-fsrs. Maps our compact CardSR <-> ts-fsrs Card.
 import { createEmptyCard, fsrs, generatorParameters, Rating, State, type Card, type Grade as FsrsGrade } from "ts-fsrs";
 import type { CardSR } from "./types";
 

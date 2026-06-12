@@ -15,7 +15,7 @@ export function SkillMap() {
  return (
   <div className="space-y-5">
    <h1 className="font-display text-3xl">Skill Map</h1>
-   <p className="dim text-sm">Domains grouped by category. Touched domains glow , the goal isn't to cover them all, but to build a useful lattice across categories.</p>
+   <p className="dim text-sm">Domains grouped by category. Touched domains glow, the goal isn't to cover them all, but to build a useful lattice across categories.</p>
    {byCat.map(([cat, ds]) => (
     <section key={cat} className="panel p-5">
      <h2 className="font-display text-lg mb-3">{cat}</h2>

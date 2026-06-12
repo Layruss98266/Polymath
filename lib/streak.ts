@@ -1,4 +1,4 @@
-// Streak engine , w/ grace-day (§11C). One missed day doesn't nuke a long streak.
+// Streak engine, w/ grace-day (§11C). One missed day doesn't nuke a long streak.
 import type { UserState } from "./types";
 
 export function todayKey(d = new Date()): string {

@@ -1,4 +1,4 @@
-// Versioned save migrations , a new build never wipes old progress (§9 v5).
+// Versioned save migrations, a new build never wipes old progress (§9 v5).
 import type { UserState } from "./types";
 
 export const CURRENT_SCHEMA_VERSION = 1;
@@ -6,7 +6,7 @@ export const CURRENT_SCHEMA_VERSION = 1;
 type Migrator = (s: any) => any;
 
 const migrators: Record<number, Migrator> = {
- // 0 -> 1: initial , nothing to do.
+ // 0 -> 1: initial, nothing to do.
  0: (s) => ({ ...s, schemaVersion: 1 })
 };
 

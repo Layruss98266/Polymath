@@ -10,15 +10,22 @@ export default function HomePage() {
  return (
   <div className="space-y-6">
    <section className="grid grid-cols-1 md:grid-cols-[1fr_320px] gap-4">
-    <div className="panel p-6 space-y-3">
+    <div className="panel hero-glow p-6 sm:p-8 space-y-3 relative overflow-hidden">
      <p className="dim text-xs uppercase tracking-widest">A daily learning loop</p>
      <h1 className="font-display text-4xl md:text-5xl leading-tight">
       Learn anything.<br />Two minutes a day.
      </h1>
      <p className="dim max-w-xl">
       Real frameworks. Real ranked resources. Real-world missions. Spaced repetition.
-      An honest game loop with <strong className="ink">no dark patterns</strong>. XP only for genuine learning actions.
+      An honest game loop with <strong className="ink">no dark patterns</strong>.
+      XP only for genuine learning actions.
      </p>
+     <div className="flex flex-wrap gap-2 pt-2">
+      <span className="chip">15 Core domains</span>
+      <span className="chip">7 mastery tiers</span>
+      <span className="chip">FSRS spaced repetition</span>
+      <span className="chip">Beginner and Expert views</span>
+     </div>
     </div>
     <LevelRing />
    </section>

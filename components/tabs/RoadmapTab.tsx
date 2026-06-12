@@ -33,7 +33,7 @@ export function RoadmapTab({ d }: { d: Domain }) {
 
    {d.capstone && (
     <div className="panel p-5 border" style={{ borderColor: "var(--hue)" }}>
-     <p className="text-xs uppercase tracking-widest dim">Boss challenge , earn Grandmaster</p>
+     <p className="text-xs uppercase tracking-widest dim">Boss challenge, earn Grandmaster</p>
      <h3 className="font-display text-lg mt-1">{d.capstone.t}</h3>
      <p className="text-sm mt-1">{d.capstone.d}</p>
      <div className="flex items-center gap-2 mt-3">

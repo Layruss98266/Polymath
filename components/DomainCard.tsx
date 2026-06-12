@@ -16,7 +16,7 @@ export function DomainCard({ d }: { d: DomainEntry }) {
  return (
   <Link
    href={`/domain/${d.id}`}
-   className="panel p-4 block hover:translate-y-[-2px] transition-transform"
+   className="panel lift p-4 block"
    style={{ ["--hue" as any]: d.hue }}
   >
    <div className="flex items-start gap-3">

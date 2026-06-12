@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Sparkles, X } from "lucide-react";
 import { useActions, useUserState, useHydrated } from "@/lib/state";
 
@@ -34,11 +35,14 @@ export function Onboarding() {
  const s = useUserState();
  const hydrated = useHydrated();
  const a = useActions();
+ const pathname = usePathname();
  const [picked, setPicked] = useState<string[]>([]);
  const [done, setDone] = useState(false);
 
  if (!hydrated) return null;
  if (s.onboarded) return null;
+ // Only show on the Home page so it does not interrupt a user who deep-linked to a domain.
+ if (pathname && pathname !== "/") return null;
 
  const toggle = (id: string) => {
   setPicked((prev) => {

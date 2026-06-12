@@ -10,7 +10,7 @@ export function MyList() {
  const a = useActions();
 
  // Bookmarks come as `${domainId}:${conceptIndex}` strings. We can't render the
- // concept text without loading the domain , but we can link back to the tab.
+ // concept text without loading the domain, but we can link back to the tab.
  const bookmarks = s.bookmarks;
  const reflections = useMemo(() =>
   Object.entries(s.notes).filter(([k]) => k.endsWith(":reflect") && s.notes[k]?.trim().length > 0),

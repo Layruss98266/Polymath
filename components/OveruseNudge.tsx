@@ -23,7 +23,7 @@ export function OveruseNudge() {
     <Coffee size={18} className="hue mt-0.5" />
     <div className="flex-1 text-sm">
      <p className="font-medium">You've been at this ~45 minutes.</p>
-     <p className="dim mt-1">Breaks help memory consolidate , your next review will probably be sharper after one.</p>
+     <p className="dim mt-1">Breaks help memory consolidate, your next review will probably be sharper after one.</p>
      <div className="flex gap-2 mt-2">
       <button className="btn" onClick={() => setShow(false)}>Five more minutes</button>
       <button className="btn" onClick={() => setShow(false)}>Got it</button>

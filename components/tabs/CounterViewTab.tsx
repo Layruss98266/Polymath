@@ -9,7 +9,7 @@ export function CounterViewTab({ d }: { d: Domain }) {
     <h2 className="font-display text-xl">The strongest counter-argument</h2>
    </div>
    <p className="dim text-sm">
-    We steelman the case against this domain's conventional wisdom , labelling certainty honestly is rarer (and more valuable) than another confident summary.
+    We steelman the case against this domain's conventional wisdom, labelling certainty honestly is rarer (and more valuable) than another confident summary.
    </p>
    <p>{d.counterView}</p>
   </div>

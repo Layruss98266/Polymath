@@ -9,7 +9,7 @@ export function QuizTab({ d }: { d: Domain }) {
  return (
   <div className="space-y-4">
    <p className="dim text-sm">
-    Wrong answers explain the <em>specific</em> misconception they map to , that's where memory updates.
+    Wrong answers explain the <em>specific</em> misconception they map to, that's where memory updates.
     Pick a confidence level before each answer; calibrated confidence is a real meta-skill.
    </p>
    {d.quiz.map((q, i) => <QuizCard key={i} d={d} idx={i} q={q} />)}
@@ -79,8 +79,8 @@ function QuizCard({ d, idx, q }: { d: Domain; idx: number; q: Domain["quiz"][num
      <p className="text-sm" style={{ color: right ? "var(--good)" : "var(--bad)" }}>
       {right ? "Right." : "Not quite."} {q.why}
      </p>
-     {calibrated && <p className="text-xs dim">Nice calibration , {right ? "sure and right." : "you flagged uncertainty."}</p>}
-     {!calibrated && conf === "certain" && !right && <p className="text-xs" style={{ color: "var(--bad)" }}>Confident-and-wrong , the most dangerous combo. Worth a re-read.</p>}
+     {calibrated && <p className="text-xs dim">Nice calibration, {right ? "sure and right." : "you flagged uncertainty."}</p>}
+     {!calibrated && conf === "certain" && !right && <p className="text-xs" style={{ color: "var(--bad)" }}>Confident-and-wrong, the most dangerous combo. Worth a re-read.</p>}
     </div>
    )}
   </article>
