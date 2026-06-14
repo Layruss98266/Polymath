@@ -1,5 +1,5 @@
 "use client";
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import type { Domain } from "@/lib/types";
 import { useActions, useUserState } from "@/lib/state";
 import { grade, newCard, type Grade } from "@/lib/fsrs";
@@ -21,19 +21,20 @@ export function FlashcardsTab({ d }: { d: Domain }) {
  const a = useActions();
  const [i, setI] = useState(0);
  const [flipped, setFlipped] = useState(false);
+ const [busy, setBusy] = useState(false);
 
- const cardForIndex = (idx: number) => {
+ const cardForIndex = useCallback((idx: number) => {
   const key = `${d.id}:${idx}`;
   const existing = s.cards.find((c) => c.cardKey === key);
   return existing ?? newCard(key, d.id);
- };
+ }, [d.id, s.cards]);
 
  const due = useMemo(() => {
   const now = Date.now();
   return d.flashcards
    .map((_, idx) => ({ idx, c: cardForIndex(idx) }))
    .filter((x) => x.c.due <= now).length;
- }, [d.flashcards, s.cards, d.id]);
+ }, [d.flashcards, cardForIndex]);
 
  if (i >= d.flashcards.length) {
   return (
@@ -47,7 +48,6 @@ export function FlashcardsTab({ d }: { d: Domain }) {
  const card = d.flashcards[i];
  const sr = cardForIndex(i);
 
- const [busy, setBusy] = useState(false);
  const gradeAndNext = (g: Grade) => {
   if (busy) return;
   setBusy(true);

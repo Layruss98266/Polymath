@@ -29,14 +29,17 @@ export function masteryPct(domain: Domain, p?: DomainProgress, cps?: ConceptProg
  // concept-quiz item correctly on it. Falls back to opened-with-attempt for
  // older saves where ConceptProgress was not yet populated.
  let proven = 0;
+ let haveCps = false;
  if (cps && cps.length > 0) {
   for (const cp of cps) {
    if (cp.domainId !== domain.id) continue;
+   haveCps = true;
    const ok = cp.opened && (cp.reflectAnswer ?? "").trim().length > 20 && (cp.accuracy ?? 0) >= 0.6;
    if (ok) proven++;
   }
  }
- const conceptsProven = clamp01(proven / total);
+ // Fallback for older saves with no ConceptProgress: treat opened concepts as proven.
+ const conceptsProven = haveCps ? clamp01(proven / total) : clamp01(p.conceptsOpened / total);
 
  const missions = clamp01(p.missionsDone.length / Math.max(1, domain.missions.length));
  // Quiz: accuracy × coverage. So 100% accurate on only 1 quiz item is not the

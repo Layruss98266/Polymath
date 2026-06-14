@@ -29,9 +29,10 @@ export function ReviewSession() {
  const minutes = Number(sp?.get("minutes") ?? "") || null;
  const cardCap = minutes ? Math.max(5, Math.round(minutes * CARDS_PER_MINUTE)) : null;
 
+ const startedKey = s.startedDomains.join(",");
  useEffect(() => {
   if (!hydrated) return;
-  const ids = s.startedDomains.length ? s.startedDomains : DOMAIN_INDEX.map((d) => d.id);
+  const ids = startedKey ? startedKey.split(",") : DOMAIN_INDEX.map((d) => d.id);
   let cancelled = false;
   Promise.all(ids.map(async (id) => {
    try { return [id, await loadDomain(id)] as const; } catch { return null; }
@@ -42,7 +43,7 @@ export function ReviewSession() {
    setDomains(map);
   });
   return () => { cancelled = true; };
- }, [hydrated, s.startedDomains.join(",")]);
+ }, [hydrated, startedKey]);
 
  const pool = useMemo<CardInPlay[]>(() => {
   const now = Date.now();

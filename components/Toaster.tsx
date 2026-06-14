@@ -52,7 +52,7 @@ export function Toaster() {
   setToasts((t) => [...t, ...fresh].slice(-3));
   const ids = fresh.map((f) => f.id);
   setTimeout(() => setToasts((t) => t.filter((x) => !ids.includes(x.id))), 2500);
- }, [s.xp, s.achievements.length, s.domainProgress, hydrated]);
+ }, [s.xp, s.achievements, s.domainProgress, hydrated]);
 
  if (toasts.length === 0) return null;
  return (

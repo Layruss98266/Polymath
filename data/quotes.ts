@@ -56,7 +56,6 @@ export const QUOTES: Quote[] = [
  { text: "Risk comes from not knowing what you're doing.", by: "Warren Buffett", domain: "investing" },
  { text: "It's far better to buy a wonderful company at a fair price than a fair company at a wonderful price.", by: "Warren Buffett", domain: "investing" },
  { text: "The most important quality for an investor is temperament, not intellect.", by: "Warren Buffett", domain: "investing" },
- { text: "An investment in knowledge pays the best interest.", by: "Benjamin Franklin", domain: "personal_finance" },
  { text: "Time in the market beats timing the market.", by: "Common investing maxim", domain: "investing" },
  { text: "The four most dangerous words in investing are: this time it's different.", by: "John Templeton", domain: "investing" },
  { text: "In investing, what is comfortable is rarely profitable.", by: "Robert Arnott", domain: "investing" },
@@ -252,7 +251,6 @@ export const QUOTES: Quote[] = [
  { text: "The function of good software is to make the complex appear to be simple.", by: "Grady Booch", domain: "tech" },
  { text: "Code never lies, comments sometimes do.", by: "Ron Jeffries", domain: "tech" },
  { text: "Programming is the art of telling another human what one wants the computer to do.", by: "Donald Knuth", domain: "tech" },
- { text: "Premature optimization is the root of all evil.", by: "Donald Knuth", domain: "tech" },
  { text: "Smart data structures and dumb code works a lot better than the other way around.", by: "Eric S. Raymond", domain: "tech" },
 
  // AI, ML
@@ -364,7 +362,6 @@ export const QUOTES: Quote[] = [
 
  // Risk, courage
  { text: "Twenty years from now you will be more disappointed by the things you didn't do than by the ones you did do.", by: "Often attributed to Mark Twain; original source disputed" },
- { text: "The cave you fear to enter holds the treasure you seek.", by: "Joseph Campbell" },
  { text: "Courage is grace under pressure.", by: "Ernest Hemingway" },
  { text: "We must let go of the life we have planned, so as to accept the one that is waiting for us.", by: "Joseph Campbell" },
  { text: "Do what you can, with what you have, where you are.", by: "Theodore Roosevelt" },
